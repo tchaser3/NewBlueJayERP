@@ -1,0 +1,189 @@
+﻿<Window x:Class="NewBlueJayERP.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        xmlns:local="clr-namespace:NewBlueJayERP"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="800" Width="1000">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="75" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="731*"/>
+                <ColumnDefinition Width="261*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnAssignTask" Content="Assign Task" HorizontalAlignment="Left" Margin="284,10,0,0" VerticalAlignment="Top" Width="127" Height="55" Click="BtnAssignTask_Click"/>
+            <Button x:Name="btnMyTasks" Content="My Tasks" HorizontalAlignment="Left" Margin="411,10,0,0" VerticalAlignment="Top" Width="127" Height="55" Click="BtnMyTasks_Click"/>
+            <Button x:Name="btnEmail" Content="Email" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Margin="538,10,0,0" Height="55" Click="BtnEmail_Click"/>
+            <Button x:Name="btnHelp" Content="Help" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Margin="665,10,0,0" Height="55" Click="BtnHelp_Click" Grid.ColumnSpan="2"/>
+            <Button x:Name="btnClose" Content="Close" HorizontalAlignment="Left" VerticalAlignment="Top" Width="127" Margin="61.173,10,0,0" Height="55" Click="BtnClose_Click" Grid.Column="1"/>
+            <Image HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="149" Stretch="Fill" Source="logo.png"/>
+        </Grid>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="690" Width="100" Background="LightBlue"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="690" Width="600">
+            <StackPanel>
+                <Expander x:Name="expEmployees" Header="Employees" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expEmployees_Expanded">
+                    <StackPanel Margin="11,1,1,1">
+                        <Expander x:Name="expEmployeeDataEntry" Header="Employee Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeDataEntry_Expanded">
+                            
+                        </Expander>
+                        <Expander x:Name="expEmployeeReports" Header="Employee Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expEmployeeAdministration" Header="Employees Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeAdministration_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expProjects" Header="Projects" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expProjects_Expanded">
+                    <StackPanel Margin="30,1,1,1">
+                        <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expInventory" Header="Inventory" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expInventory_Expanded">
+                    <StackPanel Margin="21,1,1,1">
+                        <Expander x:Name="expInventoryDataEntry" Header="Inventory Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expInventoryReports" Header="Inventory Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expInventoryAdministration" Header="Inventory Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryAdministration_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expVehicles" Header="Vehicles" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expVehicles_Expanded">
+                    <StackPanel Margin="31,1,1,1">
+                        <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expVehicleDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expVehicleReports" Header="Vehicle Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expVehicleReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expVehicleAdminstration" Header="Vehicle Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expVehicleAdminstration_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expTrailers" Header="Trailers" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expTrailers_Expanded">
+                    <StackPanel Margin="38,1,1,1">
+                        <Expander x:Name="expTrailerDataEntry" Header="Trailer Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expTrailerDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expTrailerReports" Header="Trailer Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expTrailerReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expTrailerAdministration" Header="Trailer Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expTrailerAdministration_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expTools" Header="Tools" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expTools_Expanded">
+                    <StackPanel Margin="51,1,1,1">
+                        <Expander x:Name="expToolsDataEntry" Header="Tool Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expToolsDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expToolReports" Header="Tool Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expToolReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expToolAdministration" Header="Tool Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expToolAdministration_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expAssets" Header="Assets" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expAssets_Expanded">
+                    <StackPanel Margin="43,1,1,1">
+                        <Expander x:Name="expAssetDataEntry" Header="Asset Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expAssetDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expAssentReports" Header="Asset Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expAssentReports_Expanded">
+
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expInformationTechology" Header="IT Info" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expInformationTechology_Expanded">
+                    <StackPanel Margin="43,1,1,1">
+                        <Expander x:Name="expITDataEntry" Header="IT Data Entry" ExpandDirection="Right" Background="LightBlue" Expanded="expITDataEntry_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" Background="LightBlue" Expanded="expITReports_Expanded">
+
+                        </Expander>
+                        <Expander x:Name="expPhoneAdministration" Header="Phone Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expPhoneAdministration_Expanded">
+                            
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>            
+        </StackPanel>
+    </Grid>
+</Window>
