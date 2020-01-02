@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="TotalWorkTaskFootagesDataSet" targetNamespace="http://tempuri.org/TotalWorkTaskFootagesDataSet.xsd" xmlns:mstns="http://tempuri.org/TotalWorkTaskFootagesDataSet.xsd" xmlns="http://tempuri.org/TotalWorkTaskFootagesDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="TotalWorkTaskFootagesDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="TotalWorkTaskFootagesDataSet" msprop:Generator_UserDSName="TotalWorkTaskFootagesDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="totalworktaskfootages" msprop:Generator_TableClassName="totalworktaskfootagesDataTable" msprop:Generator_TableVarName="tabletotalworktaskfootages" msprop:Generator_TablePropName="totalworktaskfootages" msprop:Generator_RowDeletingName="totalworktaskfootagesRowDeleting" msprop:Generator_RowChangingName="totalworktaskfootagesRowChanging" msprop:Generator_RowEvHandlerName="totalworktaskfootagesRowChangeEventHandler" msprop:Generator_RowDeletedName="totalworktaskfootagesRowDeleted" msprop:Generator_UserTableName="totalworktaskfootages" msprop:Generator_RowChangedName="totalworktaskfootagesRowChanged" msprop:Generator_RowEvArgName="totalworktaskfootagesRowChangeEvent" msprop:Generator_RowClassName="totalworktaskfootagesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="FootagePieces" msprop:Generator_ColumnVarNameInTable="columnFootagePieces" msprop:Generator_ColumnPropNameInRow="FootagePieces" msprop:Generator_ColumnPropNameInTable="FootagePiecesColumn" msprop:Generator_UserColumnName="FootagePieces" type="xs:int" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:totalworktaskfootages" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
