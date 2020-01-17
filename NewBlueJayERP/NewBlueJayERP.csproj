@@ -47,6 +47,9 @@
     <Reference Include="AuditReportEmailListDLL">
       <HintPath>..\..\Blue Jay Class Library\AuditReportEmailListDLL.dll</HintPath>
     </Reference>
+    <Reference Include="BlueJayOfficesDLL">
+      <HintPath>..\..\Blue Jay Class Library\BlueJayOfficesDLL.dll</HintPath>
+    </Reference>
     <Reference Include="BOMPartsDLL">
       <HintPath>..\..\Blue Jay Class Library\BOMPartsDLL.dll</HintPath>
     </Reference>
@@ -173,6 +176,12 @@
     <Reference Include="PhonesDLL">
       <HintPath>..\..\Blue Jay Class Library\PhonesDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProductionProjectDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProductionProjectDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProductionProjectUpdatesDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProductionProjectUpdatesDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProductivityDataEntryDLL">
       <HintPath>..\..\Blue Jay Class Library\ProductivityDataEntryDLL.dll</HintPath>
     </Reference>
@@ -182,8 +191,20 @@
     <Reference Include="ProjectCostingDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectCostingDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProjectProductivityReportsDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectProductivityReportsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectsDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectsDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectTaskDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectTaskDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="PurchaseRequestDLL">
+      <HintPath>..\..\Blue Jay Class Library\PurchaseRequestDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="PurchaserRequestProjectsDLL">
+      <HintPath>..\..\Blue Jay Class Library\PurchaserRequestProjectsDLL.dll</HintPath>
     </Reference>
     <Reference Include="ReceiveCableDLL">
       <HintPath>..\..\Blue Jay Class Library\ReceiveCableDLL.dll</HintPath>
@@ -196,6 +217,9 @@
     </Reference>
     <Reference Include="RemovePartsDLL">
       <HintPath>..\..\Blue Jay Class Library\RemovePartsDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ReturnTimeStringDLL">
+      <HintPath>..\..\Blue Jay Class Library\ReturnTimeStringDLL.dll</HintPath>
     </Reference>
     <Reference Include="SafetyDLL">
       <HintPath>..\..\Blue Jay Class Library\SafetyDLL.dll</HintPath>
@@ -357,6 +381,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectProductivityReport.xaml.cs">
+      <DependentUpon>ProjectProductivityReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectProductivityReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TotalWorkTaskFootagesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -384,6 +416,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="PleaseWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectProductivityReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -416,6 +452,17 @@
     </None>
     <None Include="ProjectFootagesDataSet.xss">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectProductivityReportDataSet.xsc">
+      <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectProductivityReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectProductivityReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectProductivityReportDataSet.xss">
+      <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
