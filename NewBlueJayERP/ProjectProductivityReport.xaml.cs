@@ -63,6 +63,7 @@ namespace NewBlueJayERP
 
         private void expCloseWindow_Expanded(object sender, RoutedEventArgs e)
         {
+            expCloseWindow.IsExpanded = false;
             Visibility = Visibility.Hidden;
         }
 
@@ -339,7 +340,7 @@ namespace NewBlueJayERP
 
             try
             {
-
+                expExportToExcel.IsExpanded = false;
 
                 worksheet = workbook.ActiveSheet;
 

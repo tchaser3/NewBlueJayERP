@@ -53,6 +53,7 @@ namespace NewBlueJayERP
 
         private void expCloseWindow_Expanded(object sender, RoutedEventArgs e)
         {
+            expCloseWindow.IsExpanded = false;
             Visibility = Visibility.Hidden;
         }
 
@@ -375,6 +376,8 @@ namespace NewBlueJayERP
         {
             PleaseWait PleaseWait = new PleaseWait();
             PleaseWait.Show();
+
+            expExportToExcel.IsExpanded = false;
 
             ExportCompanyFootages();
 

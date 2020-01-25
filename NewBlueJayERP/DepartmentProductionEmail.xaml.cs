@@ -59,7 +59,7 @@ namespace NewBlueJayERP
 
         private void expCloseWindow_Expanded(object sender, RoutedEventArgs e)
         {
-            expCloseProgram.IsExpanded = false;
+            expCloseWindow.IsExpanded = false;
             this.Visibility = Visibility.Hidden;
         }
 
