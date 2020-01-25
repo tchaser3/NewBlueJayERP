@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"
         xmlns:local="clr-namespace:NewBlueJayERP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000" Loaded="Window_Loaded">
+        Title="MainWindow" Height="800" Width="1000" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#358AB1" />
@@ -110,7 +110,7 @@
                             
                         </Expander>
                         <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
-
+                            "
                         </Expander>
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
                             <StackPanel>
@@ -119,7 +119,7 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
-
+                            <Expander x:Name="expDepartmentProductionEmail" Header="Department Proudction Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
                         </Expander>
                     </StackPanel>
                 </Expander>

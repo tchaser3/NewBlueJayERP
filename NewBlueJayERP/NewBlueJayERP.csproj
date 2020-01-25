@@ -370,6 +370,9 @@
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentProductionEmail.xaml.cs">
+      <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeLogin.xaml.cs">
       <DependentUpon>EmployeeLogin.xaml</DependentUpon>
     </Compile>
@@ -396,6 +399,10 @@
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="CompanyProjectFootages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DepartmentProductionEmail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

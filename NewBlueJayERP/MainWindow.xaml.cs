@@ -37,6 +37,7 @@ namespace NewBlueJayERP
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
         public static ProjectProductivityReport ProjectProductivityReportWindow = new ProjectProductivityReport();
+        public static DepartmentProductionEmail DepartmentProductionEmailWindow = new DepartmentProductionEmail();
 
         public MainWindow()
         {
@@ -73,6 +74,7 @@ namespace NewBlueJayERP
         {
             CompanyProjectFootagesWindows.Visibility = Visibility.Hidden;
             ProjectProductivityReportWindow.Visibility = Visibility.Hidden;
+            DepartmentProductionEmailWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -507,6 +509,19 @@ namespace NewBlueJayERP
             ProjectProductivityReportWindow.Visibility = Visibility.Visible;
             expProjectReports.IsExpanded = false;
             expProjects.IsExpanded = false;
+        }
+
+        private void expDepartmentProductionEmail_Expanded(object sender, RoutedEventArgs e)
+        {
+            DepartmentProductionEmailWindow.Visibility = Visibility.Visible;
+            expProjectAdministration.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            expDepartmentProductionEmail.IsExpanded = false;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Application.Current.Shutdown();
         }
     }
 }
