@@ -203,6 +203,12 @@
     <Reference Include="PurchaseRequestDLL">
       <HintPath>..\..\Blue Jay Class Library\PurchaseRequestDLL.dll</HintPath>
     </Reference>
+    <Reference Include="PurchaseRequestDocumentationDLL">
+      <HintPath>..\..\Blue Jay Class Library\PurchaseRequestDocumentationDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="PurchaseRequestUpdateDLL">
+      <HintPath>..\..\Blue Jay Class Library\PurchaseRequestUpdateDLL.dll</HintPath>
+    </Reference>
     <Reference Include="PurchaserRequestProjectsDLL">
       <HintPath>..\..\Blue Jay Class Library\PurchaserRequestProjectsDLL.dll</HintPath>
     </Reference>
@@ -367,14 +373,31 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AddProject.xaml.cs">
+      <DependentUpon>AddProject.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreatePurchaseRequest.xaml.cs">
+      <DependentUpon>CreatePurchaseRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeHoursPunched.xaml.cs">
+      <DependentUpon>EmployeeHoursPunched.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeLogin.xaml.cs">
       <DependentUpon>EmployeeLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeTimePunchesDataSet.cs">
+      <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeTimePunchesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
@@ -398,11 +421,23 @@
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
+    <Page Include="AddProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CompanyProjectFootages.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreatePurchaseRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DepartmentProductionEmail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeHoursPunched.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -449,6 +484,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="EmployeeTimePunchesDataSet.xsc">
+      <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeTimePunchesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeTimePunchesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeTimePunchesDataSet.xss">
+      <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ProjectFootagesDataSet.xsc">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
     </None>

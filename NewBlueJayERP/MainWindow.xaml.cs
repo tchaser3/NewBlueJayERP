@@ -38,6 +38,9 @@ namespace NewBlueJayERP
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
         public static ProjectProductivityReport ProjectProductivityReportWindow = new ProjectProductivityReport();
         public static DepartmentProductionEmail DepartmentProductionEmailWindow = new DepartmentProductionEmail();
+        public static AddProject AddProjectWindow = new AddProject();
+        public static CreatePurchaseRequest CreateSearchRequestWindow = new CreatePurchaseRequest();
+        public static EmployeeHoursPunched EmployeeHoursPunchedWindow = new EmployeeHoursPunched();
 
         public MainWindow()
         {
@@ -75,6 +78,9 @@ namespace NewBlueJayERP
             CompanyProjectFootagesWindows.Visibility = Visibility.Hidden;
             ProjectProductivityReportWindow.Visibility = Visibility.Hidden;
             DepartmentProductionEmailWindow.Visibility = Visibility.Hidden;
+            AddProjectWindow.Visibility = Visibility.Hidden;
+            CreateSearchRequestWindow.Visibility = Visibility.Hidden;
+            EmployeeHoursPunchedWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -522,6 +528,30 @@ namespace NewBlueJayERP
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void expAddNewProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddNewProject.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            AddProjectWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreatedPurchaseRequest_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInventory.IsExpanded = false;
+            expPurchasing.IsExpanded = false;
+            expCreatedPurchaseRequest.IsExpanded = false;
+            CreateSearchRequestWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeHoursPunched_Expanded(object sender, RoutedEventArgs e)
+        {
+            expEmployeeHoursPunched.IsExpanded = false;
+            expEmployeeReports.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            EmployeeHoursPunchedWindow.Visibility = Visibility.Visible;
         }
     }
 }

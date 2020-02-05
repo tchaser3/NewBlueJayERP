@@ -79,7 +79,7 @@
                                 <Expander x:Name="expDesignEmployeeProductivity" Header="Design Employee Productivity" />
                                 <Expander x:Name="expEmployeeCrewHours" Header="Employee Crew Hours" />
                                 <Expander x:Name="expEmployeeHoursOverDateRange" Header="Employee Hours Over Date Range" />
-                                <Expander x:Name="expEmployeeHoursPunched" Header="Employee Hours Punched" />
+                                <Expander x:Name="expEmployeeHoursPunched" Header="Employee Hours Punched" Expanded="expEmployeeHoursPunched_Expanded" />
                                 <Expander x:Name="expEmployeeProductivityByDateRange" Header="Employee Productivity By Date Range" />
                                 <Expander x:Name="expProductionEmployeeProductivityMeasure" Header="Employee Productivity Measure" />
                                 <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" />
@@ -110,7 +110,10 @@
                             
                         </Expander>
                         <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
-                            "
+                            <StackPanel>
+                                <Expander x:Name="expAddNewProject" Header="Add New Project" Margin="10,1,1,1" Expanded="expAddNewProject_Expanded" />
+                                <Expander x:Name="expEditProject" Header="Edit Project" Margin="10,1,1,1" />
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
                             <StackPanel>
@@ -134,7 +137,17 @@
 
                         </Expander>
                         <Expander x:Name="expInventoryAdministration" Header="Inventory Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryAdministration_Expanded">
-
+                            <StackPanel>
+                                
+                            </StackPanel>
+                        </Expander>
+                        <Expander x:Name="expPurchasing" Header="Purchasing Module" ExpandDirection="Right" Background="LightBlue" Margin="20,1,1,1">
+                            <StackPanel>
+                                <Expander x:Name="expCreatedPurchaseRequest" Header="Create Purchase Request" Margin="5,1,1,1" Expanded="expCreatedPurchaseRequest_Expanded"/>
+                                <Expander x:Name="expUpdatePurchaseRequest" Header="Update Purchase Request" Margin="5,1,1,1"/>
+                                <Expander x:Name="expApprovePurchaseRequest" Header="Approve Purchase Request" Margin="5,1,1,1"/>
+                                <Expander x:Name="expDenyPurchaseRequest" Header="Deny Purchase Request" Margin="5,1,1,1" />
+                            </StackPanel>
                         </Expander>
                     </StackPanel>
                 </Expander>
