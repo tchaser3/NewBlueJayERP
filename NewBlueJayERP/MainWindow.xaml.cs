@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using NewEmployeeDLL;
 using NewEventLogDLL;
+using InventoryWIPDLL;
 
 namespace NewBlueJayERP
 {
@@ -29,10 +30,18 @@ namespace NewBlueJayERP
 
         //setting up the public classes
         public static VerifyLogonDataSet TheVerifyLogonDataSet = new VerifyLogonDataSet();
+        public static FindWIPBySessionIDDataSet TheFindWIPBySessionIDDataSet = new FindWIPBySessionIDDataSet();
+        public static FindSessionByEmployeeIDDataSet TheFindSessionByEmployeeIDDataSet = new FindSessionByEmployeeIDDataSet();
 
         //setting global variables
         public static bool gblnLoggedIn;
         public static string gstrEmployeeGroup;
+        public static int gintWarehouseID;
+        public static bool gblnReceiveMaterial;
+        public static bool gblnIssueMaterial;
+        public static bool gblnProcessBOM;
+        public static int gintSessionID;
+        public static string gstrWarehouseName;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -41,6 +50,14 @@ namespace NewBlueJayERP
         public static AddProject AddProjectWindow = new AddProject();
         public static CreatePurchaseRequest CreateSearchRequestWindow = new CreatePurchaseRequest();
         public static EmployeeHoursPunched EmployeeHoursPunchedWindow = new EmployeeHoursPunched();
+        public static ManagerHourlyDailyReport ManagerHourlyDailyReportWindow = new ManagerHourlyDailyReport();
+        public static ImportGEOFenceReport ImportGEOFenceReportWindow = new ImportGEOFenceReport();
+        public static VehicleUsageReport VehicleUsageReportWindow = new VehicleUsageReport();
+        public static EmployeeProjectLaborReport EmployeeProjectLaborReportWindow = new EmployeeProjectLaborReport();
+        public static SelectWarehouse SelectWarehouseWindow = new SelectWarehouse();
+        public static EnterInventory EnterInventoryWindow = new EnterInventory();
+        public static VehicleRoster VehicleRosterWindow = new VehicleRoster();
+        public static CreateRental CreateRentalWindow = new CreateRental();
 
         public MainWindow()
         {
@@ -81,6 +98,14 @@ namespace NewBlueJayERP
             AddProjectWindow.Visibility = Visibility.Hidden;
             CreateSearchRequestWindow.Visibility = Visibility.Hidden;
             EmployeeHoursPunchedWindow.Visibility = Visibility.Hidden;
+            ManagerHourlyDailyReportWindow.Visibility = Visibility.Hidden;
+            ImportGEOFenceReportWindow.Visibility = Visibility.Hidden;
+            VehicleUsageReportWindow.Visibility = Visibility.Hidden;
+            EmployeeProjectLaborReportWindow.Visibility = Visibility.Hidden;
+            SelectWarehouseWindow.Visibility = Visibility.Hidden;
+            EnterInventoryWindow.Visibility = Visibility.Hidden;
+            VehicleRosterWindow.Visibility = Visibility.Hidden;
+            CreateRentalWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -552,6 +577,88 @@ namespace NewBlueJayERP
             expEmployeeReports.IsExpanded = false;
             expEmployees.IsExpanded = false;
             EmployeeHoursPunchedWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expManagerHourlyDailyReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expManagerHourlyDailyReport.IsExpanded = false;
+            expEmployeeRoster.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            ManagerHourlyDailyReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportGEOFenceReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expVehicleReports.IsExpanded = false;
+            expVehicleDataEntry.IsExpanded = false;
+            expVehicles.IsExpanded = false;
+            expImportGEOFenceReport.IsExpanded = false;
+            ImportGEOFenceReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVehicleUsageReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expVehicles.IsExpanded = false;
+            expVehicleReports.IsExpanded = false;
+            expVehicleUsageReport.IsExpanded = false;
+            VehicleUsageReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeProjectLaborReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expEmployeeProjectLaborReport.IsExpanded = false;
+            expEmployeeReports.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            EmployeeProjectLaborReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expIssueMaterial_Expanded(object sender, RoutedEventArgs e)
+        {
+            gblnIssueMaterial = true;
+            gblnProcessBOM = false;
+            gblnReceiveMaterial = false;
+            expIssueMaterial.IsExpanded = false;
+            expInventory.IsExpanded = false;
+            expInventoryDataEntry.IsExpanded = false;
+            SelectWarehouseWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expReceiveMaterial_Expanded(object sender, RoutedEventArgs e)
+        {
+            gblnIssueMaterial = false;
+            gblnProcessBOM = false;
+            gblnReceiveMaterial = true;
+            expReceiveMaterial.IsExpanded = false;
+            expInventory.IsExpanded = false;
+            expInventoryDataEntry.IsExpanded = false;
+            SelectWarehouseWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expProcessBOMMaterial_Expanded(object sender, RoutedEventArgs e)
+        {
+            gblnIssueMaterial = false;
+            gblnProcessBOM = true;
+            gblnReceiveMaterial = false;
+            expProcessBOMMaterial.IsExpanded = false;
+            expInventory.IsExpanded = false;
+            expInventoryDataEntry.IsExpanded = false;
+            SelectWarehouseWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVehicledRoster_Expanded(object sender, RoutedEventArgs e)
+        {
+            expVehicles.IsExpanded = false;
+            expVehicledRoster.IsExpanded = false;
+            expVehicleReports.IsExpanded = false;
+            VehicleRosterWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateRental_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInventory.IsExpanded = false;
+            expPurchasing.IsExpanded = false;
+            expCreateRental.IsExpanded = false;
+            CreateRentalWindow.Visibility = Visibility.Visible;
         }
     }
 }

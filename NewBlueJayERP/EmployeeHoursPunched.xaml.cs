@@ -335,8 +335,6 @@ namespace NewBlueJayERP
                             datStartingDate = datLimitingDate;
                             datLimitingDate = TheDateSearchClass.AddingDays(datLimitingDate, 1);
                         }
-
-                        
                     }
                 }
 

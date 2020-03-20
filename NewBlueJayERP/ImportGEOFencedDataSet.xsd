@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportGEOFencedDataSet" targetNamespace="http://tempuri.org/ImportGEOFencedDataSet.xsd" xmlns:mstns="http://tempuri.org/ImportGEOFencedDataSet.xsd" xmlns="http://tempuri.org/ImportGEOFencedDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportGEOFencedDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportGEOFencedDataSet" msprop:Generator_UserDSName="ImportGEOFencedDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="importgeofence" msprop:Generator_TableClassName="importgeofenceDataTable" msprop:Generator_TableVarName="tableimportgeofence" msprop:Generator_TablePropName="importgeofence" msprop:Generator_RowDeletingName="importgeofenceRowDeleting" msprop:Generator_RowChangingName="importgeofenceRowChanging" msprop:Generator_RowEvHandlerName="importgeofenceRowChangeEventHandler" msprop:Generator_RowDeletedName="importgeofenceRowDeleted" msprop:Generator_UserTableName="importgeofence" msprop:Generator_RowChangedName="importgeofenceRowChanged" msprop:Generator_RowEvArgName="importgeofenceRowChangeEvent" msprop:Generator_RowClassName="importgeofenceRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="EventTime" msprop:Generator_ColumnVarNameInTable="columnEventTime" msprop:Generator_ColumnPropNameInRow="EventTime" msprop:Generator_ColumnPropNameInTable="EventTimeColumn" msprop:Generator_UserColumnName="EventTime" type="xs:dateTime" />
+              <xs:element name="VehicleID" msprop:Generator_ColumnVarNameInTable="columnVehicleID" msprop:Generator_ColumnPropNameInRow="VehicleID" msprop:Generator_ColumnPropNameInTable="VehicleIDColumn" msprop:Generator_UserColumnName="VehicleID" type="xs:int" minOccurs="0" />
+              <xs:element name="VehicleNumber" msprop:Generator_ColumnVarNameInTable="columnVehicleNumber" msprop:Generator_ColumnPropNameInRow="VehicleNumber" msprop:Generator_ColumnPropNameInTable="VehicleNumberColumn" msprop:Generator_UserColumnName="VehicleNumber" type="xs:string" />
+              <xs:element name="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" />
+              <xs:element name="Driver" msprop:Generator_ColumnVarNameInTable="columnDriver" msprop:Generator_ColumnPropNameInRow="Driver" msprop:Generator_ColumnPropNameInTable="DriverColumn" msprop:Generator_UserColumnName="Driver" type="xs:string" />
+              <xs:element name="InSide" msprop:Generator_ColumnVarNameInTable="columnInSide" msprop:Generator_ColumnPropNameInRow="InSide" msprop:Generator_ColumnPropNameInTable="InSideColumn" msprop:Generator_UserColumnName="InSide" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:importgeofence" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
