@@ -153,9 +153,33 @@
                                 <Expander x:Name="expUpdatePurchaseRequest" Header="Update Purchase Request" Margin="5,1,1,1"/>
                                 <Expander x:Name="expApprovePurchaseRequest" Header="Approve Purchase Request" Margin="5,1,1,1"/>
                                 <Expander x:Name="expDenyPurchaseRequest" Header="Deny Purchase Request" Margin="5,1,1,1" />
-                                <Expander x:Name="expCreateRental" Header="Create Rental" Margin="5,1,1,1" Expanded="expCreateRental_Expanded" />
                             </StackPanel>
                         </Expander>
+                    </StackPanel>
+                </Expander>
+                
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expRentals" Header="Rentals" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="17,1,1,1" Expanded="expRentals_Expanded" >
+                    <StackPanel Margin="23,1,1,1" Background="LightBlue">
+                        <StackPanel Margin="23,1,1,1" Background="LightBlue">
+                            <Expander x:Name="exRemtalDataEntry" Header="Rental Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue" Expanded="exRemtalDataEntry_Expanded" >
+                                <StackPanel>
+                                    <Expander x:Name="expCreateRental" Header="Create Rental" Margin="20,1,1,1" />
+                                    <Expander x:Name="expUpdateRental" Header="Update Rental" Margin="20,1,1,1" />
+                                    <Expander x:Name="expAddRentalItems" Header="Add Rental Items" Margin="20,1,1,1" />
+                                    <Expander x:Name="expUpdateRentalAgreement" Header="Update Rental Agreement" Margin="20,1,1,1" />
+                                </StackPanel>                                
+                            </Expander>
+                            <Expander x:Name="expRentalReports" Header="Rental Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" >
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,1,1,1">
+                                    
+                                </StackPanel>
+                            </Expander>
+                            <Expander x:Name="expRentalAdministration" Header="Rental Administration" ExpandDirection="Right" Background="LightBlue" >
+
+                            </Expander>
+                        </StackPanel>
                     </StackPanel>
                 </Expander>
             </StackPanel>

@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CreateRentalItemsDataSet" targetNamespace="http://tempuri.org/CreateRentalItemsDataSet.xsd" xmlns:mstns="http://tempuri.org/CreateRentalItemsDataSet.xsd" xmlns="http://tempuri.org/CreateRentalItemsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CreateRentalItemsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CreateRentalItemsDataSet" msprop:Generator_UserDSName="CreateRentalItemsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="rentalitems" msprop:Generator_TableClassName="rentalitemsDataTable" msprop:Generator_TableVarName="tablerentalitems" msprop:Generator_TablePropName="rentalitems" msprop:Generator_RowDeletingName="rentalitemsRowDeleting" msprop:Generator_RowChangingName="rentalitemsRowChanging" msprop:Generator_RowEvHandlerName="rentalitemsRowChangeEventHandler" msprop:Generator_RowDeletedName="rentalitemsRowDeleted" msprop:Generator_UserTableName="rentalitems" msprop:Generator_RowChangedName="rentalitemsRowChanged" msprop:Generator_RowEvArgName="rentalitemsRowChangeEvent" msprop:Generator_RowClassName="rentalitemsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="RentalPartNumber" msprop:Generator_ColumnVarNameInTable="columnRentalPartNumber" msprop:Generator_ColumnPropNameInRow="RentalPartNumber" msprop:Generator_ColumnPropNameInTable="RentalPartNumberColumn" msprop:Generator_UserColumnName="RentalPartNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="RentalDescription" msprop:Generator_ColumnVarNameInTable="columnRentalDescription" msprop:Generator_ColumnPropNameInRow="RentalDescription" msprop:Generator_ColumnPropNameInTable="RentalDescriptionColumn" msprop:Generator_UserColumnName="RentalDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="AccessoriesAttached" msprop:Generator_ColumnVarNameInTable="columnAccessoriesAttached" msprop:Generator_ColumnPropNameInRow="AccessoriesAttached" msprop:Generator_ColumnPropNameInTable="AccessoriesAttachedColumn" msprop:Generator_UserColumnName="AccessoriesAttached" type="xs:boolean" minOccurs="0" />
+              <xs:element name="ItemNotes" msprop:Generator_ColumnVarNameInTable="columnItemNotes" msprop:Generator_ColumnPropNameInRow="ItemNotes" msprop:Generator_ColumnPropNameInTable="ItemNotesColumn" msprop:Generator_UserColumnName="ItemNotes" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:rentalitems" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -42,6 +42,13 @@ namespace NewBlueJayERP
         public static bool gblnProcessBOM;
         public static int gintSessionID;
         public static string gstrWarehouseName;
+        public static int gintEmployeeID;
+        public static int gintVendorID;
+        public static DateTime gdatTransactionDate;
+        public static int gintProjectID;
+        public static string gstrAssignedProjectID;
+        public static int gintRentalTrackingID;
+        public static string gstrAgreementNo;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -659,6 +666,27 @@ namespace NewBlueJayERP
             expPurchasing.IsExpanded = false;
             expCreateRental.IsExpanded = false;
             CreateRentalWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expRentals_Expanded(object sender, RoutedEventArgs e)
+        {
+            expEmployees.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            expInventory.IsExpanded = false;
+            expVehicles.IsExpanded = false;
+            expTrailers.IsExpanded = false;
+            expTools.IsExpanded = false;
+            expAssets.IsExpanded = false;
+            expITDataEntry.IsExpanded = false;
+            expTasks.IsExpanded = false;
+            expITReports.IsExpanded = false;
+            expHelp.IsExpanded = false;
+        }
+
+        private void exRemtalDataEntry_Expanded(object sender, RoutedEventArgs e)
+        {
+            expRentalAdministration.IsExpanded = false;
+            expRentalReports.IsExpanded = false;
         }
     }
 }

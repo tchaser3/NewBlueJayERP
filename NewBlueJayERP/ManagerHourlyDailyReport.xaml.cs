@@ -198,6 +198,7 @@ namespace NewBlueJayERP
 
                     datTransactionDate = gdatStartDate;
                     datLimitingDate = TheDateSearchClass.AddingDays(datTransactionDate, 1);
+                    datLimitingDate = datLimitingDate.AddSeconds(-1);
 
                     while(datLimitingDate <= gdatEndDate)
                     {
@@ -266,7 +267,7 @@ namespace NewBlueJayERP
                             }
                         }
 
-                        datTransactionDate = datLimitingDate;
+                        datTransactionDate = datLimitingDate.AddSeconds(1);
                         datLimitingDate = TheDateSearchClass.AddingDays(datLimitingDate, 1);
                     }
                     
@@ -301,7 +302,7 @@ namespace NewBlueJayERP
 
                 intRemainder = (intNumberOfRecords + 1) % 2;
                 douTotalHours = 0;
-
+                
                 if(intNumberOfRecords > -1)
                 {
                     for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)

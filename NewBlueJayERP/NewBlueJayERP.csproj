@@ -227,6 +227,9 @@
     <Reference Include="RemovePartsDLL">
       <HintPath>..\..\Blue Jay Class Library\RemovePartsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="RentalTrackingDLL">
+      <HintPath>..\..\Blue Jay Class Library\RentalTrackingDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ReturnTimeStringDLL">
       <HintPath>..\..\Blue Jay Class Library\ReturnTimeStringDLL.dll</HintPath>
     </Reference>
@@ -393,6 +396,11 @@
     <Compile Include="CreateRental.xaml.cs">
       <DependentUpon>CreateRental.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateRentalItemsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
     </Compile>
@@ -448,6 +456,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="RentalItems.xaml.cs">
+      <DependentUpon>RentalItems.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectWarehouse.xaml.cs">
       <DependentUpon>SelectWarehouse.xaml</DependentUpon>
@@ -533,6 +544,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RentalItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SelectWarehouse.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -574,6 +589,17 @@
     </None>
     <None Include="ActiveVehicleDataSet.xss">
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CreateRentalItemsDataSet.xsc">
+      <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CreateRentalItemsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CreateRentalItemsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CreateRentalItemsDataSet.xss">
+      <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
     </None>
     <None Include="EmployeePunchesProductivityDataSet.xsc">
       <DependentUpon>EmployeePunchesProductivityDataSet.xsd</DependentUpon>
