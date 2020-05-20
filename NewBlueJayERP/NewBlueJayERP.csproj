@@ -128,6 +128,9 @@
     <Reference Include="ExcelExport">
       <HintPath>..\..\Blue Jay Class Library\ExcelExport.dll</HintPath>
     </Reference>
+    <Reference Include="FuelCardDLL">
+      <HintPath>..\..\Blue Jay Class Library\FuelCardDLL.dll</HintPath>
+    </Reference>
     <Reference Include="GEOFenceDLL">
       <HintPath>..\..\Blue Jay Class Library\GEOFenceDLL.dll</HintPath>
     </Reference>
@@ -154,6 +157,9 @@
     </Reference>
     <Reference Include="JobTypeDLL">
       <HintPath>..\..\Blue Jay Class Library\JobTypeDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="JSIMainDLL">
+      <HintPath>..\..\Blue Jay Class Library\JSIMainDLL.dll</HintPath>
     </Reference>
     <Reference Include="KeyWordDLL">
       <HintPath>..\..\Blue Jay Class Library\KeyWordDLL.dll</HintPath>
@@ -387,8 +393,17 @@
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CloseRental.xaml.cs">
+      <DependentUpon>CloseRental.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateFuelCardNumber.xaml.cs">
+      <DependentUpon>CreateFuelCardNumber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateJSIEntry.xaml.cs">
+      <DependentUpon>CreateJSIEntry.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreatePurchaseRequest.xaml.cs">
       <DependentUpon>CreatePurchaseRequest.xaml</DependentUpon>
@@ -403,6 +418,9 @@
     </Compile>
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditFuelCard.xaml.cs">
+      <DependentUpon>EditFuelCard.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeHoursPunched.xaml.cs">
       <DependentUpon>EmployeeHoursPunched.xaml</DependentUpon>
@@ -426,6 +444,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EnterAgreementNumber.xaml.cs">
+      <DependentUpon>EnterAgreementNumber.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EnterInventory.xaml.cs">
       <DependentUpon>EnterInventory.xaml</DependentUpon>
     </Compile>
@@ -436,6 +457,14 @@
     </Compile>
     <Compile Include="ImportGEOFenceReport.xaml.cs">
       <DependentUpon>ImportGEOFenceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JSIEmployeeAssignedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="JSIPPEWindow.xaml.cs">
+      <DependentUpon>JSIPPEWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerHourlyDailyReport.xaml.cs">
       <DependentUpon>ManagerHourlyDailyReport.xaml</DependentUpon>
@@ -460,6 +489,9 @@
     <Compile Include="RentalItems.xaml.cs">
       <DependentUpon>RentalItems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectRental.xaml.cs">
+      <DependentUpon>SelectRental.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SelectWarehouse.xaml.cs">
       <DependentUpon>SelectWarehouse.xaml</DependentUpon>
     </Compile>
@@ -467,6 +499,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateRental.xaml.cs">
+      <DependentUpon>UpdateRental.xaml</DependentUpon>
     </Compile>
     <Compile Include="VehicleRoster.xaml.cs">
       <DependentUpon>VehicleRoster.xaml</DependentUpon>
@@ -479,12 +514,27 @@
     <Compile Include="VehicleUsageReport.xaml.cs">
       <DependentUpon>VehicleUsageReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewRentalUpdates.xaml.cs">
+      <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CloseRental.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CompanyProjectFootages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateFuelCardNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateJSIEntry.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -500,6 +550,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditFuelCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployeeHoursPunched.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -512,11 +566,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EnterAgreementNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EnterInventory.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportGEOFenceReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JSIPPEWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -548,7 +610,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SelectRental.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SelectWarehouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateRental.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -557,6 +627,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VehicleUsageReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewRentalUpdates.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -633,6 +707,17 @@
     </None>
     <None Include="ImportGEOFencedDataSet.xss">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="JSIEmployeeAssignedDataSet.xsc">
+      <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="JSIEmployeeAssignedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JSIEmployeeAssignedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="JSIEmployeeAssignedDataSet.xss">
+      <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectFootagesDataSet.xsc">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>

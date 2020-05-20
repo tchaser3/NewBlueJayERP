@@ -93,7 +93,9 @@
                                 <Expander x:Name="expAddEmployee" Header="Add Employee" />
                                 <Expander x:Name="expAddEmployeeGroups"  Header="Add Employee Groups" />
                                 <Expander x:Name="expAddEmployeeToVehicleEmailList" Header="Add Employee To Vehicle Email List" />
+                                <Expander x:Name="expCreateFuelCardNumber" Header="Create Fuel Card Number" Expanded="expCreateFuelCardNumber_Expanded" />
                                 <Expander x:Name="expEditEmployee" Header="Edit Employee" />
+                                <Expander x:Name="expEditFuelCard" Header="Edit Fuel Card" Expanded="expEditFuelCard_Expanded" />
                                 <Expander x:Name="expEmployeeLaborRate" Header="Employee Labor Rate" />
                                 <Expander x:Name="expImportEmployeeHours" Header="Import Employee Hours" />
                                 <Expander x:Name="expImportEmployeePunches" Header="Import Employee Punches" />
@@ -115,6 +117,11 @@
                                 <Expander x:Name="expEditProject" Header="Edit Project" Margin="10,1,1,1" />
                             </StackPanel>
                         </Expander>
+                        <Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" ExpandDirection="Right" Margin="30,1,1,1" Background="LightBlue" Expanded="expJSIDataEntry_Expanded">
+                            <StackPanel>
+                                <Expander x:Name="expCreateJSI" Header="Create JSI Entry" Margin="25,1,1,1" Expanded="expCreateJSI_Expanded"/>
+                            </StackPanel>
+                        </Expander>
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expCompanyFootages" Header="Company Project Footages" Margin="10,1,1,1" FontSize="16" Expanded="expCompanyFootages_Expanded"/>
@@ -123,7 +130,7 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
-                            <Expander x:Name="expDepartmentProductionEmail" Header="Department Proudction Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
+                            <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
                         </Expander>
                     </StackPanel>
                 </Expander>
@@ -163,20 +170,19 @@
                 <Expander x:Name="expRentals" Header="Rentals" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="17,1,1,1" Expanded="expRentals_Expanded" >
                     <StackPanel Margin="23,1,1,1" Background="LightBlue">
                         <StackPanel Margin="23,1,1,1" Background="LightBlue">
-                            <Expander x:Name="exRemtalDataEntry" Header="Rental Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue" Expanded="exRemtalDataEntry_Expanded" >
+                            <Expander x:Name="exRemtalDataEntry" Header="Rental Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="exRemtalDataEntry_Expanded" >
                                 <StackPanel>
-                                    <Expander x:Name="expCreateRental" Header="Create Rental" Margin="20,1,1,1" />
-                                    <Expander x:Name="expUpdateRental" Header="Update Rental" Margin="20,1,1,1" />
-                                    <Expander x:Name="expAddRentalItems" Header="Add Rental Items" Margin="20,1,1,1" />
-                                    <Expander x:Name="expUpdateRentalAgreement" Header="Update Rental Agreement" Margin="20,1,1,1" />
+                                    <Expander x:Name="expCreateRental" Header="Create Rental" Margin="20,1,1,1" Expanded="expCreateRental_Expanded_1" />
+                                    <Expander x:Name="expUpdateRental" Header="Update Rental" Margin="20,1,1,1" Expanded="expUpdateRental_Expanded" />
+                                    <Expander x:Name="expCloseRental" Header="Close Rental" Margin="20,1,1,1" Expanded="expCloseRental_Expanded" />
                                 </StackPanel>                                
                             </Expander>
-                            <Expander x:Name="expRentalReports" Header="Rental Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" >
+                            <Expander x:Name="expRentalReports" Header="Rental Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expRentalReports_Expanded" >
                                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,1,1,1">
                                     
                                 </StackPanel>
                             </Expander>
-                            <Expander x:Name="expRentalAdministration" Header="Rental Administration" ExpandDirection="Right" Background="LightBlue" >
+                            <Expander x:Name="expRentalAdministration" Header="Rental Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expRentalAdministration_Expanded" >
 
                             </Expander>
                         </StackPanel>

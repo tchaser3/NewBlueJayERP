@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using NewEmployeeDLL;
 using NewEventLogDLL;
 using InventoryWIPDLL;
+using RentalTrackingDLL;
 
 namespace NewBlueJayERP
 {
@@ -32,6 +33,8 @@ namespace NewBlueJayERP
         public static VerifyLogonDataSet TheVerifyLogonDataSet = new VerifyLogonDataSet();
         public static FindWIPBySessionIDDataSet TheFindWIPBySessionIDDataSet = new FindWIPBySessionIDDataSet();
         public static FindSessionByEmployeeIDDataSet TheFindSessionByEmployeeIDDataSet = new FindSessionByEmployeeIDDataSet();
+        public static FindRentalTrackingTransactionsByPONumberDataSet TheFindRentalTrackingTransactionsByPONumberDataSet = new FindRentalTrackingTransactionsByPONumberDataSet();
+        public static FindRentalTransactionByProjectIDDataSet TheFindRentalTransactionByProjectIDDataSet = new FindRentalTransactionByProjectIDDataSet();
 
         //setting global variables
         public static bool gblnLoggedIn;
@@ -49,6 +52,13 @@ namespace NewBlueJayERP
         public static string gstrAssignedProjectID;
         public static int gintRentalTrackingID;
         public static string gstrAgreementNo;
+        public static int gintVehicleID;
+        public static string gstrVehicleNumber;
+        public static int gintJSITransationID;
+        public static int gintDepartmentID;
+        public static int gintManagerID;
+        public static int gintInspectingEmployeeID;
+        public static bool gblnRentalPO; 
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -65,6 +75,11 @@ namespace NewBlueJayERP
         public static EnterInventory EnterInventoryWindow = new EnterInventory();
         public static VehicleRoster VehicleRosterWindow = new VehicleRoster();
         public static CreateRental CreateRentalWindow = new CreateRental();
+        public static CreateJSIEntry CreateJSIEntryWindow = new CreateJSIEntry();
+        public static UpdateRental UpdateRentalWindow = new UpdateRental();
+        public static CloseRental CloseRentalWindow = new CloseRental();
+        public static CreateFuelCardNumber CreateFuelCardNumberWindow = new CreateFuelCardNumber();
+        public static EditFuelCard EditFuelCardWindow = new EditFuelCard();
 
         public MainWindow()
         {
@@ -96,6 +111,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
         private void ResetWindows()
         {
@@ -113,6 +129,11 @@ namespace NewBlueJayERP
             EnterInventoryWindow.Visibility = Visibility.Hidden;
             VehicleRosterWindow.Visibility = Visibility.Hidden;
             CreateRentalWindow.Visibility = Visibility.Hidden;
+            CreateJSIEntryWindow.Visibility = Visibility.Hidden;
+            UpdateRentalWindow.Visibility = Visibility.Hidden;
+            CloseRentalWindow.Visibility = Visibility.Hidden;
+            CreateFuelCardNumberWindow.Visibility = Visibility.Hidden;
+            EditFuelCardWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -125,6 +146,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expEmployeeDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -156,6 +178,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expProjectDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -163,6 +186,7 @@ namespace NewBlueJayERP
             expProjectDashboards.IsExpanded = false;
             expProjectReports.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
         }
 
         private void expProjectReports_Expanded(object sender, RoutedEventArgs e)
@@ -170,6 +194,7 @@ namespace NewBlueJayERP
             expProjectDashboards.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
         }
 
         private void expProjectAdministration_Expanded(object sender, RoutedEventArgs e)
@@ -177,6 +202,7 @@ namespace NewBlueJayERP
             expProjectDashboards.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
         }
 
         private void expInventory_Expanded(object sender, RoutedEventArgs e)
@@ -190,6 +216,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expInventoryDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -218,6 +245,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expVehicleDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -246,6 +274,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expTrailerDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -274,6 +303,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expToolsDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -308,6 +338,7 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expAssentReports_Expanded(object sender, RoutedEventArgs e)
@@ -326,6 +357,7 @@ namespace NewBlueJayERP
             expAssets.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expITDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -386,6 +418,7 @@ namespace NewBlueJayERP
             expITDataEntry.IsEnabled = true;
             expITReports.IsEnabled = true;
             expCompanyFootages.IsEnabled = true;
+            expRentals.IsEnabled = true;
         }
         private void SetEmployeeSecurity()
         {
@@ -404,6 +437,7 @@ namespace NewBlueJayERP
                 expProjects.IsEnabled = false;
                 expAssets.IsEnabled = false;
                 expCompanyFootages.IsEnabled = false;
+                expRentals.IsEnabled = false;
             }
             else if(gstrEmployeeGroup == "MANAGERS")
             {
@@ -496,6 +530,7 @@ namespace NewBlueJayERP
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expHelp.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expHelp_Expanded(object sender, RoutedEventArgs e)
@@ -509,6 +544,7 @@ namespace NewBlueJayERP
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
+            expRentals.IsExpanded = false;
         }
 
         private void expSignOut_Expanded(object sender, RoutedEventArgs e)
@@ -533,6 +569,7 @@ namespace NewBlueJayERP
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
         }
 
         private void expCompanyFootages_Expanded(object sender, RoutedEventArgs e)
@@ -547,6 +584,7 @@ namespace NewBlueJayERP
             ProjectProductivityReportWindow.Visibility = Visibility.Visible;
             expProjectReports.IsExpanded = false;
             expProjects.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
         }
 
         private void expDepartmentProductionEmail_Expanded(object sender, RoutedEventArgs e)
@@ -555,6 +593,7 @@ namespace NewBlueJayERP
             expProjectAdministration.IsExpanded = false;
             expProjects.IsExpanded = false;
             expDepartmentProductionEmail.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -662,10 +701,7 @@ namespace NewBlueJayERP
 
         private void expCreateRental_Expanded(object sender, RoutedEventArgs e)
         {
-            expInventory.IsExpanded = false;
-            expPurchasing.IsExpanded = false;
-            expCreateRental.IsExpanded = false;
-            CreateRentalWindow.Visibility = Visibility.Visible;
+            
         }
 
         private void expRentals_Expanded(object sender, RoutedEventArgs e)
@@ -687,6 +723,116 @@ namespace NewBlueJayERP
         {
             expRentalAdministration.IsExpanded = false;
             expRentalReports.IsExpanded = false;
+        }
+
+        private void expCreateRental_Expanded_1(object sender, RoutedEventArgs e)
+        {
+            expCreateRental.IsExpanded = false;
+            expUpdateRental.IsExpanded = false;
+            exRemtalDataEntry.IsExpanded = false;
+            expRentals.IsExpanded = false;
+            CreateRentalWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expUpdateRental_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateRental.IsExpanded = false;
+            expUpdateRental.IsExpanded = false;
+            expRentals.IsExpanded = false;
+            exRemtalDataEntry.IsExpanded = false;
+            UpdateRentalWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddRentalItems_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateRental.IsExpanded = false;
+            expUpdateRental.IsExpanded = false;
+        }
+
+        private void expUpdateRentalAgreement_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateRental.IsExpanded = false;
+            expUpdateRental.IsExpanded = false;
+        }
+
+        private void expRentalReports_Expanded(object sender, RoutedEventArgs e)
+        {
+            exRemtalDataEntry.IsExpanded = false;
+            expRentalAdministration.IsExpanded = false;
+        }
+
+        private void expRentalAdministration_Expanded(object sender, RoutedEventArgs e)
+        {
+            exRemtalDataEntry.IsExpanded = false;
+            expRentalReports.IsExpanded = false;
+        }
+
+        private void expCreateJSI_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjects.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expProjectDashboards.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            expCreateJSI.IsExpanded = false;
+            CreateJSIEntryWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expJSIDataEntry_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectAdministration.IsExpanded = false;
+            expProjectDashboards.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+        }
+
+        private void expCloseRental_Expanded(object sender, RoutedEventArgs e)
+        {
+            expCreateRental.IsExpanded = false;
+            expUpdateRental.IsExpanded = false;
+            exRemtalDataEntry.IsExpanded = false;
+            CloseRentalWindow.Visibility = Visibility.Visible;
+            expCloseRental.IsExpanded = false;
+            expRentals.IsExpanded = false;
+        }
+
+        private void expCreateFuelCardNumber_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddDepartment.IsExpanded = false;
+            expAddEmployee.IsExpanded = false;
+            expAddEmployeeGroups.IsExpanded = false;
+            expAddEmployeeToVehicleEmailList.IsExpanded = false;
+            expEditEmployee.IsExpanded = false;
+            expEmployeeLaborRate.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expImportEmployeePunches.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expTerminateEmployee.IsExpanded = false;
+            expCreateFuelCardNumber.IsExpanded = false;
+            expEmployeeAdministration.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expEditFuelCard.IsExpanded = false;
+            CreateFuelCardNumberWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditFuelCard_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddDepartment.IsExpanded = false;
+            expAddEmployee.IsExpanded = false;
+            expAddEmployeeGroups.IsExpanded = false;
+            expAddEmployeeToVehicleEmailList.IsExpanded = false;
+            expEditEmployee.IsExpanded = false;
+            expEmployeeLaborRate.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expImportEmployeePunches.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expTerminateEmployee.IsExpanded = false;
+            expCreateFuelCardNumber.IsExpanded = false;
+            expEmployeeAdministration.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expEditFuelCard.IsExpanded = false;
+            EditFuelCardWindow.Visibility = Visibility.Visible;
         }
     }
 }
