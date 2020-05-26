@@ -463,6 +463,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="JSIFinalWindow.xaml.cs">
+      <DependentUpon>JSIFinalWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="JSIPPEWindow.xaml.cs">
       <DependentUpon>JSIPPEWindow.xaml</DependentUpon>
     </Compile>
@@ -575,6 +578,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportGEOFenceReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JSIFinalWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

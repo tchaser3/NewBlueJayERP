@@ -40,8 +40,6 @@ namespace NewBlueJayERP
         FindEmployeeActiveFuelCardNumberDataSet TheFindEmployeeActiveFuelCardNumberDataSet = new FindEmployeeActiveFuelCardNumberDataSet();
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
 
-        int gintFuelCardNumber;
-
         public EditFuelCard()
         {
             InitializeComponent();

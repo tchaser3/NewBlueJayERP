@@ -58,7 +58,8 @@ namespace NewBlueJayERP
         public static int gintDepartmentID;
         public static int gintManagerID;
         public static int gintInspectingEmployeeID;
-        public static bool gblnRentalPO; 
+        public static bool gblnRentalPO;
+        public static DateTime gdatInspectionDate;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();

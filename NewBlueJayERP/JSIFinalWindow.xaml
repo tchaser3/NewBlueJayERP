@@ -1,0 +1,104 @@
+﻿<Window x:Class="NewBlueJayERP.JSIFinalWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        Title="JSIFinalWindow" Height="700" Width="600" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="600">
+            <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
+            <Label x:Name="lblTitle" Content="Final JSI Inspection Entry" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="530" Background="LightBlue">
+            <Expander x:Name="expAddDocument" Header="Add Document" Margin="10,1,1,1" FontSize="16" TabIndex="7" Expanded="expAddDocument_Expanded" />
+            <Expander x:Name="expProcess" Header="Process" FontSize="16" TabIndex="8" Margin="10,1,1,1" Expanded="expProcess_Expanded" />
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
+            <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="250" Width="431" Margin="160,166,10,280">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblJobSiteInspection" Content="Job Site Inspection" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="50"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblCones" Content="Traffic Control Cones" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="175"/>
+                <ComboBox x:Name="cboCones" IsReadOnly="True" TabIndex="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboCones_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblFlagger" Content="On-Site Flagger" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" FontSize="16" Width="175"/>
+                <ComboBox x:Name="cboFlagger" IsReadOnly="True" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboFlagger_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblJSACompleted" Content="JSA Completed" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="175"/>
+                <ComboBox x:Name="cboJSACompleted" TabIndex="2" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboJSACompleted_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblSigns" Content="Traffic Flags and Signs" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="175"/>
+                <ComboBox x:Name="cboSigns" IsReadOnly="True" TabIndex="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboSigns_SelectionChanged"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="207" Width="431" Margin="155,436,10,53">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblOverall" Content="Overall Inspection" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="175"/>
+                <ComboBox x:Name="cboOverall" IsReadOnly="True" TabIndex="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboOverall_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal" Height="100" Width="431">
+                <Label x:Name="lblInspectionNotes" Content="Inspection Notes" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="150"/>
+                <TextBox x:Name="txtInspectionNotes" CharacterCasing="Upper" TabIndex="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="95" Width="225" TextWrapping="Wrap" Margin="10,1,1,1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="431">
+                <Label x:Name="lblConcerns" Content="All Concerns Reported" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="45" Width="150"/>
+                <RadioButton x:Name="rdoConcernsTrue" Content="Yes" TabIndex="5" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Margin="40,1,1,1" Checked="rdoConcernsTrue_Checked"/>
+                <RadioButton x:Name="rdoConcersFalse" Content="No" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Margin="40,1,1,1" Checked="rdoConcersFalse_Checked"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

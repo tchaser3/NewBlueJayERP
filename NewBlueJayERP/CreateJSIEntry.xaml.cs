@@ -50,7 +50,7 @@ namespace NewBlueJayERP
         FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
         FindActiveVehicleMainByVehicleNumberDataSet TheFindActiveVehicleMainByVehicleNumberDataSet = new FindActiveVehicleMainByVehicleNumberDataSet();
         JSIEmployeeAssignedDataSet TheJSIEmployeeAssignedDataSet = new JSIEmployeeAssignedDataSet();
-        
+        FindJSIMainByDateMatchDataSet TheFindJSIMainByDateMatchDataSet = new FindJSIMainByDateMatchDataSet();
 
         public CreateJSIEntry()
         {
@@ -478,6 +478,8 @@ namespace NewBlueJayERP
                     return;
                 }
 
+                MainWindow.gdatInspectionDate = datInspectionDate;
+
                 intNumberOfRecords = TheJSIEmployeeAssignedDataSet.jsiemployeeassigned.Rows.Count - 1;
 
                 if(intNumberOfRecords < 0)
@@ -493,8 +495,22 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                TheFindJSIMainByDateMatchDataSet = TheJSIMainClass.FindJSIMainByDateMatch(datTransactionDate);
+
+                MainWindow.gintJSITransationID = TheFindJSIMainByDateMatchDataSet.FindJSIMainByDateMatch[0].JSITransactionID;
+
+                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    blnFatalError = TheJSIMainClass.InsertJSIEmployee(MainWindow.gintJSITransationID, TheJSIEmployeeAssignedDataSet.jsiemployeeassigned[intCounter].EmployeeID, datTransactionDate);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+
                 JSIPPEWindow JSIPPEWindow = new JSIPPEWindow();
                 JSIPPEWindow.ShowDialog();
+
+                ResetControls();
                 
             }
             catch (Exception Ex)
