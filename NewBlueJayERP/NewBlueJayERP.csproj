@@ -450,6 +450,12 @@
     <Compile Include="EnterInventory.xaml.cs">
       <DependentUpon>EnterInventory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ExpiringRentals.xaml.cs">
+      <DependentUpon>ExpiringRentals.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="FuelCardPINReport.xaml.cs">
+      <DependentUpon>FuelCardPINReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportGEOFencedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -457,6 +463,14 @@
     </Compile>
     <Compile Include="ImportGEOFenceReport.xaml.cs">
       <DependentUpon>ImportGEOFenceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportVendors.xaml.cs">
+      <DependentUpon>ImportVendors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportVendorsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportVendorsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="JSIEmployeeAssignedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -471,6 +485,12 @@
     </Compile>
     <Compile Include="ManagerHourlyDailyReport.xaml.cs">
       <DependentUpon>ManagerHourlyDailyReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ManuallyAddFuelPIN.xaml.cs">
+      <DependentUpon>ManuallyAddFuelPIN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenRentalReport.xaml.cs">
+      <DependentUpon>OpenRentalReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
@@ -516,6 +536,9 @@
     </Compile>
     <Compile Include="VehicleUsageReport.xaml.cs">
       <DependentUpon>VehicleUsageReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewRental.xaml.cs">
+      <DependentUpon>ViewRental.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewRentalUpdates.xaml.cs">
       <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
@@ -577,7 +600,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ExpiringRentals.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="FuelCardPINReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportGEOFenceReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportVendors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -602,6 +637,14 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManagerHourlyDailyReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ManuallyAddFuelPIN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenRentalReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -634,6 +677,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VehicleUsageReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewRental.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -714,6 +761,17 @@
     </None>
     <None Include="ImportGEOFencedDataSet.xss">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportVendorsDataSet.xsc">
+      <DependentUpon>ImportVendorsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportVendorsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportVendorsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportVendorsDataSet.xss">
+      <DependentUpon>ImportVendorsDataSet.xsd</DependentUpon>
     </None>
     <None Include="JSIEmployeeAssignedDataSet.xsc">
       <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>

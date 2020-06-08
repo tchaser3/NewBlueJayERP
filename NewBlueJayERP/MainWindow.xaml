@@ -96,9 +96,11 @@
                                 <Expander x:Name="expCreateFuelCardNumber" Header="Create Fuel Card Number" Expanded="expCreateFuelCardNumber_Expanded" />
                                 <Expander x:Name="expEditEmployee" Header="Edit Employee" />
                                 <Expander x:Name="expEditFuelCard" Header="Edit Fuel Card" Expanded="expEditFuelCard_Expanded" />
+                                <Expander x:Name="expFuelCardPINReport" Header="Fuel Card PIN Report" Expanded="expFuelCardPINReport_Expanded" />
                                 <Expander x:Name="expEmployeeLaborRate" Header="Employee Labor Rate" />
                                 <Expander x:Name="expImportEmployeeHours" Header="Import Employee Hours" />
                                 <Expander x:Name="expImportEmployeePunches" Header="Import Employee Punches" />
+                                <Expander x:Name="expManuallAddFuelPin" Header="Manually Add Fuel PIN" Expanded="expManuallAddFuelPin_Expanded" />
                                 <Expander x:Name="expTerminateEmployee" Header="Terminate Employee" />
                             </StackPanel>
                         </Expander>
@@ -179,11 +181,15 @@
                             </Expander>
                             <Expander x:Name="expRentalReports" Header="Rental Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expRentalReports_Expanded" >
                                 <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,1,1,1">
-                                    
+                                    <Expander x:Name="expOpenRentalReport" Header="Open Rental Report" Margin="25,1,1,1" Expanded="expOpenRentalReport_Expanded"/>
+                                    <Expander x:Name="expExpiringRentalReport" Header="Expiring Rental Report" Margin="25,1,1,1" Expanded="expExpiringRentalReport_Expanded" />
+                                    <Expander x:Name="expViewRental" Header="View Rental" Margin="25,1,1,1" Expanded="expViewRental_Expanded" />
                                 </StackPanel>
                             </Expander>
                             <Expander x:Name="expRentalAdministration" Header="Rental Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expRentalAdministration_Expanded" >
-
+                                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,1,1,1">
+                                    <Expander x:Name="expImportVendors" Header="Import Vendors" Expanded="expImportVendors_Expanded" />
+                                </StackPanel>
                             </Expander>
                         </StackPanel>
                     </StackPanel>
@@ -194,6 +200,13 @@
                     <StackPanel Margin="23,1,1,1" Background="LightBlue">
                         <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue" Expanded="expVehicleDataEntry_Expanded">
                             <Expander x:Name="expImportGEOFenceReport" Header="Import GEO Fence Report" Margin="10,1,1,1" Expanded="expImportGEOFenceReport_Expanded"/>
+                        </Expander>
+                        <Expander x:Name="expInspectionDataEntry" Header="Inspection Date Entry"  ExpandDirection="Right" Margin="5,1,1,1">
+                            <StackPanel Background="LightBlue">
+                                <Expander x:Name="expDailyVehicleInspection" Header="Daily Vehicle Inspection"  Margin="10,1,1,1"/>
+                                <Expander x:Name="expWeeklyVehicleInspection" Header="Weekly Vehicle Inspection" Margin="10,1,1,1" />
+                                <Expander x:Name="expTowMoterInspection" Header="TOW Motor Inspection" Margin="10,1,1,1" />
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expVehicleReports" Header="Vehicle Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" Expanded="expVehicleReports_Expanded">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,1,1,1">

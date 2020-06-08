@@ -16,6 +16,7 @@ using NewEmployeeDLL;
 using NewEventLogDLL;
 using InventoryWIPDLL;
 using RentalTrackingDLL;
+using InspectionsDLL;
 
 namespace NewBlueJayERP
 {
@@ -81,6 +82,12 @@ namespace NewBlueJayERP
         public static CloseRental CloseRentalWindow = new CloseRental();
         public static CreateFuelCardNumber CreateFuelCardNumberWindow = new CreateFuelCardNumber();
         public static EditFuelCard EditFuelCardWindow = new EditFuelCard();
+        public static FuelCardPINReport FuelCardPINReportWindow = new FuelCardPINReport();
+        public static ManuallyAddFuelPIN ManuallyAddFuelPINWindow = new ManuallyAddFuelPIN();
+        public static OpenRentalReport OpenRentalReportWindow = new OpenRentalReport();
+        public static ExpiringRentals ExpiringRentalsWindow = new ExpiringRentals();
+        public static ViewRental ViewRentalWindow = new ViewRental();
+        public static ImportVendors ImportVendorsWindow = new ImportVendors();
 
         public MainWindow()
         {
@@ -135,6 +142,12 @@ namespace NewBlueJayERP
             CloseRentalWindow.Visibility = Visibility.Hidden;
             CreateFuelCardNumberWindow.Visibility = Visibility.Hidden;
             EditFuelCardWindow.Visibility = Visibility.Hidden;
+            FuelCardPINReportWindow.Visibility = Visibility.Hidden;
+            ManuallyAddFuelPINWindow.Visibility = Visibility.Hidden;
+            OpenRentalReportWindow.Visibility = Visibility.Hidden;
+            ExpiringRentalsWindow.Visibility = Visibility.Hidden;
+            ViewRentalWindow.Visibility = Visibility.Hidden;
+            ImportVendorsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -814,6 +827,8 @@ namespace NewBlueJayERP
             expEmployeeAdministration.IsExpanded = false;
             expEmployees.IsExpanded = false;
             expEditFuelCard.IsExpanded = false;
+            expFuelCardPINReport.IsExpanded = false;
+            expManuallAddFuelPin.IsExpanded = false;
             CreateFuelCardNumberWindow.Visibility = Visibility.Visible;
         }
 
@@ -833,7 +848,93 @@ namespace NewBlueJayERP
             expEmployeeAdministration.IsExpanded = false;
             expEmployees.IsExpanded = false;
             expEditFuelCard.IsExpanded = false;
+            expFuelCardPINReport.IsExpanded = false;
+            expManuallAddFuelPin.IsExpanded = false;
             EditFuelCardWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expFuelCardPINReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddDepartment.IsExpanded = false;
+            expAddEmployee.IsExpanded = false;
+            expAddEmployeeGroups.IsExpanded = false;
+            expAddEmployeeToVehicleEmailList.IsExpanded = false;
+            expEditEmployee.IsExpanded = false;
+            expEmployeeLaborRate.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expImportEmployeePunches.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expTerminateEmployee.IsExpanded = false;
+            expCreateFuelCardNumber.IsExpanded = false;
+            expEmployeeAdministration.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expEditFuelCard.IsExpanded = false;
+            expFuelCardPINReport.IsExpanded = false;
+            expManuallAddFuelPin.IsExpanded = false;
+            FuelCardPINReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expManuallAddFuelPin_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAddDepartment.IsExpanded = false;
+            expAddEmployee.IsExpanded = false;
+            expAddEmployeeGroups.IsExpanded = false;
+            expAddEmployeeToVehicleEmailList.IsExpanded = false;
+            expEditEmployee.IsExpanded = false;
+            expEmployeeLaborRate.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expImportEmployeePunches.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expTerminateEmployee.IsExpanded = false;
+            expCreateFuelCardNumber.IsExpanded = false;
+            expEmployeeAdministration.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expEditFuelCard.IsExpanded = false;
+            expFuelCardPINReport.IsExpanded = false;
+            expManuallAddFuelPin.IsExpanded = false;
+            ManuallyAddFuelPINWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expOpenRentalReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expRentalReports.IsExpanded = false;
+            expRentals.IsExpanded = false;
+            expOpenRentalReport.IsExpanded = false;
+            expExpiringRentalReport.IsExpanded = false;
+            expViewRental.IsExpanded = false;
+
+            OpenRentalReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expExpiringRentalReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expRentalReports.IsExpanded = false;
+            expRentals.IsExpanded = false;
+            expOpenRentalReport.IsExpanded = false;
+            expExpiringRentalReport.IsExpanded = false;
+            expViewRental.IsExpanded = false;
+
+            ExpiringRentalsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expViewRental_Expanded(object sender, RoutedEventArgs e)
+        {
+            expRentalReports.IsExpanded = false;
+            expRentals.IsExpanded = false;
+            expOpenRentalReport.IsExpanded = false;
+            expExpiringRentalReport.IsExpanded = false;
+            expViewRental.IsExpanded = false;
+
+            ViewRentalWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportVendors_Expanded(object sender, RoutedEventArgs e)
+        {
+            expRentals.IsExpanded = false;
+            expRentalAdministration.IsExpanded = false;
+            expImportVendors.IsExpanded = false;
+
+            ImportVendorsWindow.Visibility = Visibility.Visible;
         }
     }
 }
