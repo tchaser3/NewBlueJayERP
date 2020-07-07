@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportTowMotorDataSet" targetNamespace="http://tempuri.org/ImportTowMotorDataSet.xsd" xmlns:mstns="http://tempuri.org/ImportTowMotorDataSet.xsd" xmlns="http://tempuri.org/ImportTowMotorDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportTowMotorDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportTowMotorDataSet" msprop:Generator_UserDSName="ImportTowMotorDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="importtowmotors" msprop:Generator_TableClassName="importtowmotorsDataTable" msprop:Generator_TableVarName="tableimporttowmotors" msprop:Generator_RowChangedName="importtowmotorsRowChanged" msprop:Generator_TablePropName="importtowmotors" msprop:Generator_RowDeletingName="importtowmotorsRowDeleting" msprop:Generator_RowChangingName="importtowmotorsRowChanging" msprop:Generator_RowEvHandlerName="importtowmotorsRowChangeEventHandler" msprop:Generator_RowDeletedName="importtowmotorsRowDeleted" msprop:Generator_RowClassName="importtowmotorsRow" msprop:Generator_UserTableName="importtowmotors" msprop:Generator_RowEvArgName="importtowmotorsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TowMotorNumber" msprop:Generator_ColumnVarNameInTable="columnTowMotorNumber" msprop:Generator_ColumnPropNameInRow="TowMotorNumber" msprop:Generator_ColumnPropNameInTable="TowMotorNumberColumn" msprop:Generator_UserColumnName="TowMotorNumber" type="xs:string" />
+              <xs:element name="TowMotorYear" msprop:Generator_ColumnVarNameInTable="columnTowMotorYear" msprop:Generator_ColumnPropNameInRow="TowMotorYear" msprop:Generator_ColumnPropNameInTable="TowMotorYearColumn" msprop:Generator_UserColumnName="TowMotorYear" type="xs:int" />
+              <xs:element name="TowMotorMake" msprop:Generator_ColumnVarNameInTable="columnTowMotorMake" msprop:Generator_ColumnPropNameInRow="TowMotorMake" msprop:Generator_ColumnPropNameInTable="TowMotorMakeColumn" msprop:Generator_UserColumnName="TowMotorMake" type="xs:string" />
+              <xs:element name="TowMotorModel" msprop:Generator_ColumnVarNameInTable="columnTowMotorModel" msprop:Generator_ColumnPropNameInRow="TowMotorModel" msprop:Generator_ColumnPropNameInTable="TowMotorModelColumn" msprop:Generator_UserColumnName="TowMotorModel" type="xs:string" />
+              <xs:element name="TowMotorSerialNo" msprop:Generator_ColumnVarNameInTable="columnTowMotorSerialNo" msprop:Generator_ColumnPropNameInRow="TowMotorSerialNo" msprop:Generator_ColumnPropNameInTable="TowMotorSerialNoColumn" msprop:Generator_UserColumnName="TowMotorSerialNo" type="xs:string" />
+              <xs:element name="TowMotorHours" msprop:Generator_ColumnVarNameInTable="columnTowMotorHours" msprop:Generator_ColumnPropNameInRow="TowMotorHours" msprop:Generator_ColumnPropNameInTable="TowMotorHoursColumn" msprop:Generator_UserColumnName="TowMotorHours" type="xs:decimal" />
+              <xs:element name="WarehouseID" msprop:Generator_ColumnVarNameInTable="columnWarehouseID" msprop:Generator_ColumnPropNameInRow="WarehouseID" msprop:Generator_ColumnPropNameInTable="WarehouseIDColumn" msprop:Generator_UserColumnName="WarehouseID" type="xs:int" />
+              <xs:element name="OilChangeDate" msprop:Generator_ColumnVarNameInTable="columnOilChangeDate" msprop:Generator_ColumnPropNameInRow="OilChangeDate" msprop:Generator_ColumnPropNameInTable="OilChangeDateColumn" msprop:Generator_UserColumnName="OilChangeDate" type="xs:dateTime" />
+              <xs:element name="TowMotorActive" msprop:Generator_ColumnVarNameInTable="columnTowMotorActive" msprop:Generator_ColumnPropNameInRow="TowMotorActive" msprop:Generator_ColumnPropNameInTable="TowMotorActiveColumn" msprop:Generator_UserColumnName="TowMotorActive" type="xs:boolean" />
+              <xs:element name="TowMotorWeight" msprop:Generator_ColumnVarNameInTable="columnTowMotorWeight" msprop:Generator_ColumnPropNameInRow="TowMotorWeight" msprop:Generator_ColumnPropNameInTable="TowMotorWeightColumn" msprop:Generator_UserColumnName="TowMotorWeight" type="xs:int" />
+              <xs:element name="TowMotorCapacity" msprop:Generator_ColumnVarNameInTable="columnTowMotorCapacity" msprop:Generator_ColumnPropNameInRow="TowMotorCapacity" msprop:Generator_ColumnPropNameInTable="TowMotorCapacityColumn" msprop:Generator_UserColumnName="TowMotorCapacity" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:importtowmotors" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

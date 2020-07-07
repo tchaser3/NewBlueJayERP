@@ -17,6 +17,7 @@ using NewEventLogDLL;
 using InventoryWIPDLL;
 using RentalTrackingDLL;
 using InspectionsDLL;
+using System.Security.Policy;
 
 namespace NewBlueJayERP
 {
@@ -88,6 +89,10 @@ namespace NewBlueJayERP
         public static ExpiringRentals ExpiringRentalsWindow = new ExpiringRentals();
         public static ViewRental ViewRentalWindow = new ViewRental();
         public static ImportVendors ImportVendorsWindow = new ImportVendors();
+        public static SubmitAfterHoursWork SubmitAfterHoursWorkWindow = new SubmitAfterHoursWork();
+        public static ImportTowMotors ImportTowMotorWindow = new ImportTowMotors();
+        public static ImportAssets ImportAssetsWindow = new ImportAssets();
+        public static CreateAssetType CreateAssetTypeWindow = new CreateAssetType();
 
         public MainWindow()
         {
@@ -148,6 +153,10 @@ namespace NewBlueJayERP
             ExpiringRentalsWindow.Visibility = Visibility.Hidden;
             ViewRentalWindow.Visibility = Visibility.Hidden;
             ImportVendorsWindow.Visibility = Visibility.Hidden;
+            SubmitAfterHoursWorkWindow.Visibility = Visibility.Hidden;
+            ImportTowMotorWindow.Visibility = Visibility.Hidden;
+            ImportAssetsWindow.Visibility = Visibility.Hidden;
+            CreateAssetTypeWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -338,7 +347,8 @@ namespace NewBlueJayERP
 
         private void expAssetDataEntry_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expAssentReports.IsExpanded = false;
+            expAssetAdministration.IsExpanded = false;
         }
 
         private void expAssets_Expanded(object sender, RoutedEventArgs e)
@@ -357,7 +367,8 @@ namespace NewBlueJayERP
 
         private void expAssentReports_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expAssetDataEntry.IsExpanded = false;
+            expAssetAdministration.IsExpanded = false;
         }
 
         private void expInformationTechology_Expanded(object sender, RoutedEventArgs e)
@@ -407,6 +418,7 @@ namespace NewBlueJayERP
         {
             expAssentReports.IsEnabled = true;
             expAssetDataEntry.IsEnabled = true;
+            expAssetAdministration.IsEnabled = true;
             expAssets.IsEnabled = true;
             expEmployeeAdministration.IsEnabled = true;
             expEmployeeDataEntry.IsEnabled = true;
@@ -490,6 +502,7 @@ namespace NewBlueJayERP
             }
             else if(gstrEmployeeGroup == "WAREHOUSE")
             {
+                expAssetAdministration.IsEnabled = false;
                 expEmployees.IsEnabled = false;
                 expProjects.IsEnabled = false;
                 expToolAdministration.IsEnabled = false;
@@ -506,6 +519,7 @@ namespace NewBlueJayERP
             }
             else if(gstrEmployeeGroup == "SUPER USER")
             {
+                expAssetAdministration.IsEnabled = false;
                 expEmployeeAdministration.IsEnabled = false;
                 expProjectAdministration.IsEnabled = false;
                 expInventoryAdministration.IsEnabled = false;
@@ -935,6 +949,54 @@ namespace NewBlueJayERP
             expImportVendors.IsExpanded = false;
 
             ImportVendorsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expSubmitAfterHoursWork_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjects.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expAddNewProject.IsExpanded = false;
+            expEditProject.IsExpanded = false;
+            expSubmitAfterHoursWork.IsExpanded = false;
+
+            SubmitAfterHoursWorkWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportTowMotors_Expanded(object sender, RoutedEventArgs e)
+        {
+            expVehicles.IsExpanded = false;
+            expVehicleAdminstration.IsExpanded = false;
+            expImportTowMotors.IsExpanded = false;
+            ImportTowMotorWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAssetAdministration_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAssentReports.IsExpanded = false;
+            expAssetDataEntry.IsExpanded = false;
+        }
+
+        private void expImportAssets_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAssets.IsExpanded = false;
+            expAssetAdministration.IsExpanded = false;
+            expImportAssets.IsExpanded = false;
+            ImportAssetsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateAssetType_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAssets.IsExpanded = false;
+            expAssetAdministration.IsExpanded = false;
+            expCreateAssetType.IsExpanded = false;
+            CreateAssetTypeWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateAsset_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAssets.IsExpanded = false;
+            expAssetAdministration.IsExpanded = false;
+            expCreateAsset.IsExpanded = false;
         }
     }
 }

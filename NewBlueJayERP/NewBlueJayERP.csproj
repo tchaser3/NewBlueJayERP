@@ -41,6 +41,12 @@
     <Reference Include="AdjustInventoryDLL">
       <HintPath>..\..\Blue Jay Class Library\AdjustInventoryDLL.dll</HintPath>
     </Reference>
+    <Reference Include="AfterHoursWorkDLL">
+      <HintPath>..\..\Blue Jay Class Library\AfterHoursWorkDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetDLL">
+      <HintPath>..\..\Blue Jay Class Library\AssetDLL.dll</HintPath>
+    </Reference>
     <Reference Include="AssignedTasksDLL">
       <HintPath>..\..\Blue Jay Class Library\AssignedTasksDLL.dll</HintPath>
     </Reference>
@@ -271,6 +277,9 @@
     <Reference Include="ToolsDLL">
       <HintPath>..\..\Blue Jay Class Library\ToolsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="TowMotorDLL">
+      <HintPath>..\..\Blue Jay Class Library\TowMotorDLL.dll</HintPath>
+    </Reference>
     <Reference Include="TrailerBodyDamageDLL">
       <HintPath>..\..\Blue Jay Class Library\TrailerBodyDamageDLL.dll</HintPath>
     </Reference>
@@ -393,11 +402,19 @@
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AfterWorkEmployeesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CloseRental.xaml.cs">
       <DependentUpon>CloseRental.xaml</DependentUpon>
     </Compile>
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateAssetType.xaml.cs">
+      <DependentUpon>CreateAssetType.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateFuelCardNumber.xaml.cs">
       <DependentUpon>CreateFuelCardNumber.xaml</DependentUpon>
@@ -456,6 +473,9 @@
     <Compile Include="FuelCardPINReport.xaml.cs">
       <DependentUpon>FuelCardPINReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportAssets.xaml.cs">
+      <DependentUpon>ImportAssets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportGEOFencedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -463,6 +483,17 @@
     </Compile>
     <Compile Include="ImportGEOFenceReport.xaml.cs">
       <DependentUpon>ImportGEOFenceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportTowMotorDataSet.cs">
+      <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportTowMotorDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportTowMotors.xaml.cs">
+      <DependentUpon>ImportTowMotors.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportVendors.xaml.cs">
       <DependentUpon>ImportVendors.xaml</DependentUpon>
@@ -518,6 +549,10 @@
     <Compile Include="SelectWarehouse.xaml.cs">
       <DependentUpon>SelectWarehouse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SendEmailClass.cs" />
+    <Compile Include="SubmitAfterHoursWork.xaml.cs">
+      <DependentUpon>SubmitAfterHoursWork.xaml</DependentUpon>
+    </Compile>
     <Compile Include="TotalWorkTaskFootagesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -553,6 +588,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CompanyProjectFootages.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateAssetType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -608,7 +647,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportGEOFenceReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportTowMotors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -668,6 +715,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="SubmitAfterHoursWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateRental.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -718,6 +769,17 @@
     <None Include="ActiveVehicleDataSet.xss">
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
     </None>
+    <None Include="AfterWorkEmployeesDataSet.xsc">
+      <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AfterWorkEmployeesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AfterWorkEmployeesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AfterWorkEmployeesDataSet.xss">
+      <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CreateRentalItemsDataSet.xsc">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
     </None>
@@ -761,6 +823,17 @@
     </None>
     <None Include="ImportGEOFencedDataSet.xss">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportTowMotorDataSet.xsc">
+      <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportTowMotorDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportTowMotorDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportTowMotorDataSet.xss">
+      <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportVendorsDataSet.xsc">
       <DependentUpon>ImportVendorsDataSet.xsd</DependentUpon>
