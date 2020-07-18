@@ -277,7 +277,10 @@
                 <Expander x:Name="expInformationTechology" Header="IT Info" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expInformationTechology_Expanded">
                     <StackPanel Margin="30,1,1,1" HorizontalAlignment="Center" Background="LightBlue">
                         <Expander x:Name="expITDataEntry" Header="IT Data Entry" ExpandDirection="Right" Margin="31,1,1,1" Background="LightBlue" Expanded="expITDataEntry_Expanded">
-
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
+                                <Expander x:Name="expCreateHelpDeskProblemType" Header="Create Help Desk Problem Type" Margin="35,1,1,1" Expanded="expCreateHelpDeskProblemType_Expanded"/>
+                                <Expander x:Name="expUpdateHelpDeskTickets" Header="Update Help Desk Tickets" Margin="35,1,1,1" Expanded="expUpdateHelpDeskTickets_Expanded"/>
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
 

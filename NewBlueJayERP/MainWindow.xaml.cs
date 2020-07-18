@@ -62,6 +62,9 @@ namespace NewBlueJayERP
         public static int gintInspectingEmployeeID;
         public static bool gblnRentalPO;
         public static DateTime gdatInspectionDate;
+        public static int gintTicketID;
+        public static int gintProblemTypeID;
+        public static string gstrTicketStatus;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -93,6 +96,9 @@ namespace NewBlueJayERP
         public static ImportTowMotors ImportTowMotorWindow = new ImportTowMotors();
         public static ImportAssets ImportAssetsWindow = new ImportAssets();
         public static CreateAssetType CreateAssetTypeWindow = new CreateAssetType();
+        public static CreateAsset CreateAssetWindow = new CreateAsset();
+        public static CreateHelpDeskProblemType CreateHelpDeskProblemTypeWindow = new CreateHelpDeskProblemType();
+        public static UpdateHelpDeskTickets UpdateHelpDeskTicketsWindow = new UpdateHelpDeskTickets();
 
         public MainWindow()
         {
@@ -157,6 +163,9 @@ namespace NewBlueJayERP
             ImportTowMotorWindow.Visibility = Visibility.Hidden;
             ImportAssetsWindow.Visibility = Visibility.Hidden;
             CreateAssetTypeWindow.Visibility = Visibility.Hidden;
+            CreateAssetWindow.Visibility = Visibility.Hidden;
+            CreateHelpDeskProblemTypeWindow.Visibility = Visibility.Hidden;
+            UpdateHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -387,17 +396,20 @@ namespace NewBlueJayERP
 
         private void expITDataEntry_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expITReports.IsExpanded = false;
+            expPhoneAdministration.IsExpanded = false;
         }
 
         private void expITReports_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expITDataEntry.IsExpanded = false;
+            expPhoneAdministration.IsExpanded = false;
         }
 
         private void expPhoneAdministration_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expITDataEntry.IsExpanded = false;
+            expITReports.IsExpanded = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -997,6 +1009,25 @@ namespace NewBlueJayERP
             expAssets.IsExpanded = false;
             expAssetAdministration.IsExpanded = false;
             expCreateAsset.IsExpanded = false;
+            CreateAssetWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateHelpDeskProblemType_Expanded(object sender, RoutedEventArgs e)
+        {
+            expITDataEntry.IsExpanded = false;
+            expInformationTechology.IsExpanded = false;
+            expCreateHelpDeskProblemType.IsExpanded = false;
+            expUpdateHelpDeskTickets.IsExpanded = false;
+            CreateHelpDeskProblemTypeWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expUpdateHelpDeskTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            expITDataEntry.IsExpanded = false;
+            expInformationTechology.IsExpanded = false;
+            expCreateHelpDeskProblemType.IsExpanded = false;
+            expUpdateHelpDeskTickets.IsExpanded = false;
+            UpdateHelpDeskTicketsWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -140,6 +140,9 @@
     <Reference Include="GEOFenceDLL">
       <HintPath>..\..\Blue Jay Class Library\GEOFenceDLL.dll</HintPath>
     </Reference>
+    <Reference Include="HelpDeskDLL">
+      <HintPath>..\..\Blue Jay Class Library\HelpDeskDLL.dll</HintPath>
+    </Reference>
     <Reference Include="InspectionsDLL">
       <HintPath>..\..\Blue Jay Class Library\InspectionsDLL.dll</HintPath>
     </Reference>
@@ -413,11 +416,17 @@
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateAsset.xaml.cs">
+      <DependentUpon>CreateAsset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateAssetType.xaml.cs">
       <DependentUpon>CreateAssetType.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateFuelCardNumber.xaml.cs">
       <DependentUpon>CreateFuelCardNumber.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateHelpDeskProblemType.xaml.cs">
+      <DependentUpon>CreateHelpDeskProblemType.xaml</DependentUpon>
     </Compile>
     <Compile Include="CreateJSIEntry.xaml.cs">
       <DependentUpon>CreateJSIEntry.xaml</DependentUpon>
@@ -558,6 +567,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="UpdateHelpDeskTickets.xaml.cs">
+      <DependentUpon>UpdateHelpDeskTickets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateRental.xaml.cs">
       <DependentUpon>UpdateRental.xaml</DependentUpon>
     </Compile>
@@ -591,11 +603,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateAsset.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateAssetType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateFuelCardNumber.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateHelpDeskProblemType.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -716,6 +736,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubmitAfterHoursWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateHelpDeskTickets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
