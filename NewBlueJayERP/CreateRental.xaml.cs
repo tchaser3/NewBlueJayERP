@@ -342,5 +342,12 @@ namespace NewBlueJayERP
             if (intSelectedIndex > -1)
                 MainWindow.gintVendorID = TheFindVendorsSortedByVendorNameDataSet.FindVendorsSortedByVendorName[intSelectedIndex].VendorID;
         }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

@@ -167,5 +167,12 @@ namespace NewBlueJayERP
                 excel = null;
             }
         }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

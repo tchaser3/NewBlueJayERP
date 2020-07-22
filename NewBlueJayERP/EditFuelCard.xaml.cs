@@ -224,5 +224,12 @@ namespace NewBlueJayERP
             expResetWindow.IsExpanded = false;
             ResetControls();
         }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

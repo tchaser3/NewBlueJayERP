@@ -64,6 +64,7 @@
             <Expander x:Name="expProcess" Header="Process" FontSize="16" Margin="10,1,1,1" />
             <Expander x:Name="expChangeWarehouse" Header="Change Whse" FontSize="16" Margin="10,1,1,1" />
             <Expander x:Name="expProcessBatch" Header="Process Batch" FontSize="16" Margin="10,1,1,1" />
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />

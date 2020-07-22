@@ -428,6 +428,9 @@
     <Compile Include="CreateHelpDeskProblemType.xaml.cs">
       <DependentUpon>CreateHelpDeskProblemType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateHelpDeskTicket.xaml.cs">
+      <DependentUpon>CreateHelpDeskTicket.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreateJSIEntry.xaml.cs">
       <DependentUpon>CreateJSIEntry.xaml</DependentUpon>
     </Compile>
@@ -567,6 +570,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TowMotorInspection.xaml.cs">
+      <DependentUpon>TowMotorInspection.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateHelpDeskTickets.xaml.cs">
       <DependentUpon>UpdateHelpDeskTickets.xaml</DependentUpon>
     </Compile>
@@ -616,6 +622,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateHelpDeskProblemType.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateHelpDeskTicket.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -736,6 +746,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SubmitAfterHoursWork.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="TowMotorInspection.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

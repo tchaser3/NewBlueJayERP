@@ -419,5 +419,12 @@ namespace NewBlueJayERP
             if (intLength < 5)
                 TheMessagesClass.InformationMessage("The Job Number/Purchase Request Number will be Assigned at Process");
         }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

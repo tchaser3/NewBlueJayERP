@@ -1,8 +1,8 @@
-﻿/* Title:           Import Assets
- * Date:            7-6-20
+﻿/* Title:           Tow Motor Inspection
+ * Date:            7-21-20
  * Author:          Terry Holmes
  * 
- * Description:     This is used to import the assets */
+ * Description:     This is the form to complete the Tow Motor Inspection*/
 
 using System;
 using System.Collections.Generic;
@@ -17,24 +17,18 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using NewEventLogDLL;
-using NewEmployeeDLL;
-using DataValidationDLL;
 
 namespace NewBlueJayERP
 {
     /// <summary>
-    /// Interaction logic for ImportAssets.xaml
+    /// Interaction logic for TowMotorInspection.xaml
     /// </summary>
-    public partial class ImportAssets : Window
+    public partial class TowMotorInspection : Window
     {
         //setting up the classes
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
-        EventLogClass TheEventLogClass = new EventLogClass();
-        EmployeeClass TheEmployeeClass = new EmployeeClass();
-        DataValidationClass TheDataValidationClass = new DataValidationClass();
 
-        public ImportAssets()
+        public TowMotorInspection()
         {
             InitializeComponent();
         }
@@ -63,6 +57,12 @@ namespace NewBlueJayERP
             TheMessagesClass.LaunchHelpSite();
         }
 
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+        }
+
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DragMove();
@@ -70,22 +70,11 @@ namespace NewBlueJayERP
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            ResetControls();
+
         }
 
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            ResetControls();
-        }
-        private void ResetControls()
-        {
-
-        }
-
-        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
-        {
-            expHelpDesk.IsExpanded = false;
-            TheMessagesClass.LaunchHelpDeskTickets();
 
         }
     }

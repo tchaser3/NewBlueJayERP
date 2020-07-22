@@ -99,6 +99,7 @@ namespace NewBlueJayERP
         public static CreateAsset CreateAssetWindow = new CreateAsset();
         public static CreateHelpDeskProblemType CreateHelpDeskProblemTypeWindow = new CreateHelpDeskProblemType();
         public static UpdateHelpDeskTickets UpdateHelpDeskTicketsWindow = new UpdateHelpDeskTickets();
+        public static TowMotorInspection TowMotorInspectionWindow = new TowMotorInspection();
 
         public MainWindow()
         {
@@ -166,6 +167,7 @@ namespace NewBlueJayERP
             CreateAssetWindow.Visibility = Visibility.Hidden;
             CreateHelpDeskProblemTypeWindow.Visibility = Visibility.Hidden;
             UpdateHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
+            TowMotorInspectionWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -484,7 +486,6 @@ namespace NewBlueJayERP
                 expToolsDataEntry.IsEnabled = false;
                 expTrailerAdministration.IsEnabled = false;
                 expVehicleAdminstration.IsEnabled = false;
-                expInventoryDataEntry.IsEnabled = false;
                 expInventoryAdministration.IsEnabled = false;
                 expToolAdministration.IsEnabled = false;
                 expVehicleAdminstration.IsEnabled = false;
@@ -501,7 +502,6 @@ namespace NewBlueJayERP
                 expToolsDataEntry.IsEnabled = false;
                 expTrailerAdministration.IsEnabled = false;
                 expVehicleAdminstration.IsEnabled = false;
-                expInventoryDataEntry.IsEnabled = false;
                 expInventoryAdministration.IsEnabled = false;
                 expToolAdministration.IsEnabled = false;
                 expVehicleAdminstration.IsEnabled = false;
@@ -1028,6 +1028,19 @@ namespace NewBlueJayERP
             expCreateHelpDeskProblemType.IsExpanded = false;
             expUpdateHelpDeskTickets.IsExpanded = false;
             UpdateHelpDeskTicketsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expTowMoterInspection_Expanded(object sender, RoutedEventArgs e)
+        {
+            expTowMoterInspection.IsExpanded = false;
+            TowMotorInspectionWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
         }
     }
 }

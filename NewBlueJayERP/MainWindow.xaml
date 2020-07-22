@@ -202,11 +202,11 @@
                         <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue" Expanded="expVehicleDataEntry_Expanded">
                             <Expander x:Name="expImportGEOFenceReport" Header="Import GEO Fence Report" Margin="10,1,1,1" Expanded="expImportGEOFenceReport_Expanded"/>
                         </Expander>
-                        <Expander x:Name="expInspectionDataEntry" Header="Inspection Date Entry"  ExpandDirection="Right" Margin="5,1,1,1">
+                        <Expander x:Name="expInspectionDataEntry" Header="Inspection Data Entry"  ExpandDirection="Right" Margin="5,1,1,1">
                             <StackPanel Background="LightBlue">
                                 <Expander x:Name="expDailyVehicleInspection" Header="Daily Vehicle Inspection"  Margin="10,1,1,1"/>
                                 <Expander x:Name="expWeeklyVehicleInspection" Header="Weekly Vehicle Inspection" Margin="10,1,1,1" />
-                                <Expander x:Name="expTowMoterInspection" Header="TOW Motor Inspection" Margin="10,1,1,1" />
+                                <Expander x:Name="expTowMoterInspection" Header="TOW Motor Inspection" Margin="10,1,1,1" Expanded="expTowMoterInspection_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expVehicleReports" Header="Vehicle Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" Expanded="expVehicleReports_Expanded">
@@ -303,6 +303,7 @@
             <StackPanel>
                 <Expander x:Name="expHelp" Header="Help" FontSize="16" ExpandDirection="Right" Margin="25,1,1,1" Expanded="expHelp_Expanded">
                     <StackPanel Margin="37,1,1,1" HorizontalAlignment="Left" Background="LightBlue">
+                        <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
                         <Expander x:Name="expHelpSite" Header="Help Site" Expanded="expHelpSite_Expanded" />
                         <Expander x:Name="expCreateHelpDeskTicket" Header="Create Help Desk Ticket" Expanded="expCreateHelpDeskTicket_Expanded" />
                     </StackPanel>

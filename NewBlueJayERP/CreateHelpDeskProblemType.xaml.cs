@@ -120,5 +120,12 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

@@ -48,7 +48,8 @@ namespace NewBlueJayERP
         }
         public void LaunchHelpDeskTickets()
         {
-            System.Diagnostics.Process.Start("https://bluejay.on.spiceworks.com/portal/tickets");
+            CreateHelpDeskTicket CreateHelpDeskTicket = new CreateHelpDeskTicket();
+            CreateHelpDeskTicket.ShowDialog();
         }
         public void LaunchEmail()
         {

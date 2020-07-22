@@ -61,7 +61,8 @@
             <Label x:Name="lblTitle" Content="Set Up For Automated Production Reports" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="425" Background="LightBlue">
-            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" />
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
             <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>

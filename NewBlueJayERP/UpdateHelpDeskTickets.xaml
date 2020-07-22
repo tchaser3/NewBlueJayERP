@@ -59,6 +59,8 @@
             <Label x:Name="lblTitle" Content="Update Help Desk Tickets" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="640" Background="LightBlue">
+            <Expander x:Name="expRefreshTickets" Header="Refresh Tickets" FontSize="16" Margin="10,1,1,1" Expanded="expRefreshTickets_Expanded"/>
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />

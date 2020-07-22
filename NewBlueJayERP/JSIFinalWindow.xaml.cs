@@ -281,5 +281,12 @@ namespace NewBlueJayERP
         {
             gblnSafetyConcerns = false;
         }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

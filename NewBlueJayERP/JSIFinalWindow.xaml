@@ -61,6 +61,7 @@
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="530" Background="LightBlue">
             <Expander x:Name="expAddDocument" Header="Add Document" Margin="10,1,1,1" FontSize="16" TabIndex="7" Expanded="expAddDocument_Expanded" />
             <Expander x:Name="expProcess" Header="Process" FontSize="16" TabIndex="8" Margin="10,1,1,1" Expanded="expProcess_Expanded" />
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
         </StackPanel>

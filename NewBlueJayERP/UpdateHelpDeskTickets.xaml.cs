@@ -511,6 +511,17 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
-        
+
+        private void expRefreshTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetControls();
+        }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
     }
 }

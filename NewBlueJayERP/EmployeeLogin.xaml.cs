@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using NewEmployeeDLL;
 using NewEventLogDLL;
 using DataValidationDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -32,6 +33,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         int gintNoOfMisses;
 
@@ -86,6 +88,8 @@ namespace NewBlueJayERP
             }
             else
             {
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(intEmployeeID, "NEW BLUE JAY ERP // USER LOGIN");
+
                 MainWindow.gblnLoggedIn = true;
                 MainWindow.gstrEmployeeGroup = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup;
                 Close();
