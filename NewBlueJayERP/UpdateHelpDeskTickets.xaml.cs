@@ -516,6 +516,7 @@ namespace NewBlueJayERP
 
         private void expRefreshTickets_Expanded(object sender, RoutedEventArgs e)
         {
+            expRefreshTickets.IsExpanded = false;
             ResetControls();
         }
 
@@ -534,6 +535,8 @@ namespace NewBlueJayERP
 
             try
             {
+                expMyOpenTickets.IsExpanded = false;
+
                 TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
 
                 intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
@@ -567,6 +570,58 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // My Open Tickets Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expUnassignedTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intCounter;
+            int intNumberOfRecords;
+            int intTicketID;
+            int intRecordsReturned;
+
+            try
+            {
+                expUnassignedTickets.IsExpanded = false;
+
+                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
+
+                TheFindOpenHelpDeskTicketsDataSet = TheHelpDeskClass.FindOpenHelpDeskTickets();
+
+                intNumberOfRecords = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets.Rows.Count - 1;
+
+                if(intNumberOfRecords > -1)
+                {
+                    for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                    {
+                        intTicketID = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].TicketID;
+
+                        TheFindHelpDeskTicketCurrentAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketCurrentAssignment(intTicketID);
+
+                        intRecordsReturned = TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment.Rows.Count;
+
+                        if(intRecordsReturned == 0)
+                        {
+                            OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicketRow = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
+
+                            NewTicketRow.FirstName = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].FirstName;
+                            NewTicketRow.LastName = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].LastName;
+                            NewTicketRow.ReportedProblem = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].ReportedProblem;
+                            NewTicketRow.TicketDate = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].TicketDate;
+                            NewTicketRow.TicketID = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].TicketID;
+
+                            TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicketRow);
+                        }
+                    }
+
+                    dgrOpenTickets.ItemsSource = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets;
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Unassigned Tickets Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
