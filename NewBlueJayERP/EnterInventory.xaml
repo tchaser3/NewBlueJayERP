@@ -58,7 +58,7 @@
         <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="800">
             <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
-            <Label x:Name="lblTitle" Content="Project Footages Over Date Range" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+            <Label x:Name="lblTitle" Content="Enter Inventory" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="540" Background="LightBlue">
             <Expander x:Name="expProcess" Header="Process" FontSize="16" Margin="10,1,1,1" />
@@ -93,6 +93,7 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="361">
                 <Label x:Name="lblPartNumber" Content="Part Number" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="150"/>
+                
             </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Width="361" Height="527" Margin="516,155,10,10">

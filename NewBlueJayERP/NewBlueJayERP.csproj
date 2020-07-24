@@ -532,6 +532,11 @@
     <Compile Include="ManuallyAddFuelPIN.xaml.cs">
       <DependentUpon>ManuallyAddFuelPIN.xaml</DependentUpon>
     </Compile>
+    <Compile Include="OpenHelpDeskTicketsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OpenRentalReport.xaml.cs">
       <DependentUpon>OpenRentalReport.xaml</DependentUpon>
     </Compile>
@@ -894,6 +899,17 @@
     </None>
     <None Include="JSIEmployeeAssignedDataSet.xss">
       <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OpenHelpDeskTicketsDataSet.xsc">
+      <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OpenHelpDeskTicketsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OpenHelpDeskTicketsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="OpenHelpDeskTicketsDataSet.xss">
+      <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectFootagesDataSet.xsc">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>

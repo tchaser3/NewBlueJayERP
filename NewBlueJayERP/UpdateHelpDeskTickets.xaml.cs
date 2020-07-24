@@ -47,6 +47,8 @@ namespace NewBlueJayERP
         FindPhoneExtensionByEmployeeIDDataSet TheFindPhoneExtensionByEmployeeIDDataSet = new FindPhoneExtensionByEmployeeIDDataSet();
         FindEmployeeByDepartmentDataSet TheFindEmployeeByDepartmentDataSet = new FindEmployeeByDepartmentDataSet();
         FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
+        FindOpenHelpDeskTicketsAssignedDataSet TheFindOpenHelpDeskTicketsAssignedDataSet = new FindOpenHelpDeskTicketsAssignedDataSet();
+        OpenHelpDeskTicketsDataSet TheOpenHelpDeskTicketsDataSet = new OpenHelpDeskTicketsDataSet();
 
         string gstrTicketStatus;
         string gstrUserEmailAddress;
@@ -522,6 +524,52 @@ namespace NewBlueJayERP
             expHelpDesk.IsExpanded = false;
             TheMessagesClass.LaunchHelpDeskTickets();
 
+        }
+
+        private void expMyOpenTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intEmployeeID;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
+
+                intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
+
+                TheFindOpenHelpDeskTicketsAssignedDataSet = TheHelpDeskClass.FindOpenHelpDeskTicketsAssigned(intEmployeeID);
+
+                intNumberOfRecords = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined.Rows.Count - 1;
+
+                if(intNumberOfRecords < 0)
+                {
+                    TheMessagesClass.InformationMessage("There Are No Open Tickets for You");
+
+                    return;
+                }
+
+                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicket = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
+
+                    NewTicket.FirstName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].FirstName;
+                    NewTicket.LastName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].LastName;
+                    NewTicket.TicketDate = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketDate;
+                    NewTicket.ReportedProblem = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].ReportedProblem;
+                    NewTicket.TicketID = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketID;
+
+                    TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicket);
+                }
+
+                dgrOpenTickets.ItemsSource = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // My Open Tickets Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

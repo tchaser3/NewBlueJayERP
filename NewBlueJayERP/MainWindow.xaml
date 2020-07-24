@@ -145,7 +145,8 @@
                             <StackPanel Margin="10,1,1,1">
                                 <Expander x:Name="expIssueMaterial" Header="Issue Material" Expanded="expIssueMaterial_Expanded" />
                                 <Expander x:Name="expReceiveMaterial" Header="Receive Material" Expanded="expReceiveMaterial_Expanded" />
-                                <Expander x:Name="expProcessBOMMaterial" Header="Process BOM Material" Expanded="expProcessBOMMaterial_Expanded" />
+                                <Expander x:Name="expProcessBOMMaterial" Header="Report Material Usage" Expanded="expProcessBOMMaterial_Expanded" />
+                                <Expander x:Name="expReturnMaterial" Header="Return Material" />
                                 <Expander x:Name="expViewCurrentSession" Header="View Current Session" />
                             </StackPanel>
                         </Expander>
@@ -303,7 +304,7 @@
             <StackPanel>
                 <Expander x:Name="expHelp" Header="Help" FontSize="16" ExpandDirection="Right" Margin="25,1,1,1" Expanded="expHelp_Expanded">
                     <StackPanel Margin="37,1,1,1" HorizontalAlignment="Left" Background="LightBlue">
-                        <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
+                        <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Expanded="expHelpDesk_Expanded" />
                         <Expander x:Name="expHelpSite" Header="Help Site" Expanded="expHelpSite_Expanded" />
                         <Expander x:Name="expCreateHelpDeskTicket" Header="Create Help Desk Ticket" Expanded="expCreateHelpDeskTicket_Expanded" />
                     </StackPanel>
