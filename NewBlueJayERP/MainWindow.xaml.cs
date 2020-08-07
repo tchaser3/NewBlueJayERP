@@ -100,6 +100,7 @@ namespace NewBlueJayERP
         public static CreateHelpDeskProblemType CreateHelpDeskProblemTypeWindow = new CreateHelpDeskProblemType();
         public static UpdateHelpDeskTickets UpdateHelpDeskTicketsWindow = new UpdateHelpDeskTickets();
         public static TowMotorInspection TowMotorInspectionWindow = new TowMotorInspection();
+        public static ViewMyOpenHelpDeskTickets ViewMyOpenHelpDeskTicketsWindow = new ViewMyOpenHelpDeskTickets();
 
         public MainWindow()
         {
@@ -168,6 +169,7 @@ namespace NewBlueJayERP
             CreateHelpDeskProblemTypeWindow.Visibility = Visibility.Hidden;
             UpdateHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
             TowMotorInspectionWindow.Visibility = Visibility.Hidden;
+            ViewMyOpenHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1040,6 +1042,19 @@ namespace NewBlueJayERP
         {
             expHelpDesk.IsExpanded = false;
             TheMessagesClass.LaunchHelpDeskTickets();
+
+        }
+
+        private void expMyOpenTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            expMyOpenTickets.IsExpanded = false;
+            expMyTickets.IsExpanded = false;
+            expITReports.IsExpanded = false;
+            ViewMyOpenHelpDeskTicketsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expMyTickets_Expanded(object sender, RoutedEventArgs e)
+        {
 
         }
     }

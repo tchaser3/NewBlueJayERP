@@ -595,6 +595,15 @@
     <Compile Include="VehicleUsageReport.xaml.cs">
       <DependentUpon>VehicleUsageReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewHelpDeskAttachments.xaml.cs">
+      <DependentUpon>ViewHelpDeskAttachments.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewMyOpenHelpDeskTickets.xaml.cs">
+      <DependentUpon>ViewMyOpenHelpDeskTickets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewMyTicketInfo.xaml.cs">
+      <DependentUpon>ViewMyTicketInfo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewRental.xaml.cs">
       <DependentUpon>ViewRental.xaml</DependentUpon>
     </Compile>
@@ -771,6 +780,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VehicleUsageReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewHelpDeskAttachments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewMyOpenHelpDeskTickets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewMyTicketInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

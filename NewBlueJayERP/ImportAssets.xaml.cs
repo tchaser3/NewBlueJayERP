@@ -34,6 +34,9 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
 
+        //setting up the data
+        FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
+
         public ImportAssets()
         {
             InitializeComponent();
@@ -79,7 +82,30 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
+            int intCounter;
+            int intNumberOfRecords;
 
+            try
+            {
+                TheFindWarehousesDataSet = TheEmployeeClass.FindWarehouses();
+
+                intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
+                cboSelectLocation.Items.Clear();
+                cboSelectLocation.Items.Add("Select Location");
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    cboSelectLocation.Items.Add(TheFindWarehousesDataSet.FindWarehouses[intCounter].FirstName);
+                }
+
+                cboSelectLocation.SelectedIndex = 0;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Assets // Reset Controls " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
 
         private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)

@@ -284,7 +284,10 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
-
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
+                                <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expPhoneAdministration" Header="Phone Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expPhoneAdministration_Expanded">
 

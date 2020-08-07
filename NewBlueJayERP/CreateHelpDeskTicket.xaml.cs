@@ -43,6 +43,7 @@ namespace NewBlueJayERP
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
         FindHelpDeskTicketbyTicketMatchDateDataSet TheFindHelpDeskTicketByMatchDateDataSet = new FindHelpDeskTicketbyTicketMatchDateDataSet();
         FindPhoneExtensionByEmployeeIDDataSet TheFindPhoneExtensionByEmployeeIDDataSet = new FindPhoneExtensionByEmployeeIDDataSet();
+        FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
 
         //setting global variables
         string gstrIPAddress;
@@ -164,6 +165,7 @@ namespace NewBlueJayERP
             string strMessage;
             int intEmployeeID;
             string strFullName;
+            string strUserEmail;
 
             try
             {
@@ -192,7 +194,27 @@ namespace NewBlueJayERP
 
                 intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
                 strFullName = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].FirstName + " ";
-                strFullName = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].LastName;
+                strFullName += MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].LastName;
+
+                TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intEmployeeID);
+
+                if (TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].IsEmailAddressNull() == true)
+                {
+                    strUserEmail = "NONE";
+                }
+                else
+                {
+                    if (TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress.Contains("bluejaycommunications") == false)
+                    {
+                        strUserEmail = "NONE";
+                    }
+                    else
+                    {
+                        strUserEmail = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress;
+                    }
+                }
+
+                strUserEmail = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress;
 
                 //inserting ticket
                 blnFatalError = TheHelpDeskClass.InsertHelpDeskTicket(datTicketDate, gstrComputerName, gstrUserName, gstrIPAddress, MainWindow.gintWarehouseID, gintProblemTypeID, strRepotedProblem, intEmployeeID);
@@ -218,6 +240,11 @@ namespace NewBlueJayERP
                 strMessage += "<h3> Computer Name " + gstrComputerName + " User Name " + gstrUserName + " IP Address " + gstrIPAddress + "<h3>";
 
                 blnFatalError = TheSendEmailClass.SendEmail(strEmailAddress, strHeader, strMessage);
+
+                if (blnFatalError == false)
+                    throw new Exception();
+
+                blnFatalError = TheSendEmailClass.SendEmail(strUserEmail, strHeader, strMessage);
 
                 if (blnFatalError == false)
                     throw new Exception();

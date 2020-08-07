@@ -1,8 +1,8 @@
-﻿/* Title:           Expiring Rentals
- * Date:            6-5-20
+﻿/* Title:           View My Open Help Desk Tickets
+ * Date:            8-6-20
  * Author:          Terry Holmes
  * 
- * Description:     This is used for expiring rentals */
+ * Description:     this is used to view my Open Tickets */
 
 using System;
 using System.Collections.Generic;
@@ -18,37 +18,28 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NewEventLogDLL;
-using RentalTrackingDLL;
-using DateSearchDLL;
+using HelpDeskDLL;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
-using System.Diagnostics;
-using Microsoft.Office.Core;
 
 namespace NewBlueJayERP
 {
     /// <summary>
-    /// Interaction logic for ExpiringRentals.xaml
+    /// Interaction logic for ViewMyOpenHelpDeskTickets.xaml
     /// </summary>
-    public partial class ExpiringRentals : Window
+    public partial class ViewMyOpenHelpDeskTickets : Window
     {
-        //setting up the classes
-        EventLogClass TheEventLogClass = new EventLogClass();
-        RentalTrackingClass TheRentalTrackingClass = new RentalTrackingClass();
-        DateSearchClass TheDateSearchClass = new DateSearchClass();
+        //setting up classes
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
+        HelpDeskClass TheHelpDeskClass = new HelpDeskClass();
+        EventLogClass TheEventLogClass = new EventLogClass();
 
         //setting up the data
-        FindExpiringRentalTrackingDataSet TheFindExpiringRentalTrackingDataSet = new FindExpiringRentalTrackingDataSet();
+        FindOpenHelpDeskTicketsForEmployeeDataSet TheFindOpenHelpDeskTicketsForEmployeeDataSet = new FindOpenHelpDeskTicketsForEmployeeDataSet();
 
-        public ExpiringRentals()
+        public ViewMyOpenHelpDeskTickets()
         {
             InitializeComponent();
-        }
-
-        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            DragMove();
         }
 
         private void expCloseProgram_Expanded(object sender, RoutedEventArgs e)
@@ -71,8 +62,19 @@ namespace NewBlueJayERP
 
         private void expHelp_Expanded(object sender, RoutedEventArgs e)
         {
-            TheMessagesClass.LaunchHelpSite();
             expHelp.IsExpanded = false;
+            TheMessagesClass.LaunchHelpSite();
+        }
+
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DragMove();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -86,13 +88,13 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
-            DateTime datTransactionDate = DateTime.Now;
+            int intEmployeeID;
 
-            datTransactionDate = TheDateSearchClass.AddingDays(datTransactionDate, 3);
+            intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
 
-            TheFindExpiringRentalTrackingDataSet = TheRentalTrackingClass.FindExpiringRentalTracking(datTransactionDate);
+            TheFindOpenHelpDeskTicketsForEmployeeDataSet = TheHelpDeskClass.FindOpenHelpDeskTicketsForEmployee(intEmployeeID);
 
-            dgrExpiringRentals.ItemsSource = TheFindExpiringRentalTrackingDataSet.FindExpiringRentalTracking;
+            dgrOpenTickets.ItemsSource = TheFindOpenHelpDeskTicketsForEmployeeDataSet.FindOpenHelpDeskTicketsForEmployee;
         }
 
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
@@ -113,16 +115,16 @@ namespace NewBlueJayERP
 
                 worksheet = workbook.ActiveSheet;
 
-                worksheet.Name = "OpenOrders";
+                worksheet.Name = "OpenTickets";
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindExpiringRentalTrackingDataSet.FindExpiringRentalTracking.Rows.Count;
-                intColumnNumberOfRecords = TheFindExpiringRentalTrackingDataSet.FindExpiringRentalTracking.Columns.Count;
+                intRowNumberOfRecords = TheFindOpenHelpDeskTicketsForEmployeeDataSet.FindOpenHelpDeskTicketsForEmployee.Rows.Count;
+                intColumnNumberOfRecords = TheFindOpenHelpDeskTicketsForEmployeeDataSet.FindOpenHelpDeskTicketsForEmployee.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindExpiringRentalTrackingDataSet.FindExpiringRentalTracking.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindOpenHelpDeskTicketsForEmployeeDataSet.FindOpenHelpDeskTicketsForEmployee.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -135,7 +137,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindExpiringRentalTrackingDataSet.FindExpiringRentalTracking.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindOpenHelpDeskTicketsForEmployeeDataSet.FindOpenHelpDeskTicketsForEmployee.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
@@ -156,7 +158,7 @@ namespace NewBlueJayERP
             }
             catch (System.Exception ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Expiring Rentals Report // Export To Excel " + ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // View My Open Help Desk Tickets // Export To Excel " + ex.Message);
 
                 MessageBox.Show(ex.ToString());
             }
@@ -168,16 +170,38 @@ namespace NewBlueJayERP
             }
         }
 
-        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
+        private void dgrOpenTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            expHelpDesk.IsExpanded = false;
-            TheMessagesClass.LaunchHelpDeskTickets();
+            DataGrid dataGrid;
+            DataGridRow selectedRow;
+            DataGridCell TicketID;
+            string strTicketID;
 
-        }
+            try
+            {
+                if (dgrOpenTickets.SelectedIndex > -1)
+                {
 
-        private void dgrExpiringRentals_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
+                    //setting local variable
+                    dataGrid = dgrOpenTickets;
+                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+                    TicketID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
+                    strTicketID = ((TextBlock)TicketID.Content).Text;
 
+                    //find the record
+                    MainWindow.gintTicketID = Convert.ToInt32(strTicketID);
+
+                    ViewMyTicketInfo ViewMyTicketInfo = new ViewMyTicketInfo();
+                    ViewMyTicketInfo.ShowDialog();
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Vehicle Dashboard // Vehicle In Shop // Problems Grid Selection " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

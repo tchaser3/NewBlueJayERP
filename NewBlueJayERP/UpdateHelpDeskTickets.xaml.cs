@@ -22,6 +22,8 @@ using NewEventLogDLL;
 using HelpDeskDLL;
 using PhonesDLL;
 using VehiclesInShopDLL;
+using System.IO;
+using System.Text;
 
 namespace NewBlueJayERP
 {
@@ -625,6 +627,70 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void btnAddDocumentation_Click(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            DateTime datTransactionDate = DateTime.Now;
+            string strDocumentPath = "";
+            long intResult;
+            string strNewLocation = "";
+            string strTransactionName;
+            bool blnFatalError;
+            string strFileExtension;
+
+            try
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.FileName = "Document"; // Default file name                
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    // Open document
+                    strDocumentPath = dlg.FileName.ToUpper();
+                }
+                else
+                {
+                    return;
+                }
+
+                FileInfo FileName = new FileInfo(strDocumentPath);
+
+                strFileExtension = FileName.Extension;
+
+                datTransactionDate = DateTime.Now;
+
+                intResult = datTransactionDate.Year * 10000000000 + datTransactionDate.Month * 100000000 + datTransactionDate.Day * 1000000 + datTransactionDate.Hour * 10000 + datTransactionDate.Minute * 100 + datTransactionDate.Second;
+                strTransactionName = Convert.ToString(intResult);
+
+                strNewLocation = "\\\\bjc\\shares\\Documents\\WAREHOUSE\\WhseTrac\\HelpDeskDocuments\\" + strTransactionName + strFileExtension;
+
+                System.IO.File.Copy(strDocumentPath, strNewLocation);
+
+                blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketDocumentation(MainWindow.gintTicketID, datTransactionDate, strNewLocation);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("The Document Has Been Saved");
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Ticket // Attach Documentation Button " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void btnViewAttachments_Click(object sender, RoutedEventArgs e)
+        {
+            ViewHelpDeskAttachments ViewHelpDeskAttachments = new ViewHelpDeskAttachments();
+            ViewHelpDeskAttachments.ShowDialog();
         }
     }
 }

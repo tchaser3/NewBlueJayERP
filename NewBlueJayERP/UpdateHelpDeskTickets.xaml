@@ -107,13 +107,16 @@
             </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="400" Margin="580,560,14,34">
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="140" Width="400">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="400">
                 <Label x:Name="lblUpdateNotes" Content="Update Notes" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="50" Width="100"/>
-                <TextBox x:Name="txtUpdateNotes" TabIndex="4" CharacterCasing="Upper" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="135" Width="245" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtUpdateNotes" TabIndex="4" CharacterCasing="Upper" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="75" Width="245" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="400">
-                <Button x:Name="btnAddDocumentation" Content="Add Documentation" FontSize="18" TabIndex="5" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="55" Width="175" Margin="15,1,1,1"/>
-                <Button x:Name="btnUpdateTicket" Content="Update Ticket" FontSize="18" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="55" Width="175" Margin="20,1,1,1" Click="btnUpdateTicket_Click" />
+                <Button x:Name="btnAddDocumentation" Content="Add Documentation" FontSize="18" TabIndex="5" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Height="55" Width="175" Margin="15,1,1,1" Click="btnAddDocumentation_Click"/>
+                <Button x:Name="btnViewAttachments" Content="View Attachments" FontSize="18" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="55" Width="175" Margin="20,1,1,1" Click="btnViewAttachments_Click"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="60" Width="400">
+                <Button x:Name="btnUpdateTicket" Content="Update Ticket" FontSize="18" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="55" Width="175" Click="btnUpdateTicket_Click" />
             </StackPanel>
         </StackPanel>
     </Grid>
