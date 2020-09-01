@@ -18,6 +18,7 @@ using InventoryWIPDLL;
 using RentalTrackingDLL;
 using InspectionsDLL;
 using System.Security.Policy;
+using System.Runtime.CompilerServices;
 
 namespace NewBlueJayERP
 {
@@ -65,6 +66,8 @@ namespace NewBlueJayERP
         public static int gintTicketID;
         public static int gintProblemTypeID;
         public static string gstrTicketStatus;
+        public static DateTime gdatStartDate;
+        public static DateTime gdatEndDate;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -101,7 +104,8 @@ namespace NewBlueJayERP
         public static UpdateHelpDeskTickets UpdateHelpDeskTicketsWindow = new UpdateHelpDeskTickets();
         public static TowMotorInspection TowMotorInspectionWindow = new TowMotorInspection();
         public static ViewMyOpenHelpDeskTickets ViewMyOpenHelpDeskTicketsWindow = new ViewMyOpenHelpDeskTickets();
-
+        public static ProjectsProductivityCosting ProjectsProductivityCostingWindow = new ProjectsProductivityCosting();
+        public static AddEmployeeToVehicleEmails AddEmployeeToVehicleEmailsWindow = new AddEmployeeToVehicleEmails();
         public MainWindow()
         {
             InitializeComponent();
@@ -170,6 +174,8 @@ namespace NewBlueJayERP
             UpdateHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
             TowMotorInspectionWindow.Visibility = Visibility.Hidden;
             ViewMyOpenHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
+            ProjectsProductivityCostingWindow.Visibility = Visibility.Hidden;
+            AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -296,7 +302,9 @@ namespace NewBlueJayERP
 
         private void expVehicleAdminstration_Expanded(object sender, RoutedEventArgs e)
         {
-           
+            expVehicleDataEntry.IsExpanded = false;
+            expVehicleReports.IsExpanded = false;
+            expInspectionDataEntry.IsExpanded = false;
         }
 
         private void expTrailers_Expanded(object sender, RoutedEventArgs e)
@@ -619,6 +627,7 @@ namespace NewBlueJayERP
             CompanyProjectFootagesWindows.Visibility = Visibility.Visible;
             expProjectReports.IsExpanded = false;
             expProjects.IsExpanded = false;
+            expAllProjectProductivityCosting.IsExpanded = false;
         }
 
         private void expProjectProductivityReport_Expanded(object sender, RoutedEventArgs e)
@@ -627,6 +636,7 @@ namespace NewBlueJayERP
             expProjectReports.IsExpanded = false;
             expProjects.IsExpanded = false;
             expJSIDataEntry.IsExpanded = false;
+            expAllProjectProductivityCosting.IsExpanded = false;
         }
 
         private void expDepartmentProductionEmail_Expanded(object sender, RoutedEventArgs e)
@@ -1056,6 +1066,26 @@ namespace NewBlueJayERP
         private void expMyTickets_Expanded(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void expAllProjectProductivityCosting_Expanded(object sender, RoutedEventArgs e)
+        {
+            expAllProjectProductivityCosting.IsExpanded = false;
+            expCompanyFootages.IsExpanded = false;
+            expProjectProductivityReport.IsExpanded = false;
+            expEmployeeProjectLaborReport.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            ProjectsProductivityCostingWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddEmployeeToVehicleEmails_Expanded(object sender, RoutedEventArgs e)
+        {
+            expImportTowMotors.IsExpanded = false;
+            expVehicles.IsExpanded = false;
+            expVehicleAdminstration.IsExpanded = false;
+            expAddEmployeeToVehicleEmailList.IsExpanded = false;
+            AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Visible;
         }
     }
 }

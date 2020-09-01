@@ -327,9 +327,7 @@ namespace NewBlueJayERP
         }
 
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
-        {
-            
-            
+        {     
             int intRowCounter;
             int intRowNumberOfRecords;
             int intColumnCounter;

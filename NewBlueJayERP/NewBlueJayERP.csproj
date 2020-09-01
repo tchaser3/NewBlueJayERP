@@ -402,6 +402,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
+      <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
@@ -557,6 +560,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectsProductivityCosting.xaml.cs">
+      <DependentUpon>ProjectsProductivityCosting.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RentalItems.xaml.cs">
       <DependentUpon>RentalItems.xaml</DependentUpon>
     </Compile>
@@ -611,6 +617,10 @@
       <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
+    <Page Include="AddEmployeeToVehicleEmails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -744,6 +754,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectProductivityReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectsProductivityCosting.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

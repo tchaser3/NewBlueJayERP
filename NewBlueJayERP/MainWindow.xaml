@@ -130,6 +130,7 @@
                                 <Expander x:Name="expCompanyFootages" Header="Company Project Footages" Margin="10,1,1,1" FontSize="16" Expanded="expCompanyFootages_Expanded"/>
                                 <Expander x:Name="expProjectProductivityReport" Header="Project Productivity Report" Margin=" 10,1,1,1" Expanded="expProjectProductivityReport_Expanded"/>
                                 <Expander x:Name="expEmployeeProjectLaborReport" Header="Project Project Labor Report" Margin="10,1,1,1" Expanded="expEmployeeProjectLaborReport_Expanded"/>
+                                <Expander x:Name="expAllProjectProductivityCosting" Header="All Project Productivity Costing" Margin="10,1,1,1" Expanded="expAllProjectProductivityCosting_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
@@ -219,6 +220,7 @@
                         <Expander x:Name="expVehicleAdminstration" Header="Vehicle Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expVehicleAdminstration_Expanded">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,1,1,1">
                                 <Expander x:Name="expImportTowMotors" Header="Import Tow Motors" Margin="10,1,1,1" Expanded="expImportTowMotors_Expanded"/>
+                                <Expander x:Name="expAddEmployeeToVehicleEmails" Header="Add Employee To Vehicle Emails" Margin="10,1,1,1" Expanded="expAddEmployeeToVehicleEmails_Expanded" />
                             </StackPanel>
                         </Expander>
                     </StackPanel>
