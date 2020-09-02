@@ -68,15 +68,14 @@
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
             <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="725" Margin="161,155,8,489">
-            <Label x:Name="lblStartDate" Content="Start Date" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="45" Margin="20,1,1,1"/>
-            <TextBox x:Name="txtStartDate" CharacterCasing="Upper" TabIndex="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" FontSize="20" Margin="10,1,1,1"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="162" Width="725" Margin="159,155,10,377">
+            <Label x:Name="lblStartDate" Content="Start Date" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="45" />
+            <Calendar x:Name="calStartDate" SelectedDatesChanged="calStartDate_SelectedDatesChanged" />
             <Label x:Name="lblEndDate" Content="End Date" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="45" Margin="10,1,1,1"/>
-            <TextBox x:Name="txtEndDate" CharacterCasing="Upper" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" FontSize="20" Margin="10,1,1,1"/>
-            <Button x:Name="btnProcess" TabIndex="2" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="20" Height="45" Width="150" Margin="10,1,1,1" Click="btnProcess_Click"/>
+            <Calendar x:Name="calEndDate" SelectedDatesChanged="calEndDate_SelectedDatesChanged" />
         </StackPanel>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="474" Width="724" Margin="160,210,10,10">
-            <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="465" Width="715" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="368" Width="724" Margin="170,322,0,4">
+            <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="365" Width="716" Margin="4,5,4,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
         </StackPanel>
     </Grid>
 </Window>

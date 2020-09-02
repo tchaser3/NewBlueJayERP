@@ -22,6 +22,10 @@ using EmployeeProjectAssignmentDLL;
 using DataValidationDLL;
 using DateSearchDLL;
 using Microsoft.Win32;
+using DesignProductivityDLL;
+using AssignedTasksDLL;
+using System.Runtime.CompilerServices;
+using System.Security.Cryptography;
 
 namespace NewBlueJayERP
 {
@@ -36,9 +40,20 @@ namespace NewBlueJayERP
         EmployeeProjectAssignmentClass TheEmployeeProjectAssignmentClass = new EmployeeProjectAssignmentClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         DateSearchClass TheDataSearchClass = new DateSearchClass();
+        DesignProductivityClass TheDesignProductivityClass = new DesignProductivityClass();
 
         //setting up the data
-        FindAllProjectProductivityCostsOverDateRangeDataSet TheFindAllProjectProductivityCostsOverDateRangeDataSet = new FindAllProjectProductivityCostsOverDateRangeDataSet();
+        FindAllEmployeeProductionOverAWeekDataSet TheFindAllEmployeesProductionOverAWeekDataSet = new FindAllEmployeeProductionOverAWeekDataSet();
+        FindAllDesignEmployeeProductivityOverAWeekDataSet TheFindAllDesignEmployeeProductivityOverAWeekDataSet = new FindAllDesignEmployeeProductivityOverAWeekDataSet();
+        EmployeeProductivityDataSet TheEmployeeProductivityDataSet = new EmployeeProductivityDataSet();
+        CompleteProjectProductivityDataSet TheCompleteProjectProductivityDataSet = new CompleteProjectProductivityDataSet();
+
+        bool gblnStartDateSelected;
+        bool gblnEndDateSelected;
+        DateTime gdatStartDate;
+        DateTime gdatEndDate;
+        int gintProjectCounter;
+        int gintProjectNumberOfRecords;
 
         public ProjectsProductivityCosting()
         {
@@ -91,68 +106,257 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
-            txtEndDate.Text = "";
-            txtStartDate.Text = "";
+            //calStartDate.SelectedDate = DateTime.Now;
+            //calEndDate.SelectedDate = DateTime.Now;
+            gblnStartDateSelected = false;
+            gblnEndDateSelected = false;
+            TheEmployeeProductivityDataSet.employeeproductivity.Rows.Clear();
 
-            TheFindAllProjectProductivityCostsOverDateRangeDataSet = TheEmployeeProjectAssignmentClass.FindAllProjectProductivityCostsOverDateRange(DateTime.Now, DateTime.Now);
-
-            dgrResults.ItemsSource = TheFindAllProjectProductivityCostsOverDateRangeDataSet.FindAllProjectProductivityCostsOverDateRange;
+            dgrResults.ItemsSource = TheEmployeeProductivityDataSet.employeeproductivity;
         }
 
-        private void btnProcess_Click(object sender, RoutedEventArgs e)
+        private void GenerateReport()
         {
             //setting up the data
-            string strValueForValidation;
             string strErrorMessage = "";
-            bool blnThereIsAProblem = false;
             bool blnFatalError = false;
+            int intCounter;
+            int intNumberOfRecords;
+            int intEmployeeID = -1;
+            decimal decTotalHours = 0;
+            decimal decMultiplier = 1;
+            decimal decTotalCost = 0;
+            decimal decReportedHours;
+            decimal decPayRate;
+            decimal decDifference;
+            int intProjectCounter;
+            bool blnItemFound;
+            int intProjectID;
+            bool blnMonday;
+            DateTime datTransactionDate;
 
             try
             {
-                strValueForValidation = txtStartDate.Text;
-                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
-                if(blnThereIsAProblem == true)
+                TheCompleteProjectProductivityDataSet.completeprojectproductivity.Rows.Clear();
+                TheEmployeeProductivityDataSet.employeeproductivity.Rows.Clear();
+
+                if (gblnStartDateSelected == false)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Start Date is not a Date\n";
+                    strErrorMessage += "The Start Date was not Selected\n";
                 }
                 else
                 {
-                    MainWindow.gdatStartDate = Convert.ToDateTime(strValueForValidation);
+                    if (gdatStartDate.DayOfWeek != DayOfWeek.Monday)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The Start Date is not a Monday\n";
+                    }
                 }
-                strValueForValidation = txtEndDate.Text;
-                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
-                if (blnThereIsAProblem == true)
+                if (gblnEndDateSelected == false)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The End Date is not a Date\n";
+                    strErrorMessage += "The End Date Was Not Selected\n";
                 }
                 else
                 {
-                    MainWindow.gdatEndDate = Convert.ToDateTime(strValueForValidation);
+                    if (gdatEndDate.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The End Date is not a Sunday\n";
+                    }
                 }
-                if(blnFatalError == true)
+                if (blnFatalError == true)
                 {
                     TheMessageClass.ErrorMessage(strErrorMessage);
                     return;
-                }
-                else
-                {
-                    blnFatalError = TheDataValidationClass.verifyDateRange(MainWindow.gdatStartDate, MainWindow.gdatEndDate);
-
-                    if(blnFatalError == true)
-                    {
-                        TheMessageClass.ErrorMessage("The Start Date is after the End Date");
-                        return;
-                    }
                 }
 
                 PleaseWait PleaseWait = new PleaseWait();
                 PleaseWait.Show();
 
-                TheFindAllProjectProductivityCostsOverDateRangeDataSet = TheEmployeeProjectAssignmentClass.FindAllProjectProductivityCostsOverDateRange(MainWindow.gdatStartDate, MainWindow.gdatEndDate);
+                TheFindAllEmployeesProductionOverAWeekDataSet = TheEmployeeProjectAssignmentClass.FindAllEmployeeProductionOverAWeek(gdatStartDate, gdatEndDate);
 
-                dgrResults.ItemsSource = TheFindAllProjectProductivityCostsOverDateRangeDataSet.FindAllProjectProductivityCostsOverDateRange;
+                intNumberOfRecords = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek.Rows.Count - 1;
+                blnMonday = false;
+
+                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    decPayRate = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].PayRate;
+                    decReportedHours = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].TotalHours;
+                    datTransactionDate = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].TransactionDate;
+
+                    if ((datTransactionDate.DayOfWeek == DayOfWeek.Monday) && (blnMonday == false))
+                    {
+                        decTotalHours = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].TotalHours;
+                        intEmployeeID = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].EmployeeID;
+                        blnMonday = true;
+                        decMultiplier = 1;
+                    }
+                    else if(intEmployeeID != TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].EmployeeID)
+                    {
+                        decTotalHours = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].TotalHours;
+                        intEmployeeID = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].EmployeeID;
+                        decMultiplier = 1;
+                    }
+                    else if(intEmployeeID == TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].EmployeeID)
+                    {
+                        decTotalHours += TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].TotalHours;
+
+                        if(datTransactionDate.DayOfWeek != DayOfWeek.Monday)
+                        {
+                            blnMonday = false;
+                        }
+                        
+                    }
+
+                    if(decMultiplier == 1)
+                    {
+                        if(decTotalHours <= 40)
+                        {
+                            decTotalCost = decPayRate * decReportedHours;
+                        }
+                        if(decTotalHours > 40)
+                        {
+                            decDifference = decTotalHours - 40;
+                            decMultiplier = Convert.ToDecimal(1.5);
+                            decTotalCost = ((decReportedHours - decDifference) * decPayRate) + (decDifference * decPayRate * decMultiplier);
+                        }
+                    }
+                    if(decMultiplier == Convert.ToDecimal(1.5))
+                    {
+                        decTotalCost = decReportedHours * decPayRate * decMultiplier;
+                    }
+
+                    EmployeeProductivityDataSet.employeeproductivityRow NewProductivityRow = TheEmployeeProductivityDataSet.employeeproductivity.NewemployeeproductivityRow();
+
+                    NewProductivityRow.AssignedProjectID = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].AssignedProjectID;
+                    NewProductivityRow.CalculatedHours = decTotalHours;
+                    NewProductivityRow.EmployeeID = intEmployeeID;
+                    NewProductivityRow.FirstName = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].FirstName;
+                    NewProductivityRow.LastName = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].LastName;
+                    NewProductivityRow.Multiplier = decMultiplier;
+                    NewProductivityRow.PayRate = decPayRate;
+                    NewProductivityRow.ProjectID = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].ProjectID;
+                    NewProductivityRow.ProjectName = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].ProjectName;
+                    NewProductivityRow.TotalCost = decTotalCost;
+                    NewProductivityRow.TotalHours = decReportedHours;
+                    NewProductivityRow.TransactionDate = TheFindAllEmployeesProductionOverAWeekDataSet.FindAllEmployeeProductionOverAWeek[intCounter].TransactionDate;
+
+                    TheEmployeeProductivityDataSet.employeeproductivity.Rows.Add(NewProductivityRow);
+                }
+
+                TheFindAllDesignEmployeeProductivityOverAWeekDataSet = TheDesignProductivityClass.FindAllDesignEmployeeProductivityOverAWeek(gdatStartDate, gdatEndDate);
+
+                intNumberOfRecords = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek.Rows.Count - 1;
+                blnMonday = false;
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    decPayRate = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].PayRate;
+                    decReportedHours = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].TotalHours;
+                    datTransactionDate = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].TransactionDate;
+
+                    if ((datTransactionDate.DayOfWeek == DayOfWeek.Monday) && (blnMonday == false))
+                    {
+                        decTotalHours = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].TotalHours;
+                        intEmployeeID = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].EmployeeID;
+                        blnMonday = true;
+                        decMultiplier = 1;
+                    }
+                    else if (intEmployeeID != TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].EmployeeID)
+                    {
+                        decTotalHours = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].TotalHours;
+                        intEmployeeID = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].EmployeeID;
+                        decMultiplier = 1;
+                    }
+                    else if (intEmployeeID == TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].EmployeeID)
+                    {
+                        decTotalHours += TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].TotalHours;
+
+                        if (datTransactionDate.DayOfWeek != DayOfWeek.Monday)
+                        {
+                            blnMonday = false;
+                        }
+                    }
+
+                    if (decMultiplier == 1)
+                    {
+                        if (decTotalHours <= 40)
+                        {
+                            decTotalCost = decPayRate * decReportedHours;
+                        }
+                        if (decTotalHours > 40)
+                        {
+                            decDifference = decTotalHours - 40;
+                            decMultiplier = Convert.ToDecimal(1.5);
+                            decTotalCost = ((decReportedHours - decDifference) * decPayRate) + (decDifference * decPayRate * decMultiplier);
+                        }
+                    }
+                    if (decMultiplier == Convert.ToDecimal(1.5))
+                    {
+                        decTotalCost = decReportedHours * decPayRate * decMultiplier;
+                    }
+
+                    EmployeeProductivityDataSet.employeeproductivityRow NewProductivityRow = TheEmployeeProductivityDataSet.employeeproductivity.NewemployeeproductivityRow();
+
+                    NewProductivityRow.AssignedProjectID = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].AssignedProjectID;
+                    NewProductivityRow.CalculatedHours = decTotalHours;
+                    NewProductivityRow.EmployeeID = intEmployeeID;
+                    NewProductivityRow.FirstName = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].FirstName;
+                    NewProductivityRow.LastName = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].LastName;
+                    NewProductivityRow.Multiplier = decMultiplier;
+                    NewProductivityRow.PayRate = decPayRate;
+                    NewProductivityRow.ProjectID = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].ProjectID;
+                    NewProductivityRow.ProjectName = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].ProjectName;
+                    NewProductivityRow.TotalCost = decTotalCost;
+                    NewProductivityRow.TotalHours = decReportedHours;
+                    NewProductivityRow.TransactionDate = TheFindAllDesignEmployeeProductivityOverAWeekDataSet.FindAllDesignEmployeeProductivityOverAWeek[intCounter].TransactionDate;
+
+                    TheEmployeeProductivityDataSet.employeeproductivity.Rows.Add(NewProductivityRow);
+                }
+
+                intNumberOfRecords = TheEmployeeProductivityDataSet.employeeproductivity.Rows.Count - 1;
+                gintProjectCounter = 0;
+                gintProjectNumberOfRecords = 0;
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter ++)
+                {
+                    blnItemFound = false;
+                    intProjectID = TheEmployeeProductivityDataSet.employeeproductivity[intCounter].ProjectID;
+                    decTotalHours = TheEmployeeProductivityDataSet.employeeproductivity[intCounter].TotalHours;
+                    decTotalCost = TheEmployeeProductivityDataSet.employeeproductivity[intCounter].TotalCost;
+
+                    if(gintProjectCounter > 0)
+                    {
+                        for(intProjectCounter = 0; intProjectCounter <= gintProjectNumberOfRecords; intProjectCounter++)
+                        {
+                            if(intProjectID == TheCompleteProjectProductivityDataSet.completeprojectproductivity[intProjectCounter].ProjectID)
+                            {
+                                TheCompleteProjectProductivityDataSet.completeprojectproductivity[intProjectCounter].TotalHours += decTotalHours;
+                                TheCompleteProjectProductivityDataSet.completeprojectproductivity[intProjectCounter].TotalCosts += decTotalCost;
+                                blnItemFound = true;
+                            }
+                        }
+                    }
+
+                    if(blnItemFound == false)
+                    {
+                        CompleteProjectProductivityDataSet.completeprojectproductivityRow NewProjectRow = TheCompleteProjectProductivityDataSet.completeprojectproductivity.NewcompleteprojectproductivityRow();
+
+                        NewProjectRow.AssignedProjectID = TheEmployeeProductivityDataSet.employeeproductivity[intCounter].AssignedProjectID;
+                        NewProjectRow.ProjectID = intProjectID;
+                        NewProjectRow.ProjectName = TheEmployeeProductivityDataSet.employeeproductivity[intCounter].ProjectName;
+                        NewProjectRow.TotalCosts = decTotalCost;
+                        NewProjectRow.TotalHours = decTotalHours;
+
+                        TheCompleteProjectProductivityDataSet.completeprojectproductivity.Rows.Add(NewProjectRow);
+                        gintProjectNumberOfRecords = gintProjectCounter;
+                        gintProjectCounter++;
+                    }
+                }
+
+                dgrResults.ItemsSource = TheCompleteProjectProductivityDataSet.completeprojectproductivity;
 
                 PleaseWait.Close();
 
@@ -164,7 +368,6 @@ namespace NewBlueJayERP
                 TheMessageClass.ErrorMessage(Ex.ToString());
             }
         }
-
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
         {
             int intRowCounter;
@@ -179,6 +382,9 @@ namespace NewBlueJayERP
 
             try
             {
+                PleaseWait PleaseWait = new PleaseWait();
+                PleaseWait.Show();
+
                 expExportToExcel.IsExpanded = false;
 
                 worksheet = workbook.ActiveSheet;
@@ -187,12 +393,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindAllProjectProductivityCostsOverDateRangeDataSet.FindAllProjectProductivityCostsOverDateRange.Rows.Count;
-                intColumnNumberOfRecords = TheFindAllProjectProductivityCostsOverDateRangeDataSet.FindAllProjectProductivityCostsOverDateRange.Columns.Count;
+                intRowNumberOfRecords = TheCompleteProjectProductivityDataSet.completeprojectproductivity.Rows.Count;
+                intColumnNumberOfRecords = TheCompleteProjectProductivityDataSet.completeprojectproductivity.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindAllProjectProductivityCostsOverDateRangeDataSet.FindAllProjectProductivityCostsOverDateRange.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheCompleteProjectProductivityDataSet.completeprojectproductivity.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -205,13 +411,15 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindAllProjectProductivityCostsOverDateRangeDataSet.FindAllProjectProductivityCostsOverDateRange.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheCompleteProjectProductivityDataSet.completeprojectproductivity.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
                     cellColumnIndex = 1;
                     cellRowIndex++;
                 }
+
+                PleaseWait.Close();
 
                 //Getting the location and file name of the excel to save from user. 
                 SaveFileDialog saveDialog = new SaveFileDialog();
@@ -236,6 +444,24 @@ namespace NewBlueJayERP
                 workbook = null;
                 excel = null;
             }
+        }
+
+        private void calStartDate_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            gdatStartDate = Convert.ToDateTime(calStartDate.SelectedDate);
+
+            gblnStartDateSelected = true;
+
+            calEndDate.Focus();
+        }
+
+        private void calEndDate_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            gdatEndDate = Convert.ToDateTime(calEndDate.SelectedDate);
+
+            gblnEndDateSelected = true;
+
+            GenerateReport();
         }
     }
 }

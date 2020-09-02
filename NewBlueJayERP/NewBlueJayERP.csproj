@@ -419,6 +419,11 @@
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CompleteProjectProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompleteProjectProductivityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CreateAsset.xaml.cs">
       <DependentUpon>CreateAsset.xaml</DependentUpon>
     </Compile>
@@ -459,6 +464,11 @@
     </Compile>
     <Compile Include="EmployeeLogin.xaml.cs">
       <DependentUpon>EmployeeLogin.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="EmployeeProjectLaborReport.xaml.cs">
       <DependentUpon>EmployeeProjectLaborReport.xaml</DependentUpon>
@@ -858,6 +868,17 @@
     <None Include="AfterWorkEmployeesDataSet.xss">
       <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="CompleteProjectProductivityDataSet.xsc">
+      <DependentUpon>CompleteProjectProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CompleteProjectProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompleteProjectProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CompleteProjectProductivityDataSet.xss">
+      <DependentUpon>CompleteProjectProductivityDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CreateRentalItemsDataSet.xsc">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
     </None>
@@ -868,6 +889,17 @@
     </None>
     <None Include="CreateRentalItemsDataSet.xss">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeProductivityDataSet.xsc">
+      <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeProductivityDataSet.xss">
+      <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
     </None>
     <None Include="EmployeePunchesProductivityDataSet.xsc">
       <DependentUpon>EmployeePunchesProductivityDataSet.xsd</DependentUpon>
