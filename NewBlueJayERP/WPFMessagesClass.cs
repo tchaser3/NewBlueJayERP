@@ -12,11 +12,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using NewEventLogDLL;
 
 namespace NewBlueJayERP
 {
     class WPFMessagesClass
     {
+        EventLogClass TheEventLogClass = new EventLogClass();
+
         //Public method to get the information
         public void ErrorMessage(string strErrorMessage)
         {
@@ -32,14 +35,22 @@ namespace NewBlueJayERP
         }
         public void CloseTheProgram()
         {
-            const string message = "Are you sure that you would like to close the program?";
-            const string caption = "Form Closing";
-            MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-            if (result == MessageBoxResult.Yes)
+            try
             {
-                Application.Current.Shutdown();
+                const string message = "Are you sure that you would like to close the program?";
+                const string caption = "Form Closing";
+                MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    Application.Current.Shutdown();
+                }
             }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // WPF Messages Class // Close The Program " + Ex.Message);
+            }
+            
 
         }
         public void LaunchHelpSite()

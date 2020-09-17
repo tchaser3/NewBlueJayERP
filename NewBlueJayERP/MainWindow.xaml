@@ -149,6 +149,7 @@
                                 <Expander x:Name="expProcessBOMMaterial" Header="Report Material Usage" Expanded="expProcessBOMMaterial_Expanded" />
                                 <Expander x:Name="expReturnMaterial" Header="Return Material" />
                                 <Expander x:Name="expViewCurrentSession" Header="View Current Session" />
+                                <Expander x:Name="expAddCableReel" Header="Add Cable Reel" Expanded="expAddCableReel_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expInventoryReports" Header="Inventory Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expInventoryReports_Expanded">
@@ -201,8 +202,11 @@
             <StackPanel>
                 <Expander x:Name="expVehicles" Header="Vehicles" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="17,1,1,1" Expanded="expVehicles_Expanded">
                     <StackPanel Margin="23,1,1,1" Background="LightBlue">
-                        <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue" Expanded="expVehicleDataEntry_Expanded">
-                            <Expander x:Name="expImportGEOFenceReport" Header="Import GEO Fence Report" Margin="10,1,1,1" Expanded="expImportGEOFenceReport_Expanded"/>
+                        <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue">
+                            <StackPanel >
+                               <Expander x:Name="expImportGEOFenceReport" Header="Import GEO Fence Report" Margin="10,1,1,1" Expanded="expImportGEOFenceReport_Expanded"/>
+                                <Expander x:Name="expEditVehicleProblems" Header="Edit Vehicle Problems" Margin="10,1,1,1" Expanded="expEditVehicleProblems_Expanded" />
+                            </StackPanel>                            
                         </Expander>
                         <Expander x:Name="expInspectionDataEntry" Header="Inspection Data Entry"  ExpandDirection="Right" Margin="5,1,1,1">
                             <StackPanel Background="LightBlue">

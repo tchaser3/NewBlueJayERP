@@ -24,6 +24,7 @@ using JSIMainDLL;
 using VehicleMainDLL;
 using DepartmentDLL;
 using ProjectsDLL;
+using DateSearchDLL;
 
 namespace NewBlueJayERP
 {
@@ -41,16 +42,17 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         DepartmentClass TheDepartmentClass = new DepartmentClass();
         ProjectClass TheProjectClass = new ProjectClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
 
         //setting up the data
-        ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
-        ComboEmployeeDataSet TheInspectorComboEmployeeDataSet = new ComboEmployeeDataSet();
-        FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
         FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
         FindActiveVehicleMainByVehicleNumberDataSet TheFindActiveVehicleMainByVehicleNumberDataSet = new FindActiveVehicleMainByVehicleNumberDataSet();
         JSIEmployeeAssignedDataSet TheJSIEmployeeAssignedDataSet = new JSIEmployeeAssignedDataSet();
         FindJSIMainByDateMatchDataSet TheFindJSIMainByDateMatchDataSet = new FindJSIMainByDateMatchDataSet();
+        FindEmployeesForDataEntryForLastYearDataSet TheFindEmployeesForDataEntryForLastYearDataSet = new FindEmployeesForDataEntryForLastYearDataSet();
+        FindEmployeesForDataEntryForLastYearDataSet TheFindInspectorEmployeesForDataEntryForLastYearDataEntryDataSet = new FindEmployeesForDataEntryForLastYearDataSet();
+        FindEmployeeManagerForLastYearDataSet TheFindEmployeeManagerForLastYearDataSet = new FindEmployeeManagerForLastYearDataSet();
 
         public CreateJSIEntry()
         {
@@ -96,6 +98,7 @@ namespace NewBlueJayERP
             //setting up variables
             int intCounter;
             int intNumberOfRecords;
+            DateTime datStartDate = DateTime.Now;
 
             cboSelectDepartment.Items.Clear();
             cboSelectEmployee.Items.Clear();
@@ -111,6 +114,8 @@ namespace NewBlueJayERP
             txtVehicleNumber.Text = "";
             TheJSIEmployeeAssignedDataSet.jsiemployeeassigned.Rows.Clear();
 
+            datStartDate = TheDateSearchClass.SubtractingDays(datStartDate, 365);
+
             //loading the combos
             TheFindSortedDepartmentDataSet = TheDepartmentClass.FindSortedDepartment();
 
@@ -123,13 +128,13 @@ namespace NewBlueJayERP
 
             cboSelectDepartment.SelectedIndex = 0;
 
-            TheFindProductionManagersDataSet = TheEmployeeClass.FindProductionManagers();
+            TheFindEmployeeManagerForLastYearDataSet = TheEmployeeClass.FindEmployeeManagerForLastYear(datStartDate);
 
-            intNumberOfRecords = TheFindProductionManagersDataSet.FindProductionManagers.Rows.Count - 1;
+            intNumberOfRecords = TheFindEmployeeManagerForLastYearDataSet.FindEmployeeManagersForLastYear.Rows.Count - 1;
 
             for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
             {
-                cboSelectManager.Items.Add(TheFindProductionManagersDataSet.FindProductionManagers[intCounter].FullName);
+                cboSelectManager.Items.Add(TheFindEmployeeManagerForLastYearDataSet.FindEmployeeManagersForLastYear[intCounter].FullName);
             }
 
             cboSelectManager.SelectedIndex = 0;
@@ -147,7 +152,7 @@ namespace NewBlueJayERP
 
             if(intSelectedIndex > -1)
             {
-                intEmployeeID = TheComboEmployeeDataSet.employees[intSelectedIndex].EmployeeID;
+                intEmployeeID = TheFindEmployeesForDataEntryForLastYearDataSet.FindEmployeesForDataEntryForLastYear[intSelectedIndex].EmployeeID;
 
                 intNumberOfRecords = TheJSIEmployeeAssignedDataSet.jsiemployeeassigned.Rows.Count - 1;
 
@@ -168,8 +173,8 @@ namespace NewBlueJayERP
                     JSIEmployeeAssignedDataSet.jsiemployeeassignedRow NewEmployeeRow = TheJSIEmployeeAssignedDataSet.jsiemployeeassigned.NewjsiemployeeassignedRow();
 
                     NewEmployeeRow.EmployeeID = intEmployeeID;
-                    NewEmployeeRow.FirstName = TheComboEmployeeDataSet.employees[intSelectedIndex].FirstName;
-                    NewEmployeeRow.LastName = TheComboEmployeeDataSet.employees[intSelectedIndex].LastName; 
+                    NewEmployeeRow.FirstName = TheFindEmployeesForDataEntryForLastYearDataSet.FindEmployeesForDataEntryForLastYear[intSelectedIndex].FirstName;
+                    NewEmployeeRow.LastName = TheFindEmployeesForDataEntryForLastYearDataSet.FindEmployeesForDataEntryForLastYear[intSelectedIndex].LastName; 
 
                     TheJSIEmployeeAssignedDataSet.jsiemployeeassigned.Rows.Add(NewEmployeeRow);
 
@@ -187,11 +192,13 @@ namespace NewBlueJayERP
             string strLastName;
             string strAssignedProjectID;
             int intRecordsReturned;
+            DateTime datStartDate = DateTime.Now;
 
             try
             {
                 strLastName = txtLastName.Text;
                 intLength = strLastName.Length;
+                datStartDate = TheDateSearchClass.SubtractingDays(datStartDate, 365);
 
                 if(intLength > 2)
                 {
@@ -215,9 +222,9 @@ namespace NewBlueJayERP
                     cboSelectEmployee.Items.Clear();
                     cboSelectEmployee.Items.Add("Select Employee");
 
-                    TheComboEmployeeDataSet = TheEmployeeClass.FillEmployeeComboBox(strLastName);
+                    TheFindEmployeesForDataEntryForLastYearDataSet = TheEmployeeClass.FindEmployeesForDataEntryForLastYear(datStartDate, strLastName);
 
-                    intNumberOfRecords = TheComboEmployeeDataSet.employees.Rows.Count - 1;
+                    intNumberOfRecords = TheFindEmployeesForDataEntryForLastYearDataSet.FindEmployeesForDataEntryForLastYear.Rows.Count - 1;
 
                     if(intNumberOfRecords < 0)
                     {
@@ -228,7 +235,7 @@ namespace NewBlueJayERP
 
                     for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                     {
-                        cboSelectEmployee.Items.Add(TheComboEmployeeDataSet.employees[intCounter].FullName);
+                        cboSelectEmployee.Items.Add(TheFindEmployeesForDataEntryForLastYearDataSet.FindEmployeesForDataEntryForLastYear[intCounter].FullName);
                     }
 
                     cboSelectEmployee.SelectedIndex = 0;
@@ -314,7 +321,7 @@ namespace NewBlueJayERP
             intSelectedID = cboSelectManager.SelectedIndex - 1;
 
             if (intSelectedID > -1)
-                MainWindow.gintManagerID = TheFindProductionManagersDataSet.FindProductionManagers[intSelectedID].EmployeeID;
+                MainWindow.gintManagerID = TheFindEmployeeManagerForLastYearDataSet.FindEmployeeManagersForLastYear[intSelectedID].EmployeeID;
         }
 
         private void cboSelectInspector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -324,7 +331,7 @@ namespace NewBlueJayERP
             intSelectedIndex = cboSelectInspector.SelectedIndex - 1;
 
             if(intSelectedIndex > -1)
-                MainWindow.gintInspectingEmployeeID = TheInspectorComboEmployeeDataSet.employees[intSelectedIndex].EmployeeID;
+                MainWindow.gintInspectingEmployeeID = TheFindEmployeeManagerForLastYearDataSet.FindEmployeeManagersForLastYear[intSelectedIndex].EmployeeID;
         }
 
         private void txtInspectorLTName_TextChanged(object sender, TextChangedEventArgs e)
@@ -333,6 +340,7 @@ namespace NewBlueJayERP
             int intCounter;
             int intNumberOfRecords;
             int intLength;
+            DateTime datStartDate = DateTime.Now;
 
             try
             {
@@ -341,11 +349,13 @@ namespace NewBlueJayERP
                 cboSelectInspector.Items.Clear();
                 cboSelectInspector.Items.Add("Select Inspector");
 
+                datStartDate = TheDateSearchClass.SubtractingDays(datStartDate, 365);
+
                 if(intLength > 2)
                 {
-                    TheInspectorComboEmployeeDataSet = TheEmployeeClass.FillEmployeeComboBox(strLastName);
+                    TheFindInspectorEmployeesForDataEntryForLastYearDataEntryDataSet = TheEmployeeClass.FindEmployeesForDataEntryForLastYear(datStartDate, strLastName);
 
-                    intNumberOfRecords = TheInspectorComboEmployeeDataSet.employees.Rows.Count - 1;
+                    intNumberOfRecords = TheFindInspectorEmployeesForDataEntryForLastYearDataEntryDataSet.FindEmployeesForDataEntryForLastYear.Rows.Count - 1;
 
                     if(intNumberOfRecords < 0)
                     {
@@ -355,7 +365,7 @@ namespace NewBlueJayERP
 
                     for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                     {
-                        cboSelectInspector.Items.Add(TheInspectorComboEmployeeDataSet.employees[intCounter].FullName);
+                        cboSelectInspector.Items.Add(TheFindInspectorEmployeesForDataEntryForLastYearDataEntryDataSet.FindEmployeesForDataEntryForLastYear[intCounter].FullName);
                     }
 
                     cboSelectInspector.SelectedIndex = 0;

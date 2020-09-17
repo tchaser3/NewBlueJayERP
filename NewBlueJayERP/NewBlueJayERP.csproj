@@ -65,6 +65,9 @@
     <Reference Include="BulkToolsDLL">
       <HintPath>..\..\Blue Jay Class Library\BulkToolsDLL.dll</HintPath>
     </Reference>
+    <Reference Include="CableInventoryDLL">
+      <HintPath>..\..\Blue Jay Class Library\CableInventoryDLL.dll</HintPath>
+    </Reference>
     <Reference Include="CellPhoneHistoryDLL">
       <HintPath>..\..\Blue Jay Class Library\CellPhoneHistoryDLL.dll</HintPath>
     </Reference>
@@ -208,6 +211,9 @@
     </Reference>
     <Reference Include="ProjectCostingDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectCostingDLL.dll</HintPath>
+    </Reference>
+    <Reference Include="ProjectMatrixDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectMatrixDLL.dll</HintPath>
     </Reference>
     <Reference Include="ProjectProductivityReportsDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectProductivityReportsDLL.dll</HintPath>
@@ -402,6 +408,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AddCableReel.xaml.cs">
+      <DependentUpon>AddCableReel.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
     </Compile>
@@ -458,6 +467,12 @@
     </Compile>
     <Compile Include="EditFuelCard.xaml.cs">
       <DependentUpon>EditFuelCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditSelectedVehicleProblem.xaml.cs">
+      <DependentUpon>EditSelectedVehicleProblem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditVehicleProblems.xaml.cs">
+      <DependentUpon>EditVehicleProblems.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeHoursPunched.xaml.cs">
       <DependentUpon>EmployeeHoursPunched.xaml</DependentUpon>
@@ -627,6 +642,10 @@
       <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
+    <Page Include="AddCableReel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEmployeeToVehicleEmails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -680,6 +699,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditFuelCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSelectedVehicleProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditVehicleProblems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

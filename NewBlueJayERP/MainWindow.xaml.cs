@@ -68,6 +68,7 @@ namespace NewBlueJayERP
         public static string gstrTicketStatus;
         public static DateTime gdatStartDate;
         public static DateTime gdatEndDate;
+        public static int gintProblemID;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -106,6 +107,9 @@ namespace NewBlueJayERP
         public static ViewMyOpenHelpDeskTickets ViewMyOpenHelpDeskTicketsWindow = new ViewMyOpenHelpDeskTickets();
         public static ProjectsProductivityCosting ProjectsProductivityCostingWindow = new ProjectsProductivityCosting();
         public static AddEmployeeToVehicleEmails AddEmployeeToVehicleEmailsWindow = new AddEmployeeToVehicleEmails();
+        public static EditVehicleProblems EditVehicleProblemsWindow = new EditVehicleProblems();
+        public static AddCableReel AddCableReelWindow = new AddCableReel();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -176,6 +180,8 @@ namespace NewBlueJayERP
             ViewMyOpenHelpDeskTicketsWindow.Visibility = Visibility.Hidden;
             ProjectsProductivityCostingWindow.Visibility = Visibility.Hidden;
             AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Hidden;
+            EditVehicleProblemsWindow.Visibility = Visibility.Hidden;
+            AddCableReelWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -469,99 +475,106 @@ namespace NewBlueJayERP
             expITReports.IsEnabled = true;
             expCompanyFootages.IsEnabled = true;
             expRentals.IsEnabled = true;
+            expEditVehicleProblems.IsEnabled = true;
         }
         private void SetEmployeeSecurity()
         {
-            if(gstrEmployeeGroup == "USERS")
+            try
             {
-                expInformationTechology.IsEnabled = false;
-                expAssets.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expToolsDataEntry.IsEnabled = false;
-                expTrailerAdministration.IsEnabled = false;
-                expTrailerDataEntry.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expVehicleDataEntry.IsEnabled = false;
-                expInventory.IsEnabled = false;
-                expEmployees.IsEnabled = false;
-                expProjects.IsEnabled = false;
-                expAssets.IsEnabled = false;
-                expCompanyFootages.IsEnabled = false;
-                expRentals.IsEnabled = false;
+                if (gstrEmployeeGroup == "USERS")
+                {
+                    expInformationTechology.IsEnabled = false;
+                    expAssets.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expToolsDataEntry.IsEnabled = false;
+                    expTrailerAdministration.IsEnabled = false;
+                    expTrailerDataEntry.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expVehicleDataEntry.IsEnabled = false;
+                    expInventory.IsEnabled = false;
+                    expEmployees.IsEnabled = false;
+                    expProjects.IsEnabled = false;
+                    expAssets.IsEnabled = false;
+                    expCompanyFootages.IsEnabled = false;
+                    expRentals.IsEnabled = false;
+                    expEditVehicleProblems.IsEnabled = false;
+                }
+                else if (gstrEmployeeGroup == "MANAGERS")
+                {
+                    expAssets.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expToolsDataEntry.IsEnabled = false;
+                    expTrailerAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expInventoryAdministration.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expITDataEntry.IsEnabled = false;
+                    expAssets.IsEnabled = false;
+                    expPhoneAdministration.IsEnabled = false;
+                    expProjectAdministration.IsEnabled = false;
+                    expEmployeeAdministration.IsEnabled = false;
+                    expEditVehicleProblems.IsEnabled = false;
+                }
+                else if (gstrEmployeeGroup == "OFFICE")
+                {
+                    expAssets.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expToolsDataEntry.IsEnabled = false;
+                    expTrailerAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expInventoryAdministration.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expITDataEntry.IsEnabled = false;
+                    expAssets.IsEnabled = false;
+                    expPhoneAdministration.IsEnabled = false;
+                    expProjectAdministration.IsEnabled = false;
+                    expEmployeeAdministration.IsEnabled = false;
+                    expCompanyFootages.IsEnabled = false;
+                    expEditVehicleProblems.IsEnabled = false;
+                }
+                else if (gstrEmployeeGroup == "WAREHOUSE")
+                {
+                    expAssetAdministration.IsEnabled = false;
+                    expEmployees.IsEnabled = false;
+                    expProjects.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expTrailerAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expInventoryAdministration.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expITDataEntry.IsEnabled = false;
+                    expPhoneAdministration.IsEnabled = false;
+                    expProjectAdministration.IsEnabled = false;
+                    expEmployeeAdministration.IsEnabled = false;
+                    expCompanyFootages.IsEnabled = false;
+                    expEditVehicleProblems.IsEnabled = false;
+                }
+                else if (gstrEmployeeGroup == "SUPER USER")
+                {
+                    expAssetAdministration.IsEnabled = false;
+                    expEmployeeAdministration.IsEnabled = false;
+                    expProjectAdministration.IsEnabled = false;
+                    expInventoryAdministration.IsEnabled = false;
+                    expVehicleAdminstration.IsEnabled = false;
+                    expTrailerAdministration.IsEnabled = false;
+                    expToolAdministration.IsEnabled = false;
+                    expPhoneAdministration.IsEnabled = false;
+                    expEditVehicleProblems.IsEnabled = false;
+                }
+                else if ((gstrEmployeeGroup == "ADMIN") || (gstrEmployeeGroup == "IT"))
+                {
+                    TheMessagesClass.InformationMessage("Your are an Administrator of the Program");
+                }
+                
             }
-            else if(gstrEmployeeGroup == "MANAGERS")
+            catch (Exception Ex)
             {
-                expAssets.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expToolsDataEntry.IsEnabled = false;
-                expTrailerAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expInventoryAdministration.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expITDataEntry.IsEnabled = false;
-                expAssets.IsEnabled = false;
-                expPhoneAdministration.IsEnabled = false;
-                expProjectAdministration.IsEnabled = false;
-                expEmployeeAdministration.IsEnabled = false;
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Main Window // Set Employee Security " + Ex.Message);
             }
-            else if(gstrEmployeeGroup == "OFFICE")
-            {
-                expAssets.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expToolsDataEntry.IsEnabled = false;
-                expTrailerAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expInventoryAdministration.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expITDataEntry.IsEnabled = false;
-                expAssets.IsEnabled = false;
-                expPhoneAdministration.IsEnabled = false;
-                expProjectAdministration.IsEnabled = false;
-                expEmployeeAdministration.IsEnabled = false;
-                expCompanyFootages.IsEnabled = false;
-            }
-            else if(gstrEmployeeGroup == "WAREHOUSE")
-            {
-                expAssetAdministration.IsEnabled = false;
-                expEmployees.IsEnabled = false;
-                expProjects.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expTrailerAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expInventoryAdministration.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expITDataEntry.IsEnabled = false;
-                expPhoneAdministration.IsEnabled = false;
-                expProjectAdministration.IsEnabled = false;
-                expEmployeeAdministration.IsEnabled = false;
-                expCompanyFootages.IsEnabled = false;
-            }
-            else if(gstrEmployeeGroup == "SUPER USER")
-            {
-                expAssetAdministration.IsEnabled = false;
-                expEmployeeAdministration.IsEnabled = false;
-                expProjectAdministration.IsEnabled = false;
-                expInventoryAdministration.IsEnabled = false;
-                expVehicleAdminstration.IsEnabled = false;
-                expTrailerAdministration.IsEnabled = false;
-                expToolAdministration.IsEnabled = false;
-                expPhoneAdministration.IsEnabled = false;                
-            }
-            else if((gstrEmployeeGroup == "ADMIN") || (gstrEmployeeGroup == "IT"))
-            {
-                TheMessagesClass.InformationMessage("Your are an Administrator of the Program");
-            }
-            else
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "There Has Been an illegal entry into the Blue Jay ERP Program");
-
-                TheMessagesClass.ErrorMessage("You Have Failed Trying To Break In The Program, IT Has Been Alerted");
-
-                Application.Current.Shutdown();
-            }
+            
         }
 
         private void expClose_Expanded(object sender, RoutedEventArgs e)
@@ -1086,6 +1099,27 @@ namespace NewBlueJayERP
             expVehicleAdminstration.IsExpanded = false;
             expAddEmployeeToVehicleEmailList.IsExpanded = false;
             AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditVehicleProblems_Expanded(object sender, RoutedEventArgs e)
+        {
+            expVehicles.IsExpanded = false;
+            expVehicleDataEntry.IsExpanded = false;
+            expImportGEOFenceReport.IsExpanded = false;
+            expEditVehicleProblems.IsExpanded = false;
+            EditVehicleProblemsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddCableReel_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInventory.IsExpanded = false;
+            expInventoryDataEntry.IsExpanded = false;
+            expIssueMaterial.IsExpanded = false;
+            expReceiveMaterial.IsExpanded = false;
+            expProcessBOMMaterial.IsExpanded = false;
+            expReturnMaterial.IsExpanded = false;
+            expViewCurrentSession.IsExpanded = false;
+            AddCableReelWindow.Visibility = Visibility.Visible;
         }
     }
 }
