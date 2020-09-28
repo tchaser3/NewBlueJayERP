@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using NewEmployeeDLL;
 using NewEventLogDLL;
 using FuelCardDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -33,6 +34,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         FuelCardClass TheFuelCardClass = new FuelCardClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //Setting up the data
         FindFuelCardEmployeeDataSet TheFindFuelCardEmployeeDataSet = new FindFuelCardEmployeeDataSet();
@@ -192,6 +194,11 @@ namespace NewBlueJayERP
                     throw new Exception();
 
                 TheMessagesClass.InformationMessage("The Number Has Been Inserted");
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Fuel Card Number ");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 ResetControls();
             }

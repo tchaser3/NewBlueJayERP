@@ -21,6 +21,7 @@ using NewEventLogDLL;
 using NewEmployeeDLL;
 using HelpDeskDLL;
 using PhonesDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -36,6 +37,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         HelpDeskClass TheHelpDeskClass = new HelpDeskClass();
         PhonesClass ThePhonesClass = new PhonesClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
@@ -250,6 +252,11 @@ namespace NewBlueJayERP
                     throw new Exception();
 
                 TheMessagesClass.InformationMessage("Help Desk Ticket Number " + Convert.ToString(gintTicketID) + " Has Been Created");
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Help Desk Ticket");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 this.Close();
 

@@ -49,7 +49,6 @@ namespace NewBlueJayERP
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
 
         //setting up the data
-        FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
         FindProdutionProjectsByAssignedProjectIDDataSet TheFindProductionProjectByAssignedProjectIDDataSet = new FindProdutionProjectsByAssignedProjectIDDataSet();
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsbyAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
         FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
@@ -58,6 +57,8 @@ namespace NewBlueJayERP
         FindWorkOrderStatusSortedDataSet TheFindWorkOrderStatusSortedDataSet = new FindWorkOrderStatusSortedDataSet();
         FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
         FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrxiByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
+        FindProjectByProjectIDDataSet TheFindProjectByProjectIDDataSet = new FindProjectByProjectIDDataSet();
+        FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
 
         //setting up variables
         int gintDepartmentID;
@@ -359,18 +360,62 @@ namespace NewBlueJayERP
 
                     gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                    blnFatalError = TheProjectMatrixClass.InsertProjectMatrix(gintProjectID, strAssignedProjectID, strCustomerProjectID, datTransactionDate, intEmployeeID, gintOfficeID, gintDepartmentID);
+                    if (blnFatalError == true)
+                        throw new Exception();
+
+                    blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+
+                    blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
+
+                    if (blnFatalError == true)
+                        throw new Exception();
                 }
+                if (gblnProjectMatrixExists == false)
+                {
+                    blnFatalError = TheProjectMatrixClass.InsertProjectMatrix(gintProjectID, strAssignedProjectID, strCustomerProjectID, datTransactionDate, intEmployeeID, gintOfficeID, gintDepartmentID);
 
-                blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
+                    if (blnFatalError == true)
+                        throw new Exception();
 
-                if (blnFatalError == true)
-                    throw new Exception();
+                }
+                if(gblnProjectExists == true)
+                {
+                    TheFindProductionProjectByAssignedProjectIDDataSet = TheProductionProjectClass.FindProductionProjectsByAssignedProjectID(strCustomerProjectID);
 
-                blnFatalError =TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
+                    if(TheFindProductionProjectByAssignedProjectIDDataSet.FindProductionProjectByAssignedProjectID.Rows.Count < 1)
+                    {
+                        blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
 
-                if (blnFatalError == true)
-                    throw new Exception();
+                        if (blnFatalError == true)
+                            throw new Exception();
+
+                        blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+                    }
+                    else
+                    {
+                        TheFindProductionProjectByAssignedProjectIDDataSet = TheProductionProjectClass.FindProductionProjectsByAssignedProjectID(strAssignedProjectID);
+
+                        if (TheFindProductionProjectByAssignedProjectIDDataSet.FindProductionProjectByAssignedProjectID.Rows.Count < 1)
+                        {
+                            blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+
+                            blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+
+                }
 
                 TheMessagesClass.InformationMessage("Project Has Been Entered");
 
@@ -436,9 +481,18 @@ namespace NewBlueJayERP
 
                         if (intNumberOfRecords > 0)
                         {
-                            TheMessagesClass.ErrorMessage("Project Already Exists");
-                            ResetControls();
-                            return;
+                            TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerProjectID);
+
+                            if(TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count > 0)
+                            {
+                                TheMessagesClass.ErrorMessage("Project Already In Production Project Tables");
+                                ResetControls();
+                                return;
+                            }
+
+                            TheMessagesClass.ErrorMessage("Project Already Exists In Old Table");
+                            gblnProjectMatrixExists = false;
+                            gblnProjectExists = true;
                         }
 
                         TheFindDesignProjectsbyAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(strCustomerProjectID);
@@ -452,7 +506,7 @@ namespace NewBlueJayERP
                         }
 
                         TheMessagesClass.InformationMessage("The Project Exists, but is Missing Information.  Please Conplete The Form");
-                        gblnProjectMatrixExists = true;
+                        gblnProjectExists = true;
                     }
                 }
 

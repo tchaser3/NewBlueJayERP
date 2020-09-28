@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using HelpDeskDLL;
 using NewEventLogDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -31,6 +32,7 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         HelpDeskClass TheHelpDeskClass = new HelpDeskClass();
         EventLogClass TheEventLogClass = new EventLogClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up data
         FindHelpDeskProblemTypeByProblemTypeDataSet TheFindHelpDeskProblemTypeByProblemTypeDataSet = new FindHelpDeskProblemTypeByProblemTypeDataSet();
@@ -110,6 +112,8 @@ namespace NewBlueJayERP
                     throw new Exception();
 
                 TheMessagesClass.InformationMessage("The Problem Type Was Entered");
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Help Desk Problem Type");
 
                 txtProblemType.Text = "";
             }

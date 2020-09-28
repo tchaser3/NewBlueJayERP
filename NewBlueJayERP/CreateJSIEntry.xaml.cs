@@ -25,6 +25,7 @@ using VehicleMainDLL;
 using DepartmentDLL;
 using ProjectsDLL;
 using DateSearchDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -43,6 +44,7 @@ namespace NewBlueJayERP
         DepartmentClass TheDepartmentClass = new DepartmentClass();
         ProjectClass TheProjectClass = new ProjectClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
@@ -516,6 +518,11 @@ namespace NewBlueJayERP
                     if (blnFatalError == true)
                         throw new Exception();
                 }
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create JSI Entry // JSI Created");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 JSIPPEWindow JSIPPEWindow = new JSIPPEWindow();
                 JSIPPEWindow.ShowDialog();

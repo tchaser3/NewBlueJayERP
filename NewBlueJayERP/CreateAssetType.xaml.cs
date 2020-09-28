@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NewEventLogDLL;
 using AssetDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -31,6 +32,7 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         AssetClass TheAssetClass = new AssetClass();
         EventLogClass TheEventLogClass = new EventLogClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //settting up the data
         FindAssetTypeByAssetTypeDataSet TheFindAssetTypeByAssetTypeDataSet = new FindAssetTypeByAssetTypeDataSet();
@@ -135,6 +137,11 @@ namespace NewBlueJayERP
                     throw new Exception();
 
                 TheMessagesClass.InformationMessage("The Asset Type has been Entered");
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Asset Type");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 ResetControls();
 

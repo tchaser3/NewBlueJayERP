@@ -21,6 +21,7 @@ using ProjectTaskDLL;
 using DataValidationDLL;
 using NewEventLogDLL;
 using Microsoft.Win32;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -34,6 +35,7 @@ namespace NewBlueJayERP
         ProjectTaskClass TheProjectTaskClass = new ProjectTaskClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EventLogClass TheEventLogClass = new EventLogClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         ProjectFootagesDataSet TheProjectFootagesDataSet = new ProjectFootagesDataSet();
@@ -215,7 +217,10 @@ namespace NewBlueJayERP
                     }
                 }
 
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Company Project Footages");
 
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 dgrResults.ItemsSource = TheTotalWorkTaskFootages.totalworktaskfootages;
             }

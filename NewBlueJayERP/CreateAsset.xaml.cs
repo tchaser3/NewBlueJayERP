@@ -22,6 +22,7 @@ using NewEventLogDLL;
 using AssetDLL;
 using DataValidationDLL;
 using BulkToolHistoryDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -36,6 +37,7 @@ namespace NewBlueJayERP
         AssetClass TheAssetClass = new AssetClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         FindSortedAssetTypesDataSet TheFindSortedAssetTypesDataSet = new FindSortedAssetTypesDataSet();
@@ -257,6 +259,11 @@ namespace NewBlueJayERP
                 {
                      
                 }
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Asset");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 TheMessagesClass.InformationMessage("The Asset Has Been Inserted");
 

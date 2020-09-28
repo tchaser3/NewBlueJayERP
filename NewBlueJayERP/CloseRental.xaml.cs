@@ -22,6 +22,7 @@ using NewEventLogDLL;
 using RentalTrackingDLL;
 using ProjectsDLL;
 using DateSearchDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -37,6 +38,7 @@ namespace NewBlueJayERP
         RentalTrackingClass TheRentalTrackingClass = new RentalTrackingClass();
         ProjectClass TheProjectClass = new ProjectClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up data
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
@@ -302,6 +304,11 @@ namespace NewBlueJayERP
                     throw new Exception();
 
                 TheMessagesClass.InformationMessage("Rental Has Been Closed");
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Close Rental");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 ResetControls();
             }
