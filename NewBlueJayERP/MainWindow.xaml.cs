@@ -109,7 +109,8 @@ namespace NewBlueJayERP
         public static AddEmployeeToVehicleEmails AddEmployeeToVehicleEmailsWindow = new AddEmployeeToVehicleEmails();
         public static EditVehicleProblems EditVehicleProblemsWindow = new EditVehicleProblems();
         public static AddCableReel AddCableReelWindow = new AddCableReel();
-
+        public static RemoveDuplicateProjectMatrix RemoveDuplicateProjectMatrixWindow = new RemoveDuplicateProjectMatrix();
+        public static EditProjects EditProjectsWindow = new EditProjects();
         public MainWindow()
         {
             InitializeComponent();
@@ -182,6 +183,8 @@ namespace NewBlueJayERP
             AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Hidden;
             EditVehicleProblemsWindow.Visibility = Visibility.Hidden;
             AddCableReelWindow.Visibility = Visibility.Hidden;
+            RemoveDuplicateProjectMatrixWindow.Visibility = Visibility.Hidden;
+            EditProjectsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1120,6 +1123,25 @@ namespace NewBlueJayERP
             expReturnMaterial.IsExpanded = false;
             expViewCurrentSession.IsExpanded = false;
             AddCableReelWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjects.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expAddNewProject.IsExpanded = false;
+            expSubmitAfterHoursWork.IsExpanded = false;
+            expEditProject.IsExpanded = false;
+            EditProjectsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expRemoveDuplicateProjectMatrix_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjects.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expDepartmentProductionEmail.IsExpanded = false;
+            expRemoveDuplicateProjectMatrix.IsExpanded = false;
+            RemoveDuplicateProjectMatrixWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -27,6 +27,8 @@ using DepartmentDLL;
 using WorkOrderDLL;
 using EmployeeDateEntryDLL;
 using ProjectMatrixDLL;
+using System.Runtime.Serialization;
+using ProductionProjectDLL.FindProdutionProjectsByAssignedProjectIDDataSetTableAdapters;
 
 namespace NewBlueJayERP
 {
@@ -49,7 +51,7 @@ namespace NewBlueJayERP
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
 
         //setting up the data
-        FindProdutionProjectsByAssignedProjectIDDataSet TheFindProductionProjectByAssignedProjectIDDataSet = new FindProdutionProjectsByAssignedProjectIDDataSet();
+        
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsbyAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
         FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
@@ -59,7 +61,10 @@ namespace NewBlueJayERP
         FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrxiByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
         FindProjectByProjectIDDataSet TheFindProjectByProjectIDDataSet = new FindProjectByProjectIDDataSet();
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
-
+        FindProjectMatrixByProjectIDDataSet TheFindProjectMatrixByProjectIDDataSet = new FindProjectMatrixByProjectIDDataSet();
+        FindProductionProjectByProjectIDDataSet TheFindProductionProjectByProjectIDDataSet = new FindProductionProjectByProjectIDDataSet();
+        FindProdutionProjectsByAssignedProjectIDDataSet TheFindProductionProjectByAssignedProjectIDDataSet = new FindProdutionProjectsByAssignedProjectIDDataSet();
+        
         //setting up variables
         int gintDepartmentID;
         int gintManagerID;
@@ -114,6 +119,7 @@ namespace NewBlueJayERP
             txtAssignedProjectID.Text = "";
             txtCustomerProjectID.Text = "";
             ClearDateEntryControls();
+            SetControlsReadOnly(false);
 
             //loading up the combo boxes
             cboSelectManager.Items.Clear();
@@ -360,9 +366,6 @@ namespace NewBlueJayERP
 
                     gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                    if (blnFatalError == true)
-                        throw new Exception();
-
                     blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
 
                     if (blnFatalError == true)
@@ -406,16 +409,16 @@ namespace NewBlueJayERP
                             blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
 
                             if (blnFatalError == true)
-                                throw new Exception();
-
-                            blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
-
-                            if (blnFatalError == true)
-                                throw new Exception();
+                                throw new Exception();                            
                         }
                     }
 
                 }
+
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 TheMessagesClass.InformationMessage("Project Has Been Entered");
 
@@ -439,8 +442,16 @@ namespace NewBlueJayERP
         {
             string strCustomerProjectID;
             int intLength;
+            int intCounter;
             int intNumberOfRecords;
             int intRecordsReturned;
+            int intManagerID;
+            int intDepartmentID;
+            int intOfficeID;
+            int intSelectedIndex = 0;
+            int intStatusID;
+            string strCustomerIDProjectID;
+            string strAssignedProjectID;
 
             try
             {
@@ -450,63 +461,138 @@ namespace NewBlueJayERP
 
                 if (intLength > 3)
                 {
-                    TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerProjectID);
+                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strCustomerProjectID);
 
-                    intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
+                    intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
 
-                    if(intRecordsReturned > 0)
+                    if(intRecordsReturned < 1)
                     {
-                        txtAssignedProjectID.Text = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].AssignedProjectID;
-                        gblnProjectExists = true;
+                        TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerProjectID);
+
+                        intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
+
+                        if(intRecordsReturned < 1)
+                        {
+                            gblnProjectExists = false;
+                        }
+                        else if(intRecordsReturned > 0)
+                        {
+                            txtAssignedProjectID.Text = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].AssignedProjectID;
+                        }
                     }
                     else
                     {
-                        gblnProjectExists = false;
-                    }
-                    
-                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strCustomerProjectID);
+                        gblnProjectExists = true;
 
-                    intNumberOfRecords = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
-
-                    if (intNumberOfRecords > 0)
-                    {
-                        txtExistingAssignedProjectID.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].AssignedProjectID;
-                        txtExistingProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
-                        txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
                         gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                        TheFindProductionProjectByAssignedProjectIDDataSet = TheProductionProjectClass.FindProductionProjectsByAssignedProjectID(strCustomerProjectID);
+                        TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(gintProjectID);
 
-                        intNumberOfRecords = TheFindProductionProjectByAssignedProjectIDDataSet.FindProductionProjectByAssignedProjectID.Rows.Count;
+                        intRecordsReturned = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID.Rows.Count;
 
-                        if (intNumberOfRecords > 0)
+                        if(intRecordsReturned < 1)
                         {
-                            TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerProjectID);
-
-                            if(TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count > 0)
-                            {
-                                TheMessagesClass.ErrorMessage("Project Already In Production Project Tables");
-                                ResetControls();
-                                return;
-                            }
-
-                            TheMessagesClass.ErrorMessage("Project Already Exists In Old Table");
                             gblnProjectMatrixExists = false;
-                            gblnProjectExists = true;
                         }
-
-                        TheFindDesignProjectsbyAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(strCustomerProjectID);
-
-                        intNumberOfRecords = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID.Rows.Count;
-
-                        if (intNumberOfRecords > 0)
+                        else
                         {
-                            txtAddress.Text = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].ProjectAddress;
-                            txtCity.Text = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].City;
-                        }
+                            gblnProjectMatrixExists = true;
 
-                        TheMessagesClass.InformationMessage("The Project Exists, but is Missing Information.  Please Conplete The Form");
-                        gblnProjectExists = true;
+                            strCustomerIDProjectID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
+                            strAssignedProjectID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].AssignedProjectID;
+                            txtAssignedProjectID.Text = strAssignedProjectID;
+
+                            TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
+
+                            intRecordsReturned = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID.Rows.Count;
+
+                            if(intRecordsReturned < 1)
+                            {
+                                TheFindDesignProjectsbyAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(strCustomerIDProjectID);
+
+                                intRecordsReturned = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID.Rows.Count;
+
+                                if(intRecordsReturned > 0)
+                                {
+                                    txtAddress.Text = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].ProjectAddress;
+                                    txtCity.Text = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].City;                                    
+                                }
+
+                                TheMessagesClass.InformationMessage("The Project Has Been Entered, but is Missing Some Information");
+
+                                SetControlsReadOnly(false);
+                            }
+                            else if(intRecordsReturned > 0)
+                            {
+                                SetControlsReadOnly(true);
+                                txtAddress.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessAddress;
+                                txtCity.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].City;
+                                txtDateReceived.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].DateReceived);
+                                txtECDDate.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ECDDate);
+                                txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
+                                txtPRojectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
+                                txtState.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessState;
+
+                                //setting the combo boxes;
+                                intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count - 1;
+                                intStatusID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
+
+                                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                {
+                                    if(intStatusID == TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].StatusID)
+                                    {
+                                        intSelectedIndex = intCounter + 1;
+                                    }
+                                }
+
+                                cboSelectStatus.SelectedIndex = intSelectedIndex;
+
+                                intManagerID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectManagerID;
+
+                                intNumberOfRecords = TheFindProductionManagersDataSet.FindProductionManagers.Rows.Count - 1;
+
+                                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                {
+                                    if(intManagerID == TheFindProductionManagersDataSet.FindProductionManagers[intCounter].EmployeeID)
+                                    {
+                                        intSelectedIndex = intCounter + 1;
+                                    }
+                                }
+
+                                cboSelectManager.SelectedIndex = intSelectedIndex;
+
+                                intDepartmentID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].DepartmentID;
+
+                                intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+
+                                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                {
+                                    if(intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                                    {
+                                        intSelectedIndex = intCounter + 1;
+                                    }
+                                }
+
+                                cboSelectDepartment.SelectedIndex = intSelectedIndex;
+
+                                intOfficeID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].WarehouseID;
+
+                                intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
+                                
+                                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                {
+                                    if(intOfficeID == TheFindWarehousesDataSet.FindWarehouses[intCounter].EmployeeID)
+                                    {
+                                        intSelectedIndex = intCounter + 1;
+                                    }
+                                }
+
+                                cboSelectOffice.SelectedIndex = intSelectedIndex;
+
+                                TheMessagesClass.InformationMessage("The Project Has Been Entered");
+
+                            }
+                        }
                     }
                 }
 
@@ -514,6 +600,173 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project // Customer Project ID Text Box " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+        private void SetControlsReadOnly(bool blnValueBoolean)
+        {
+            txtAddress.IsReadOnly = blnValueBoolean;
+            txtAssignedProjectID.IsReadOnly = blnValueBoolean;
+            txtCity.IsReadOnly = blnValueBoolean;
+            txtDateReceived.IsReadOnly = blnValueBoolean;
+            txtECDDate.IsReadOnly = blnValueBoolean;
+            txtProjectName.IsReadOnly = blnValueBoolean;
+            txtPRojectNotes.IsReadOnly = blnValueBoolean;
+            txtState.IsReadOnly = blnValueBoolean;
+        }
+
+        private void expResetWindow_Expanded(object sender, RoutedEventArgs e)
+        {
+            expResetWindow.IsExpanded = false;
+            ResetControls();
+        }
+
+        private void txtAssignedProjectID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string strAssignedProjectID;
+            int intLength;
+            int intRecordsReturned;
+            string strCustomerID;
+            int intCounter;
+            int intNumberOfRecords;
+            int intDepartmentID;
+            int intOfficeID;
+            int intStatusID;
+            int intManagerID;
+            int intSelectedIndex = 0;
+
+            try
+            {
+                strAssignedProjectID = txtAssignedProjectID.Text;
+                intLength = strAssignedProjectID.Length;
+                gblnProjectExists = false;
+                gblnProjectMatrixExists = false;
+
+                if (intLength > 7)
+                {
+                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strAssignedProjectID);
+
+                    intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
+                    gblnProjectExists = true;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        if(strAssignedProjectID.Contains("003") == false)
+                        {
+                            if(strAssignedProjectID.Contains("004") == false)
+                            {
+                                if(strAssignedProjectID.Contains("086") == false)
+                                {
+                                    txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
+                                    gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
+
+                                    TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(gintProjectID);
+
+                                    intRecordsReturned = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID.Rows.Count;
+
+                                    if(intRecordsReturned > 0)
+                                    {
+                                        strCustomerID = txtCustomerProjectID.Text;
+
+                                        if(strCustomerID != "")
+                                        {
+                                            if(strCustomerID != TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID)
+                                            {
+                                                TheMessagesClass.ErrorMessage("The Assigned Project ID is Assigned to Another CustomerID\nContact IT");
+                                                return;
+                                            }
+
+                                            gblnProjectMatrixExists = true;
+                                            intDepartmentID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].DepartmentID;
+                                            intOfficeID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].WarehouseID;
+
+                                            //setting up combo boxes
+                                            intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+
+                                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                            {
+                                                if (intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                                                {
+                                                    intSelectedIndex = intCounter + 1;
+                                                }
+                                            }
+
+                                            cboSelectDepartment.SelectedIndex = intSelectedIndex;
+
+                                            intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
+
+                                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                            {
+                                                if(intOfficeID == TheFindWarehousesDataSet.FindWarehouses[intCounter].EmployeeID)
+                                                {
+                                                    intSelectedIndex = intCounter + 1;
+                                                }
+                                            }           
+
+                                            cboSelectOffice.SelectedIndex = intSelectedIndex;
+
+                                            TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
+
+                                            intRecordsReturned = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID.Rows.Count;
+
+                                            if(intRecordsReturned < 1)
+                                            {
+                                                TheMessagesClass.InformationMessage("The Project Has Been Entered, but Missing Some Information");
+                                                return;
+                                            }
+
+                                            SetControlsReadOnly(true);
+                                            txtAddress.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessAddress;
+                                            txtCity.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].City;
+                                            txtDateReceived.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].DateReceived);
+                                            txtECDDate.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ECDDate);
+                                            txtPRojectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
+
+                                            intManagerID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectManagerID;
+
+                                            intNumberOfRecords = TheFindProductionManagersDataSet.FindProductionManagers.Rows.Count - 1;
+
+                                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                            {
+                                                if(intManagerID == TheFindProductionManagersDataSet.FindProductionManagers[intCounter].EmployeeID)
+                                                {
+                                                    intSelectedIndex = intCounter + 1;
+                                                }
+                                            }
+
+                                            cboSelectManager.SelectedIndex = intSelectedIndex;
+
+                                            intStatusID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
+
+                                            intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count - 1;
+
+                                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                                            {
+                                                if(intSelectedIndex == TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].StatusID)
+                                                {
+                                                    intSelectedIndex = intCounter + 1;
+                                                }
+                                            }
+
+                                            cboSelectStatus.SelectedIndex = intSelectedIndex;
+
+                                            TheMessagesClass.InformationMessage("The Project Is Already Entered");
+                                        }
+                                        else if(txtCustomerProjectID.Text == "")
+                                        {
+                                            txtCustomerProjectID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project // Assigned Project ID Text Box " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

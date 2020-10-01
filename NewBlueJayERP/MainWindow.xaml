@@ -116,7 +116,7 @@
                         <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expAddNewProject" Header="Add New Project" Margin="10,1,1,1" Expanded="expAddNewProject_Expanded" />
-                                <Expander x:Name="expEditProject" Header="Edit Project" Margin="10,1,1,1" />
+                                <Expander x:Name="expEditProject" Header="Edit Project" Margin="10,1,1,1" Expanded="expEditProject_Expanded" />
                                 <Expander x:Name="expSubmitAfterHoursWork" Header="Submit After Hours Work" Margin="10,1,1,1" Expanded="expSubmitAfterHoursWork_Expanded" />
                             </StackPanel>
                         </Expander>
@@ -134,7 +134,10 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
-                            <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
+                            <StackPanel>
+                                <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
+                                <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
+                            </StackPanel>                            
                         </Expander>
                     </StackPanel>
                 </Expander>

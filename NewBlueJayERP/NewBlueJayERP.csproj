@@ -465,8 +465,16 @@
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DuplicateProjectsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EditFuelCard.xaml.cs">
       <DependentUpon>EditFuelCard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditProjects.xaml.cs">
+      <DependentUpon>EditProjects.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditSelectedVehicleProblem.xaml.cs">
       <DependentUpon>EditSelectedVehicleProblem.xaml</DependentUpon>
@@ -588,6 +596,9 @@
     <Compile Include="ProjectsProductivityCosting.xaml.cs">
       <DependentUpon>ProjectsProductivityCosting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="RemoveDuplicateProjectMatrix.xaml.cs">
+      <DependentUpon>RemoveDuplicateProjectMatrix.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RentalItems.xaml.cs">
       <DependentUpon>RentalItems.xaml</DependentUpon>
     </Compile>
@@ -702,6 +713,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditProjects.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditSelectedVehicleProblem.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -795,6 +810,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ProjectsProductivityCosting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="RemoveDuplicateProjectMatrix.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -916,6 +935,17 @@
     </None>
     <None Include="CreateRentalItemsDataSet.xss">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DuplicateProjectsDataSet.xsc">
+      <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DuplicateProjectsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DuplicateProjectsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DuplicateProjectsDataSet.xss">
+      <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
     </None>
     <None Include="EmployeeProductivityDataSet.xsc">
       <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
