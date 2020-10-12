@@ -462,6 +462,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="CreateSpectrumReport.xaml.cs">
+      <DependentUpon>CreateSpectrumReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
     </Compile>
@@ -520,6 +523,9 @@
     </Compile>
     <Compile Include="FuelCardPINReport.xaml.cs">
       <DependentUpon>FuelCardPINReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="HelpDeskTicketReport.xaml.cs">
+      <DependentUpon>HelpDeskTicketReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportAssets.xaml.cs">
       <DependentUpon>ImportAssets.xaml</DependentUpon>
@@ -609,6 +615,11 @@
       <DependentUpon>SelectWarehouse.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
+    <Compile Include="SpectrumCountDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpectrumCountDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SubmitAfterHoursWork.xaml.cs">
       <DependentUpon>SubmitAfterHoursWork.xaml</DependentUpon>
     </Compile>
@@ -651,6 +662,14 @@
     </Compile>
     <Compile Include="ViewRentalUpdates.xaml.cs">
       <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseCountDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="WarehouseInventoryReport.xaml.cs">
+      <DependentUpon>WarehouseInventoryReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddCableReel.xaml">
@@ -705,6 +724,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateSpectrumReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DepartmentProductionEmail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -750,6 +773,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="FuelCardPINReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HelpDeskTicketReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -870,6 +897,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewRentalUpdates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WarehouseInventoryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1061,6 +1092,17 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="SpectrumCountDataSet.xsc">
+      <DependentUpon>SpectrumCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SpectrumCountDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SpectrumCountDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SpectrumCountDataSet.xss">
+      <DependentUpon>SpectrumCountDataSet.xsd</DependentUpon>
+    </None>
     <None Include="TotalWorkTaskFootagesDataSet.xsc">
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>
     </None>
@@ -1082,6 +1124,17 @@
     </None>
     <None Include="VehicleUsageDataSet.xss">
       <DependentUpon>VehicleUsageDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WarehouseCountDataSet.xsc">
+      <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WarehouseCountDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WarehouseCountDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WarehouseCountDataSet.xss">
+      <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

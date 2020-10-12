@@ -156,7 +156,10 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expInventoryReports" Header="Inventory Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expInventoryReports_Expanded">
-
+                            <StackPanel Margin="10,1,1,1" >
+                                <Expander x:Name="expCreateSpectrum" Header="Create Spectrum Report" Margin="20,1,1,1" Expanded="expCreateSpectrum_Expanded"/>
+                                <Expander x:Name="expWarehouseInventoryReport" Header="Warehouse Inventory Report" FontSize="16" Margin="20,1,1,1" Expanded="expWarehouseInventoryReport_Expanded" />
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expInventoryAdministration" Header="Inventory Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryAdministration_Expanded">
                             <StackPanel>
@@ -296,6 +299,7 @@
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
                                 <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />
+                                <Expander x:Name="expHelpDeskTicketsReport" Header="Help Desk Tickets Report" Margin="50,1,1,1" Expanded="expHelpDeskTicketsReport_Expanded"/>
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expPhoneAdministration" Header="Phone Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expPhoneAdministration_Expanded">

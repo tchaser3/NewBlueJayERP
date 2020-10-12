@@ -69,6 +69,7 @@ namespace NewBlueJayERP
         public static DateTime gdatStartDate;
         public static DateTime gdatEndDate;
         public static int gintProblemID;
+        public static int gintPartID;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -111,6 +112,10 @@ namespace NewBlueJayERP
         public static AddCableReel AddCableReelWindow = new AddCableReel();
         public static RemoveDuplicateProjectMatrix RemoveDuplicateProjectMatrixWindow = new RemoveDuplicateProjectMatrix();
         public static EditProjects EditProjectsWindow = new EditProjects();
+        public static HelpDeskTicketReport HelpDeskTicketReportWindow = new HelpDeskTicketReport();
+        public static CreateSpectrumReport CreateSpectrumReportWindow = new CreateSpectrumReport();
+        public static WarehouseInventoryReport WarehouseInventoryReportWindow = new WarehouseInventoryReport();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -185,6 +190,9 @@ namespace NewBlueJayERP
             AddCableReelWindow.Visibility = Visibility.Hidden;
             RemoveDuplicateProjectMatrixWindow.Visibility = Visibility.Hidden;
             EditProjectsWindow.Visibility = Visibility.Hidden;
+            HelpDeskTicketReportWindow.Visibility = Visibility.Hidden;
+            CreateSpectrumReportWindow.Visibility = Visibility.Hidden;
+            WarehouseInventoryReportWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -479,6 +487,7 @@ namespace NewBlueJayERP
             expCompanyFootages.IsEnabled = true;
             expRentals.IsEnabled = true;
             expEditVehicleProblems.IsEnabled = true;
+            expHelpDeskTicketsReport.IsEnabled = true;
         }
         private void SetEmployeeSecurity()
         {
@@ -501,6 +510,7 @@ namespace NewBlueJayERP
                     expCompanyFootages.IsEnabled = false;
                     expRentals.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
+                    expHelpDeskTicketsReport.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -518,6 +528,7 @@ namespace NewBlueJayERP
                     expProjectAdministration.IsEnabled = false;
                     expEmployeeAdministration.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
+                    expHelpDeskTicketsReport.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "OFFICE")
                 {
@@ -536,6 +547,7 @@ namespace NewBlueJayERP
                     expEmployeeAdministration.IsEnabled = false;
                     expCompanyFootages.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
+                    expHelpDeskTicketsReport.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "WAREHOUSE")
                 {
@@ -554,6 +566,7 @@ namespace NewBlueJayERP
                     expEmployeeAdministration.IsEnabled = false;
                     expCompanyFootages.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
+                    expHelpDeskTicketsReport.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "SUPER USER")
                 {
@@ -566,6 +579,7 @@ namespace NewBlueJayERP
                     expToolAdministration.IsEnabled = false;
                     expPhoneAdministration.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
+                    expHelpDeskTicketsReport.IsEnabled = false;
                 }
                 else if ((gstrEmployeeGroup == "ADMIN") || (gstrEmployeeGroup == "IT"))
                 {
@@ -1076,12 +1090,18 @@ namespace NewBlueJayERP
             expMyOpenTickets.IsExpanded = false;
             expMyTickets.IsExpanded = false;
             expITReports.IsExpanded = false;
+            expHelpDeskTicketsReport.IsExpanded = false;
+            expInformationTechology.IsExpanded = false;
             ViewMyOpenHelpDeskTicketsWindow.Visibility = Visibility.Visible;
         }
 
         private void expMyTickets_Expanded(object sender, RoutedEventArgs e)
         {
-
+            expHelpDeskTicketsReport.IsExpanded = false;
+            expInformationTechology.IsExpanded = false;
+            expITReports.IsExpanded = false;
+            expMyOpenTickets.IsExpanded = false;
+            expMyTickets.IsExpanded = false;
         }
 
         private void expAllProjectProductivityCosting_Expanded(object sender, RoutedEventArgs e)
@@ -1142,6 +1162,34 @@ namespace NewBlueJayERP
             expDepartmentProductionEmail.IsExpanded = false;
             expRemoveDuplicateProjectMatrix.IsExpanded = false;
             RemoveDuplicateProjectMatrixWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expHelpDeskTicketsReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInformationTechology.IsExpanded = false;
+            expITReports.IsExpanded = false;
+            expMyOpenTickets.IsExpanded = false;
+            expMyTickets.IsExpanded = false;
+            expHelpDeskTicketsReport.IsExpanded = false;
+            HelpDeskTicketReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateSpectrum_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInventory.IsExpanded = false;
+            expInventoryReports.IsExpanded = false;
+            expCreateSpectrum.IsExpanded = false;
+            expWarehouseInventoryReport.IsExpanded = false;
+            CreateSpectrumReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expWarehouseInventoryReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInventory.IsExpanded = false;
+            expInventoryReports.IsExpanded = false;
+            expCreateSpectrum.IsExpanded = false;
+            expWarehouseInventoryReport.IsExpanded = false;
+            WarehouseInventoryReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

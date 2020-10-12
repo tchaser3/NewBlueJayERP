@@ -64,7 +64,7 @@ namespace NewBlueJayERP
         FindProjectMatrixByProjectIDDataSet TheFindProjectMatrixByProjectIDDataSet = new FindProjectMatrixByProjectIDDataSet();
         FindProductionProjectByProjectIDDataSet TheFindProductionProjectByProjectIDDataSet = new FindProductionProjectByProjectIDDataSet();
         FindProdutionProjectsByAssignedProjectIDDataSet TheFindProductionProjectByAssignedProjectIDDataSet = new FindProdutionProjectsByAssignedProjectIDDataSet();
-        
+
         //setting up variables
         int gintDepartmentID;
         int gintManagerID;
@@ -486,7 +486,32 @@ namespace NewBlueJayERP
 
                         gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
-                        TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(gintProjectID);
+                        TheFindDesignProjectsbyAssignedProjectIDDataSet = TheDesignProjectsClass.FindDesignProjectsByAssignedProjectID(strCustomerProjectID);
+
+                        intRecordsReturned = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID.Rows.Count;
+
+                        if(intRecordsReturned > 0)
+                        {
+                            txtAddress.Text = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].ProjectAddress;
+                            txtCity.Text = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].City;
+                            txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
+                            txtDateReceived.Text = Convert.ToString(TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].DateReceived);
+
+                            intOfficeID = TheFindDesignProjectsbyAssignedProjectIDDataSet.FindDesignProjectsByAssignedProjectID[0].OfficeID;
+
+                            intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
+
+                            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                            {
+                                if(intOfficeID == TheFindWarehousesDataSet.FindWarehouses[intCounter].EmployeeID)
+                                {
+                                    intSelectedIndex = intCounter + 1;
+                                    cboSelectOffice.SelectedIndex = intSelectedIndex;
+                                }
+                            }
+                        }
+
+                        TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(gintProjectID);      
 
                         intRecordsReturned = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID.Rows.Count;
 
@@ -529,7 +554,8 @@ namespace NewBlueJayERP
                                 txtCity.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].City;
                                 txtDateReceived.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].DateReceived);
                                 txtECDDate.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ECDDate);
-                                txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
+                                TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(gintProjectID);                                
+                                txtProjectName.Text = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
                                 txtPRojectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
                                 txtState.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessState;
 
@@ -648,7 +674,7 @@ namespace NewBlueJayERP
                     TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strAssignedProjectID);
 
                     intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
-                    gblnProjectExists = true;
+                   
 
                     if(intRecordsReturned > 0)
                     {
@@ -658,6 +684,8 @@ namespace NewBlueJayERP
                             {
                                 if(strAssignedProjectID.Contains("086") == false)
                                 {
+                                    gblnProjectExists = true;
+
                                     txtProjectName.Text = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectName;
                                     gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 

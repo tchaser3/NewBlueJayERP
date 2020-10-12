@@ -21,6 +21,7 @@ using NewEmployeeDLL;
 using NewEventLogDLL;
 using DataValidationDLL;
 using CableInventoryDLL;
+using NewPartNumbersDLL;
 
 namespace NewBlueJayERP
 {
@@ -35,11 +36,14 @@ namespace NewBlueJayERP
         EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         CableInventoryClass TheCableInventoryClass = new CableInventoryClass();
+        PartNumberClass ThePartNumberClass = new PartNumberClass();
 
         FindPartsWarehousesDataSet TheFindPartsWarehousesDataSet = new FindPartsWarehousesDataSet();
         FindEmployeeByDepartmentDataSet TheFindEmployeeByDepartmentDataSet = new FindEmployeeByDepartmentDataSet();
         FindCableReelIDByAssignedCableIDDataSet TheFindCableReelIDByAssignedCableReelIDDataSet = new FindCableReelIDByAssignedCableIDDataSet();
         FindCableReelIDByTransactionDateDataSet TheFindCableReelIDByTransactionDateDataSet = new FindCableReelIDByTransactionDateDataSet();
+        FindPartByPartNumberDataSet TheFindPartByPartNumberDataSet = new FindPartByPartNumberDataSet();
+        FindPartByJDEPartNumberDataSet TheFindPartByJDEPartNumberDataSet = new FindPartByJDEPartNumberDataSet();
 
         public AddCableReel()
         {
@@ -144,5 +148,73 @@ namespace NewBlueJayERP
             }
         }
 
+        private void cboSelectWarehouse_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            try
+            {
+                intSelectedIndex = cboSelectWarehouse.SelectedIndex - 1;
+
+                if(intSelectedIndex > -1)
+                {
+                    MainWindow.gintWarehouseID = TheFindPartsWarehousesDataSet.FindPartsWarehouses[intSelectedIndex].EmployeeID;
+
+                    lblWarehouseSelected.Content = cboSelectWarehouse.SelectedItem.ToString();
+                }                
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Cable Reel // Select Warehouse Combo Box " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expCheckPartNumber_Expanded(object sender, RoutedEventArgs e)
+        {
+            string strPartNumber;
+            int intRecordsReturned;
+
+            try
+            {
+                strPartNumber = txtPartNumber.Text;
+
+                TheFindPartByPartNumberDataSet = ThePartNumberClass.FindPartByPartNumber(strPartNumber);
+
+                intRecordsReturned = TheFindPartByPartNumberDataSet.FindPartByPartNumber.Rows.Count;
+
+                if(intRecordsReturned > 0)
+                {
+                    txtPartDescription.Text = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartDescription;
+
+                    MainWindow.gintPartID = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartID;
+                }
+                else if (intRecordsReturned < 1)
+                {
+                    TheFindPartByJDEPartNumberDataSet = ThePartNumberClass.FindPartByJDEPartNumber(strPartNumber);
+
+                    intRecordsReturned = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        txtPartDescription.Text = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber[0].PartDescription;
+
+                        MainWindow.gintPartID = TheFindPartByJDEPartNumberDataSet.FindPartByJDEPartNumber[0].PartID;
+                    }
+                    else
+                    {
+                        TheMessagesClass.ErrorMessage("The Part Number Was Not Found");
+                        return;
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Cable Reel // Check Cable Reel " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
     }
 }
