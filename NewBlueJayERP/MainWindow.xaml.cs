@@ -115,6 +115,7 @@ namespace NewBlueJayERP
         public static HelpDeskTicketReport HelpDeskTicketReportWindow = new HelpDeskTicketReport();
         public static CreateSpectrumReport CreateSpectrumReportWindow = new CreateSpectrumReport();
         public static WarehouseInventoryReport WarehouseInventoryReportWindow = new WarehouseInventoryReport();
+        public static AddInventoryLocation AddInventoryLocationWindow = new AddInventoryLocation();
 
         public MainWindow()
         {
@@ -193,6 +194,7 @@ namespace NewBlueJayERP
             HelpDeskTicketReportWindow.Visibility = Visibility.Hidden;
             CreateSpectrumReportWindow.Visibility = Visibility.Hidden;
             WarehouseInventoryReportWindow.Visibility = Visibility.Hidden;
+            AddInventoryLocationWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1190,6 +1192,20 @@ namespace NewBlueJayERP
             expCreateSpectrum.IsExpanded = false;
             expWarehouseInventoryReport.IsExpanded = false;
             WarehouseInventoryReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddInventoryLocation_Expanded(object sender, RoutedEventArgs e)
+        {
+            expInventory.IsExpanded = false;
+            expInventoryDataEntry.IsExpanded = false;
+            expAddCableReel.IsExpanded = false;
+            expIssueMaterial.IsExpanded = false;
+            expReceiveMaterial.IsExpanded = false;
+            expProcessBOMMaterial.IsExpanded = false;
+            expReturnMaterial.IsExpanded = false;
+            expViewCurrentSession.IsExpanded = false;
+            expAddInventoryLocation.IsExpanded = false;
+            AddInventoryLocationWindow.Visibility = Visibility.Visible;
         }
     }
 }

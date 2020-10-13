@@ -179,6 +179,9 @@
     <Reference Include="LettersDLL">
       <HintPath>..\..\Blue Jay Class Library\LettersDLL.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialSheetsDLL">
+      <HintPath>..\..\Blue Jay Class Library\MaterialSheetsDLL.dll</HintPath>
+    </Reference>
     <Reference Include="NewEmployeeDLL">
       <HintPath>..\..\Blue Jay Class Library\NewEmployeeDLL.dll</HintPath>
     </Reference>
@@ -414,6 +417,9 @@
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddInventoryLocation.xaml.cs">
+      <DependentUpon>AddInventoryLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
@@ -537,6 +543,17 @@
     </Compile>
     <Compile Include="ImportGEOFenceReport.xaml.cs">
       <DependentUpon>ImportGEOFenceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportInventoryLocations.xaml.cs">
+      <DependentUpon>ImportInventoryLocations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportInventoryLocationsDataSet.cs">
+      <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportInventoryLocationsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ImportTowMotorDataSet.cs">
       <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
@@ -680,6 +697,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddInventoryLocation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -785,6 +806,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportGEOFenceReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportInventoryLocations.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1021,6 +1046,17 @@
     </None>
     <None Include="ImportGEOFencedDataSet.xss">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportInventoryLocationsDataSet.xsc">
+      <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportInventoryLocationsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportInventoryLocationsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportInventoryLocationsDataSet.xss">
+      <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportTowMotorDataSet.xsc">
       <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>

@@ -147,6 +147,7 @@
                     <StackPanel Margin="16,1,1,1" Background="LightBlue">
                         <Expander x:Name="expInventoryDataEntry" Header="Inventory Data Entry" ExpandDirection="Right" Margin="18,1,1,1" Background="LightBlue" Expanded="expInventoryDataEntry_Expanded">
                             <StackPanel Margin="10,1,1,1">
+                                <Expander x:Name="expAddInventoryLocation" Header="Add Inventory Location" Expanded="expAddInventoryLocation_Expanded" />
                                 <Expander x:Name="expIssueMaterial" Header="Issue Material" Expanded="expIssueMaterial_Expanded" />
                                 <Expander x:Name="expReceiveMaterial" Header="Receive Material" Expanded="expReceiveMaterial_Expanded" />
                                 <Expander x:Name="expProcessBOMMaterial" Header="Report Material Usage" Expanded="expProcessBOMMaterial_Expanded" />
