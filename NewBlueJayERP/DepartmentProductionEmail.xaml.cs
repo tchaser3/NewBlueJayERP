@@ -20,6 +20,7 @@ using System.Windows.Shapes;
 using NewEventLogDLL;
 using NewEmployeeDLL;
 using DepartmentDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -33,6 +34,7 @@ namespace NewBlueJayERP
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DepartmentClass TheDepartmentClass = new DepartmentClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
@@ -173,10 +175,15 @@ namespace NewBlueJayERP
             //setting up varibles
             bool blnFatalError = false;
             string strErrorMessage = "";
-
+            
             try
             {
-                if(cboSelectDepartment.SelectedIndex < 1)
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Department Production Email");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                if (cboSelectDepartment.SelectedIndex < 1)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Department Was Not Selected\n";

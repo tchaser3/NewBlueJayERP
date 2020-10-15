@@ -21,6 +21,7 @@ using NewEventLogDLL;
 using NewEmployeeDLL;
 using VehicleExceptionEmailDLL;
 using DataValidationDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -35,6 +36,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         VehicleExceptionEmailClass TheVehicleExceptionEmailClass = new VehicleExceptionEmailClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
@@ -183,6 +185,11 @@ namespace NewBlueJayERP
 
             try
             {
+                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Employee To Vehicle Emails");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 //data validation
                 if(cboSelectEmployee.SelectedIndex < 1)
                 {

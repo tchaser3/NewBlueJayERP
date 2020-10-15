@@ -256,10 +256,21 @@
                 <Expander x:Name="expTools" Header="Tools" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="25,1,1,1" Expanded="expTools_Expanded">
                     <StackPanel Margin="36,1,1,1" Background="LightBlue">
                         <Expander x:Name="expToolsDataEntry" Header="Tool Data Entry" ExpandDirection="Right" Margin="15,1,1,1" Background="LightBlue" Expanded="expToolsDataEntry_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expAddNewTool" Header="Add New Tool" Margin="25,1,1,1" Expanded="expAddNewTool_Expanded"/>
+                                <Expander x:Name="expEditTool" Header="Edit Tool" Margin="25,1,1,1" Expanded="expEditTool_Expanded" />
+                                <Expander x:Name="expSignInTool" Header="Sign In Tool" Margin="25,1,1,1"/>
+                                <Expander x:Name="expSignOutTool" Header="Sign Out Tool" Margin="25,1,1,1" />
+                                <Expander x:Name="expToolHistory" Header="Tool History" Margin="25,1,1,1" />
+                                <Expander x:Name="expBulkToolSignOut" Header="Bulk Tool Sign Out" Margin="25,1,1,1" />
+                                <Expander x:Name="expBulkToolSignIn" Header="Bulk Tool Sign In" Margin="25,1,1,1" />
+                                <Expander x:Name="expToolAvailability" Header="Tool Availability" Margin="25,1,1,1" />
+                            </StackPanel>
                         </Expander>
-                        <Expander x:Name="expToolReports" Header="Tool Reports" ExpandDirection="Right" Margin="23
-                                  ,1,1,1" Background="LightBlue" Expanded="expToolReports_Expanded">
+                        <Expander x:Name="expToolProblems" Header="Tool Problems" ExpandDirection="Right" Margin="20,1,1,1">
+                            
+                        </Expander>
+                        <Expander x:Name="expToolReports" Header="Tool Reports" ExpandDirection="Right" Margin="23,1,1,1" Background="LightBlue" Expanded="expToolReports_Expanded">
 
                         </Expander>
                         <Expander x:Name="expToolAdministration" Header="Tool Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expToolAdministration_Expanded">

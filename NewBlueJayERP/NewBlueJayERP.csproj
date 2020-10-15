@@ -420,6 +420,9 @@
     <Compile Include="AddInventoryLocation.xaml.cs">
       <DependentUpon>AddInventoryLocation.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewTool.xaml.cs">
+      <DependentUpon>AddNewTool.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
@@ -487,6 +490,9 @@
     </Compile>
     <Compile Include="EditSelectedVehicleProblem.xaml.cs">
       <DependentUpon>EditSelectedVehicleProblem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditTool.xaml.cs">
+      <DependentUpon>EditTool.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditVehicleProblems.xaml.cs">
       <DependentUpon>EditVehicleProblems.xaml</DependentUpon>
@@ -701,6 +707,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddNewTool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -762,6 +772,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditSelectedVehicleProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditTool.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -70,6 +70,8 @@ namespace NewBlueJayERP
         public static DateTime gdatEndDate;
         public static int gintProblemID;
         public static int gintPartID;
+        public static int gintCategoryID;
+        public static int gintToolKey;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -116,6 +118,8 @@ namespace NewBlueJayERP
         public static CreateSpectrumReport CreateSpectrumReportWindow = new CreateSpectrumReport();
         public static WarehouseInventoryReport WarehouseInventoryReportWindow = new WarehouseInventoryReport();
         public static AddInventoryLocation AddInventoryLocationWindow = new AddInventoryLocation();
+        public static AddNewTool AddNewToolWindow = new AddNewTool();
+        public static EditTool EditToolWindow = new EditTool();
 
         public MainWindow()
         {
@@ -195,6 +199,8 @@ namespace NewBlueJayERP
             CreateSpectrumReportWindow.Visibility = Visibility.Hidden;
             WarehouseInventoryReportWindow.Visibility = Visibility.Hidden;
             AddInventoryLocationWindow.Visibility = Visibility.Hidden;
+            AddNewToolWindow.Visibility = Visibility.Hidden;
+            EditToolWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -371,18 +377,24 @@ namespace NewBlueJayERP
 
         private void expToolsDataEntry_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expToolAdministration.IsExpanded = false;
+            expToolProblems.IsExpanded = false;
+            expToolReports.IsExpanded = false;
         }
 
         private void expToolReports_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expToolsDataEntry.IsExpanded = false;
+            expToolProblems.IsExpanded = false;
+            expToolAdministration.IsExpanded = false;
             
         }
 
         private void expToolAdministration_Expanded(object sender, RoutedEventArgs e)
         {
-            
+            expToolsDataEntry.IsExpanded = false;
+            expToolProblems.IsExpanded = false;
+            expToolReports.IsExpanded = false;
         }
 
         private void expAssetDataEntry_Expanded(object sender, RoutedEventArgs e)
@@ -490,6 +502,7 @@ namespace NewBlueJayERP
             expRentals.IsEnabled = true;
             expEditVehicleProblems.IsEnabled = true;
             expHelpDeskTicketsReport.IsEnabled = true;
+            expToolProblems.IsEnabled = true;
         }
         private void SetEmployeeSecurity()
         {
@@ -513,6 +526,7 @@ namespace NewBlueJayERP
                     expRentals.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
+                    expToolProblems.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -531,6 +545,7 @@ namespace NewBlueJayERP
                     expEmployeeAdministration.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
+                    expToolProblems.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "OFFICE")
                 {
@@ -540,7 +555,6 @@ namespace NewBlueJayERP
                     expTrailerAdministration.IsEnabled = false;
                     expVehicleAdminstration.IsEnabled = false;
                     expInventoryAdministration.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
                     expVehicleAdminstration.IsEnabled = false;
                     expITDataEntry.IsEnabled = false;
                     expAssets.IsEnabled = false;
@@ -550,6 +564,7 @@ namespace NewBlueJayERP
                     expCompanyFootages.IsEnabled = false;
                     expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
+                    expToolProblems.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "WAREHOUSE")
                 {
@@ -1206,6 +1221,30 @@ namespace NewBlueJayERP
             expViewCurrentSession.IsExpanded = false;
             expAddInventoryLocation.IsExpanded = false;
             AddInventoryLocationWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddNewTool_Expanded(object sender, RoutedEventArgs e)
+        {
+            expTools. IsExpanded = false;
+            expToolsDataEntry.IsExpanded = false;
+            expAddNewTool.IsExpanded = false;
+            expEditTool.IsExpanded = false;
+            expBulkToolSignIn.IsExpanded = false;
+            expBulkToolSignOut.IsExpanded = false;
+            expToolAvailability.IsExpanded = false;
+            AddNewToolWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditTool_Expanded(object sender, RoutedEventArgs e)
+        {
+            expTools.IsExpanded = false;
+            expToolsDataEntry.IsExpanded = false;
+            expAddNewTool.IsExpanded = false;
+            expEditTool.IsExpanded = false;
+            expBulkToolSignIn.IsExpanded = false;
+            expBulkToolSignOut.IsExpanded = false;
+            expToolAvailability.IsExpanded = false;
+            EditToolWindow.Visibility = Visibility.Visible;
         }
     }
 }

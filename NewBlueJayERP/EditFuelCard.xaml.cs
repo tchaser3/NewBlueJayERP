@@ -21,6 +21,7 @@ using NewEmployeeDLL;
 using NewEventLogDLL;
 using FuelCardDLL;
 using WorkTaskStatsDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -34,6 +35,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         FuelCardClass TheFuelCardClass = new FuelCardClass();
+        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         FindFuelCardEmployeeDataSet TheFindFuelCardEmployeeDataSet = new FindFuelCardEmployeeDataSet();
@@ -195,6 +197,11 @@ namespace NewBlueJayERP
 
             try
             {
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Edit Fule Card");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 intFuelCardNumber = RandomNumber();
 
                 blnFatalError = TheFuelCardClass.UpdateFuelCardActive(Convert.ToInt32(txtOldCardNumber.Text), false);

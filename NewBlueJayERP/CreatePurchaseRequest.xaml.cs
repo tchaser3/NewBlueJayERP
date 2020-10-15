@@ -318,6 +318,11 @@ namespace NewBlueJayERP
 
             try
             {
+                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Purchase Request");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 if(TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count < 1)
                 {
                     blnFatalError = true;

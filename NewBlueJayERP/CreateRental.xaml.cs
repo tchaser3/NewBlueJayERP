@@ -24,6 +24,7 @@ using VendorsDLL;
 using DataValidationDLL;
 using DateSearchDLL;
 using ProjectsDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -41,6 +42,7 @@ namespace NewBlueJayERP
         ProjectClass TheProjectClass = new ProjectClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up data variables
         FindVendorsSortedByVendorNameDataSet TheFindVendorsSortedByVendorNameDataSet = new FindVendorsSortedByVendorNameDataSet();
@@ -184,6 +186,11 @@ namespace NewBlueJayERP
             try
             {
                 expProcess.IsExpanded = false;
+
+                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Create Rental");
+
+                if (blnFatalError == true)
+                    throw new Exception();
 
                 //beginning data validation
                 strPONumber = txtPONumber.Text;
