@@ -516,6 +516,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeePunchesProductivityDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmployeesAssignedDataSet.cs">
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeesAssignedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeTimePunchesDataSet.cs">
       <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </Compile>
@@ -605,6 +613,22 @@
     <Compile Include="OpenRentalReport.xaml.cs">
       <DependentUpon>OpenRentalReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="PartLookup.xaml.cs">
+      <DependentUpon>PartLookup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartLookupDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartLookupDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PartsList.xaml.cs">
+      <DependentUpon>PartsList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="PartsListReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartsListReportDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
     </Compile>
@@ -638,6 +662,12 @@
       <DependentUpon>SelectWarehouse.xaml</DependentUpon>
     </Compile>
     <Compile Include="SendEmailClass.cs" />
+    <Compile Include="ServerAuditLog.xaml.cs">
+      <DependentUpon>ServerAuditLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SortedWorkTaskReport.xaml.cs">
+      <DependentUpon>SortedWorkTaskReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SpectrumCountDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -645,6 +675,11 @@
     </Compile>
     <Compile Include="SubmitAfterHoursWork.xaml.cs">
       <DependentUpon>SubmitAfterHoursWork.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SubmitAfterHoursWorkDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="TotalWorkTaskFootagesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -867,6 +902,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PartLookup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="PartsList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PleaseWait.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -892,6 +935,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SelectWarehouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ServerAuditLog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SortedWorkTaskReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1039,6 +1090,17 @@
     <None Include="EmployeePunchesProductivityDataSet.xss">
       <DependentUpon>EmployeePunchesProductivityDataSet.xsd</DependentUpon>
     </None>
+    <None Include="EmployeesAssignedDataSet.xsc">
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeesAssignedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeesAssignedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeesAssignedDataSet.xss">
+      <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
+    </None>
     <None Include="EmployeeTimePunchesDataSet.xsc">
       <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </None>
@@ -1116,6 +1178,28 @@
     <None Include="OpenHelpDeskTicketsDataSet.xss">
       <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="PartLookupDataSet.xsc">
+      <DependentUpon>PartLookupDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PartLookupDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PartLookupDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PartLookupDataSet.xss">
+      <DependentUpon>PartLookupDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PartsListReportDataSet.xsc">
+      <DependentUpon>PartsListReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PartsListReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PartsListReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PartsListReportDataSet.xss">
+      <DependentUpon>PartsListReportDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ProjectFootagesDataSet.xsc">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
     </None>
@@ -1152,6 +1236,17 @@
     </None>
     <None Include="SpectrumCountDataSet.xss">
       <DependentUpon>SpectrumCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SubmitAfterHoursWorkDataSet.xsc">
+      <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="SubmitAfterHoursWorkDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>SubmitAfterHoursWorkDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="SubmitAfterHoursWorkDataSet.xss">
+      <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
     </None>
     <None Include="TotalWorkTaskFootagesDataSet.xsc">
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>

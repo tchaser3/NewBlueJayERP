@@ -291,7 +291,7 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Vehicle Dashboard // Vehicle In Shop // Problems Grid Selection " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Open Ticket Grids " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

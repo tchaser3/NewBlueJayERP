@@ -314,86 +314,107 @@ namespace NewBlueJayERP
             int intOfficeID;
             int intStatusID;
             int intSelectedIndex = 0;
+            int intRecordsReturned;
 
-            TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(gintProjectID);
-            TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(gintProjectID);
-            TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
-            gintTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
-            gblnDoNotRun = true;
-
-            if (gblnProjectExists == true)
+            try
             {
-                txtAssignedProjectID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].AssignedProjectID;                
-            }
-                
+                TheFindProjectMatrixByProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByProjectID(gintProjectID);
+                TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(gintProjectID);
+                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
 
-            if (gblnProjectExists == false)
-            {
-                txtCustomerProjectID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
-            }
-                
+                intRecordsReturned = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID.Rows.Count;
 
-            txtProjectName.Text = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
-            txtAddress.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessAddress;
-            txtCity.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].City;
-            txtDateReceived.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].DateReceived);
-            txtECDDate.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ECDDate);
-            txtPRojectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
-            txtState.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessState;
-
-            intManagerID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectManagerID;
-            intStatusID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
-            intDepartmentID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].DepartmentID;
-            intOfficeID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].WarehouseID;
-
-            //loading comboboxes
-            intNumberOfRecords = TheFindProductionManagersDataSet.FindProductionManagers.Rows.Count - 1;
-
-            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-            {
-                if (intManagerID == TheFindProductionManagersDataSet.FindProductionManagers[intCounter].EmployeeID)
+                if(intRecordsReturned < 1)
                 {
-                    intSelectedIndex = intCounter + 1;
+                    TheMessagesClass.ErrorMessage("The Project Is Not Completely Entered, Please Go To Add Project");
+                    return;
                 }
-            }
 
-            cboSelectManager.SelectedIndex = intSelectedIndex;
+                gintTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
+                gblnDoNotRun = true;
 
-            intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
-
-            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-            {
-                if(intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                if (gblnProjectExists == true)
                 {
-                    intSelectedIndex = intCounter + 1;
+                    txtAssignedProjectID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].AssignedProjectID;
                 }
-            }
 
-            cboSelectDepartment.SelectedIndex = intSelectedIndex;
 
-            intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
-
-            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-            {
-                if(intOfficeID == TheFindWarehousesDataSet.FindWarehouses[intCounter].EmployeeID)
+                if (gblnProjectExists == false)
                 {
-                    intSelectedIndex = intCounter + 1;
+                    txtCustomerProjectID.Text = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
                 }
-            }
 
-            cboSelectOffice.SelectedIndex = intSelectedIndex;
 
-            intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count - 1;
+                txtProjectName.Text = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
+                txtAddress.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessAddress;
+                txtCity.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].City;
+                txtDateReceived.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].DateReceived);
+                txtECDDate.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ECDDate);
+                txtPRojectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
+                txtState.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessState;
 
-            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-            {
-                if(intStatusID == TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].StatusID)
+                intManagerID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectManagerID;
+                intStatusID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
+                intDepartmentID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].DepartmentID;
+                intOfficeID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].WarehouseID;
+
+                //loading comboboxes
+                intNumberOfRecords = TheFindProductionManagersDataSet.FindProductionManagers.Rows.Count - 1;
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
-                    intSelectedIndex = intCounter + 1;
+                    if (intManagerID == TheFindProductionManagersDataSet.FindProductionManagers[intCounter].EmployeeID)
+                    {
+                        intSelectedIndex = intCounter + 1;
+                    }
                 }
+
+                cboSelectManager.SelectedIndex = intSelectedIndex;
+
+                intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    if (intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                    {
+                        intSelectedIndex = intCounter + 1;
+                    }
+                }
+
+                cboSelectDepartment.SelectedIndex = intSelectedIndex;
+
+                intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    if (intOfficeID == TheFindWarehousesDataSet.FindWarehouses[intCounter].EmployeeID)
+                    {
+                        intSelectedIndex = intCounter + 1;
+                    }
+                }
+
+                cboSelectOffice.SelectedIndex = intSelectedIndex;
+
+                intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count - 1;
+
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                {
+                    if (intStatusID == TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].StatusID)
+                    {
+                        intSelectedIndex = intCounter + 1;
+                    }
+                }
+
+                cboSelectStatus.SelectedIndex = intSelectedIndex;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Projects // Fill Controls " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
             }
 
-            cboSelectStatus.SelectedIndex = intSelectedIndex;
+            
         }
         private void txtAssignedProjectID_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -420,6 +441,11 @@ namespace NewBlueJayERP
                         gblnProjectExists = false;
 
                         FillControls();
+                    }
+                    else if(intLength > 7)
+                    {
+                        TheMessagesClass.ErrorMessage("Project Not Found, Please Add the Project");
+                        return;
                     }
                 }
                 else if (intLength >= 12)

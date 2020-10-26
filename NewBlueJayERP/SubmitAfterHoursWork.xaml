@@ -60,6 +60,7 @@
             <Label x:Name="lblTitle" Content="Send Employee After Hours Report" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="430" Background="LightBlue">
+            <Expander x:Name="expAddEmployee" Header="Add Work" FontSize="16" Margin="10,1,1,1" Expanded="expAddEmployee_Expanded" />
             <Expander x:Name="expSubmitForm" Header="Submit Form" FontSize="16" Margin="10,1,1,1" Expanded="expSubmitForm_Expanded" />
             <Expander x:Name="expResetForm" Header="Reset Form" FontSize="16" Margin="10,1,1,1" Expanded="expResetForm_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
