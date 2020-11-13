@@ -72,6 +72,7 @@ namespace NewBlueJayERP
         public static int gintPartID;
         public static int gintCategoryID;
         public static int gintToolKey;
+        public static int gintTrailerID;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -124,6 +125,9 @@ namespace NewBlueJayERP
         public static SortedWorkTaskReport SortedWorkTaskReportWindow = new SortedWorkTaskReport();
         public static PartLookup PartLookupWindow = new PartLookup();
         public static ServerAuditLog ServerAuditLogWindow = new ServerAuditLog();
+        public static ProjectShopAnalysis ProjectShopAnalysisWindow = new ProjectShopAnalysis();
+        public static ImportInventory ImportInventoryWindow = new ImportInventory();
+        public static UpdateTrailerProblems UpdateTrailerProblemsWindow = new UpdateTrailerProblems();
 
         public MainWindow()
         {
@@ -209,6 +213,9 @@ namespace NewBlueJayERP
             SortedWorkTaskReportWindow.Visibility = Visibility.Hidden;
             PartLookupWindow.Visibility = Visibility.Hidden;
             ServerAuditLogWindow.Visibility = Visibility.Hidden;
+            ProjectShopAnalysisWindow.Visibility = Visibility.Hidden;
+            ImportInventoryWindow.Visibility = Visibility.Hidden;
+            UpdateTrailerProblemsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -512,6 +519,7 @@ namespace NewBlueJayERP
             expHelpDeskTicketsReport.IsEnabled = true;
             expServerAuditLogReport.IsExpanded = true;
             expToolProblems.IsEnabled = true;
+
         }
         private void SetEmployeeSecurity()
         {
@@ -537,6 +545,7 @@ namespace NewBlueJayERP
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expToolProblems.IsEnabled = false;
+                    expProjectReports.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -577,6 +586,7 @@ namespace NewBlueJayERP
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expToolProblems.IsEnabled = false;
+                    expProjectReports.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "WAREHOUSE")
                 {
@@ -597,6 +607,7 @@ namespace NewBlueJayERP
                     expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
+                    expProjectReports.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "SUPER USER")
                 {
@@ -686,23 +697,13 @@ namespace NewBlueJayERP
         private void expCompanyFootages_Expanded(object sender, RoutedEventArgs e)
         {
             CompanyProjectFootagesWindows.Visibility = Visibility.Visible;
-            expProjectReports.IsExpanded = false;
-            expProjects.IsExpanded = false;
-            expAllProjectProductivityCosting.IsExpanded = false;
-            expSortedWorkTasksReport.IsExpanded = false;
-            expEmployeeProjectLaborReport.IsExpanded = false; 
+            SetProjectReportsExpanders();
         }
 
         private void expProjectProductivityReport_Expanded(object sender, RoutedEventArgs e)
         {
             ProjectProductivityReportWindow.Visibility = Visibility.Visible;
-            expProjectReports.IsExpanded = false;
-            expProjects.IsExpanded = false;
-            expEmployeeProjectLaborReport.IsExpanded = false;
-            expCompanyFootages.IsExpanded = false;
-            expAllProjectProductivityCosting.IsExpanded = false;
-            expSortedWorkTasksReport.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
+            SetProjectReportsExpanders();
         }
 
         private void expDepartmentProductionEmail_Expanded(object sender, RoutedEventArgs e)
@@ -770,13 +771,7 @@ namespace NewBlueJayERP
 
         private void expEmployeeProjectLaborReport_Expanded(object sender, RoutedEventArgs e)
         {
-            expEmployeeProjectLaborReport.IsExpanded = false;
-            expSortedWorkTasksReport.IsExpanded = false;
-            expProjects.IsExpanded = false;
-            expProjectReports.IsExpanded = false;
-            expCompanyFootages.IsExpanded = false;
-            expProjectProductivityReport.IsExpanded = false;
-            expAllProjectProductivityCosting.IsExpanded = false;
+            SetProjectReportsExpanders();
             EmployeeProjectLaborReportWindow.Visibility = Visibility.Visible;
         }
 
@@ -1146,13 +1141,7 @@ namespace NewBlueJayERP
 
         private void expAllProjectProductivityCosting_Expanded(object sender, RoutedEventArgs e)
         {
-            expAllProjectProductivityCosting.IsExpanded = false;
-            expCompanyFootages.IsExpanded = false;
-            expProjectProductivityReport.IsExpanded = false;
-            expEmployeeProjectLaborReport.IsExpanded = false;
-            expProjectReports.IsExpanded = false;
-            expProjects.IsExpanded = false;
-            expSortedWorkTasksReport.IsExpanded = false;
+            SetProjectReportsExpanders();
             ProjectsProductivityCostingWindow.Visibility = Visibility.Visible;
         }
 
@@ -1273,13 +1262,7 @@ namespace NewBlueJayERP
 
         private void expSortedWorkTasksReport_Expanded(object sender, RoutedEventArgs e)
         {
-            expProjects.IsExpanded = false;
-            expProjectReports.IsExpanded = false;
-            expCompanyFootages.IsExpanded = false;
-            expProjectProductivityReport.IsExpanded = false;
-            expEmployeeProjectLaborReport.IsExpanded = false;
-            expAllProjectProductivityCosting.IsExpanded = false;
-            expSortedWorkTasksReport.IsExpanded = false;
+            SetProjectReportsExpanders();
             SortedWorkTaskReportWindow.Visibility = Visibility.Visible;
         }
 
@@ -1311,6 +1294,47 @@ namespace NewBlueJayERP
             expServerAuditLogReport.IsExpanded = false;
             expITReports.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
+        }
+
+        private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetProjectReportsExpanders();
+            ProjectShopAnalysisWindow.Visibility = Visibility.Visible;
+        }
+        private void SetProjectReportsExpanders()
+        {
+            expProjects.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expCompanyFootages.IsExpanded = false;
+            expProjectShopAnalysis.IsExpanded = false;
+            expProjectProductivityReport.IsExpanded = false;
+            expEmployeeProjectLaborReport.IsExpanded = false;
+            expAllProjectProductivityCosting.IsExpanded = false;
+            expSortedWorkTasksReport.IsExpanded = false;
+        }
+
+        private void expInventoryImport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetInventoryAdministrationExpanders();
+            ImportInventoryWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetInventoryAdministrationExpanders()
+        {
+            expInventory.IsExpanded = false;
+            expInventoryAdministration.IsExpanded = false;
+            expInventoryImport.IsExpanded = false;
+        }
+
+        private void expUpdateTrailerProblem_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetTrailerDataEntryExpanders();
+            UpdateTrailerProblemsWindow.Visibility = Visibility.Visible;
+        }
+        private void SetTrailerDataEntryExpanders()
+        {
+            expTrailers.IsExpanded = false;
+            expTrailerDataEntry.IsExpanded = false;
+            expUpdateTrailerProblem.IsExpanded = false;
         }
     }
 }

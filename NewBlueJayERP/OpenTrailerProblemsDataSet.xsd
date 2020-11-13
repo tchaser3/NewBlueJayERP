@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OpenTrailerProblemsDataSet" targetNamespace="http://tempuri.org/OpenTrailerProblemsDataSet.xsd" xmlns:mstns="http://tempuri.org/OpenTrailerProblemsDataSet.xsd" xmlns="http://tempuri.org/OpenTrailerProblemsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OpenTrailerProblemsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OpenTrailerProblemsDataSet" msprop:Generator_UserDSName="OpenTrailerProblemsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="opentrailerproblems" msprop:Generator_TableClassName="opentrailerproblemsDataTable" msprop:Generator_TableVarName="tableopentrailerproblems" msprop:Generator_TablePropName="opentrailerproblems" msprop:Generator_RowDeletingName="opentrailerproblemsRowDeleting" msprop:Generator_RowChangingName="opentrailerproblemsRowChanging" msprop:Generator_RowEvHandlerName="opentrailerproblemsRowChangeEventHandler" msprop:Generator_RowDeletedName="opentrailerproblemsRowDeleted" msprop:Generator_UserTableName="opentrailerproblems" msprop:Generator_RowChangedName="opentrailerproblemsRowChanged" msprop:Generator_RowEvArgName="opentrailerproblemsRowChangeEvent" msprop:Generator_RowClassName="opentrailerproblemsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProblemID" msprop:Generator_ColumnVarNameInTable="columnProblemID" msprop:Generator_ColumnPropNameInRow="ProblemID" msprop:Generator_ColumnPropNameInTable="ProblemIDColumn" msprop:Generator_UserColumnName="ProblemID" type="xs:int" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="ReportedProblem" msprop:Generator_ColumnVarNameInTable="columnReportedProblem" msprop:Generator_ColumnPropNameInRow="ReportedProblem" msprop:Generator_ColumnPropNameInTable="ReportedProblemColumn" msprop:Generator_UserColumnName="ReportedProblem" type="xs:string" />
+              <xs:element name="Employee" msprop:Generator_ColumnVarNameInTable="columnEmployee" msprop:Generator_ColumnPropNameInRow="Employee" msprop:Generator_ColumnPropNameInTable="EmployeeColumn" msprop:Generator_UserColumnName="Employee" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:opentrailerproblems" />
+      <xs:field xpath="mstns:ProblemID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -22,6 +22,8 @@ using NewEventLogDLL;
 using DataValidationDLL;
 using CableInventoryDLL;
 using NewPartNumbersDLL;
+using ProjectMatrixDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -37,6 +39,8 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         CableInventoryClass TheCableInventoryClass = new CableInventoryClass();
         PartNumberClass ThePartNumberClass = new PartNumberClass();
+        ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         FindPartsWarehousesDataSet TheFindPartsWarehousesDataSet = new FindPartsWarehousesDataSet();
         FindEmployeeByDepartmentDataSet TheFindEmployeeByDepartmentDataSet = new FindEmployeeByDepartmentDataSet();
@@ -44,6 +48,12 @@ namespace NewBlueJayERP
         FindCableReelIDByTransactionDateDataSet TheFindCableReelIDByTransactionDateDataSet = new FindCableReelIDByTransactionDateDataSet();
         FindPartByPartNumberDataSet TheFindPartByPartNumberDataSet = new FindPartByPartNumberDataSet();
         FindPartByJDEPartNumberDataSet TheFindPartByJDEPartNumberDataSet = new FindPartByJDEPartNumberDataSet();
+        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
+        FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
+        FindCableTotalInventoryByPartWarehouseDataSet TheFindCableTotalInventoryByPartWarehouseDataSet = new FindCableTotalInventoryByPartWarehouseDataSet();
+
+        int gintReelID;
+        bool gblnReelIDChecked;
 
         public AddCableReel()
         {
@@ -98,17 +108,19 @@ namespace NewBlueJayERP
         {
             int intCounter;
             int intNumberOfRecords;
-            string strFullName;
+            string strFullName;            
 
             try
             {
                 //clearing text boxes
-                txtAssignedCableID.Text = "";
+                txtAssignedReelID.Text = "";
                 txtPartDescription.Text = "";
                 txtPartNumber.Text = "";
                 txtPONumber.Text = "";
                 txtProjectID.Text = "";
                 txtReelFootage.Text = "";
+                lblWarehouseSelected.Content = "Select Warehouse";
+                gblnReelIDChecked = false;
 
                 cboSelectEmployee.Items.Clear();
                 cboSelectEmployee.Items.Add("Select Warehouse Employee");
@@ -139,6 +151,8 @@ namespace NewBlueJayERP
                 }
 
                 cboSelectWarehouse.SelectedIndex = 0;
+
+                
             }
             catch (Exception Ex)
             {
@@ -178,6 +192,7 @@ namespace NewBlueJayERP
 
             try
             {
+                expCheckPartNumber.IsExpanded = false;
                 strPartNumber = txtPartNumber.Text;
 
                 TheFindPartByPartNumberDataSet = ThePartNumberClass.FindPartByPartNumber(strPartNumber);
@@ -212,6 +227,280 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Cable Reel // Check Cable Reel " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expPartLookup_Expanded(object sender, RoutedEventArgs e)
+        {
+            expPartLookup.IsExpanded = false;
+            MainWindow.PartLookupWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expGetReelID_Expanded(object sender, RoutedEventArgs e)
+        {
+            string strPartNumber;
+            int intPartID;
+            string strCableReelID = "NOT ASSIGNED";
+            DateTime datTransactionDate = DateTime.Now;
+            bool blnFatalError = false;
+            int intRecordsReturned;
+
+            try
+            {
+                expGetReelID.IsExpanded = false;
+                strPartNumber = txtPartNumber.Text;
+
+                TheFindPartByPartNumberDataSet = ThePartNumberClass.FindPartByPartNumber(strPartNumber);
+
+                intRecordsReturned = TheFindPartByPartNumberDataSet.FindPartByPartNumber.Rows.Count;
+
+                if(intRecordsReturned < 1)
+                {
+                    TheMessagesClass.ErrorMessage("The Part Number was not Found");
+                    return;
+                }
+
+                if(cboSelectEmployee.SelectedIndex < 1)
+                {
+                    TheMessagesClass.ErrorMessage("The Employee Was Not Selected");
+                    return;
+                }
+
+                if(cboSelectWarehouse.SelectedIndex < 1)
+                {
+                    TheMessagesClass.ErrorMessage("The Warehouse Was Not Selected");
+                    return;
+                }
+
+                intPartID = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartID;
+
+                blnFatalError = TheCableInventoryClass.InsertCableReelID(datTransactionDate, intPartID, MainWindow.gintEmployeeID, strCableReelID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheFindCableReelIDByTransactionDateDataSet = TheCableInventoryClass.FindCableReelIDByTransactionDate(datTransactionDate);
+
+                gintReelID = TheFindCableReelIDByTransactionDateDataSet.FindCableReelIDByTransactionDate[0].CableReelID;
+
+                txtAssignedReelID.Text = Convert.ToString(gintReelID);
+                gblnReelIDChecked = true;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Cable Reel // Get Reel ID Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void cboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            try
+            {
+                intSelectedIndex = cboSelectEmployee.SelectedIndex - 1;
+
+                if(intSelectedIndex > -1)
+                {
+                    MainWindow.gintEmployeeID = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].EmployeeID;
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Cable Reel // Select Employee Combo Box " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void btnProcess_Click(object sender, RoutedEventArgs e)
+        {
+            bool blnThereIsAProblem = false;
+            bool blnFatalError = false;
+            string strErrorMessage = "";
+            string strProjectID;
+            string strPartNumber;
+            string strPONumber;
+            string strAssignedReelID;
+            int intReelFootage = 0;
+            int intRecordsReturned;
+            string strValueForValidation;
+            DateTime datTransactionDate = DateTime.Now;
+            int intPartID = 0;
+            int intTransactionID;
+            int intTotalFootage;
+
+            try
+            {
+                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Cable Reel ");
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                if (cboSelectWarehouse.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Warehouse Was Not Selected\n";
+                }
+                strProjectID = txtProjectID.Text;
+                if(strProjectID.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Project ID is not Long Enough\n";
+                }
+                else
+                {
+                    TheFindProjectMatrixByCustomerIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strProjectID);
+
+                    intRecordsReturned = TheFindProjectMatrixByCustomerIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
+
+                    if(intRecordsReturned < 1)
+                    {
+                        TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strProjectID);
+
+                        intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+
+                        if(intRecordsReturned < 1)
+                        {
+                            blnFatalError = true;
+                            strErrorMessage += "The Project ID Was Not Found\n";
+                        }
+                    }
+                    else if(intRecordsReturned > 0)
+                    {
+                        MainWindow.gintProjectID = TheFindProjectMatrixByCustomerIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+                    }
+                }
+                strPartNumber = txtPartNumber.Text;
+                if(strPartNumber.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Part Number is not Long Enough\n";
+                }
+                else
+                {
+                    TheFindPartByPartNumberDataSet = ThePartNumberClass.FindPartByPartNumber(strPartNumber);
+
+                    intRecordsReturned = TheFindPartByPartNumberDataSet.FindPartByPartNumber.Rows.Count;
+
+                    if(intRecordsReturned < 1)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The Part Number Was Not Found\n";
+                    }
+                    else if(intRecordsReturned > 0)
+                    {
+                        intPartID = TheFindPartByPartNumberDataSet.FindPartByPartNumber[0].PartID;
+                    }
+                }
+                if(cboSelectEmployee.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Employee Was Not Selected\n";
+                }
+                strPONumber = txtPONumber.Text;
+                if(strPONumber.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The MSR/PO Number is not Long Enough\n";
+                }
+                strAssignedReelID = txtAssignedReelID.Text;
+                if(strAssignedReelID.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Assigned Reel ID is not Long Enough\n";
+                }
+                else
+                {
+                    TheFindCableReelIDByAssignedCableReelIDDataSet = TheCableInventoryClass.FindCableReelIDByAssignedCableReelID(strAssignedReelID);
+
+                    intRecordsReturned = TheFindCableReelIDByAssignedCableReelIDDataSet.FindCableReelIDByAssignedCableReelID.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The Assigned Reel ID has been Used\n";
+                    }
+                }
+                strValueForValidation = txtReelFootage.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
+                if(blnThereIsAProblem == true)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Reel Footage is not an Integer\n";
+                }
+                else
+                {
+                    intReelFootage = Convert.ToInt32(strValueForValidation);
+                }
+                if(blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage(strErrorMessage);
+                    return;
+                }
+
+                //adding cable reel
+                if(gblnReelIDChecked == true)
+                {
+                    blnFatalError = TheCableInventoryClass.UpdateCableAssignedReelID(gintReelID, strAssignedReelID);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+                else if(gblnReelIDChecked == false)
+                {
+                    blnFatalError = TheCableInventoryClass.InsertCableReelID(datTransactionDate, intPartID, MainWindow.gintEmployeeID, strAssignedReelID);
+
+                    if (blnFatalError == true)
+                        throw new Exception();                    
+                }
+
+                TheFindCableReelIDByAssignedCableReelIDDataSet = TheCableInventoryClass.FindCableReelIDByAssignedCableReelID(strAssignedReelID);
+
+                gintReelID = TheFindCableReelIDByAssignedCableReelIDDataSet.FindCableReelIDByAssignedCableReelID[0].CableReelID;
+
+                //inserting the reel into the table
+                blnFatalError = TheCableInventoryClass.InsertCableReelInventory(intPartID, MainWindow.gintWarehouseID, strAssignedReelID, intReelFootage);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                //updating total footage
+                TheFindCableTotalInventoryByPartWarehouseDataSet = TheCableInventoryClass.FindCableTotalInventoryByPartWarehouse(MainWindow.gintWarehouseID, intPartID);
+
+                intRecordsReturned = TheFindCableTotalInventoryByPartWarehouseDataSet.FindCableTotalInventoryByPartWarehouse.Rows.Count;
+
+                if(intRecordsReturned > 0)
+                {
+                    intTransactionID = TheFindCableTotalInventoryByPartWarehouseDataSet.FindCableTotalInventoryByPartWarehouse[0].TransactionID;
+                    intTotalFootage = TheFindCableTotalInventoryByPartWarehouseDataSet.FindCableTotalInventoryByPartWarehouse[0].TotalFootage;
+
+                    intTotalFootage = intTotalFootage + intReelFootage;
+
+                    blnFatalError = TheCableInventoryClass.UpdateCableIventoryTotalFootage(intTransactionID, intTotalFootage);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+                else if(intRecordsReturned < 1)
+                {
+                    blnFatalError = TheCableInventoryClass.InsertCableTotalInventory(intPartID, MainWindow.gintWarehouseID, intReelFootage);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+
+                TheMessagesClass.InformationMessage("Cable Reel Has Been Received");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Cable Reel // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

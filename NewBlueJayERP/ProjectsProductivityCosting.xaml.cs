@@ -26,6 +26,8 @@ using DesignProductivityDLL;
 using AssignedTasksDLL;
 using System.Runtime.CompilerServices;
 using System.Security.Cryptography;
+using ToolProblemDLL;
+using System.CodeDom;
 
 namespace NewBlueJayERP
 {
@@ -343,6 +345,8 @@ namespace NewBlueJayERP
                     if(blnItemFound == false)
                     {
                         CompleteProjectProductivityDataSet.completeprojectproductivityRow NewProjectRow = TheCompleteProjectProductivityDataSet.completeprojectproductivity.NewcompleteprojectproductivityRow();
+
+                        decTotalCost = Math.Round(decTotalCost, 2);
 
                         NewProjectRow.AssignedProjectID = TheEmployeeProductivityDataSet.employeeproductivity[intCounter].AssignedProjectID;
                         NewProjectRow.ProjectID = intProjectID;

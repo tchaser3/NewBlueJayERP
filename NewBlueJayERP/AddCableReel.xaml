@@ -62,6 +62,8 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="372" Background="LightBlue">
             <Expander x:Name="expCheckPartNumber" Header="Check Part No." FontSize="16" Margin="10,1,1,1" Expanded="expCheckPartNumber_Expanded" />
+            <Expander x:Name="expPartLookup" Header="Part Lookup" FontSize="16" Margin="10,1,1,1" Expanded="expPartLookup_Expanded" />
+            <Expander x:Name="expGetReelID" Header="Get Reel ID" FontSize="16" Margin="10,1,1,1" Expanded="expGetReelID_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
@@ -78,16 +80,16 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
                 <Label x:Name="lblProjectID" Content="Project ID" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150"/>
-                <TextBox x:Name="txtProjectID" CharacterCasing="Upper" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
-                <Label x:Name="lblAssignedCableID" Content="Assigned Cable ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="150"/>
-                <TextBox x:Name="txtAssignedCableID" TabIndex="2" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtProjectID" FontSize="16" CharacterCasing="Upper" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
                 <Label x:Name="lblPartNumber" Content="Part Number" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" />
-                <TextBox x:Name="txtPartNumber" CharacterCasing="Upper" TabIndex="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtPartNumber" FontSize="16" CharacterCasing="Upper" TabIndex="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
+                <Label x:Name="lblSelectEmployee" Content="Select Employee"  HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="150"/>
+                <ComboBox x:Name="cboSelectEmployee" FontSize="16" TabIndex="3" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectEmployee_SelectionChanged"/>
+            </StackPanel>                      
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="342" Width="400" Margin="568,192,25.6,10">
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="100" Width="400">
@@ -96,18 +98,18 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
                 <Label x:Name="lblPONumber" Content="PO\MSR Number" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="150"/>
-                <TextBox x:Name="txtPONumber" TabIndex="4" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtPONumber" FontSize="16" TabIndex="4" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
-                <Label x:Name="lblSelectEmployee" Content="Select Employee"  HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="150"/>
-                <ComboBox x:Name="cboSelectEmployee" FontSize="16" TabIndex="5" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                <Label x:Name="lblAssignedReelID" Content="Assigned Reel ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="150"/>
+                <TextBox x:Name="txtAssignedReelID" TabIndex="5" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="200" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="400">
                 <Label x:Name="lblReelFootage" Content="Reel Footage" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150"/>
-                <TextBox x:Name="txtReelFootage" TabIndex="6" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtReelFootage" FontSize="16" TabIndex="6" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="75" Width="400">
-                <Button x:Name="btnProcess" TabIndex="7" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="28" Height="65" Width="150" Margin="45,5,1,1"/>
+                <Button x:Name="btnProcess" TabIndex="7" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="28" Height="65" Width="150" Margin="80,5,1,1" Click="btnProcess_Click"/>
             </StackPanel>
         </StackPanel>
     </Grid>

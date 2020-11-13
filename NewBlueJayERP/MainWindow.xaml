@@ -128,6 +128,7 @@
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expCompanyFootages" Header="Company Project Footages" Margin="10,1,1,1" FontSize="16" Expanded="expCompanyFootages_Expanded"/>
+                                <Expander x:Name="expProjectShopAnalysis" Header="Project Shop Analysis" Margin="10,1,1,1" FontSize="16" Expanded="expProjectShopAnalysis_Expanded" />
                                 <Expander x:Name="expProjectProductivityReport" Header="Project Productivity Report" Margin=" 10,1,1,1" Expanded="expProjectProductivityReport_Expanded"/>
                                 <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" Margin="10,1,1,1" Expanded="expEmployeeProjectLaborReport_Expanded"/>
                                 <Expander x:Name="expAllProjectProductivityCosting" Header="All Project Productivity Costing" Margin="10,1,1,1" Expanded="expAllProjectProductivityCosting_Expanded" />
@@ -167,7 +168,7 @@
                         </Expander>
                         <Expander x:Name="expInventoryAdministration" Header="Inventory Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryAdministration_Expanded">
                             <StackPanel>
-                                
+                                <Expander x:Name="expInventoryImport" Header="Inventory Import" Margin="10,1,1,1" Expanded="expInventoryImport_Expanded"/>
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expPurchasing" Header="Purchasing Module" ExpandDirection="Right" Background="LightBlue" Margin="20,1,1,1">
@@ -244,7 +245,9 @@
                 <Expander x:Name="expTrailers" Header="Trailers" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expTrailers_Expanded">
                     <StackPanel Margin="29,1,1,1" Background="LightBlue">
                         <Expander x:Name="expTrailerDataEntry" Header="Trailer Data Entry" ExpandDirection="Right" Background="LightBlue" Margin="15,1,1,1" Expanded="expTrailerDataEntry_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expUpdateTrailerProblem" Header="Update Trailer Problem" Margin="25,1,1,1" Expanded="expUpdateTrailerProblem_Expanded"/>
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expTrailerReports" Header="Trailer Reports" ExpandDirection="Right" Background="LightBlue" Margin="25,1,1,1" Expanded="expTrailerReports_Expanded">
 
