@@ -19,6 +19,8 @@ using RentalTrackingDLL;
 using InspectionsDLL;
 using System.Security.Policy;
 using System.Runtime.CompilerServices;
+using ProjectMatrixDLL;
+using DateSearchDLL;
 
 namespace NewBlueJayERP
 {
@@ -31,6 +33,9 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
+        ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the public classes
         public static VerifyLogonDataSet TheVerifyLogonDataSet = new VerifyLogonDataSet();
@@ -38,6 +43,8 @@ namespace NewBlueJayERP
         public static FindSessionByEmployeeIDDataSet TheFindSessionByEmployeeIDDataSet = new FindSessionByEmployeeIDDataSet();
         public static FindRentalTrackingTransactionsByPONumberDataSet TheFindRentalTrackingTransactionsByPONumberDataSet = new FindRentalTrackingTransactionsByPONumberDataSet();
         public static FindRentalTransactionByProjectIDDataSet TheFindRentalTransactionByProjectIDDataSet = new FindRentalTransactionByProjectIDDataSet();
+        ProjectLastDateDataSet TheProjectLastDateDataSet = new ProjectLastDateDataSet();
+        FindProjectMatrixByGreaterDateDataSet TheFindProjectMatrixByGreaterDateDataSet = new FindProjectMatrixByGreaterDateDataSet();
 
         //setting global variables
         public static bool gblnLoggedIn;
@@ -128,6 +135,7 @@ namespace NewBlueJayERP
         public static ProjectShopAnalysis ProjectShopAnalysisWindow = new ProjectShopAnalysis();
         public static ImportInventory ImportInventoryWindow = new ImportInventory();
         public static UpdateTrailerProblems UpdateTrailerProblemsWindow = new UpdateTrailerProblems();
+        public static AddDepartment AddDepartmentWindow = new AddDepartment();
 
         public MainWindow()
         {
@@ -216,6 +224,7 @@ namespace NewBlueJayERP
             ProjectShopAnalysisWindow.Visibility = Visibility.Hidden;
             ImportInventoryWindow.Visibility = Visibility.Hidden;
             UpdateTrailerProblemsWindow.Visibility = Visibility.Hidden;
+            AddDepartmentWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -472,7 +481,102 @@ namespace NewBlueJayERP
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            SendNewProjectReport();
+
             EmployeeSignsIn();
+        }
+        private void SendNewProjectReport()
+        {
+            DateTime datTodaysDate = DateTime.Now;
+            DateTime datLastDate;
+            int intCounter;
+            int intNumberOfRecords;
+            string strEmailAddress = "newprojectnotificationdll@bluejaycommunications.com";
+            string strHeader = "New Projects Created";
+            string strMessage;
+            string strManager;
+            DateTime datTransactionDate;
+            string strCustomerProjectID;
+            string strAssignedProjectID;
+            string strProjectName;
+            string strDepartment;
+            bool blnFatalError = false;
+            int intTransactionID;
+
+            try
+            {
+                TheProjectLastDateDataSet = TheProjectMatrixClass.GetProjectLastDateInfo();
+
+                datLastDate = TheProjectLastDateDataSet.projectlastdate[0].LastDate;
+                intTransactionID = TheProjectLastDateDataSet.projectlastdate[0].TransactionID;
+
+                datLastDate = TheDateSearchClass.RemoveTime(datLastDate);
+
+                datTodaysDate = TheDateSearchClass.RemoveTime(datTodaysDate);
+
+                if((datTodaysDate.DayOfWeek != DayOfWeek.Saturday) || (datTodaysDate.DayOfWeek != DayOfWeek.Sunday))
+                {
+                    if(datLastDate < datTodaysDate)
+                    {
+                        strMessage = "<h1>New Projects Created</h1>";
+                        strMessage += "<table>";
+                        strMessage += "<tr>";
+                        strMessage += "<td><b>Date</b></td>";
+                        strMessage += "<td><b>Customer Project ID</b></td>";
+                        strMessage += "<td><b>Assigned Project ID</b></td>";
+                        strMessage += "<td><b>Project Name</b></td>";
+                        strMessage += "<td><b>Department</b></td>";
+                        strMessage += "<td><b>Assigned Manager</b></td>";
+                        strMessage += "</tr>";
+                        strMessage += "<p>               </p>";
+
+                        TheFindProjectMatrixByGreaterDateDataSet = TheProjectMatrixClass.FindProjectMatrixByGreaterDate(datLastDate);
+
+                        intNumberOfRecords = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate.Rows.Count;
+
+                        if(intNumberOfRecords > 0)
+                        {
+                            for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                            {
+                                datTransactionDate = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].TransactionDate;
+                                strCustomerProjectID = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].CustomerAssignedID;
+                                strAssignedProjectID = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].AssignedProjectID;
+                                strProjectName = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].ProjectName;
+                                strDepartment = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].Department;
+                                strManager = TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].FirstName + " ";
+                                strManager += TheFindProjectMatrixByGreaterDateDataSet.FindProjectMatrixByGreaterDate[intCounter].LastName;
+
+                                strMessage += "<tr>";
+                                strMessage += "<td>" + Convert.ToString(datTransactionDate) + "</td>";
+                                strMessage += "<td>" + strCustomerProjectID + "</td>";
+                                strMessage += "<td>" + strAssignedProjectID + "</td>";
+                                strMessage += "<td>" + strProjectName + "</td>";
+                                strMessage += "<td>" + strDepartment + "</td>";
+                                strMessage += "<td>" + strManager + "</td>";
+                                strMessage += "</tr>";
+                            }
+                        }
+
+                        strMessage += "</table>";
+
+                        blnFatalError = !(TheSendEmailClass.SendEmail(strEmailAddress, strHeader, strMessage));
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+
+                        blnFatalError = TheProjectMatrixClass.UpdateProjectLastDate(intTransactionID, datTodaysDate);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Main Window // Send New Project Report " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
         private void EmployeeSignsIn()
         {
@@ -1335,6 +1439,30 @@ namespace NewBlueJayERP
             expTrailers.IsExpanded = false;
             expTrailerDataEntry.IsExpanded = false;
             expUpdateTrailerProblem.IsExpanded = false;
+        }
+
+        private void expAddDepartment_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            AddDepartmentWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetEmployeeAdministration()
+        {
+            expEmployees.IsExpanded = false;
+            expEmployeeAdministration.IsExpanded = false;
+            expAddDepartment.IsExpanded = false;
+            expAddEmployee.IsExpanded = false;
+            expAddEmployeeGroups.IsExpanded = false;
+            expAddEmployeeToVehicleEmailList.IsExpanded = false;
+            expCreateFuelCardNumber.IsExpanded = false;
+            expEditEmployee.IsExpanded = false;
+            expEditFuelCard.IsExpanded = false;
+            expFuelCardPINReport.IsExpanded = false;
+            expEmployeeLaborRate.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
+            expImportEmployeePunches.IsExpanded = false;
+            expManuallAddFuelPin.IsExpanded = false;
+            expTerminateEmployee.IsExpanded = false;
         }
     }
 }

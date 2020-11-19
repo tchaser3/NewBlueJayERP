@@ -89,7 +89,7 @@
                         </Expander>
                         <Expander x:Name="expEmployeeAdministration" Header="Employees Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeAdministration_Expanded">
                             <StackPanel>
-                                <Expander x:Name="expAddDepartment" Header="Add Department" />
+                                <Expander x:Name="expAddDepartment" Header="Add Department" Expanded="expAddDepartment_Expanded" />
                                 <Expander x:Name="expAddEmployee" Header="Add Employee" />
                                 <Expander x:Name="expAddEmployeeGroups"  Header="Add Employee Groups" />
                                 <Expander x:Name="expAddEmployeeToVehicleEmailList" Header="Add Employee To Vehicle Email List" />

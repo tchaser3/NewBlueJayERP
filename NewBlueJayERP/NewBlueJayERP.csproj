@@ -221,6 +221,9 @@
     <Reference Include="ProjectMatrixDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectMatrixDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ProjectNumberAssignmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\ProjectNumberAssignmentDLL.dll</HintPath>
+    </Reference>
     <Reference Include="ProjectProductivityReportsDLL">
       <HintPath>..\..\Blue Jay Class Library\ProjectProductivityReportsDLL.dll</HintPath>
     </Reference>
@@ -416,6 +419,9 @@
     </Compile>
     <Compile Include="AddCableReel.xaml.cs">
       <DependentUpon>AddCableReel.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddDepartment.xaml.cs">
+      <DependentUpon>AddDepartment.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
@@ -767,6 +773,10 @@
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddCableReel.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddDepartment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

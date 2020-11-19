@@ -70,33 +70,39 @@
             <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="427" Width="310" Margin="155,155,327,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
+                <Label x:Name="lblSelectDepartment" Content="Select Department"  FontSize="12" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="25"/>
+                <ComboBox x:Name="cboSelectDepartment" IsReadOnly="True" TabIndex="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Margin="10,1,1,1" Width="165" SelectionChanged="cboSelectDepartment_SelectionChanged"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="40" Width="310">
+                <Label x:Name="lblOver2500" Content="Over 2500" HorizontalAlignment="Center" HorizontalContentAlignment="Right" FontSize="12" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
+                <RadioButton x:Name="rdoYes" Content="Yes" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="30,1,1,1" Checked="rdoYes_Checked"/>
+                <RadioButton x:Name="rdoNo" Content="No" TabIndex="2" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="30,1,1,1" Checked="rdoNo_Checked"/>
+            </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="310" Height="40">
                 <Label x:Name="lblCustomerProjectID" Content="Customer Project ID"  FontSize="12" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="35"/>
-                <TextBox x:Name="txtCustomerProjectID" TabIndex="0" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1" TextChanged="txtCustomerProjectID_TextChanged" />
+                <TextBox x:Name="txtCustomerProjectID" TabIndex="3" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1" TextChanged="txtCustomerProjectID_TextChanged" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblAssignedProjectId" Content="Assigned Project ID" FontFamily="12" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <TextBox x:Name="txtAssignedProjectID" TabIndex="1" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1" TextChanged="txtAssignedProjectID_TextChanged"/>
+                <TextBox x:Name="txtAssignedProjectID" TabIndex="4" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1" TextChanged="txtAssignedProjectID_TextChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="310" Height="80">
                 <Label x:Name="lblProjectName" Content="Project Name"  FontSize="12" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="25"/>
-                <TextBox x:Name="txtProjectName" TabIndex="2" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                <TextBox x:Name="txtProjectName" TabIndex="5" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
-                <Label x:Name="lblSelectDepartment" Content="Select Department"  FontSize="12" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="25"/>
-                <ComboBox x:Name="cboSelectDepartment" IsReadOnly="True" TabIndex="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Margin="10,1,1,1" Width="165" SelectionChanged="cboSelectDepartment_SelectionChanged"/>
-            </StackPanel>
+            
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Width="310" Height="80">
                 <Label x:Name="lblAddress" Content="Address"  FontSize="12" HorizontalContentAlignment="Right" HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="25"/>
-                <TextBox x:Name="txtAddress" TabIndex="4" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                <TextBox x:Name="txtAddress" TabIndex="6" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblCity" Content="City" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="30"/>
-                <TextBox x:Name="txtCity" CharacterCasing="Upper" TabIndex="5" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtCity" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblState" Content="State" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125" Height="30"/>
-                <TextBox x:Name="txtState" CharacterCasing="Upper" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtState" CharacterCasing="Upper" TabIndex="8" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="12" Height="35" Width="165" Margin="10,1,1,1"/>
             </StackPanel>
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="427" Width="310" Margin="472,155,10,10">
@@ -110,27 +116,27 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblSelectManager" Content="Select Manager" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <ComboBox x:Name="cboSelectManager" IsReadOnly="True" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" Height="35" Width="165" SelectionChanged="cboSelectManager_SelectionChanged"/>
+                <ComboBox x:Name="cboSelectManager" IsReadOnly="True" TabIndex="9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" Height="35" Width="165" SelectionChanged="cboSelectManager_SelectionChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblSelectOffice" Content="Select Office" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <ComboBox x:Name="cboSelectOffice" IsReadOnly="True" TabIndex="8" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" Height="35" Width="165" SelectionChanged="cboSelectOffice_SelectionChanged"/>
+                <ComboBox x:Name="cboSelectOffice" IsReadOnly="True" TabIndex="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" Height="35" Width="165" SelectionChanged="cboSelectOffice_SelectionChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblDateReceived" Content="Date Received" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <TextBox x:Name="txtDateReceived" CharacterCasing="Upper" TabIndex="9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="165" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtDateReceived" CharacterCasing="Upper" TabIndex="11" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="165" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblECDDate" Content="ECD Date" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <TextBox x:Name="txtECDDate" CharacterCasing="Upper" TabIndex="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="165" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtECDDate" CharacterCasing="Upper" TabIndex="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="165" Margin="10,1,1,1"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="310">
                 <Label x:Name="lblSelectStatus" Content="Select Status" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <ComboBox x:Name="cboSelectStatus" IsReadOnly="True" TabIndex="11" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" Height="35" Width="165" SelectionChanged="cboSelectStatus_SelectionChanged"/>
+                <ComboBox x:Name="cboSelectStatus" IsReadOnly="True" TabIndex="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="10,1,1,1" Height="35" Width="165" SelectionChanged="cboSelectStatus_SelectionChanged"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="310">
                 <Label x:Name="lblProjectNotes" Content="Project Notes" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
-                <TextBox x:Name="txtPRojectNotes" CharacterCasing="Upper" TabIndex="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                <TextBox x:Name="txtPRojectNotes" CharacterCasing="Upper" TabIndex="14" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
             </StackPanel>
         </StackPanel>
     </Grid>

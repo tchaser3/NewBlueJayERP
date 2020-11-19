@@ -29,6 +29,7 @@ using EmployeeDateEntryDLL;
 using ProjectMatrixDLL;
 using System.Runtime.Serialization;
 using ProductionProjectDLL.FindProdutionProjectsByAssignedProjectIDDataSetTableAdapters;
+using ProjectNumberAssignmentDLL;
 
 namespace NewBlueJayERP
 {
@@ -49,13 +50,14 @@ namespace NewBlueJayERP
         WorkOrderClass TheWorkOrderClass = new WorkOrderClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
+        ProjectNumberAssignment TheProjectNumberAssignmentClass = new ProjectNumberAssignment();
 
         //setting up the data
         
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsbyAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
         FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
-        FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
+        FindSortedCustomerLinesDataSet TheFindSortedCustomerLinesDataSet = new FindSortedCustomerLinesDataSet();
         FindWorkOrderStatusSortedDataSet TheFindWorkOrderStatusSortedDataSet = new FindWorkOrderStatusSortedDataSet();
         FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
         FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrxiByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
@@ -73,6 +75,7 @@ namespace NewBlueJayERP
         int gintProjectID;
         bool gblnProjectExists;
         bool gblnProjectMatrixExists;
+        bool gblnOver2500;
 
         public AddProject()
         {
@@ -115,6 +118,7 @@ namespace NewBlueJayERP
             //setting up the variabvles
             int intCounter;
             int intNumberOfRecords;
+            int intSelectedIndex = 0;
 
             txtAssignedProjectID.Text = "";
             txtCustomerProjectID.Text = "";
@@ -138,13 +142,13 @@ namespace NewBlueJayERP
             cboSelectDepartment.Items.Clear();
             cboSelectDepartment.Items.Add("Select Department");
 
-            TheFindSortedDepartmentDataSet = TheDepartmentClass.FindSortedDepartment();
+            TheFindSortedCustomerLinesDataSet = TheDepartmentClass.FindSortedCustomerLines();
 
-            intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+            intNumberOfRecords = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines.Rows.Count - 1;
 
             for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
             {
-                cboSelectDepartment.Items.Add(TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].Department);
+                cboSelectDepartment.Items.Add(TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intCounter].Department);
             }
 
             cboSelectDepartment.SelectedIndex = 0;
@@ -171,19 +175,45 @@ namespace NewBlueJayERP
             for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
             {
                 cboSelectStatus.Items.Add(TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].WorkOrderStatus);
+
+                if(TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].WorkOrderStatus == "OPEN")
+                {
+                    intSelectedIndex = intCounter + 1;
+                }
             }
 
-            cboSelectStatus.SelectedIndex = 0;
+            cboSelectStatus.SelectedIndex = intSelectedIndex;
+            rdoNo.IsEnabled = false;
+            rdoYes.IsEnabled = false;
+
         }
 
         private void cboSelectDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int intSelectedIndex;
+            string strAssignedProjectID;
 
             intSelectedIndex = cboSelectDepartment.SelectedIndex - 1;
+            rdoNo.IsEnabled = false;
+            rdoYes.IsEnabled = false;
 
             if (intSelectedIndex > -1)
-                gintDepartmentID = TheFindSortedDepartmentDataSet.FindSortedDepartment[intSelectedIndex].DepartmentID;
+            {
+                gintDepartmentID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intSelectedIndex].DepartmentID;
+
+                if (gintDepartmentID == 1009)
+                {
+                    rdoNo.IsEnabled = true;
+                    rdoYes.IsEnabled = true;
+                }
+                else
+                {
+                    strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
+
+                    txtAssignedProjectID.Text = strAssignedProjectID;
+                }
+            }
+                
         }
 
         private void cboSelectManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -589,11 +619,11 @@ namespace NewBlueJayERP
 
                                 intDepartmentID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].DepartmentID;
 
-                                intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+                                intNumberOfRecords = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines.Rows.Count - 1;
 
                                 for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                                 {
-                                    if(intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                                    if(intDepartmentID == TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intCounter].DepartmentID)
                                     {
                                         intSelectedIndex = intCounter + 1;
                                     }
@@ -710,11 +740,11 @@ namespace NewBlueJayERP
                                             intOfficeID = TheFindProjectMatrixByProjectIDDataSet.FindProjectMatrixByProjectID[0].WarehouseID;
 
                                             //setting up combo boxes
-                                            intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+                                            intNumberOfRecords = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines.Rows.Count - 1;
 
                                             for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                                             {
-                                                if (intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                                                if (intDepartmentID == TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intCounter].DepartmentID)
                                                 {
                                                     intSelectedIndex = intCounter + 1;
                                                 }
@@ -798,6 +828,21 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void rdoYes_Checked(object sender, RoutedEventArgs e)
+        {
+            string strAssignedProjectID;
+
+            gblnOver2500 = true;
+            strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
+
+            txtAssignedProjectID.Text = strAssignedProjectID;
+        }
+
+        private void rdoNo_Checked(object sender, RoutedEventArgs e)
+        {
+            gblnOver2500 = false;
         }
     }
 }

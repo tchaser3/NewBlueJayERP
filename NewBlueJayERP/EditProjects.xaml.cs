@@ -54,7 +54,7 @@ namespace NewBlueJayERP
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsbyAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
         FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
-        FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
+        FindSortedCustomerLinesDataSet TheFindSortedCustomerLinesDataSet = new FindSortedCustomerLinesDataSet();
         FindWorkOrderStatusSortedDataSet TheFindWorkOrderStatusSortedDataSet = new FindWorkOrderStatusSortedDataSet();
         FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
         FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrxiByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
@@ -144,13 +144,13 @@ namespace NewBlueJayERP
             cboSelectDepartment.Items.Clear();
             cboSelectDepartment.Items.Add("Select Department");
 
-            TheFindSortedDepartmentDataSet = TheDepartmentClass.FindSortedDepartment();
+            TheFindSortedCustomerLinesDataSet = TheDepartmentClass.FindSortedCustomerLines();
 
-            intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+            intNumberOfRecords = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines.Rows.Count - 1;
 
             for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
             {
-                cboSelectDepartment.Items.Add(TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].Department);
+                cboSelectDepartment.Items.Add(TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intCounter].Department);
             }
 
             cboSelectDepartment.SelectedIndex = 0;
@@ -226,7 +226,10 @@ namespace NewBlueJayERP
             intSelectedIndex = cboSelectDepartment.SelectedIndex - 1;
 
             if (intSelectedIndex > -1)
-                gintDepartmentID = TheFindSortedDepartmentDataSet.FindSortedDepartment[intSelectedIndex].DepartmentID;
+            {
+                gintDepartmentID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intSelectedIndex].DepartmentID;
+            }
+                
         }
 
         private void cboSelectManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -371,11 +374,11 @@ namespace NewBlueJayERP
 
                 cboSelectManager.SelectedIndex = intSelectedIndex;
 
-                intNumberOfRecords = TheFindSortedDepartmentDataSet.FindSortedDepartment.Rows.Count - 1;
+                intNumberOfRecords = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines.Rows.Count - 1;
 
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
-                    if (intDepartmentID == TheFindSortedDepartmentDataSet.FindSortedDepartment[intCounter].DepartmentID)
+                    if (intDepartmentID == TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intCounter].DepartmentID)
                     {
                         intSelectedIndex = intCounter + 1;
                     }
@@ -478,6 +481,12 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage("Project Not Found");
                 return;
             }
+            else
+            {
+                gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+
+                FillControls();
+            }
         }
 
         private void expUpdateStatus_Expanded(object sender, RoutedEventArgs e)
@@ -505,6 +514,161 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Projects // Update Status Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expProcess_Expanded(object sender, RoutedEventArgs e)
+        {
+            string strCustomerProjectID;
+            string strAssignedProjectID;
+            string strProjectName;
+            string strAddress;
+            string strCity;
+            string strState;
+            DateTime datECDDate = DateTime.Now;
+            string strProjectNotes;
+            bool blnThereIsAProblem = false;
+            bool blnFatalError = false;
+            string strErrorMessage = "";
+            int intRecordsReturned;
+            string strValueForValidation;
+            int intTransactionID = 0;
+
+            try
+            {
+                expProcess.IsExpanded = false;
+
+                strCustomerProjectID = txtCustomerProjectID.Text;
+                if(strCustomerProjectID.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Customer Project ID was not Found\n";
+                }
+                else
+                {
+                    TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerProjectID);
+
+                    intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
+
+                    if(intRecordsReturned < 1)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The Customer Project ID Was not Found\n";
+                    }
+                    else if(intRecordsReturned > 0)
+                    {
+                        gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+                        intTransactionID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].TransactionID;
+                    }
+                }
+                strAssignedProjectID = txtAssignedProjectID.Text;
+                if(strAssignedProjectID.Length < 7)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Assigned Project ID Was not Entered\n";
+                }
+                strProjectName = txtProjectName.Text;
+                if(strProjectName.Length < 10)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Project Name was not Long Enough\n";
+                }
+                if(cboSelectDepartment.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Department Was Not Selected\n";
+                }
+                strAddress = txtAddress.Text;
+                if(strAddress.Length < 5)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Address is not Long Enough\n";
+                }
+                strCity = txtCity.Text;
+                if(strCity.Length < 3)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The City was not Entered\n";
+                }
+                strState = txtState.Text;
+                if (strState.Length < 2)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The State was not Entered\n";
+                }
+                if (cboSelectManager.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Manager Was Not Selected\n";
+                }
+                if(cboSelectOffice.SelectedIndex < 1)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Office Was Not Selected\n";
+                }
+                strValueForValidation = txtECDDate.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if(blnThereIsAProblem == true)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The ECD Date is not a Date\n";
+                }
+                else
+                {
+                    datECDDate = Convert.ToDateTime(strValueForValidation);
+                }
+                strProjectNotes = txtPRojectNotes.Text;
+                if(strProjectNotes.Length < 10)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Project Notes are not Long Enough\n";
+                }
+                if(blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage(strErrorMessage);
+                    return;
+                }
+
+                blnFatalError = TheProjectMatrixClass.UpdateProjectMatrixAssignedProjectID(intTransactionID, strAssignedProjectID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProjectMatrixClass.UpdateProjectMatrixItems(intTransactionID, gintOfficeID, gintDepartmentID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProjectClass.UpdateProjectProject(gintProjectID, strCustomerProjectID, strProjectName);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
+
+                intRecordsReturned = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID.Rows.Count;
+
+                if(intRecordsReturned < 1)
+                {
+                    throw new Exception();
+                }
+
+                intTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
+
+                blnFatalError = TheProductionProjectClass.UpdateProductionProject(intTransactionID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datECDDate, strProjectNotes);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("The Project Has Been Updated");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Projects // Proces Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
