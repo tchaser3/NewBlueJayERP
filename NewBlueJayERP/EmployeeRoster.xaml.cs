@@ -33,7 +33,7 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
-        EmployeeDateEntryClass employeeDateEntryClass = new EmployeeDateEntryClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         FindActiveEmployeesDataSet TheFindActiveEmployeeDataSet = new FindActiveEmployeesDataSet();
@@ -144,6 +144,8 @@ namespace NewBlueJayERP
                 }
 
                 dgrEmployees.ItemsSource = TheActiveEmployeeDataSet.activeemployees;
+
+                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Employee Roster");
             }
             catch (Exception Ex)
             {

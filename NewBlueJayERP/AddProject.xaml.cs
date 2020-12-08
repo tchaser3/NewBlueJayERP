@@ -377,6 +377,14 @@ namespace NewBlueJayERP
                 else
                 {
                     datECDDate = Convert.ToDateTime(strValueForValidation);
+
+                    blnThereIsAProblem = TheDataValidationClass.verifyDateRange(DateTime.Now, datECDDate);
+
+                    if(blnThereIsAProblem == true)
+                    {
+                        blnFatalError = true;
+                        strErrorMesssage += "The ECD Date is before today\n";
+                    }
                 }
                 strProjectNotes = txtPRojectNotes.Text;
                 if(strProjectNotes.Length < 1)

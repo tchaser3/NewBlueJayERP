@@ -520,6 +520,9 @@
     <Compile Include="EmployeeLogin.xaml.cs">
       <DependentUpon>EmployeeLogin.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeLookup.xaml.cs">
+      <DependentUpon>EmployeeLookup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeProductivityDataSet.cs">
       <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
     </Compile>
@@ -927,6 +930,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeLogin.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeLookup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

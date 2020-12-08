@@ -142,6 +142,7 @@ namespace NewBlueJayERP
         public static JSIProjectReports JSIProjectReportWindow = new JSIProjectReports();
         public static VoidInventoryTransaction VoidInventoryTransactionWindow = new VoidInventoryTransaction();
         public static EmployeeRoster EmployeeRosterWindow = new EmployeeRoster();
+        public static EmployeeLookup EmployeeLookupWindow = new EmployeeLookup();
 
         public MainWindow()
         {
@@ -237,6 +238,7 @@ namespace NewBlueJayERP
             JSIProjectReportWindow.Visibility = Visibility.Hidden;
             VoidInventoryTransactionWindow.Visibility = Visibility.Hidden;
             EmployeeRosterWindow.Visibility = Visibility.Hidden;
+            EmployeeLookupWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1540,6 +1542,15 @@ namespace NewBlueJayERP
             expEmployeePunchedVsProductionHours.IsExpanded = false;
             expEmployeeRoster.IsExpanded = false;
             expViewEmployeePunches.IsExpanded = false;
+            expEmployeeLookup.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expEmployeeReports.IsExpanded = false;
+        }
+
+        private void expEmployeeLookup_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            EmployeeLookupWindow.Visibility = Visibility.Visible;
         }
     }
 }

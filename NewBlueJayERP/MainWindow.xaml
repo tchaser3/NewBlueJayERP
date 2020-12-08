@@ -85,6 +85,7 @@
                                 <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" />
                                 <Expander x:Name="expEmployeeRoster" Header="Employee Roster" Expanded="expEmployeeRoster_Expanded" />
                                 <Expander x:Name="expViewEmployeePunches" Header="View Employee Punches" />
+                                <Expander x:Name="expEmployeeLookup" Header="Employee Lookup" Expanded="expEmployeeLookup_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expEmployeeAdministration" Header="Employees Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeAdministration_Expanded">
