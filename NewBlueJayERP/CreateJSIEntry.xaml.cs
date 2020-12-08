@@ -23,9 +23,9 @@ using DataValidationDLL;
 using JSIMainDLL;
 using VehicleMainDLL;
 using DepartmentDLL;
-using ProjectsDLL;
 using DateSearchDLL;
 using EmployeeDateEntryDLL;
+using ProjectMatrixDLL;
 
 namespace NewBlueJayERP
 {
@@ -42,12 +42,13 @@ namespace NewBlueJayERP
         VehicleMainClass TheVehicleMainClass = new VehicleMainClass();
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         DepartmentClass TheDepartmentClass = new DepartmentClass();
-        ProjectClass TheProjectClass = new ProjectClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
+        ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
 
         //setting up the data
-        FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
+        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
+        FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
         FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
         FindActiveVehicleMainByVehicleNumberDataSet TheFindActiveVehicleMainByVehicleNumberDataSet = new FindActiveVehicleMainByVehicleNumberDataSet();
         JSIEmployeeAssignedDataSet TheJSIEmployeeAssignedDataSet = new JSIEmployeeAssignedDataSet();
@@ -207,18 +208,31 @@ namespace NewBlueJayERP
                     //getting the project id
                     strAssignedProjectID = txtAssignedProjectID.Text;
 
-                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strAssignedProjectID);
+                    TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strAssignedProjectID);
 
-                    intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
+                    intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
 
                     if (intRecordsReturned < 1)
                     {
-                        TheMessagesClass.ErrorMessage("The Assigned Project ID Does Not Exist");
-                        return;
+                        TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strAssignedProjectID);
+
+                        intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+
+                        if(intRecordsReturned > 0)
+                        {
+                            MainWindow.gintProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
+                        }
+                        else if(intRecordsReturned < 1)
+                        {
+                            TheMessagesClass.ErrorMessage("The Assigned Project ID Does Not Exist");
+                            return;
+                        }
+                            
+                        
                     }
                     else
                     {
-                        MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
+                        MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
                     }
 
                     cboSelectEmployee.Items.Clear();
@@ -407,18 +421,29 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strAssignedProjectID);
+                    TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strAssignedProjectID);
 
-                    intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
+                    intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
 
                     if(intRecordsReturned < 1)
                     {
-                        blnFatalError = true;
-                        strErrorMessage += "The Project Was Not Found\n";
+                        TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strAssignedProjectID);
+
+                        intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+
+                        if(intRecordsReturned > 0)
+                        {
+                            MainWindow.gintProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
+                        }
+                        else if(intRecordsReturned < 1)
+                        {
+                            blnFatalError = true;
+                            strErrorMessage += "The Project Was Not Found\n";
+                        }
                     }
                     else
                     {
-                        MainWindow.gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
+                        MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
                     }
 
                 }

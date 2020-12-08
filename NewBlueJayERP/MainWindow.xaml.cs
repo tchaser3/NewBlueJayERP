@@ -136,6 +136,12 @@ namespace NewBlueJayERP
         public static ImportInventory ImportInventoryWindow = new ImportInventory();
         public static UpdateTrailerProblems UpdateTrailerProblemsWindow = new UpdateTrailerProblems();
         public static AddDepartment AddDepartmentWindow = new AddDepartment();
+        public static CreateToolProblem CreateToolProblemWindow = new CreateToolProblem();
+        public static UpdateToolProblem UpdateToolProblemWindow = new UpdateToolProblem();
+        public static ImportPrices ImportPricesWindow = new ImportPrices();
+        public static JSIProjectReports JSIProjectReportWindow = new JSIProjectReports();
+        public static VoidInventoryTransaction VoidInventoryTransactionWindow = new VoidInventoryTransaction();
+        public static EmployeeRoster EmployeeRosterWindow = new EmployeeRoster();
 
         public MainWindow()
         {
@@ -225,6 +231,12 @@ namespace NewBlueJayERP
             ImportInventoryWindow.Visibility = Visibility.Hidden;
             UpdateTrailerProblemsWindow.Visibility = Visibility.Hidden;
             AddDepartmentWindow.Visibility = Visibility.Hidden;
+            CreateToolProblemWindow.Visibility = Visibility.Hidden;
+            UpdateToolProblemWindow.Visibility = Visibility.Hidden;
+            ImportPricesWindow.Visibility = Visibility.Hidden;
+            JSIProjectReportWindow.Visibility = Visibility.Hidden;
+            VoidInventoryTransactionWindow.Visibility = Visibility.Hidden;
+            EmployeeRosterWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -623,6 +635,7 @@ namespace NewBlueJayERP
             expHelpDeskTicketsReport.IsEnabled = true;
             expServerAuditLogReport.IsExpanded = true;
             expToolProblems.IsEnabled = true;
+            expEmployeeReports.IsEnabled = true;
 
         }
         private void SetEmployeeSecurity()
@@ -650,6 +663,7 @@ namespace NewBlueJayERP
                     expServerAuditLogReport.IsEnabled = false;
                     expToolProblems.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
+                    expEmployeeReports.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -712,6 +726,7 @@ namespace NewBlueJayERP
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
+                    expEmployeeReports.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "SUPER USER")
                 {
@@ -842,17 +857,13 @@ namespace NewBlueJayERP
 
         private void expEmployeeHoursPunched_Expanded(object sender, RoutedEventArgs e)
         {
-            expEmployeeHoursPunched.IsExpanded = false;
-            expEmployeeReports.IsExpanded = false;
-            expEmployees.IsExpanded = false;
+            ResetEmployeeReportExpanders();
             EmployeeHoursPunchedWindow.Visibility = Visibility.Visible;
         }
 
         private void expManagerHourlyDailyReport_Expanded(object sender, RoutedEventArgs e)
         {
-            expManagerHourlyDailyReport.IsExpanded = false;
-            expEmployeeRoster.IsExpanded = false;
-            expEmployees.IsExpanded = false;
+            ResetEmployeeReportExpanders();
             ManagerHourlyDailyReportWindow.Visibility = Visibility.Visible;
         }
 
@@ -1427,6 +1438,8 @@ namespace NewBlueJayERP
             expInventory.IsExpanded = false;
             expInventoryAdministration.IsExpanded = false;
             expInventoryImport.IsExpanded = false;
+            expImportPrices.IsExpanded = false;
+            expVoidInventoryTransaction.IsExpanded = false;
         }
 
         private void expUpdateTrailerProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1463,6 +1476,70 @@ namespace NewBlueJayERP
             expImportEmployeePunches.IsExpanded = false;
             expManuallAddFuelPin.IsExpanded = false;
             expTerminateEmployee.IsExpanded = false;
+        }
+
+        private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetToolProblemExpander();
+            CreateToolProblemWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetToolProblemExpander()
+        {
+            expTools.IsExpanded = false;
+            expToolProblems.IsExpanded = false;
+            expCreateToolProblem.IsExpanded = false;
+            expUpdateToolProblem.IsExpanded = false;
+        }
+
+        private void expUpdateToolProblem_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetToolProblemExpander();
+            UpdateToolProblemWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportPrices_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetInventoryAdministrationExpanders();
+            ImportPricesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expJSIProjectReports_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetJSIReportsExpanders();
+            JSIProjectReportWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetJSIReportsExpanders()
+        {
+            expProjects.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
+            expJSIProjectReports.IsExpanded = false;
+            expJSIDateReports.IsExpanded = false;
+            expViewJSIInspection.IsExpanded = false;
+        }
+
+        private void expVoidInventoryTransaction_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetInventoryAdministrationExpanders();
+            VoidInventoryTransactionWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeRoster_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            EmployeeRosterWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetEmployeeReportExpanders()
+        {
+            expCompareEmployeeCrews.IsExpanded = false;
+            expDesignEmployeeProductivity.IsExpanded = false;
+            expManagerHourlyDailyReport.IsExpanded = false;
+            expEmployeeHoursOverDateRange.IsExpanded = false;
+            expEmployeeHoursPunched.IsExpanded = false;
+            expEmployeeProductivityByDateRange.IsExpanded = false;
+            expProductionEmployeeProductivityMeasure.IsExpanded = false;
+            expEmployeePunchedVsProductionHours.IsExpanded = false;
+            expEmployeeRoster.IsExpanded = false;
+            expViewEmployeePunches.IsExpanded = false;
         }
     }
 }

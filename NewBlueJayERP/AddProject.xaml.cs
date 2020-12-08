@@ -170,6 +170,9 @@ namespace NewBlueJayERP
             cboSelectStatus.Items.Add("Select Status");
 
             TheFindWorkOrderStatusSortedDataSet = TheWorkOrderClass.FindWorkOrderStatusSorted();
+
+            cboSelectStatus.IsEnabled = true;
+
             intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count - 1;
 
             for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
@@ -183,8 +186,11 @@ namespace NewBlueJayERP
             }
 
             cboSelectStatus.SelectedIndex = intSelectedIndex;
-            rdoNo.IsEnabled = false;
-            rdoYes.IsEnabled = false;
+
+            cboSelectStatus.IsEnabled = false;
+
+            rdoOverNo.Visibility = Visibility.Hidden;
+            rdoOverYes.Visibility = Visibility.Hidden;
 
         }
 
@@ -194,23 +200,21 @@ namespace NewBlueJayERP
             string strAssignedProjectID;
 
             intSelectedIndex = cboSelectDepartment.SelectedIndex - 1;
-            rdoNo.IsEnabled = false;
-            rdoYes.IsEnabled = false;
 
             if (intSelectedIndex > -1)
             {
                 gintDepartmentID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intSelectedIndex].DepartmentID;
 
-                if (gintDepartmentID == 1009)
-                {
-                    rdoNo.IsEnabled = true;
-                    rdoYes.IsEnabled = true;
-                }
-                else
+                if(gintDepartmentID != 1009)
                 {
                     strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
 
                     txtAssignedProjectID.Text = strAssignedProjectID;
+                }
+                else
+                {
+                    rdoOverNo.Visibility = Visibility.Visible;
+                    rdoOverYes.Visibility = Visibility.Visible;
                 }
             }
                 
@@ -487,7 +491,7 @@ namespace NewBlueJayERP
             {
                 strCustomerProjectID = txtCustomerProjectID.Text;
                 intLength = strCustomerProjectID.Length;
-                ClearDateEntryControls();
+                //ClearDateEntryControls();
 
                 if (intLength > 3)
                 {
@@ -548,6 +552,24 @@ namespace NewBlueJayERP
                         if(intRecordsReturned < 1)
                         {
                             gblnProjectMatrixExists = false;
+
+                            cboSelectStatus.IsEnabled = true;
+
+                            intNumberOfRecords = TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted.Rows.Count - 1;
+
+                            for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                            {
+                                cboSelectStatus.Items.Add(TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].WorkOrderStatus);
+
+                                if (TheFindWorkOrderStatusSortedDataSet.FindWorkOrderStatusSorted[intCounter].WorkOrderStatus == "OPEN")
+                                {
+                                    intSelectedIndex = intCounter + 1;
+                                }
+                            }
+
+                            cboSelectStatus.SelectedIndex = intSelectedIndex;
+
+                            cboSelectStatus.IsEnabled = false;
                         }
                         else
                         {
@@ -841,6 +863,22 @@ namespace NewBlueJayERP
         }
 
         private void rdoNo_Checked(object sender, RoutedEventArgs e)
+        {
+            gblnOver2500 = false;
+        }
+
+
+        private void rdoOverYes_Checked(object sender, RoutedEventArgs e)
+        {
+            string strAssignedProjectID;
+
+            gblnOver2500 = true;
+            strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
+
+            txtAssignedProjectID.Text = strAssignedProjectID;
+        }
+
+        private void rdoOverNo_Checked(object sender, RoutedEventArgs e)
         {
             gblnOver2500 = false;
         }

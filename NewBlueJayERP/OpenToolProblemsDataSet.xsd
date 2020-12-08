@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="OpenToolProblemsDataSet" targetNamespace="http://tempuri.org/OpenToolProblemsDataSet.xsd" xmlns:mstns="http://tempuri.org/OpenToolProblemsDataSet.xsd" xmlns="http://tempuri.org/OpenToolProblemsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="OpenToolProblemsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="OpenToolProblemsDataSet" msprop:Generator_UserDSName="OpenToolProblemsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="opentoolproblems" msprop:Generator_TableClassName="opentoolproblemsDataTable" msprop:Generator_TableVarName="tableopentoolproblems" msprop:Generator_TablePropName="opentoolproblems" msprop:Generator_RowDeletingName="opentoolproblemsRowDeleting" msprop:Generator_RowChangingName="opentoolproblemsRowChanging" msprop:Generator_RowEvHandlerName="opentoolproblemsRowChangeEventHandler" msprop:Generator_RowDeletedName="opentoolproblemsRowDeleted" msprop:Generator_UserTableName="opentoolproblems" msprop:Generator_RowChangedName="opentoolproblemsRowChanged" msprop:Generator_RowEvArgName="opentoolproblemsRowChangeEvent" msprop:Generator_RowClassName="opentoolproblemsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ProblemID" msprop:Generator_ColumnVarNameInTable="columnProblemID" msprop:Generator_ColumnPropNameInRow="ProblemID" msprop:Generator_ColumnPropNameInTable="ProblemIDColumn" msprop:Generator_UserColumnName="ProblemID" type="xs:int" />
+              <xs:element name="ReportedDate" msprop:Generator_ColumnVarNameInTable="columnReportedDate" msprop:Generator_ColumnPropNameInRow="ReportedDate" msprop:Generator_ColumnPropNameInTable="ReportedDateColumn" msprop:Generator_UserColumnName="ReportedDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="ReportedProblem" msprop:Generator_ColumnVarNameInTable="columnReportedProblem" msprop:Generator_ColumnPropNameInRow="ReportedProblem" msprop:Generator_ColumnPropNameInTable="ReportedProblemColumn" msprop:Generator_UserColumnName="ReportedProblem" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:opentoolproblems" />
+      <xs:field xpath="mstns:ProblemID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

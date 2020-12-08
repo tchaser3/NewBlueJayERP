@@ -83,7 +83,7 @@
                                 <Expander x:Name="expEmployeeProductivityByDateRange" Header="Employee Productivity By Date Range" />
                                 <Expander x:Name="expProductionEmployeeProductivityMeasure" Header="Employee Productivity Measure" />
                                 <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" />
-                                <Expander x:Name="expEmployeeRoster" Header="Employee Roster" />
+                                <Expander x:Name="expEmployeeRoster" Header="Employee Roster" Expanded="expEmployeeRoster_Expanded" />
                                 <Expander x:Name="expViewEmployeePunches" Header="View Employee Punches" />
                             </StackPanel>
                         </Expander>
@@ -123,6 +123,13 @@
                         <Expander x:Name="expJSIDataEntry" Header="JSI Data Entry" ExpandDirection="Right" Margin="30,1,1,1" Background="LightBlue" Expanded="expJSIDataEntry_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expCreateJSI" Header="Create JSI Entry" Margin="25,1,1,1" Expanded="expCreateJSI_Expanded"/>
+                            </StackPanel>
+                        </Expander>
+                        <Expander x:Name="expJSIReports" Header="JSI Reports" ExpandDirection="Right" Margin="38,1,1,1">
+                            <StackPanel>
+                                <Expander x:Name="expJSIProjectReports" Header="JSI Project Reports" Margin="45,1,1,1" Expanded="expJSIProjectReports_Expanded"/>
+                                <Expander x:Name="expJSIDateReports" Header="JSI Date Reports" Margin="45,1,1,1" />
+                                <Expander x:Name="expViewJSIInspection" Header="View JSI Inspection" Margin="45,1,1,1" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
@@ -169,6 +176,8 @@
                         <Expander x:Name="expInventoryAdministration" Header="Inventory Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryAdministration_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expInventoryImport" Header="Inventory Import" Margin="10,1,1,1" Expanded="expInventoryImport_Expanded"/>
+                                <Expander x:Name="expImportPrices" Header="Import Prices" Margin="10,1,1,1" Expanded="expImportPrices_Expanded" />
+                                <Expander x:Name="expVoidInventoryTransaction" Header="Void Inventory Transaction" Margin="10,1,1,1" Expanded="expVoidInventoryTransaction_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expPurchasing" Header="Purchasing Module" ExpandDirection="Right" Background="LightBlue" Margin="20,1,1,1">
@@ -274,7 +283,10 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expToolProblems" Header="Tool Problems" ExpandDirection="Right" Margin="20,1,1,1">
-                            
+                            <StackPanel>
+                                <Expander x:Name="expCreateToolProblem" Header="Create Tool Problem" Margin="30,1,1,1" Expanded="expCreateToolProblem_Expanded"/>
+                                <Expander x:Name="expUpdateToolProblem" Header="Update Tool Problem" Margin="30,1,1,1" Expanded="expUpdateToolProblem_Expanded" />
+                            </StackPanel>                            
                         </Expander>
                         <Expander x:Name="expToolReports" Header="Tool Reports" ExpandDirection="Right" Margin="23,1,1,1" Background="LightBlue" Expanded="expToolReports_Expanded">
 

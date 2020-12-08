@@ -292,9 +292,6 @@
     <Reference Include="ToolProblemDLL">
       <HintPath>..\..\Blue Jay Class Library\ToolProblemDLL.dll</HintPath>
     </Reference>
-    <Reference Include="ToolsDLL">
-      <HintPath>..\..\Blue Jay Class Library\ToolsDLL.dll</HintPath>
-    </Reference>
     <Reference Include="TowMotorDLL">
       <HintPath>..\..\Blue Jay Class Library\TowMotorDLL.dll</HintPath>
     </Reference>
@@ -412,6 +409,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ActiveEmployeeDataSet.cs">
+      <DependentUpon>ActiveEmployeeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ActiveEmployeeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ActiveEmployeeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ActiveVehicleDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -483,6 +488,9 @@
     <Compile Include="CreateSpectrumReport.xaml.cs">
       <DependentUpon>CreateSpectrumReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateToolProblem.xaml.cs">
+      <DependentUpon>CreateToolProblem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
     </Compile>
@@ -528,6 +536,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeePunchesProductivityDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeRoster.xaml.cs">
+      <DependentUpon>EmployeeRoster.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeesAssignedDataSet.cs">
       <DependentUpon>EmployeesAssignedDataSet.xsd</DependentUpon>
     </Compile>
@@ -562,6 +573,11 @@
     <Compile Include="ImportAssets.xaml.cs">
       <DependentUpon>ImportAssets.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportDocumentsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImportGEOFencedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -592,6 +608,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ImportPrices.xaml.cs">
+      <DependentUpon>ImportPrices.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportTowMotorDataSet.cs">
       <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
     </Compile>
@@ -619,14 +638,30 @@
     <Compile Include="JSIFinalWindow.xaml.cs">
       <DependentUpon>JSIFinalWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="JSIInspectionsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>JSIInspectionsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="JSIPPEWindow.xaml.cs">
       <DependentUpon>JSIPPEWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="JSIProjectReports.xaml.cs">
+      <DependentUpon>JSIProjectReports.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManagerHourlyDailyReport.xaml.cs">
       <DependentUpon>ManagerHourlyDailyReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ManuallyAddFuelPIN.xaml.cs">
       <DependentUpon>ManuallyAddFuelPIN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialIssuedDataSet.cs">
+      <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MaterialIssuedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="OpenHelpDeskTicketsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -635,6 +670,14 @@
     </Compile>
     <Compile Include="OpenRentalReport.xaml.cs">
       <DependentUpon>OpenRentalReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenToolProblemsDataSet.cs">
+      <DependentUpon>OpenToolProblemsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="OpenToolProblemsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OpenToolProblemsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="OpenTrailerProblemsDataSet.cs">
       <DependentUpon>OpenTrailerProblemsDataSet.xsd</DependentUpon>
@@ -651,6 +694,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>PartLookupDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="PartPriceImportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>PartPriceImportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="PartsList.xaml.cs">
       <DependentUpon>PartsList.xaml</DependentUpon>
@@ -734,6 +782,9 @@
     <Compile Include="UpdateRental.xaml.cs">
       <DependentUpon>UpdateRental.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateToolProblem.xaml.cs">
+      <DependentUpon>UpdateToolProblem.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateTrailerProblems.xaml.cs">
       <DependentUpon>UpdateTrailerProblems.xaml</DependentUpon>
     </Compile>
@@ -762,6 +813,9 @@
     </Compile>
     <Compile Include="ViewRentalUpdates.xaml.cs">
       <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VoidInventoryTransaction.xaml.cs">
+      <DependentUpon>VoidInventoryTransaction.xaml</DependentUpon>
     </Compile>
     <Compile Include="WarehouseCountDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -840,6 +894,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateToolProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="DepartmentProductionEmail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -873,6 +931,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeProjectLaborReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeRoster.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -912,6 +974,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportPrices.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportTowMotors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -925,6 +991,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="JSIPPEWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="JSIProjectReports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1016,6 +1086,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="UpdateToolProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="UpdateTrailerProblems.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1048,6 +1122,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VoidInventoryTransaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="WarehouseInventoryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1071,6 +1149,17 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="ActiveEmployeeDataSet.xsc">
+      <DependentUpon>ActiveEmployeeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ActiveEmployeeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ActiveEmployeeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ActiveEmployeeDataSet.xss">
+      <DependentUpon>ActiveEmployeeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ActiveVehicleDataSet.xsc">
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
     </None>
@@ -1170,6 +1259,17 @@
     <None Include="EmployeeTimePunchesDataSet.xss">
       <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ImportDocumentsDataSet.xsc">
+      <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportDocumentsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportDocumentsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportDocumentsDataSet.xss">
+      <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ImportGEOFencedDataSet.xsc">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
     </None>
@@ -1236,6 +1336,28 @@
     <None Include="JSIEmployeeAssignedDataSet.xss">
       <DependentUpon>JSIEmployeeAssignedDataSet.xsd</DependentUpon>
     </None>
+    <None Include="JSIInspectionsDataSet.xsc">
+      <DependentUpon>JSIInspectionsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="JSIInspectionsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>JSIInspectionsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="JSIInspectionsDataSet.xss">
+      <DependentUpon>JSIInspectionsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MaterialIssuedDataSet.xsc">
+      <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MaterialIssuedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MaterialIssuedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MaterialIssuedDataSet.xss">
+      <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </None>
     <None Include="OpenHelpDeskTicketsDataSet.xsc">
       <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
     </None>
@@ -1246,6 +1368,17 @@
     </None>
     <None Include="OpenHelpDeskTicketsDataSet.xss">
       <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OpenToolProblemsDataSet.xsc">
+      <DependentUpon>OpenToolProblemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OpenToolProblemsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OpenToolProblemsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="OpenToolProblemsDataSet.xss">
+      <DependentUpon>OpenToolProblemsDataSet.xsd</DependentUpon>
     </None>
     <None Include="OpenTrailerProblemsDataSet.xsc">
       <DependentUpon>OpenTrailerProblemsDataSet.xsd</DependentUpon>
@@ -1268,6 +1401,17 @@
     </None>
     <None Include="PartLookupDataSet.xss">
       <DependentUpon>PartLookupDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PartPriceImportDataSet.xsc">
+      <DependentUpon>PartPriceImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="PartPriceImportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>PartPriceImportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="PartPriceImportDataSet.xss">
+      <DependentUpon>PartPriceImportDataSet.xsd</DependentUpon>
     </None>
     <None Include="PartsListReportDataSet.xsc">
       <DependentUpon>PartsListReportDataSet.xsd</DependentUpon>
