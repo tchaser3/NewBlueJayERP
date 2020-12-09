@@ -117,6 +117,7 @@
                         <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expAddNewProject" Header="Add New Project" Margin="10,1,1,1" Expanded="expAddNewProject_Expanded" />
+                                <Expander x:Name="expAddProjectLabor" Header="Add Project Labor" Margin="10,1,1,1" Expanded="expAddProjectLabor_Expanded" />
                                 <Expander x:Name="expEditProject" Header="Edit Project" Margin="10,1,1,1" Expanded="expEditProject_Expanded" />
                                 <Expander x:Name="expSubmitAfterHoursWork" Header="Submit After Hours Work" Margin="10,1,1,1" Expanded="expSubmitAfterHoursWork_Expanded" />
                             </StackPanel>

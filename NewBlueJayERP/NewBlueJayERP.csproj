@@ -440,6 +440,9 @@
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddProjectLabor.xaml.cs">
+      <DependentUpon>AddProjectLabor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AfterWorkEmployeesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -734,6 +737,11 @@
     <Compile Include="ProjectsProductivityCosting.xaml.cs">
       <DependentUpon>ProjectsProductivityCosting.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ProjectWorkCompletedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="RemoveDuplicateProjectMatrix.xaml.cs">
       <DependentUpon>RemoveDuplicateProjectMatrix.xaml</DependentUpon>
     </Compile>
@@ -850,6 +858,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddProjectLabor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1452,6 +1464,17 @@
     </None>
     <None Include="ProjectProductivityReportDataSet.xss">
       <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectWorkCompletedDataSet.xsc">
+      <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectWorkCompletedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectWorkCompletedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectWorkCompletedDataSet.xss">
+      <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

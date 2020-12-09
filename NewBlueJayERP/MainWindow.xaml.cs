@@ -80,6 +80,10 @@ namespace NewBlueJayERP
         public static int gintCategoryID;
         public static int gintToolKey;
         public static int gintTrailerID;
+        public static string gstrFirstName;
+        public static string gstrLastName;
+        public static int gintWorkTaskID;
+        public static string gstrWorkTask;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -143,6 +147,7 @@ namespace NewBlueJayERP
         public static VoidInventoryTransaction VoidInventoryTransactionWindow = new VoidInventoryTransaction();
         public static EmployeeRoster EmployeeRosterWindow = new EmployeeRoster();
         public static EmployeeLookup EmployeeLookupWindow = new EmployeeLookup();
+        public static AddProjectLabor AddProjectLaborWindow = new AddProjectLabor();
 
         public MainWindow()
         {
@@ -239,6 +244,7 @@ namespace NewBlueJayERP
             VoidInventoryTransactionWindow.Visibility = Visibility.Hidden;
             EmployeeRosterWindow.Visibility = Visibility.Hidden;
             EmployeeLookupWindow.Visibility = Visibility.Hidden;
+            AddProjectLaborWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -843,9 +849,7 @@ namespace NewBlueJayERP
 
         private void expAddNewProject_Expanded(object sender, RoutedEventArgs e)
         {
-            expAddNewProject.IsExpanded = false;
-            expProjectDataEntry.IsExpanded = false;
-            expProjects.IsExpanded = false;
+            ResetProjectDataEntryExpanders();
             AddProjectWindow.Visibility = Visibility.Visible;
         }
 
@@ -1159,12 +1163,7 @@ namespace NewBlueJayERP
 
         private void expSubmitAfterHoursWork_Expanded(object sender, RoutedEventArgs e)
         {
-            expProjects.IsExpanded = false;
-            expProjectDataEntry.IsExpanded = false;
-            expAddNewProject.IsExpanded = false;
-            expEditProject.IsExpanded = false;
-            expSubmitAfterHoursWork.IsExpanded = false;
-
+            ResetProjectDataEntryExpanders();
             SubmitAfterHoursWorkWindow.Visibility = Visibility.Visible;
         }
 
@@ -1294,11 +1293,7 @@ namespace NewBlueJayERP
 
         private void expEditProject_Expanded(object sender, RoutedEventArgs e)
         {
-            expProjects.IsExpanded = false;
-            expProjectDataEntry.IsExpanded = false;
-            expAddNewProject.IsExpanded = false;
-            expSubmitAfterHoursWork.IsExpanded = false;
-            expEditProject.IsExpanded = false;
+            ResetProjectDataEntryExpanders();
             EditProjectsWindow.Visibility = Visibility.Visible;
         }
 
@@ -1551,6 +1546,22 @@ namespace NewBlueJayERP
         {
             ResetEmployeeReportExpanders();
             EmployeeLookupWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddProjectLabor_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectDataEntryExpanders();
+            AddProjectLaborWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetProjectDataEntryExpanders()
+        {
+            expProjects.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expAddNewProject.IsExpanded = false;
+            expAddProjectLabor.IsExpanded = false;
+            expEditProject.IsExpanded = false;
+            expSubmitAfterHoursWork.IsExpanded = false;
+
         }
     }
 }
