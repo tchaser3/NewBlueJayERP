@@ -91,8 +91,8 @@
                         <Expander x:Name="expEmployeeAdministration" Header="Employees Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeAdministration_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expAddDepartment" Header="Add Department" Expanded="expAddDepartment_Expanded" />
-                                <Expander x:Name="expAddEmployee" Header="Add Employee" />
-                                <Expander x:Name="expAddEmployeeGroups"  Header="Add Employee Groups" />
+                                <Expander x:Name="expAddEmployee" Header="Add Employee" Expanded="expAddEmployee_Expanded" />
+                                <Expander x:Name="expAddEmployeeGroups"  Header="Add Employee Groups" Expanded="expAddEmployeeGroups_Expanded" />
                                 <Expander x:Name="expAddEmployeeToVehicleEmailList" Header="Add Employee To Vehicle Email List" />
                                 <Expander x:Name="expCreateFuelCardNumber" Header="Create Fuel Card Number" Expanded="expCreateFuelCardNumber_Expanded" />
                                 <Expander x:Name="expEditEmployee" Header="Edit Employee" />

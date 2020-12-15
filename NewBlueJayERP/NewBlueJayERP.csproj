@@ -428,6 +428,12 @@
     <Compile Include="AddDepartment.xaml.cs">
       <DependentUpon>AddDepartment.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddEmployee.xaml.cs">
+      <DependentUpon>AddEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddEmployeeGroup.xaml.cs">
+      <DependentUpon>AddEmployeeGroup.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
     </Compile>
@@ -566,6 +572,9 @@
     </Compile>
     <Compile Include="EnterInventory.xaml.cs">
       <DependentUpon>EnterInventory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ExistingEmployees.xaml.cs">
+      <DependentUpon>ExistingEmployees.xaml</DependentUpon>
     </Compile>
     <Compile Include="ExpiringRentals.xaml.cs">
       <DependentUpon>ExpiringRentals.xaml</DependentUpon>
@@ -845,6 +854,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddEmployeeGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEmployeeToVehicleEmails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -962,6 +979,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EnterInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ExistingEmployees.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

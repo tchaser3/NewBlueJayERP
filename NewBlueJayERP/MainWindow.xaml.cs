@@ -45,6 +45,7 @@ namespace NewBlueJayERP
         public static FindRentalTransactionByProjectIDDataSet TheFindRentalTransactionByProjectIDDataSet = new FindRentalTransactionByProjectIDDataSet();
         ProjectLastDateDataSet TheProjectLastDateDataSet = new ProjectLastDateDataSet();
         FindProjectMatrixByGreaterDateDataSet TheFindProjectMatrixByGreaterDateDataSet = new FindProjectMatrixByGreaterDateDataSet();
+        public static VerifyEmployeeDataSet TheVerifyEmployeeDataSet = new VerifyEmployeeDataSet();
 
         //setting global variables
         public static bool gblnLoggedIn;
@@ -84,6 +85,7 @@ namespace NewBlueJayERP
         public static string gstrLastName;
         public static int gintWorkTaskID;
         public static string gstrWorkTask;
+        public static bool gblnKeepNewEmployee;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -148,6 +150,8 @@ namespace NewBlueJayERP
         public static EmployeeRoster EmployeeRosterWindow = new EmployeeRoster();
         public static EmployeeLookup EmployeeLookupWindow = new EmployeeLookup();
         public static AddProjectLabor AddProjectLaborWindow = new AddProjectLabor();
+        public static AddEmployee AddEmployeeWindow = new AddEmployee();
+        public static AddEmployeeGroup AddEmployeeGroupWindow = new AddEmployeeGroup();
 
         public MainWindow()
         {
@@ -245,6 +249,8 @@ namespace NewBlueJayERP
             EmployeeRosterWindow.Visibility = Visibility.Hidden;
             EmployeeLookupWindow.Visibility = Visibility.Hidden;
             AddProjectLaborWindow.Visibility = Visibility.Hidden;
+            AddEmployeeWindow.Visibility = Visibility.Hidden;
+            AddEmployeeGroupWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1034,88 +1040,29 @@ namespace NewBlueJayERP
             expCloseRental.IsExpanded = false;
             expRentals.IsExpanded = false;
         }
+       
 
         private void expCreateFuelCardNumber_Expanded(object sender, RoutedEventArgs e)
         {
-            expAddDepartment.IsExpanded = false;
-            expAddEmployee.IsExpanded = false;
-            expAddEmployeeGroups.IsExpanded = false;
-            expAddEmployeeToVehicleEmailList.IsExpanded = false;
-            expEditEmployee.IsExpanded = false;
-            expEmployeeLaborRate.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expImportEmployeePunches.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expTerminateEmployee.IsExpanded = false;
-            expCreateFuelCardNumber.IsExpanded = false;
-            expEmployeeAdministration.IsExpanded = false;
-            expEmployees.IsExpanded = false;
-            expEditFuelCard.IsExpanded = false;
-            expFuelCardPINReport.IsExpanded = false;
-            expManuallAddFuelPin.IsExpanded = false;
+            ResetEmployeeAdministration();
             CreateFuelCardNumberWindow.Visibility = Visibility.Visible;
         }
 
         private void expEditFuelCard_Expanded(object sender, RoutedEventArgs e)
         {
-            expAddDepartment.IsExpanded = false;
-            expAddEmployee.IsExpanded = false;
-            expAddEmployeeGroups.IsExpanded = false;
-            expAddEmployeeToVehicleEmailList.IsExpanded = false;
-            expEditEmployee.IsExpanded = false;
-            expEmployeeLaborRate.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expImportEmployeePunches.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expTerminateEmployee.IsExpanded = false;
-            expCreateFuelCardNumber.IsExpanded = false;
-            expEmployeeAdministration.IsExpanded = false;
-            expEmployees.IsExpanded = false;
-            expEditFuelCard.IsExpanded = false;
-            expFuelCardPINReport.IsExpanded = false;
-            expManuallAddFuelPin.IsExpanded = false;
+            ResetEmployeeAdministration();
             EditFuelCardWindow.Visibility = Visibility.Visible;
         }
 
         private void expFuelCardPINReport_Expanded(object sender, RoutedEventArgs e)
         {
-            expAddDepartment.IsExpanded = false;
-            expAddEmployee.IsExpanded = false;
-            expAddEmployeeGroups.IsExpanded = false;
-            expAddEmployeeToVehicleEmailList.IsExpanded = false;
-            expEditEmployee.IsExpanded = false;
-            expEmployeeLaborRate.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expImportEmployeePunches.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expTerminateEmployee.IsExpanded = false;
-            expCreateFuelCardNumber.IsExpanded = false;
-            expEmployeeAdministration.IsExpanded = false;
-            expEmployees.IsExpanded = false;
-            expEditFuelCard.IsExpanded = false;
-            expFuelCardPINReport.IsExpanded = false;
-            expManuallAddFuelPin.IsExpanded = false;
+            ResetEmployeeAdministration();
             FuelCardPINReportWindow.Visibility = Visibility.Visible;
         }
 
         private void expManuallAddFuelPin_Expanded(object sender, RoutedEventArgs e)
         {
-            expAddDepartment.IsExpanded = false;
-            expAddEmployee.IsExpanded = false;
-            expAddEmployeeGroups.IsExpanded = false;
-            expAddEmployeeToVehicleEmailList.IsExpanded = false;
-            expEditEmployee.IsExpanded = false;
-            expEmployeeLaborRate.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expImportEmployeePunches.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
-            expTerminateEmployee.IsExpanded = false;
-            expCreateFuelCardNumber.IsExpanded = false;
-            expEmployeeAdministration.IsExpanded = false;
-            expEmployees.IsExpanded = false;
-            expEditFuelCard.IsExpanded = false;
-            expFuelCardPINReport.IsExpanded = false;
-            expManuallAddFuelPin.IsExpanded = false;
+            ResetEmployeeAdministration();
             ManuallyAddFuelPINWindow.Visibility = Visibility.Visible;
         }
 
@@ -1458,21 +1405,22 @@ namespace NewBlueJayERP
         }
         private void ResetEmployeeAdministration()
         {
-            expEmployees.IsExpanded = false;
-            expEmployeeAdministration.IsExpanded = false;
             expAddDepartment.IsExpanded = false;
             expAddEmployee.IsExpanded = false;
             expAddEmployeeGroups.IsExpanded = false;
             expAddEmployeeToVehicleEmailList.IsExpanded = false;
-            expCreateFuelCardNumber.IsExpanded = false;
             expEditEmployee.IsExpanded = false;
-            expEditFuelCard.IsExpanded = false;
-            expFuelCardPINReport.IsExpanded = false;
             expEmployeeLaborRate.IsExpanded = false;
             expImportEmployeeHours.IsExpanded = false;
             expImportEmployeePunches.IsExpanded = false;
-            expManuallAddFuelPin.IsExpanded = false;
+            expImportEmployeeHours.IsExpanded = false;
             expTerminateEmployee.IsExpanded = false;
+            expCreateFuelCardNumber.IsExpanded = false;
+            expEmployeeAdministration.IsExpanded = false;
+            expEmployees.IsExpanded = false;
+            expEditFuelCard.IsExpanded = false;
+            expFuelCardPINReport.IsExpanded = false;
+            expManuallAddFuelPin.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1562,6 +1510,18 @@ namespace NewBlueJayERP
             expEditProject.IsExpanded = false;
             expSubmitAfterHoursWork.IsExpanded = false;
 
+        }
+
+        private void expAddEmployee_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            AddEmployeeWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddEmployeeGroups_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            AddEmployeeGroupWindow.Visibility = Visibility.Visible;
         }
     }
 }
