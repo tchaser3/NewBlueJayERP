@@ -152,6 +152,10 @@ namespace NewBlueJayERP
         public static AddProjectLabor AddProjectLaborWindow = new AddProjectLabor();
         public static AddEmployee AddEmployeeWindow = new AddEmployee();
         public static AddEmployeeGroup AddEmployeeGroupWindow = new AddEmployeeGroup();
+        public static EditEmployee EditEmployeeWindow = new EditEmployee();
+        public static AddEmployeeLaborRate AddEmployeeLaborRateWindow = new AddEmployeeLaborRate();
+        public static ImportEmployeeHours ImportEmployeeHoursWindow = new ImportEmployeeHours();
+        public static ImportEmployeePunches ImportEmployeePunchesWindow = new ImportEmployeePunches();
 
         public MainWindow()
         {
@@ -251,6 +255,10 @@ namespace NewBlueJayERP
             AddProjectLaborWindow.Visibility = Visibility.Hidden;
             AddEmployeeWindow.Visibility = Visibility.Hidden;
             AddEmployeeGroupWindow.Visibility = Visibility.Hidden;
+            EditEmployeeWindow.Visibility = Visibility.Hidden;
+            AddEmployeeLaborRateWindow.Visibility = Visibility.Hidden;
+            ImportEmployeeHoursWindow.Visibility = Visibility.Hidden;
+            ImportEmployeePunchesWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1522,6 +1530,36 @@ namespace NewBlueJayERP
         {
             ResetEmployeeAdministration();
             AddEmployeeGroupWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditEmployee_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            EditEmployeeWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddEmployeeToVehicleEmailList_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeLaborRate_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            AddEmployeeLaborRateWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportEmployeeHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            ImportEmployeeHoursWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportEmployeePunches_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            ImportEmployeePunchesWindow.Visibility = Visibility.Visible;
         }
     }
 }

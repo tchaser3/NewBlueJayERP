@@ -434,6 +434,9 @@
     <Compile Include="AddEmployeeGroup.xaml.cs">
       <DependentUpon>AddEmployeeGroup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddEmployeeLaborRate.xaml.cs">
+      <DependentUpon>AddEmployeeLaborRate.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
     </Compile>
@@ -507,6 +510,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmployee.xaml.cs">
+      <DependentUpon>EditEmployee.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditFuelCard.xaml.cs">
       <DependentUpon>EditFuelCard.xaml</DependentUpon>
@@ -593,6 +599,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ImportedPunchesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportedPunchesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEmployeeHours.xaml.cs">
+      <DependentUpon>ImportEmployeeHours.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEmployeePunches.xaml.cs">
+      <DependentUpon>ImportEmployeePunches.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportGEOFencedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -600,6 +617,11 @@
     </Compile>
     <Compile Include="ImportGEOFenceReport.xaml.cs">
       <DependentUpon>ImportGEOFenceReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportHoursDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportHoursDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ImportInventory.xaml.cs">
       <DependentUpon>ImportInventory.xaml</DependentUpon>
@@ -862,6 +884,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddEmployeeLaborRate.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddEmployeeToVehicleEmails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -934,6 +960,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditFuelCard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -999,6 +1029,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportEmployeeHours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportEmployeePunches.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1310,6 +1348,17 @@
     <None Include="ImportDocumentsDataSet.xss">
       <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ImportedPunchesDataSet.xsc">
+      <DependentUpon>ImportedPunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportedPunchesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportedPunchesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportedPunchesDataSet.xss">
+      <DependentUpon>ImportedPunchesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ImportGEOFencedDataSet.xsc">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
     </None>
@@ -1320,6 +1369,17 @@
     </None>
     <None Include="ImportGEOFencedDataSet.xss">
       <DependentUpon>ImportGEOFencedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportHoursDataSet.xsc">
+      <DependentUpon>ImportHoursDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportHoursDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportHoursDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportHoursDataSet.xss">
+      <DependentUpon>ImportHoursDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportInventoryDataSet.xsc">
       <DependentUpon>ImportInventoryDataSet.xsd</DependentUpon>
