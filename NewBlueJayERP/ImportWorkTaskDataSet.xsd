@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportWorkTaskDataSet" targetNamespace="http://tempuri.org/ImportWorkTaskDataSet.xsd" xmlns:mstns="http://tempuri.org/ImportWorkTaskDataSet.xsd" xmlns="http://tempuri.org/ImportWorkTaskDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportWorkTaskDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportWorkTaskDataSet" msprop:Generator_UserDSName="ImportWorkTaskDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="importworktask" msprop:Generator_TableClassName="importworktaskDataTable" msprop:Generator_TableVarName="tableimportworktask" msprop:Generator_TablePropName="importworktask" msprop:Generator_RowDeletingName="importworktaskRowDeleting" msprop:Generator_RowChangingName="importworktaskRowChanging" msprop:Generator_RowEvHandlerName="importworktaskRowChangeEventHandler" msprop:Generator_RowDeletedName="importworktaskRowDeleted" msprop:Generator_UserTableName="importworktask" msprop:Generator_RowChangedName="importworktaskRowChanged" msprop:Generator_RowEvArgName="importworktaskRowChangeEvent" msprop:Generator_RowClassName="importworktaskRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="WorkTaskID" msprop:Generator_ColumnVarNameInTable="columnWorkTaskID" msprop:Generator_ColumnPropNameInRow="WorkTaskID" msprop:Generator_ColumnPropNameInTable="WorkTaskIDColumn" msprop:Generator_UserColumnName="WorkTaskID" type="xs:int" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="LaborCode" msprop:Generator_ColumnVarNameInTable="columnLaborCode" msprop:Generator_ColumnPropNameInRow="LaborCode" msprop:Generator_ColumnPropNameInTable="LaborCodeColumn" msprop:Generator_UserColumnName="LaborCode" type="xs:string" />
+              <xs:element name="LaborType" msprop:Generator_ColumnVarNameInTable="columnLaborType" msprop:Generator_ColumnPropNameInRow="LaborType" msprop:Generator_ColumnPropNameInTable="LaborTypeColumn" msprop:Generator_UserColumnName="LaborType" type="xs:string" />
+              <xs:element name="ItemFunction" msprop:Generator_ColumnVarNameInTable="columnItemFunction" msprop:Generator_ColumnPropNameInRow="ItemFunction" msprop:Generator_ColumnPropNameInTable="ItemFunctionColumn" msprop:Generator_UserColumnName="ItemFunction" type="xs:string" />
+              <xs:element name="ItemDescription" msprop:Generator_ColumnVarNameInTable="columnItemDescription" msprop:Generator_ColumnPropNameInRow="ItemDescription" msprop:Generator_ColumnPropNameInTable="ItemDescriptionColumn" msprop:Generator_UserColumnName="ItemDescription" type="xs:string" />
+              <xs:element name="UnitOfMeasure" msprop:Generator_ColumnVarNameInTable="columnUnitOfMeasure" msprop:Generator_ColumnPropNameInRow="UnitOfMeasure" msprop:Generator_ColumnPropNameInTable="UnitOfMeasureColumn" msprop:Generator_UserColumnName="UnitOfMeasure" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:importworktask" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

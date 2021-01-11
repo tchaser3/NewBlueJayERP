@@ -156,6 +156,11 @@ namespace NewBlueJayERP
         public static AddEmployeeLaborRate AddEmployeeLaborRateWindow = new AddEmployeeLaborRate();
         public static ImportEmployeeHours ImportEmployeeHoursWindow = new ImportEmployeeHours();
         public static ImportEmployeePunches ImportEmployeePunchesWindow = new ImportEmployeePunches();
+        public static ITCreateHelpDeskTicket ITCreateHelpDeskTicketWindow = new ITCreateHelpDeskTicket();
+        public static DepartmentProjectOpenList DepartmentProjectOpenListWindow = new DepartmentProjectOpenList();
+        public static UpdateProject UpdateProjectWindow = new UpdateProject();
+        public static OpenProjectDashboard OpenProjectDashboardWindow = new OpenProjectDashboard();
+        public static ImportProductionCodes ImportProductionCodesWindow = new ImportProductionCodes();
 
         public MainWindow()
         {
@@ -259,6 +264,11 @@ namespace NewBlueJayERP
             AddEmployeeLaborRateWindow.Visibility = Visibility.Hidden;
             ImportEmployeeHoursWindow.Visibility = Visibility.Hidden;
             ImportEmployeePunchesWindow.Visibility = Visibility.Hidden;
+            ITCreateHelpDeskTicketWindow.Visibility = Visibility.Hidden;
+            DepartmentProjectOpenListWindow.Visibility = Visibility.Hidden;
+            UpdateProjectWindow.Visibility = Visibility.Hidden;
+            OpenProjectDashboardWindow.Visibility = Visibility.Hidden;
+            ImportProductionCodesWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -312,6 +322,7 @@ namespace NewBlueJayERP
             expProjectReports.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
             expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
         }
 
         private void expProjectReports_Expanded(object sender, RoutedEventArgs e)
@@ -320,6 +331,7 @@ namespace NewBlueJayERP
             expProjectDataEntry.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
             expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
         }
 
         private void expProjectAdministration_Expanded(object sender, RoutedEventArgs e)
@@ -328,6 +340,7 @@ namespace NewBlueJayERP
             expProjectDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
             expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
         }
 
         private void expInventory_Expanded(object sender, RoutedEventArgs e)
@@ -658,6 +671,7 @@ namespace NewBlueJayERP
             expServerAuditLogReport.IsExpanded = true;
             expToolProblems.IsEnabled = true;
             expEmployeeReports.IsEnabled = true;
+            expEditProject.IsEnabled = true;
 
         }
         private void SetEmployeeSecurity()
@@ -706,6 +720,7 @@ namespace NewBlueJayERP
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expToolProblems.IsEnabled = false;
+                    expEditProject.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "OFFICE")
                 {
@@ -833,6 +848,7 @@ namespace NewBlueJayERP
             expProjectReports.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
             expJSIDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
         }
 
         private void expCompanyFootages_Expanded(object sender, RoutedEventArgs e)
@@ -849,11 +865,8 @@ namespace NewBlueJayERP
 
         private void expDepartmentProductionEmail_Expanded(object sender, RoutedEventArgs e)
         {
-            DepartmentProductionEmailWindow.Visibility = Visibility.Visible;
-            expProjectAdministration.IsExpanded = false;
-            expProjects.IsExpanded = false;
-            expDepartmentProductionEmail.IsExpanded = false;
-            expJSIDataEntry.IsExpanded = false;
+            ResetProjectAdministrationExpanders();
+            DepartmentProductionEmailWindow.Visibility = Visibility.Visible;            
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -1037,6 +1050,7 @@ namespace NewBlueJayERP
             expProjectDashboards.IsExpanded = false;
             expProjectReports.IsExpanded = false;
             expProjectDataEntry.IsExpanded = false;
+            expJSIReports.IsExpanded = false;
         }
 
         private void expCloseRental_Expanded(object sender, RoutedEventArgs e)
@@ -1162,19 +1176,13 @@ namespace NewBlueJayERP
 
         private void expCreateHelpDeskProblemType_Expanded(object sender, RoutedEventArgs e)
         {
-            expITDataEntry.IsExpanded = false;
-            expInformationTechology.IsExpanded = false;
-            expCreateHelpDeskProblemType.IsExpanded = false;
-            expUpdateHelpDeskTickets.IsExpanded = false;
+            ResetITDataEntryExpanders();
             CreateHelpDeskProblemTypeWindow.Visibility = Visibility.Visible;
         }
 
         private void expUpdateHelpDeskTickets_Expanded(object sender, RoutedEventArgs e)
         {
-            expITDataEntry.IsExpanded = false;
-            expInformationTechology.IsExpanded = false;
-            expCreateHelpDeskProblemType.IsExpanded = false;
-            expUpdateHelpDeskTickets.IsExpanded = false;
+            ResetITDataEntryExpanders();
             UpdateHelpDeskTicketsWindow.Visibility = Visibility.Visible;
         }
 
@@ -1254,10 +1262,7 @@ namespace NewBlueJayERP
 
         private void expRemoveDuplicateProjectMatrix_Expanded(object sender, RoutedEventArgs e)
         {
-            expProjects.IsExpanded = false;
-            expProjectAdministration.IsExpanded = false;
-            expDepartmentProductionEmail.IsExpanded = false;
-            expRemoveDuplicateProjectMatrix.IsExpanded = false;
+            ResetProjectAdministrationExpanders();
             RemoveDuplicateProjectMatrixWindow.Visibility = Visibility.Visible;
         }
 
@@ -1378,6 +1383,7 @@ namespace NewBlueJayERP
             expEmployeeProjectLaborReport.IsExpanded = false;
             expAllProjectProductivityCosting.IsExpanded = false;
             expSortedWorkTasksReport.IsExpanded = false;
+            expDepartmentProjectOpenList.IsExpanded = false;
         }
 
         private void expInventoryImport_Expanded(object sender, RoutedEventArgs e)
@@ -1517,7 +1523,7 @@ namespace NewBlueJayERP
             expAddProjectLabor.IsExpanded = false;
             expEditProject.IsExpanded = false;
             expSubmitAfterHoursWork.IsExpanded = false;
-
+            expUpdateProject.IsExpanded = false;
         }
 
         private void expAddEmployee_Expanded(object sender, RoutedEventArgs e)
@@ -1560,6 +1566,68 @@ namespace NewBlueJayERP
         {
             ResetEmployeeAdministration();
             ImportEmployeePunchesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expITCreateHelpDeskTicket_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            ITCreateHelpDeskTicketWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetITDataEntryExpanders()
+        {
+            expInformationTechology.IsExpanded = false;
+            expITDataEntry.IsExpanded = false;
+            expInspectionDataEntry.IsExpanded = false;
+            expCreateHelpDeskProblemType.IsExpanded = false;
+            expITCreateHelpDeskTicket.IsExpanded = false;
+            expUpdateHelpDeskTickets.IsExpanded = false;
+        }
+
+        private void expDepartmentProjectOpenList_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetProjectReportsExpanders();
+            DepartmentProjectOpenListWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expUpdateProject_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectDataEntryExpanders();
+            UpdateProjectWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expOpenProjectsDashboard_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectDashboardExpanders();
+            OpenProjectDashboardWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetProjectDashboardExpanders()
+        {
+            expProjects.IsExpanded = false;
+            expProjectDashboards.IsExpanded = false;
+            expOpenProjectsDashboard.IsExpanded = false;
+        }
+
+        private void expImportProductionCodes_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            ImportProductionCodesWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetProjectAdministrationExpanders()
+        {
+            expProjects.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
+            expDepartmentProductionEmail.IsExpanded = false;
+            expImportProductionCodes.IsExpanded = false;
+            expRemoveDuplicateProjectMatrix.IsExpanded = false;
+        }
+
+        private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
+        {
+            expProjectDashboards.IsExpanded = false;
+            expProjectDataEntry.IsExpanded = false;
+            expJSIDataEntry.IsExpanded = false;
+            expProjectReports.IsExpanded = false;
+            expProjectAdministration.IsExpanded = false;
         }
     }
 }

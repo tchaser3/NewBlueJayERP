@@ -671,6 +671,16 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                blnFatalError = TheEmployeeClass.UpdateEmployeeEndDate(intEmployeeID, datEndDate);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheEmployeeClass.UpdateEmployeeStartDate(intEmployeeID, datStartDate);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 TheMessagesClass.InformationMessage("The Employee Has Been Updated");
 
                 ResetControls();

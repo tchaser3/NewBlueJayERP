@@ -112,13 +112,16 @@
                 <Expander x:Name="expProjects" Header="Projects" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expProjects_Expanded">
                     <StackPanel Margin="20,1,1,1"  Background="LightBlue">
                         <Expander x:Name="expProjectDashboards" Header="Project Dashboards" ExpandDirection="Right" Margin="12,1,1,1" Expanded="expProjectDashboards_Expanded">
-                            
+                            <StackPanel>
+                                <Expander x:Name="expOpenProjectsDashboard" Header="Open Projects Dashboard" Margin="20,1,1,1" Expanded="expOpenProjectsDashboard_Expanded"/>
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expAddNewProject" Header="Add New Project" Margin="10,1,1,1" Expanded="expAddNewProject_Expanded" />
                                 <Expander x:Name="expAddProjectLabor" Header="Add Project Labor" Margin="10,1,1,1" Expanded="expAddProjectLabor_Expanded" />
                                 <Expander x:Name="expEditProject" Header="Edit Project" Margin="10,1,1,1" Expanded="expEditProject_Expanded" />
+                                <Expander x:Name="expUpdateProject" Header="Update Project" Margin="10,1,1,1" Expanded="expUpdateProject_Expanded" />
                                 <Expander x:Name="expSubmitAfterHoursWork" Header="Submit After Hours Work" Margin="10,1,1,1" Expanded="expSubmitAfterHoursWork_Expanded" />
                             </StackPanel>
                         </Expander>
@@ -127,7 +130,7 @@
                                 <Expander x:Name="expCreateJSI" Header="Create JSI Entry" Margin="25,1,1,1" Expanded="expCreateJSI_Expanded"/>
                             </StackPanel>
                         </Expander>
-                        <Expander x:Name="expJSIReports" Header="JSI Reports" ExpandDirection="Right" Margin="38,1,1,1">
+                        <Expander x:Name="expJSIReports" Header="JSI Reports" ExpandDirection="Right" Margin="38,1,1,1" Expanded="expJSIReports_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expJSIProjectReports" Header="JSI Project Reports" Margin="45,1,1,1" Expanded="expJSIProjectReports_Expanded"/>
                                 <Expander x:Name="expJSIDateReports" Header="JSI Date Reports" Margin="45,1,1,1" />
@@ -139,6 +142,7 @@
                                 <Expander x:Name="expCompanyFootages" Header="Company Project Footages" Margin="10,1,1,1" FontSize="16" Expanded="expCompanyFootages_Expanded"/>
                                 <Expander x:Name="expProjectShopAnalysis" Header="Project Shop Analysis" Margin="10,1,1,1" FontSize="16" Expanded="expProjectShopAnalysis_Expanded" />
                                 <Expander x:Name="expProjectProductivityReport" Header="Project Productivity Report" Margin=" 10,1,1,1" Expanded="expProjectProductivityReport_Expanded"/>
+                                <Expander x:Name="expDepartmentProjectOpenList" Header="Department Project Open List" Margin="10,1,1,1" Expanded="expDepartmentProjectOpenList_Expanded"/>
                                 <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" Margin="10,1,1,1" Expanded="expEmployeeProjectLaborReport_Expanded"/>
                                 <Expander x:Name="expAllProjectProductivityCosting" Header="All Project Productivity Costing" Margin="10,1,1,1" Expanded="expAllProjectProductivityCosting_Expanded" />
                                 <Expander x:Name="expSortedWorkTasksReport" Header="Sorted Work Tasks Report" Margin="10,1,1,1" Expanded="expSortedWorkTasksReport_Expanded" />
@@ -147,6 +151,7 @@
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
+                                <Expander x:Name="expImportProductionCodes" Header="Import Production Codes" Margin="10,1,1,1" Expanded="expImportProductionCodes_Expanded" />
                                 <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
                             </StackPanel>                            
                         </Expander>
@@ -324,6 +329,7 @@
                         <Expander x:Name="expITDataEntry" Header="IT Data Entry" ExpandDirection="Right" Margin="31,1,1,1" Background="LightBlue" Expanded="expITDataEntry_Expanded">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
                                 <Expander x:Name="expCreateHelpDeskProblemType" Header="Create Help Desk Problem Type" Margin="35,1,1,1" Expanded="expCreateHelpDeskProblemType_Expanded"/>
+                                <Expander x:Name="expITCreateHelpDeskTicket" Header="IT Create Help Desk Ticket" Margin="35,1,1,1" Expanded="expITCreateHelpDeskTicket_Expanded" />
                                 <Expander x:Name="expUpdateHelpDeskTickets" Header="Update Help Desk Tickets" Margin="35,1,1,1" Expanded="expUpdateHelpDeskTickets_Expanded"/>
                             </StackPanel>
                         </Expander>
