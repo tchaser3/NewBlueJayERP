@@ -62,7 +62,6 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
             <Expander x:Name="expProcess" Header="Process" TabIndex="11" FontSize="16" Margin="10,1,1,1" Expanded="expProcess_Expanded" />
-            <Expander x:Name="expUpdateStatus" Header="Update Status" FontSize="16" Margin="10,1,1,1" Expanded="expUpdateStatus_Expanded" />
             <Expander x:Name="expCheckProject" Header="Check Project" FontSize="16" Margin="10,1,1,1" Expanded="expCheckProject_Expanded" />
             <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,1,1,1" Expanded="expResetWindow_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
@@ -137,7 +136,7 @@
                 <RadioButton x:Name="rdoClosed" TabIndex="18" Content="Closed" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="10,1,1,1" Checked="rdoClosed_Checked"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="310">
-                <Label x:Name="lblProjectNotes" Content="Project Notes" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
+                <Label x:Name="lblProjectNotes" Content="Update Project Notes" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="125"/>
                 <TextBox x:Name="txtPRojectNotes" CharacterCasing="Upper" TabIndex="19" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="75" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
             </StackPanel>
         </StackPanel>

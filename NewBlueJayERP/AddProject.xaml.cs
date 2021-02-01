@@ -309,6 +309,14 @@ namespace NewBlueJayERP
                         blnFatalError = true;
                         strErrorMesssage += "The Customer Project ID is not the Correct Format\n";
                     }
+                    else if(gintDepartmentID == 1009)
+                    {
+                        if(strCustomerProjectID.Length != 7)
+                        {
+                            blnFatalError = true;
+                            strErrorMesssage += "The Spectrum Project Length is not the Corret Length\n";
+                        }
+                    }
                     strProjectName = txtProjectName.Text;
                     if(strProjectName.Length < 10)
                     {
@@ -322,6 +330,7 @@ namespace NewBlueJayERP
                     blnFatalError = true;
                     strErrorMesssage += "The Department was not Selected\n";
                 }
+                
                 strAddress = txtAddress.Text;
                 if(strAddress.Length < 3)
                 {
@@ -890,5 +899,6 @@ namespace NewBlueJayERP
         {
             gblnOver2500 = false;
         }
+
     }
 }

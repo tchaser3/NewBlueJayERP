@@ -196,5 +196,12 @@ namespace NewBlueJayERP
             }
 
         }
+
+        private void expOfficeInfo_Expanded(object sender, RoutedEventArgs e)
+        {
+            expOfficeInfo.IsExpanded = false;
+            OfficeInfoDashboard OfficeInfoDashboard = new OfficeInfoDashboard();
+            OfficeInfoDashboard.ShowDialog();
+        }
     }
 }

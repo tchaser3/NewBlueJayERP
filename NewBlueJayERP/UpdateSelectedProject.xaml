@@ -1,0 +1,113 @@
+﻿<Window x:Class="NewBlueJayERP.UpdateSelectedProject"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:NewBlueJayERP"
+        mc:Ignorable="d"
+        Title="UpdateSelectedProject" Height="600" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="800">
+            <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
+            <Label x:Name="lblTitle" Content="Open Project By Office and Business Line" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="430" Width="630" Margin="157,156,7,8">
+            <StackPanel Height="430" Width="315">
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblCustomerProjectID" Content="Customer Project ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="45" Width="135"/>
+                    <TextBox x:Name="txtCustomerProjectID" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="40" Width="165" Margin="10,1,1,1" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblAssignedProjectID" Content="Assigned Project ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="45" Width="135"/>
+                    <TextBox x:Name="txtAssignedProjectID" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="40" Width="165" Margin="10,1,1,1" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="100" Width="315">
+                    <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="95" Width="135"/>
+                    <TextBox x:Name="txtProjectName" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="90" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="150" Width="315">
+                    <Label x:Name="lblProjectUpdates" Content="Project Updates" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="95" Width="135"/>
+                    <TextBox x:Name="txtProjectUpdates" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="140" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="430" Width="315">
+                <StackPanel Height="50" Width="315">
+                    <Label x:Name="lblSelectStatus" Content="Select Status" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" FontSize="20"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="315">
+                    <RadioButton x:Name="rdoOpen" TabIndex="2" Content="Open" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="25,1,1,1" Checked="rdoOpen_Checked"/>
+                    <RadioButton x:Name="rdoInProcess" TabIndex="3" Content="InProcess" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="35,1,1,1" Checked="rdoInProcess_Checked" />
+                    <RadioButton x:Name="rdoCancel" TabIndex="4" Content="Cancel" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="35,1,1,1" Checked="rdoCancel_Checked" />                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="50" Width="315">
+                    <RadioButton x:Name="rdoOnHold" TabIndex="5" Content="On Hold" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="45,1,1,1" Checked="rdoOnHold_Checked" />
+                    <RadioButton x:Name="rdoConComplete" TabIndex="6" Content="Construction Complete" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="10,1,1,1" Checked="rdoConComplete_Checked"/>                    
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <RadioButton x:Name="rdoSubmitted" TabIndex="7" Content="Submitted" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="55,1,1,1" Checked="rdoSubmitted_Checked" />
+                    <RadioButton x:Name="rdoInvoiced" TabIndex="8" Content="Invoiced" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="10,1,1,1" Checked="rdoInvoiced_Checked" />
+                    <RadioButton x:Name="rdoClosed" TabIndex="9" Content="Closed" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="10,1,1,1" Checked="rdoClosed_Checked" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="100" Width="315">
+                    <Label x:Name="lblUpdateNotes" Content="Update Notes" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="75" Width="100"/>
+                    <TextBox x:Name="txtUpdateNotes" TabIndex="10" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="95" Width="200" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Height="65" Width="315">
+                    <Button x:Name="btnProcessUpdate" TabIndex="11" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="60" Width="150" FontSize="25" Margin="60,2,1,1" Click="btnProcessUpdate_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

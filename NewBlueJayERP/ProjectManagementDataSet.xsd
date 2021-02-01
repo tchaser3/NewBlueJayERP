@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProjectManagementDataSet" targetNamespace="http://tempuri.org/ProjectManagementDataSet.xsd" xmlns:mstns="http://tempuri.org/ProjectManagementDataSet.xsd" xmlns="http://tempuri.org/ProjectManagementDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProjectManagementDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProjectManagementDataSet" msprop:Generator_UserDSName="ProjectManagementDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="projectmanagement" msprop:Generator_TableClassName="projectmanagementDataTable" msprop:Generator_TableVarName="tableprojectmanagement" msprop:Generator_TablePropName="projectmanagement" msprop:Generator_RowDeletingName="projectmanagementRowDeleting" msprop:Generator_RowChangingName="projectmanagementRowChanging" msprop:Generator_RowEvHandlerName="projectmanagementRowChangeEventHandler" msprop:Generator_RowDeletedName="projectmanagementRowDeleted" msprop:Generator_UserTableName="projectmanagement" msprop:Generator_RowChangedName="projectmanagementRowChanged" msprop:Generator_RowEvArgName="projectmanagementRowChangeEvent" msprop:Generator_RowClassName="projectmanagementRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="CustomerProjectID" msprop:Generator_ColumnVarNameInTable="columnCustomerProjectID" msprop:Generator_ColumnPropNameInRow="CustomerProjectID" msprop:Generator_ColumnPropNameInTable="CustomerProjectIDColumn" msprop:Generator_UserColumnName="CustomerProjectID" type="xs:string" />
+              <xs:element name="BlueJayID" msprop:Generator_ColumnVarNameInTable="columnBlueJayID" msprop:Generator_ColumnPropNameInRow="BlueJayID" msprop:Generator_ColumnPropNameInTable="BlueJayIDColumn" msprop:Generator_UserColumnName="BlueJayID" type="xs:string" />
+              <xs:element name="ProjectName" msprop:Generator_ColumnVarNameInTable="columnProjectName" msprop:Generator_ColumnPropNameInRow="ProjectName" msprop:Generator_ColumnPropNameInTable="ProjectNameColumn" msprop:Generator_UserColumnName="ProjectName" type="xs:string" />
+              <xs:element name="Status" msprop:Generator_ColumnVarNameInTable="columnStatus" msprop:Generator_ColumnPropNameInRow="Status" msprop:Generator_ColumnPropNameInTable="StatusColumn" msprop:Generator_UserColumnName="Status" type="xs:string" />
+              <xs:element name="ECDDate" msprop:Generator_ColumnVarNameInTable="columnECDDate" msprop:Generator_ColumnPropNameInRow="ECDDate" msprop:Generator_ColumnPropNameInTable="ECDDateColumn" msprop:Generator_UserColumnName="ECDDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="LastUpdate" msprop:Generator_ColumnVarNameInTable="columnLastUpdate" msprop:Generator_ColumnPropNameInRow="LastUpdate" msprop:Generator_ColumnPropNameInTable="LastUpdateColumn" msprop:Generator_UserColumnName="LastUpdate" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

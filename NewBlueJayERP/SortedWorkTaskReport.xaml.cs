@@ -38,7 +38,7 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
 
         //setting up the data
-        FindSortedWorkTaskDataSet TheFindSortedWorkTaskDataSet = new FindSortedWorkTaskDataSet();
+        FindSortedWorkTaskImportDataSet TheFindSortedWorkTaskImportDataSet = new FindSortedWorkTaskImportDataSet();
 
         public SortedWorkTaskReport()
         {
@@ -98,9 +98,9 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage("Contact IT");
             }
 
-            TheFindSortedWorkTaskDataSet = TheWorkTaskClass.FindSortedWorkTask();
+            TheFindSortedWorkTaskImportDataSet = TheWorkTaskClass.FindSortedWorkTaskImport();
 
-            dgrResult.ItemsSource = TheFindSortedWorkTaskDataSet.FindSortedWorkTask;
+            dgrResult.ItemsSource = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport;
         }
 
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
@@ -125,12 +125,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindSortedWorkTaskDataSet.FindSortedWorkTask.Rows.Count;
-                intColumnNumberOfRecords = TheFindSortedWorkTaskDataSet.FindSortedWorkTask.Columns.Count;
+                intRowNumberOfRecords = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Rows.Count;
+                intColumnNumberOfRecords = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindSortedWorkTaskDataSet.FindSortedWorkTask.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -143,7 +143,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindSortedWorkTaskDataSet.FindSortedWorkTask.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }

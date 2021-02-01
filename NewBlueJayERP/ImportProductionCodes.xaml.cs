@@ -244,7 +244,7 @@ namespace NewBlueJayERP
 
                         intWorkTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[0].WorkTaskID;
                     }
-                    if(intWorkTaskID > 0)
+                    else if(intWorkTaskID > 0)
                     {
                         blnFatalError = TheWorkTaskClass.UpdateWorkTask(intWorkTaskID, strWorkTask, 0);
 

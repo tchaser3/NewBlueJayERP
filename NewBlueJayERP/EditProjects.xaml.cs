@@ -27,7 +27,7 @@ using DepartmentDLL;
 using WorkOrderDLL;
 using EmployeeDateEntryDLL;
 using ProjectMatrixDLL;
-using AssignedTasksDLL;
+using ProductionProjectUpdatesDLL;
 
 namespace NewBlueJayERP
 {
@@ -48,6 +48,7 @@ namespace NewBlueJayERP
         WorkOrderClass TheWorkOrderClass = new WorkOrderClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
+        ProductionProjectUpdatesClass TheProductionProjectsUpdatesClass = new ProductionProjectUpdatesClass();
 
         //setting up the data
 
@@ -360,7 +361,6 @@ namespace NewBlueJayERP
                 txtCity.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].City;
                 txtDateReceived.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].DateReceived);
                 txtECDDate.Text = Convert.ToString(TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ECDDate);
-                txtPRojectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
                 txtState.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].BusinessState;
 
                 intManagerID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectManagerID;
@@ -376,7 +376,7 @@ namespace NewBlueJayERP
                     if (intManagerID == TheFindProductionManagersDataSet.FindProductionManagers[intCounter].EmployeeID)
                     {
                         intSelectedIndex = intCounter + 1;
-                    }
+                    } 
                 }
 
                 cboSelectManager.SelectedIndex = intSelectedIndex;
@@ -530,37 +530,7 @@ namespace NewBlueJayERP
 
                 FillControls();
             }
-        }
-
-        private void expUpdateStatus_Expanded(object sender, RoutedEventArgs e)
-        {
-            bool blnFatalError;
-
-            try
-            {
-                expUpdateStatus.IsExpanded = false;
-
-                blnFatalError = TheProductionProjectClass.UpdateProductionProjectStatus(gintTransactionID, gintStatusID);
-
-                if (blnFatalError == true)
-                    throw new Exception();
-
-                TheMessagesClass.InformationMessage("The Project Status has been Updated");
-
-                blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Edit Projects // Project Status Change For Project " + gstrAssignedProjectID);
-
-                if (blnFatalError == true)
-                    throw new Exception();
-
-                ResetControls();
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Projects // Update Status Expander " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
+        }     
 
         private void expProcess_Expanded(object sender, RoutedEventArgs e)
         {
@@ -689,6 +659,11 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectStatus(gintTransactionID, gintStatusID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
 
                 intRecordsReturned = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID.Rows.Count;
@@ -701,6 +676,11 @@ namespace NewBlueJayERP
                 intTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
 
                 blnFatalError = TheProductionProjectClass.UpdateProductionProject(intTransactionID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datECDDate, strProjectNotes);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectsUpdatesClass.InsertProductionProjectUpdate(gintProjectID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strProjectNotes);
 
                 if (blnFatalError == true)
                     throw new Exception();

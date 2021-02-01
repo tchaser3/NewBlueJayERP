@@ -461,6 +461,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AgedOverdueProjectsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CloseRental.xaml.cs">
       <DependentUpon>CloseRental.xaml</DependentUpon>
     </Compile>
@@ -718,6 +723,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="OfficeInfoDashboard.xaml.cs">
+      <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="OpenHelpDeskTicketsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -744,6 +752,17 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>OpenTrailerProblemsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="OverdueProjectDashboard.xaml.cs">
+      <DependentUpon>OverdueProjectDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OverdueProjectReport.xaml.cs">
+      <DependentUpon>OverdueProjectReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OverdueProjectReportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="PartLookup.xaml.cs">
       <DependentUpon>PartLookup.xaml</DependentUpon>
@@ -774,6 +793,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManagementDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectManagementDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProjectManagementReport.xaml.cs">
+      <DependentUpon>ProjectManagementReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProjectProductivityReport.xaml.cs">
       <DependentUpon>ProjectProductivityReport.xaml</DependentUpon>
@@ -831,6 +858,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TopAgedOverdueProjectsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TotalWorkTaskFootagesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -847,6 +879,9 @@
     </Compile>
     <Compile Include="UpdateRental.xaml.cs">
       <DependentUpon>UpdateRental.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateSelectedProject.xaml.cs">
+      <DependentUpon>UpdateSelectedProject.xaml</DependentUpon>
     </Compile>
     <Compile Include="UpdateToolProblem.xaml.cs">
       <DependentUpon>UpdateToolProblem.xaml</DependentUpon>
@@ -1132,11 +1167,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="OfficeInfoDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="OpenProjectDashboard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OpenRentalReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverdueProjectDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OverdueProjectReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1149,6 +1196,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PleaseWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProjectManagementReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1205,6 +1256,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateRental.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateSelectedProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1303,6 +1358,17 @@
     </None>
     <None Include="AfterWorkEmployeesDataSet.xss">
       <DependentUpon>AfterWorkEmployeesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AgedOverdueProjectsDataSet.xsc">
+      <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="AgedOverdueProjectsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>AgedOverdueProjectsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="AgedOverdueProjectsDataSet.xss">
+      <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
     </None>
     <None Include="CompleteProjectProductivityDataSet.xsc">
       <DependentUpon>CompleteProjectProductivityDataSet.xsd</DependentUpon>
@@ -1546,6 +1612,17 @@
     <None Include="OpenTrailerProblemsDataSet.xss">
       <DependentUpon>OpenTrailerProblemsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="OverdueProjectReportDataSet.xsc">
+      <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="OverdueProjectReportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>OverdueProjectReportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="OverdueProjectReportDataSet.xss">
+      <DependentUpon>OverdueProjectReportDataSet.xsd</DependentUpon>
+    </None>
     <None Include="PartLookupDataSet.xsc">
       <DependentUpon>PartLookupDataSet.xsd</DependentUpon>
     </None>
@@ -1589,6 +1666,17 @@
     </None>
     <None Include="ProjectFootagesDataSet.xss">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectManagementDataSet.xsc">
+      <DependentUpon>ProjectManagementDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectManagementDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectManagementDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectManagementDataSet.xss">
+      <DependentUpon>ProjectManagementDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectProductivityReportDataSet.xsc">
       <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
@@ -1648,6 +1736,17 @@
     </None>
     <None Include="SubmitAfterHoursWorkDataSet.xss">
       <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TopAgedOverdueProjectsDataSet.xsc">
+      <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TopAgedOverdueProjectsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TopAgedOverdueProjectsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TopAgedOverdueProjectsDataSet.xss">
+      <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
     </None>
     <None Include="TotalWorkTaskFootagesDataSet.xsc">
       <DependentUpon>TotalWorkTaskFootagesDataSet.xsd</DependentUpon>

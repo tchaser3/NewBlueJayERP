@@ -86,6 +86,8 @@ namespace NewBlueJayERP
         public static int gintWorkTaskID;
         public static string gstrWorkTask;
         public static bool gblnKeepNewEmployee;
+        public static int gintTransactionID;
+        public static string gstrLaborCode;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -161,6 +163,9 @@ namespace NewBlueJayERP
         public static UpdateProject UpdateProjectWindow = new UpdateProject();
         public static OpenProjectDashboard OpenProjectDashboardWindow = new OpenProjectDashboard();
         public static ImportProductionCodes ImportProductionCodesWindow = new ImportProductionCodes();
+        public static OverdueProjectDashboard OverdueProjectDashboardWindow = new OverdueProjectDashboard();
+        public static OverdueProjectReport OverdueProjectReportWindow = new OverdueProjectReport();
+        public static ProjectManagementReport ProjectManagementReportWindow = new ProjectManagementReport();
 
         public MainWindow()
         {
@@ -269,6 +274,9 @@ namespace NewBlueJayERP
             UpdateProjectWindow.Visibility = Visibility.Hidden;
             OpenProjectDashboardWindow.Visibility = Visibility.Hidden;
             ImportProductionCodesWindow.Visibility = Visibility.Hidden;
+            OverdueProjectDashboardWindow.Visibility = Visibility.Hidden;
+            OverdueProjectReportWindow.Visibility = Visibility.Hidden;
+            ProjectManagementReportWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1384,6 +1392,8 @@ namespace NewBlueJayERP
             expAllProjectProductivityCosting.IsExpanded = false;
             expSortedWorkTasksReport.IsExpanded = false;
             expDepartmentProjectOpenList.IsExpanded = false;
+            expOverdueProjectReport.IsExpanded = false;
+            expProjectManagementReport.IsExpanded = false;
         }
 
         private void expInventoryImport_Expanded(object sender, RoutedEventArgs e)
@@ -1605,6 +1615,7 @@ namespace NewBlueJayERP
             expProjects.IsExpanded = false;
             expProjectDashboards.IsExpanded = false;
             expOpenProjectsDashboard.IsExpanded = false;
+            expOverdueProjectDashbord.IsExpanded = false;
         }
 
         private void expImportProductionCodes_Expanded(object sender, RoutedEventArgs e)
@@ -1628,6 +1639,24 @@ namespace NewBlueJayERP
             expJSIDataEntry.IsExpanded = false;
             expProjectReports.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
+        }
+
+        private void expOverdueProjectDashbord_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectDashboardExpanders();
+            OverdueProjectDashboardWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expOverdueProjectReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetProjectReportsExpanders();
+            OverdueProjectReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expProjectManagementReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetProjectReportsExpanders();
+            ProjectManagementReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -114,6 +114,7 @@
                         <Expander x:Name="expProjectDashboards" Header="Project Dashboards" ExpandDirection="Right" Margin="12,1,1,1" Expanded="expProjectDashboards_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expOpenProjectsDashboard" Header="Open Projects Dashboard" Margin="20,1,1,1" Expanded="expOpenProjectsDashboard_Expanded"/>
+                                <Expander x:Name="expOverdueProjectDashbord" Header="Overdue Project Dashboard" Margin="20,1,1,1" Expanded="expOverdueProjectDashbord_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expProjectDataEntry" Header="Project Data Entry" ExpandDirection="Right" Margin="16,1,1,1" Background="LightBlue" Expanded="expProjectDataEntry_Expanded">
@@ -140,7 +141,9 @@
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expCompanyFootages" Header="Company Project Footages" Margin="10,1,1,1" FontSize="16" Expanded="expCompanyFootages_Expanded"/>
+                                <Expander x:Name="expOverdueProjectReport" Header="Overdue Project Report" Margin="10,1,1,1" FontSize="16" Expanded="expOverdueProjectReport_Expanded" />
                                 <Expander x:Name="expProjectShopAnalysis" Header="Project Shop Analysis" Margin="10,1,1,1" FontSize="16" Expanded="expProjectShopAnalysis_Expanded" />
+                                <Expander x:Name="expProjectManagementReport" Header="Project Management Report" Margin="10,1,1,1" FontSize="16" Expanded="expProjectManagementReport_Expanded" />
                                 <Expander x:Name="expProjectProductivityReport" Header="Project Productivity Report" Margin=" 10,1,1,1" Expanded="expProjectProductivityReport_Expanded"/>
                                 <Expander x:Name="expDepartmentProjectOpenList" Header="Department Project Open List" Margin="10,1,1,1" Expanded="expDepartmentProjectOpenList_Expanded"/>
                                 <Expander x:Name="expEmployeeProjectLaborReport" Header="Employee Project Labor Report" Margin="10,1,1,1" Expanded="expEmployeeProjectLaborReport_Expanded"/>
