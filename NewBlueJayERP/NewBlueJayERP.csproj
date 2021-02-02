@@ -687,6 +687,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportWorkTaskDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="InvoicedProjectReports.xaml.cs">
+      <DependentUpon>InvoicedProjectReports.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ITCreateHelpDeskTicket.xaml.cs">
       <DependentUpon>ITCreateHelpDeskTicket.xaml</DependentUpon>
     </Compile>
@@ -1128,6 +1131,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportVendors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="InvoicedProjectReports.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

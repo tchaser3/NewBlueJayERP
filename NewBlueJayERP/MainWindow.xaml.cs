@@ -166,6 +166,7 @@ namespace NewBlueJayERP
         public static OverdueProjectDashboard OverdueProjectDashboardWindow = new OverdueProjectDashboard();
         public static OverdueProjectReport OverdueProjectReportWindow = new OverdueProjectReport();
         public static ProjectManagementReport ProjectManagementReportWindow = new ProjectManagementReport();
+        public static InvoicedProjectReports InvoicedProjectReportsWindow = new InvoicedProjectReports();
 
         public MainWindow()
         {
@@ -277,6 +278,7 @@ namespace NewBlueJayERP
             OverdueProjectDashboardWindow.Visibility = Visibility.Hidden;
             OverdueProjectReportWindow.Visibility = Visibility.Hidden;
             ProjectManagementReportWindow.Visibility = Visibility.Hidden;
+            InvoicedProjectReportsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1394,6 +1396,7 @@ namespace NewBlueJayERP
             expDepartmentProjectOpenList.IsExpanded = false;
             expOverdueProjectReport.IsExpanded = false;
             expProjectManagementReport.IsExpanded = false;
+            expProjectInvoiceReport.IsExpanded = false;
         }
 
         private void expInventoryImport_Expanded(object sender, RoutedEventArgs e)
@@ -1657,6 +1660,12 @@ namespace NewBlueJayERP
         {
             SetProjectReportsExpanders();
             ProjectManagementReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expProjectInvoiceReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetProjectReportsExpanders();
+            InvoicedProjectReportsWindow.Visibility = Visibility.Visible;
         }
     }
 }

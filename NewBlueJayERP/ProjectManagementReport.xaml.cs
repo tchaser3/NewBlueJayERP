@@ -296,7 +296,7 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Office Info Dashboard // Open Projects List Grid Selection " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Projects Grid Selection " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
