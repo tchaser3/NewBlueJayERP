@@ -167,6 +167,12 @@ namespace NewBlueJayERP
         public static OverdueProjectReport OverdueProjectReportWindow = new OverdueProjectReport();
         public static ProjectManagementReport ProjectManagementReportWindow = new ProjectManagementReport();
         public static InvoicedProjectReports InvoicedProjectReportsWindow = new InvoicedProjectReports();
+        public static UpdateEmployeeVehicleActive UpdateEmployeeVehicleActiveWindow = new UpdateEmployeeVehicleActive();
+        public static AddAdminProductivity AddAdminProductivityWindow = new AddAdminProductivity();
+        public static ImportNonProductionTask ImportNonProductionTaskWindow = new ImportNonProductionTask();
+        public static NonProductionEmployeeProductivityReport NonProductionEmployeeProductivityReportWindow = new NonProductionEmployeeProductivityReport();
+        public static EmployeeOvertimeReport EmployeeOvertimeReportWindow = new EmployeeOvertimeReport();
+        public static EmployeeDoubleHours EmployeeDoubleHoursWindow = new EmployeeDoubleHours();
 
         public MainWindow()
         {
@@ -279,6 +285,12 @@ namespace NewBlueJayERP
             OverdueProjectReportWindow.Visibility = Visibility.Hidden;
             ProjectManagementReportWindow.Visibility = Visibility.Hidden;
             InvoicedProjectReportsWindow.Visibility = Visibility.Hidden;
+            UpdateEmployeeVehicleActiveWindow.Visibility = Visibility.Hidden;
+            AddAdminProductivityWindow.Visibility = Visibility.Hidden;
+            ImportNonProductionTaskWindow.Visibility = Visibility.Hidden;
+            NonProductionEmployeeProductivityReportWindow.Visibility = Visibility.Hidden;
+            EmployeeOvertimeReportWindow.Visibility = Visibility.Hidden;
+            EmployeeDoubleHoursWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -682,7 +694,7 @@ namespace NewBlueJayERP
             expToolProblems.IsEnabled = true;
             expEmployeeReports.IsEnabled = true;
             expEditProject.IsEnabled = true;
-
+            expAddAdminProductivity.IsEnabled = true;
         }
         private void SetEmployeeSecurity()
         {
@@ -710,6 +722,7 @@ namespace NewBlueJayERP
                     expToolProblems.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
                     expEmployeeReports.IsEnabled = false;
+                    expAddAdminProductivity.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -730,7 +743,6 @@ namespace NewBlueJayERP
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expToolProblems.IsEnabled = false;
-                    expEditProject.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "OFFICE")
                 {
@@ -774,6 +786,7 @@ namespace NewBlueJayERP
                     expServerAuditLogReport.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
                     expEmployeeReports.IsEnabled = false;
+                    expAddAdminProductivity.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "SUPER USER")
                 {
@@ -1448,6 +1461,8 @@ namespace NewBlueJayERP
             expEditFuelCard.IsExpanded = false;
             expFuelCardPINReport.IsExpanded = false;
             expManuallAddFuelPin.IsExpanded = false;
+            expUpdateEmployeeVehicleActive.IsExpanded = false;
+            expEmployeeDoubleHours.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1515,6 +1530,8 @@ namespace NewBlueJayERP
             expEmployeeLookup.IsExpanded = false;
             expEmployees.IsExpanded = false;
             expEmployeeReports.IsExpanded = false;
+            expNonProductionEmployeeProductivity.IsExpanded = false;
+            expEmployeeOvertimeReport.IsExpanded = false;
         }
 
         private void expEmployeeLookup_Expanded(object sender, RoutedEventArgs e)
@@ -1633,6 +1650,8 @@ namespace NewBlueJayERP
             expDepartmentProductionEmail.IsExpanded = false;
             expImportProductionCodes.IsExpanded = false;
             expRemoveDuplicateProjectMatrix.IsExpanded = false;
+            expAddNonProductionTask.IsExpanded = false;
+            expImportNonProductionTask.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1666,6 +1685,48 @@ namespace NewBlueJayERP
         {
             SetProjectReportsExpanders();
             InvoicedProjectReportsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expUpdateEmployeeVehicleActive_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            UpdateEmployeeVehicleActiveWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddAdminProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeDataEntryExpanders();
+            AddAdminProductivityWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetEmployeeDataEntryExpanders()
+        {
+            expEmployees.IsExpanded = false;
+            expEmployeeDataEntry.IsExpanded = false;
+            expAddAdminProductivity.IsExpanded = false;
+        }
+
+        private void expImportNonProductionTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            ImportNonProductionTaskWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expNonProductionEmployeeProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            NonProductionEmployeeProductivityReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeOvertimeReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            EmployeeOvertimeReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeDoubleHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            EmployeeDoubleHoursWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -200,6 +200,9 @@
     <Reference Include="NewVehicleDLL">
       <HintPath>..\..\Blue Jay Class Library\NewVehicleDLL.dll</HintPath>
     </Reference>
+    <Reference Include="NonProductionProductivityDLL">
+      <HintPath>..\..\Blue Jay Class Library\NonProductionProductivityDLL.dll</HintPath>
+    </Reference>
     <Reference Include="PhonesDLL">
       <HintPath>..\..\Blue Jay Class Library\PhonesDLL.dll</HintPath>
     </Reference>
@@ -426,6 +429,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ActiveVehicleDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AddAdminProductivity.xaml.cs">
+      <DependentUpon>AddAdminProductivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddCableReel.xaml.cs">
       <DependentUpon>AddCableReel.xaml</DependentUpon>
     </Compile>
@@ -449,6 +455,9 @@
     </Compile>
     <Compile Include="AddNewTool.xaml.cs">
       <DependentUpon>AddNewTool.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddProductionProjectInfo.xaml.cs">
+      <DependentUpon>AddProductionProjectInfo.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
@@ -518,6 +527,11 @@
     <Compile Include="DepartmentProjectOpenList.xaml.cs">
       <DependentUpon>DepartmentProjectOpenList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DuplicateEmployeeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DuplicateEmployeeDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DuplicateProjectsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -541,6 +555,9 @@
     <Compile Include="EditVehicleProblems.xaml.cs">
       <DependentUpon>EditVehicleProblems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeDoubleHours.xaml.cs">
+      <DependentUpon>EmployeeDoubleHours.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeHoursPunched.xaml.cs">
       <DependentUpon>EmployeeHoursPunched.xaml</DependentUpon>
     </Compile>
@@ -549,6 +566,14 @@
     </Compile>
     <Compile Include="EmployeeLookup.xaml.cs">
       <DependentUpon>EmployeeLookup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeOvertimeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeOvertimeDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeOvertimeReport.xaml.cs">
+      <DependentUpon>EmployeeOvertimeReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeProductivityDataSet.cs">
       <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
@@ -657,6 +682,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ImportNonProductionTask.xaml.cs">
+      <DependentUpon>ImportNonProductionTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportNonProductionTasksDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportNonProductionTasksDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImportPrices.xaml.cs">
       <DependentUpon>ImportPrices.xaml</DependentUpon>
     </Compile>
@@ -725,6 +758,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="NonProductionEmployeeProductivityReport.xaml.cs">
+      <DependentUpon>NonProductionEmployeeProductivityReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="OfficeInfoDashboard.xaml.cs">
       <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
@@ -874,6 +910,9 @@
     <Compile Include="TowMotorInspection.xaml.cs">
       <DependentUpon>TowMotorInspection.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateEmployeeVehicleActive.xaml.cs">
+      <DependentUpon>UpdateEmployeeVehicleActive.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateHelpDeskTickets.xaml.cs">
       <DependentUpon>UpdateHelpDeskTickets.xaml</DependentUpon>
     </Compile>
@@ -930,6 +969,10 @@
       <DependentUpon>WarehouseInventoryReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="WPFMessagesClass.cs" />
+    <Page Include="AddAdminProductivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddCableReel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -959,6 +1002,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewTool.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddProductionProjectInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1050,6 +1097,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EmployeeDoubleHours.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployeeHoursPunched.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1059,6 +1110,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeLookup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeOvertimeReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1118,6 +1173,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportNonProductionTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportPrices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1171,6 +1230,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ManuallyAddFuelPIN.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="NonProductionEmployeeProductivityReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1251,6 +1314,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="TowMotorInspection.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateEmployeeVehicleActive.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1399,6 +1466,17 @@
     <None Include="CreateRentalItemsDataSet.xss">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="DuplicateEmployeeDataSet.xsc">
+      <DependentUpon>DuplicateEmployeeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DuplicateEmployeeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DuplicateEmployeeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DuplicateEmployeeDataSet.xss">
+      <DependentUpon>DuplicateEmployeeDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DuplicateProjectsDataSet.xsc">
       <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
     </None>
@@ -1409,6 +1487,17 @@
     </None>
     <None Include="DuplicateProjectsDataSet.xss">
       <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeOvertimeDataSet.xsc">
+      <DependentUpon>EmployeeOvertimeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeOvertimeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeOvertimeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeOvertimeDataSet.xss">
+      <DependentUpon>EmployeeOvertimeDataSet.xsd</DependentUpon>
     </None>
     <None Include="EmployeeProductivityDataSet.xsc">
       <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
@@ -1519,6 +1608,17 @@
     </None>
     <None Include="ImportInventoryLocationsDataSet.xss">
       <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportNonProductionTasksDataSet.xsc">
+      <DependentUpon>ImportNonProductionTasksDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportNonProductionTasksDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportNonProductionTasksDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportNonProductionTasksDataSet.xss">
+      <DependentUpon>ImportNonProductionTasksDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportTowMotorDataSet.xsc">
       <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>

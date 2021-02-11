@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DuplicateEmployeeDataSet" targetNamespace="http://tempuri.org/DuplicateEmployeeDataSet.xsd" xmlns:mstns="http://tempuri.org/DuplicateEmployeeDataSet.xsd" xmlns="http://tempuri.org/DuplicateEmployeeDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DuplicateEmployeeDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DuplicateEmployeeDataSet" msprop:Generator_UserDSName="DuplicateEmployeeDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="duplicateemployees" msprop:Generator_TableClassName="duplicateemployeesDataTable" msprop:Generator_TableVarName="tableduplicateemployees" msprop:Generator_TablePropName="duplicateemployees" msprop:Generator_RowDeletingName="duplicateemployeesRowDeleting" msprop:Generator_RowChangingName="duplicateemployeesRowChanging" msprop:Generator_RowEvHandlerName="duplicateemployeesRowChangeEventHandler" msprop:Generator_RowDeletedName="duplicateemployeesRowDeleted" msprop:Generator_UserTableName="duplicateemployees" msprop:Generator_RowChangedName="duplicateemployeesRowChanged" msprop:Generator_RowEvArgName="duplicateemployeesRowChangeEvent" msprop:Generator_RowClassName="duplicateemployeesRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" minOccurs="0" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="PunchedHours" msprop:Generator_ColumnVarNameInTable="columnPunchedHours" msprop:Generator_ColumnPropNameInRow="PunchedHours" msprop:Generator_ColumnPropNameInTable="PunchedHoursColumn" msprop:Generator_UserColumnName="PunchedHours" type="xs:decimal" minOccurs="0" />
+              <xs:element name="Remove" msprop:Generator_ColumnVarNameInTable="columnRemove" msprop:Generator_ColumnPropNameInRow="Remove" msprop:Generator_ColumnPropNameInTable="RemoveColumn" msprop:Generator_UserColumnName="Remove" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:duplicateemployees" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

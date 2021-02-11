@@ -71,7 +71,9 @@
                 <Expander x:Name="expEmployees" Header="Employees"  HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="10,1,1,1" Expanded="expEmployees_Expanded">
                     <StackPanel Margin="10,1,1,1" Background="LightBlue">
                         <Expander x:Name="expEmployeeDataEntry" Header="Employee Data Entry" ExpandDirection="Right" Margin="18,1,1,1" Background="LightBlue" Expanded="expEmployeeDataEntry_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expAddAdminProductivity" Header="Add Non-Production Productivity" Margin="30,1,1,1" Expanded="expAddAdminProductivity_Expanded"/>
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expEmployeeReports" Header="Employee Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" Expanded="expEmployeeReports_Expanded">
                             <StackPanel Background="LightBlue" HorizontalAlignment="Center" Margin="10,1,1,1">
@@ -82,8 +84,10 @@
                                 <Expander x:Name="expEmployeeHoursPunched" Header="Employee Hours Punched" Expanded="expEmployeeHoursPunched_Expanded" />
                                 <Expander x:Name="expEmployeeProductivityByDateRange" Header="Employee Productivity By Date Range" />
                                 <Expander x:Name="expProductionEmployeeProductivityMeasure" Header="Employee Productivity Measure" />
+                                <Expander x:Name="expEmployeeOvertimeReport" Header="Employee Overtime Report" Expanded="expEmployeeOvertimeReport_Expanded" />
                                 <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" />
                                 <Expander x:Name="expEmployeeRoster" Header="Employee Roster" Expanded="expEmployeeRoster_Expanded" />
+                                <Expander x:Name="expNonProductionEmployeeProductivity" Header="Non-Production Employee Productivity" Expanded="expNonProductionEmployeeProductivity_Expanded" />
                                 <Expander x:Name="expViewEmployeePunches" Header="View Employee Punches" />
                                 <Expander x:Name="expEmployeeLookup" Header="Employee Lookup" Expanded="expEmployeeLookup_Expanded" />
                             </StackPanel>
@@ -99,10 +103,12 @@
                                 <Expander x:Name="expEditFuelCard" Header="Edit Fuel Card" Expanded="expEditFuelCard_Expanded" />
                                 <Expander x:Name="expFuelCardPINReport" Header="Fuel Card PIN Report" Expanded="expFuelCardPINReport_Expanded" />
                                 <Expander x:Name="expEmployeeLaborRate" Header="Employee Labor Rate" Expanded="expEmployeeLaborRate_Expanded" />
+                                <Expander x:Name="expEmployeeDoubleHours" Header="Employee Double Hours" Expanded="expEmployeeDoubleHours_Expanded" />
                                 <Expander x:Name="expImportEmployeeHours" Header="Import Employee Hours" Expanded="expImportEmployeeHours_Expanded" />
                                 <Expander x:Name="expImportEmployeePunches" Header="Import Employee Punches" Expanded="expImportEmployeePunches_Expanded" />
                                 <Expander x:Name="expManuallAddFuelPin" Header="Manually Add Fuel PIN" Expanded="expManuallAddFuelPin_Expanded" />
                                 <Expander x:Name="expTerminateEmployee" Header="Terminate Employee" />
+                                <Expander x:Name="expUpdateEmployeeVehicleActive" Header="Update Employee Vehicle Active" Expanded="expUpdateEmployeeVehicleActive_Expanded" />
                             </StackPanel>
                         </Expander>
                     </StackPanel>
@@ -154,6 +160,8 @@
                         </Expander>
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
                             <StackPanel>
+                                <Expander x:Name="expAddNonProductionTask" Header="Add Non-Production Task" Margin="10,1,1,1" />
+                                <Expander x:Name="expImportNonProductionTask" Header="Import Non-Production Task" Margin="10,1,1,1" Expanded="expImportNonProductionTask_Expanded" />
                                 <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
                                 <Expander x:Name="expImportProductionCodes" Header="Import Production Codes" Margin="10,1,1,1" Expanded="expImportProductionCodes_Expanded" />
                                 <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
