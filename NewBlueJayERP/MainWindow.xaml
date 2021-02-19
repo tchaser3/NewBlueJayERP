@@ -161,9 +161,12 @@
                         <Expander x:Name="expProjectAdministration" Header="Project Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expProjectAdministration_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expAddNonProductionTask" Header="Add Non-Production Task" Margin="10,1,1,1" />
+                                <Expander x:Name="expAddProductivityWorkTask" Header="Add Productivity Work Task" Margin="10,1,1,1" Expanded="expAddProductivityWorkTask_Expanded" />
                                 <Expander x:Name="expImportNonProductionTask" Header="Import Non-Production Task" Margin="10,1,1,1" Expanded="expImportNonProductionTask_Expanded" />
+                                <Expander x:Name="expEditWorkTask" Header="Edit Work Task" Margin="10,1,1,1" Expanded="expEditWorkTask_Expanded" />
                                 <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
                                 <Expander x:Name="expImportProductionCodes" Header="Import Production Codes" Margin="10,1,1,1" Expanded="expImportProductionCodes_Expanded" />
+                                <Expander x:Name="expImportEditedProductionCodes" Header="Import Edited Production Codes" Margin="10,1,1,1" Expanded="expImportEditedProductionCodes_Expanded" />
                                 <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
                             </StackPanel>                            
                         </Expander>

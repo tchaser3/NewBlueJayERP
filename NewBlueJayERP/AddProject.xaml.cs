@@ -311,7 +311,7 @@ namespace NewBlueJayERP
                     }
                     else if(gintDepartmentID == 1009)
                     {
-                        if(strCustomerProjectID.Length != 7)
+                        if((strCustomerProjectID.Length < 6) && (strCustomerProjectID.Length > 7))
                         {
                             blnFatalError = true;
                             strErrorMesssage += "The Spectrum Project Length is not the Corret Length\n";

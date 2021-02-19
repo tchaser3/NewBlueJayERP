@@ -459,6 +459,9 @@
     <Compile Include="AddProductionProjectInfo.xaml.cs">
       <DependentUpon>AddProductionProjectInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddProductivityWorkTask.xaml.cs">
+      <DependentUpon>AddProductivityWorkTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProject.xaml.cs">
       <DependentUpon>AddProject.xaml</DependentUpon>
     </Compile>
@@ -527,6 +530,9 @@
     <Compile Include="DepartmentProjectOpenList.xaml.cs">
       <DependentUpon>DepartmentProjectOpenList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DetailedNonProductionEmployeeProductivity.xaml.cs">
+      <DependentUpon>DetailedNonProductionEmployeeProductivity.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DuplicateEmployeeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -554,6 +560,9 @@
     </Compile>
     <Compile Include="EditVehicleProblems.xaml.cs">
       <DependentUpon>EditVehicleProblems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditWorkTask.xaml.cs">
+      <DependentUpon>EditWorkTask.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDoubleHours.xaml.cs">
       <DependentUpon>EmployeeDoubleHours.xaml</DependentUpon>
@@ -635,6 +644,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEditedWorkTaskDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportEditedWorkTaskDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportEditedWorkTasks.xaml.cs">
+      <DependentUpon>ImportEditedWorkTasks.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportedPunchesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -866,6 +883,14 @@
     <Compile Include="RentalItems.xaml.cs">
       <DependentUpon>RentalItems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ReportedNonProductionProductivityDataSet.cs">
+      <DependentUpon>ReportedNonProductionProductivityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ReportedNonProductionProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ReportedNonProductionProductivityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="SelectRental.xaml.cs">
       <DependentUpon>SelectRental.xaml</DependentUpon>
     </Compile>
@@ -1009,6 +1034,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddProductivityWorkTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddProject.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1073,6 +1102,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DetailedNonProductionEmployeeProductivity.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1094,6 +1127,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditVehicleProblems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditWorkTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1150,6 +1187,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportEditedWorkTasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1554,6 +1595,17 @@
     <None Include="ImportDocumentsDataSet.xss">
       <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ImportEditedWorkTaskDataSet.xsc">
+      <DependentUpon>ImportEditedWorkTaskDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportEditedWorkTaskDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportEditedWorkTaskDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportEditedWorkTaskDataSet.xss">
+      <DependentUpon>ImportEditedWorkTaskDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ImportedPunchesDataSet.xsc">
       <DependentUpon>ImportedPunchesDataSet.xsd</DependentUpon>
     </None>
@@ -1810,6 +1862,17 @@
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportedNonProductionProductivityDataSet.xsc">
+      <DependentUpon>ReportedNonProductionProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ReportedNonProductionProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ReportedNonProductionProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ReportedNonProductionProductivityDataSet.xss">
+      <DependentUpon>ReportedNonProductionProductivityDataSet.xsd</DependentUpon>
     </None>
     <None Include="ShopViolatorDataSet.xsc">
       <DependentUpon>ShopViolatorDataSet.xsd</DependentUpon>

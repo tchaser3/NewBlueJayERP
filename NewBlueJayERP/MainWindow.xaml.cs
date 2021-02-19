@@ -173,6 +173,9 @@ namespace NewBlueJayERP
         public static NonProductionEmployeeProductivityReport NonProductionEmployeeProductivityReportWindow = new NonProductionEmployeeProductivityReport();
         public static EmployeeOvertimeReport EmployeeOvertimeReportWindow = new EmployeeOvertimeReport();
         public static EmployeeDoubleHours EmployeeDoubleHoursWindow = new EmployeeDoubleHours();
+        public static AddProductivityWorkTask AddProductivityWorkTaskWindow = new AddProductivityWorkTask();
+        public static ImportEditedWorkTasks ImportEditedWorkTaskWindow = new ImportEditedWorkTasks();
+        public static EditWorkTask EditWorkTaskWindow = new EditWorkTask();
 
         public MainWindow()
         {
@@ -291,6 +294,9 @@ namespace NewBlueJayERP
             NonProductionEmployeeProductivityReportWindow.Visibility = Visibility.Hidden;
             EmployeeOvertimeReportWindow.Visibility = Visibility.Hidden;
             EmployeeDoubleHoursWindow.Visibility = Visibility.Hidden;
+            AddProductivityWorkTaskWindow.Visibility = Visibility.Hidden;
+            ImportEditedWorkTaskWindow.Visibility = Visibility.Hidden;
+            EditWorkTaskWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1463,6 +1469,7 @@ namespace NewBlueJayERP
             expManuallAddFuelPin.IsExpanded = false;
             expUpdateEmployeeVehicleActive.IsExpanded = false;
             expEmployeeDoubleHours.IsExpanded = false;
+            expAddProductivityWorkTask.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1652,6 +1659,8 @@ namespace NewBlueJayERP
             expRemoveDuplicateProjectMatrix.IsExpanded = false;
             expAddNonProductionTask.IsExpanded = false;
             expImportNonProductionTask.IsExpanded = false;
+            expImportEditedProductionCodes.IsExpanded = false;
+            expEditWorkTask.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1727,6 +1736,24 @@ namespace NewBlueJayERP
         {
             ResetEmployeeAdministration();
             EmployeeDoubleHoursWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddProductivityWorkTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            AddProductivityWorkTaskWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportEditedProductionCodes_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            ImportEditedWorkTaskWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditWorkTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            EditWorkTaskWindow.Visibility = Visibility.Visible;
         }
     }
 }
