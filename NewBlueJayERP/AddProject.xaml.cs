@@ -470,9 +470,12 @@ namespace NewBlueJayERP
 
                 MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
 
-                AddProductionProjectInfo AddProductionProjectInfo = new AddProductionProjectInfo();
-                AddProductionProjectInfo.ShowDialog();
-
+                if(TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].BusinessLineID == 1009)
+                {
+                    AddProductionProjectInfo AddProductionProjectInfo = new AddProductionProjectInfo();
+                    AddProductionProjectInfo.ShowDialog();
+                }
+                       
                 blnFatalError = TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Project Number " + strAssignedProjectID + " Has Been Added");
 
                 if (blnFatalError == true)

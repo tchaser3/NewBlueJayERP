@@ -63,6 +63,7 @@ namespace NewBlueJayERP
         FindProjectMatrixByProjectIDDataSet TheFindProjectMatrixByProjectIDDataSet = new FindProjectMatrixByProjectIDDataSet();
         FindProductionProjectByProjectIDDataSet TheFindProductionProjectByProjectIDDataSet = new FindProductionProjectByProjectIDDataSet();
         FindProdutionProjectsByAssignedProjectIDDataSet TheFindProductionProjectByAssignedProjectIDDataSet = new FindProdutionProjectsByAssignedProjectIDDataSet();
+        FindProductionProjectInfoDataSet TheFindProductionProjectInfoDataSet = new FindProductionProjectInfoDataSet();
 
         //setting up variables
         int gintDepartmentID;
@@ -280,6 +281,7 @@ namespace NewBlueJayERP
             string strCustomerProjectID;
             int intLength;
             int intRecordsReturned;
+            int intBusinessLineID;
 
             try
             {
@@ -296,6 +298,21 @@ namespace NewBlueJayERP
                     if(intRecordsReturned > 0)
                     {
                         gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+                        intBusinessLineID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].BusinessLineID;
+
+                        TheFindProductionProjectInfoDataSet = TheProductionProjectClass.FindProductionProjectInfo(gintProjectID);
+
+                        intRecordsReturned = TheFindProductionProjectInfoDataSet.FindProductionProjectInfo.Rows.Count;
+
+                        if((intRecordsReturned < 1) && (intBusinessLineID == 1009))
+                        {
+                            TheMessagesClass.InformationMessage("There is no Production Project Info Entered, The Window will now Open");
+
+                            MainWindow.gintProjectID = gintProjectID;
+
+                            AddProductionProjectInfo AddProductionProjectInfo = new AddProductionProjectInfo();
+                            AddProductionProjectInfo.ShowDialog();
+                        }
 
                         gblnProjectExists = true;
 
@@ -439,6 +456,18 @@ namespace NewBlueJayERP
                 else if (intStatusID == 1008)
                 {
                     rdoSubmitted.IsChecked = true;
+                }
+
+                const string message = "Would You Like to Edit the Project Info?";
+                const string caption = "Please Answer";
+                MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    MainWindow.gintProjectID = gintProjectID;
+
+                    EditProductionProjectInfo EditProductionProjectInfo = new EditProductionProjectInfo();
+                    EditProductionProjectInfo.ShowDialog();
                 }
 
             }
