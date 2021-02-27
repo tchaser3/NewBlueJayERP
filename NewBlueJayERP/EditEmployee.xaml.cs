@@ -681,6 +681,11 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                blnFatalError = TheEmployeeClass.UpdateEmployeePayInformation(intEmployeeID, gstrDepartment, gstrSalaryType, gintManagerID, intPayID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 TheMessagesClass.InformationMessage("The Employee Has Been Updated");
 
                 ResetControls();

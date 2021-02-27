@@ -147,6 +147,7 @@
                         <Expander x:Name="expProjectReports" Header="Projects Reports" ExpandDirection="Right" Margin="21,1,1,1" Background="LightBlue" Expanded="expProjectReports_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expCompanyFootages" Header="Company Project Footages" Margin="10,1,1,1" FontSize="16" Expanded="expCompanyFootages_Expanded"/>
+                                <Expander x:Name="expCreateProductionSheet" Header="Create Production Sheet" Margin="10,1,1,1" FontSize="16" Expanded="expCreateProductionSheet_Expanded" />
                                 <Expander x:Name="expOverdueProjectReport" Header="Overdue Project Report" Margin="10,1,1,1" FontSize="16" Expanded="expOverdueProjectReport_Expanded" />
                                 <Expander x:Name="expProjectShopAnalysis" Header="Project Shop Analysis" Margin="10,1,1,1" FontSize="16" Expanded="expProjectShopAnalysis_Expanded" />
                                 <Expander x:Name="expProjectManagementReport" Header="Project Management Report" Margin="10,1,1,1" FontSize="16" Expanded="expProjectManagementReport_Expanded" />
@@ -167,6 +168,7 @@
                                 <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
                                 <Expander x:Name="expImportProductionCodes" Header="Import Production Codes" Margin="10,1,1,1" Expanded="expImportProductionCodes_Expanded" />
                                 <Expander x:Name="expImportEditedProductionCodes" Header="Import Edited Production Codes" Margin="10,1,1,1" Expanded="expImportEditedProductionCodes_Expanded" />
+                                <Expander x:Name="expImportProductionCodesForSheets" Header="Import Codes for Sheets" Margin="10,1,1,1" Expanded="expImportProductionCodesForSheets_Expanded" />
                                 <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
                             </StackPanel>                            
                         </Expander>

@@ -176,6 +176,8 @@ namespace NewBlueJayERP
         public static AddProductivityWorkTask AddProductivityWorkTaskWindow = new AddProductivityWorkTask();
         public static ImportEditedWorkTasks ImportEditedWorkTaskWindow = new ImportEditedWorkTasks();
         public static EditWorkTask EditWorkTaskWindow = new EditWorkTask();
+        public static ImportCodesForSheets ImportCodesForSheetsWindow = new ImportCodesForSheets();
+        public static CreateProductionSheet CreateProductionSheetWindow = new CreateProductionSheet();
 
         public MainWindow()
         {
@@ -297,6 +299,8 @@ namespace NewBlueJayERP
             AddProductivityWorkTaskWindow.Visibility = Visibility.Hidden;
             ImportEditedWorkTaskWindow.Visibility = Visibility.Hidden;
             EditWorkTaskWindow.Visibility = Visibility.Hidden;
+            ImportCodesForSheetsWindow.Visibility = Visibility.Hidden;
+            CreateProductionSheetWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1416,6 +1420,7 @@ namespace NewBlueJayERP
             expOverdueProjectReport.IsExpanded = false;
             expProjectManagementReport.IsExpanded = false;
             expProjectInvoiceReport.IsExpanded = false;
+            expCreateProductionSheet.IsExpanded = false;
         }
 
         private void expInventoryImport_Expanded(object sender, RoutedEventArgs e)
@@ -1661,6 +1666,7 @@ namespace NewBlueJayERP
             expImportNonProductionTask.IsExpanded = false;
             expImportEditedProductionCodes.IsExpanded = false;
             expEditWorkTask.IsExpanded = false;
+            expImportProductionCodesForSheets.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1754,6 +1760,18 @@ namespace NewBlueJayERP
         {
             ResetProjectAdministrationExpanders();
             EditWorkTaskWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportProductionCodesForSheets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            ImportCodesForSheetsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateProductionSheet_Expanded(object sender, RoutedEventArgs e)
+        {
+            SetProjectReportsExpanders();
+            CreateProductionSheetWindow.Visibility = Visibility.Visible;
         }
     }
 }

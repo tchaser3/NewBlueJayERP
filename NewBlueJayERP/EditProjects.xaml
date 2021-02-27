@@ -62,6 +62,7 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
             <Expander x:Name="expProcess" Header="Process" TabIndex="11" FontSize="16" Margin="10,1,1,1" Expanded="expProcess_Expanded" />
+            <Expander x:Name="expAddEditProjectInfo" Header="Add/Edit Info" FontSize="16" Margin="10,1,1,1" Expanded="expAddEditProjectInfo_Expanded"/>
             <Expander x:Name="expCheckProject" Header="Check Project" FontSize="16" Margin="10,1,1,1" Expanded="expCheckProject_Expanded" />
             <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,1,1,1" Expanded="expResetWindow_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />

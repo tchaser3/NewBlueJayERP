@@ -271,6 +271,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Windows.Forms.DataVisualization" />
@@ -507,6 +508,9 @@
     <Compile Include="CreateJSIEntry.xaml.cs">
       <DependentUpon>CreateJSIEntry.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CreateProductionSheet.xaml.cs">
+      <DependentUpon>CreateProductionSheet.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CreatePurchaseRequest.xaml.cs">
       <DependentUpon>CreatePurchaseRequest.xaml</DependentUpon>
     </Compile>
@@ -642,6 +646,9 @@
     </Compile>
     <Compile Include="ImportAssets.xaml.cs">
       <DependentUpon>ImportAssets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCodesForSheets.xaml.cs">
+      <DependentUpon>ImportCodesForSheets.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportDocumentsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -848,6 +855,16 @@
       <DependentUpon>PleaseWait.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProcessBatchClass.cs" />
+    <Compile Include="ProductionCodesForImportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductionCodesForImportDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProductionTasksForSheetsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductionTasksForSheetsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ProjectFootagesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1081,6 +1098,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CreateProductionSheet.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreatePurchaseRequest.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1194,6 +1215,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportCodesForSheets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1821,6 +1846,28 @@
     </None>
     <None Include="PartsListReportDataSet.xss">
       <DependentUpon>PartsListReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductionCodesForImportDataSet.xsc">
+      <DependentUpon>ProductionCodesForImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductionCodesForImportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductionCodesForImportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProductionCodesForImportDataSet.xss">
+      <DependentUpon>ProductionCodesForImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductionTasksForSheetsDataSet.xsc">
+      <DependentUpon>ProductionTasksForSheetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductionTasksForSheetsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductionTasksForSheetsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProductionTasksForSheetsDataSet.xss">
+      <DependentUpon>ProductionTasksForSheetsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectFootagesDataSet.xsc">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>

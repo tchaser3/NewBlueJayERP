@@ -51,7 +51,6 @@ namespace NewBlueJayERP
         ProductionProjectUpdatesClass TheProductionProjectsUpdatesClass = new ProductionProjectUpdatesClass();
 
         //setting up the data
-
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsbyAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
         FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
@@ -169,6 +168,7 @@ namespace NewBlueJayERP
             }
 
             cboSelectOffice.SelectedIndex = 0;
+            expAddEditProjectInfo.IsEnabled = false;
         }
         private void ClearDateEntryControls()
         {
@@ -470,6 +470,7 @@ namespace NewBlueJayERP
                     EditProductionProjectInfo.ShowDialog();
                 }
 
+                expAddEditProjectInfo.IsEnabled = true;
             }
             catch (Exception Ex)
             {
@@ -542,6 +543,7 @@ namespace NewBlueJayERP
             string strCustomerProjectID;
             int intRecordsReturned;
 
+            expCheckProject.IsExpanded = false;
             strCustomerProjectID = txtCustomerProjectID.Text;
 
             TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerProjectID);
@@ -820,6 +822,29 @@ namespace NewBlueJayERP
             rdoOpen.IsChecked = false;
             rdoInvoiced.IsChecked = false;
             rdoSubmitted.IsChecked = false;
+        }
+
+        private void expAddEditProjectInfo_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intRecordsReturned;
+
+            expAddEditProjectInfo.IsExpanded = false;
+            MainWindow.gintProjectID = gintProjectID;
+
+            TheFindProductionProjectInfoDataSet = TheProductionProjectClass.FindProductionProjectInfo(MainWindow.gintProjectID);
+
+            intRecordsReturned = TheFindProductionProjectInfoDataSet.FindProductionProjectInfo.Rows.Count;
+
+            if(intRecordsReturned < 1)
+            {
+                AddProductionProjectInfo AddProductionProjectInfo = new AddProductionProjectInfo();
+                AddProductionProjectInfo.ShowDialog();
+            }
+            else if(intRecordsReturned > 0)
+            {
+                EditProductionProjectInfo EditProductionProjectInfo = new EditProductionProjectInfo();
+                EditProductionProjectInfo.ShowDialog();
+            }
         }
     }
 }
