@@ -163,8 +163,10 @@
                             <StackPanel>
                                 <Expander x:Name="expAddNonProductionTask" Header="Add Non-Production Task" Margin="10,1,1,1" />
                                 <Expander x:Name="expAddProductivityWorkTask" Header="Add Productivity Work Task" Margin="10,1,1,1" Expanded="expAddProductivityWorkTask_Expanded" />
+                                <Expander x:Name="expAddWorkTask" Header="Add Work Task" Margin="10,1,1,1" Expanded="expAddWorkTask_Expanded" />
                                 <Expander x:Name="expImportNonProductionTask" Header="Import Non-Production Task" Margin="10,1,1,1" Expanded="expImportNonProductionTask_Expanded" />
                                 <Expander x:Name="expEditWorkTask" Header="Edit Work Task" Margin="10,1,1,1" Expanded="expEditWorkTask_Expanded" />
+                                <Expander x:Name="expAssignTaskBusinessLine" Header="Assign Task Business Line" Margin="10,1,1,1" Expanded="expAssignTaskBusinessLine_Expanded" />
                                 <Expander x:Name="expDepartmentProductionEmail" Header="Department Production Email" Margin="10,1,1,1" Expanded="expDepartmentProductionEmail_Expanded"/>
                                 <Expander x:Name="expImportProductionCodes" Header="Import Production Codes" Margin="10,1,1,1" Expanded="expImportProductionCodes_Expanded" />
                                 <Expander x:Name="expImportEditedProductionCodes" Header="Import Edited Production Codes" Margin="10,1,1,1" Expanded="expImportEditedProductionCodes_Expanded" />

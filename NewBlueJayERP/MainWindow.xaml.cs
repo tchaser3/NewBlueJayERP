@@ -178,6 +178,8 @@ namespace NewBlueJayERP
         public static EditWorkTask EditWorkTaskWindow = new EditWorkTask();
         public static ImportCodesForSheets ImportCodesForSheetsWindow = new ImportCodesForSheets();
         public static CreateProductionSheet CreateProductionSheetWindow = new CreateProductionSheet();
+        public static AssignWorkTaskBusinessLine AssignWorkTaskBusinessLineWindow = new AssignWorkTaskBusinessLine();
+        public static AddWorkTask AddWorkTaskWindow = new AddWorkTask();
 
         public MainWindow()
         {
@@ -301,6 +303,8 @@ namespace NewBlueJayERP
             EditWorkTaskWindow.Visibility = Visibility.Hidden;
             ImportCodesForSheetsWindow.Visibility = Visibility.Hidden;
             CreateProductionSheetWindow.Visibility = Visibility.Hidden;
+            AssignWorkTaskBusinessLineWindow.Visibility = Visibility.Hidden;
+            AddWorkTaskWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -705,6 +709,9 @@ namespace NewBlueJayERP
             expEmployeeReports.IsEnabled = true;
             expEditProject.IsEnabled = true;
             expAddAdminProductivity.IsEnabled = true;
+            expProjectManagementReport.IsEnabled = true;
+            expProjectInvoiceReport.IsEnabled = true;
+            expEmployeeProjectLaborReport.IsExpanded = true;
         }
         private void SetEmployeeSecurity()
         {
@@ -732,7 +739,7 @@ namespace NewBlueJayERP
                     expToolProblems.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
                     expEmployeeReports.IsEnabled = false;
-                    expAddAdminProductivity.IsEnabled = false;
+                    expEmployeeProjectLaborReport.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -773,7 +780,9 @@ namespace NewBlueJayERP
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expToolProblems.IsEnabled = false;
-                    expProjectReports.IsEnabled = false;
+                    expProjectManagementReport.IsEnabled = false;
+                    expProjectInvoiceReport.IsEnabled = false;
+                    expEmployeeProjectLaborReport.IsExpanded = false;
                 }
                 else if (gstrEmployeeGroup == "WAREHOUSE")
                 {
@@ -1667,6 +1676,8 @@ namespace NewBlueJayERP
             expImportEditedProductionCodes.IsExpanded = false;
             expEditWorkTask.IsExpanded = false;
             expImportProductionCodesForSheets.IsExpanded = false;
+            expAssignTaskBusinessLine.IsExpanded = false;
+            expAddWorkTask.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1772,6 +1783,18 @@ namespace NewBlueJayERP
         {
             SetProjectReportsExpanders();
             CreateProductionSheetWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAssignTaskBusinessLine_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            AssignWorkTaskBusinessLineWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddWorkTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            AddWorkTaskWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -122,8 +122,9 @@ namespace NewBlueJayERP
 
             EnableRadioButtons(false);
 
-            if ((MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "ADMIN") || (MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "IT"))
+            if ((MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "ADMIN") || (MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "IT") || (MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "SUPER USER"))
             {
+            
                 EnableRadioButtons(true);
             }
             else if (MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeGroup == "OFFICE")

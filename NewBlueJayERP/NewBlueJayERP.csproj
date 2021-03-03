@@ -469,6 +469,9 @@
     <Compile Include="AddProjectLabor.xaml.cs">
       <DependentUpon>AddProjectLabor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddWorkTask.xaml.cs">
+      <DependentUpon>AddWorkTask.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AfterWorkEmployeesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -478,6 +481,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
+      <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
     <Compile Include="CloseRental.xaml.cs">
       <DependentUpon>CloseRental.xaml</DependentUpon>
@@ -1013,6 +1019,11 @@
     <Compile Include="WarehouseInventoryReport.xaml.cs">
       <DependentUpon>WarehouseInventoryReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WorkTaskAssignedDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WorkTaskAssignedDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="WPFMessagesClass.cs" />
     <Page Include="AddAdminProductivity.xaml">
       <SubType>Designer</SubType>
@@ -1063,6 +1074,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProjectLabor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddWorkTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AssignWorkTaskBusinessLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2004,6 +2023,17 @@
     </None>
     <None Include="WarehouseCountDataSet.xss">
       <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WorkTaskAssignedDataSet.xsc">
+      <DependentUpon>WorkTaskAssignedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WorkTaskAssignedDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WorkTaskAssignedDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WorkTaskAssignedDataSet.xss">
+      <DependentUpon>WorkTaskAssignedDataSet.xsd</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>

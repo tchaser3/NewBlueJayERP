@@ -14,6 +14,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using WorkTaskDLL;
+using DateSearchDLL;
 
 namespace NewBlueJayERP
 {
@@ -28,6 +29,7 @@ namespace NewBlueJayERP
         DepartmentClass TheDepartmentClass = new DepartmentClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
 
         //setting up the data
         FindSortedCustomerLinesDataSet TheFindSortedCustomerLinesDataSet = new FindSortedCustomerLinesDataSet();
@@ -35,6 +37,8 @@ namespace NewBlueJayERP
         FindWorkTaskDepartmentByLOBDepartmentDataSet TheFindWorkTaskDepartmentByLOBDepartmentDataSet = new FindWorkTaskDepartmentByLOBDepartmentDataSet();
         FindDepartmentByNameDataSet TheFindDepartmentByNameDataSet = new FindDepartmentByNameDataSet();
         ProductionTasksForSheetsDataSet TheProductionTasksForSheetsDataSet = new ProductionTasksForSheetsDataSet();
+        FindWorkTaskUsageByDateTaskDataSet TheFindWorkTaskUsageByDateTaskDataSet = new FindWorkTaskUsageByDateTaskDataSet();
+        FindWorkTaskIDTotalCountByDateDataSet TheFindWorkTaskIDTotalCountByDateDataSet = new FindWorkTaskIDTotalCountByDateDataSet();
 
         int gintBusinessLineID;
         int gintDepartmentID;
@@ -151,12 +155,30 @@ namespace NewBlueJayERP
         {
             int intCounter;
             int intNumberOfRecords;
+            DateTime datTransactionDate;
+            int intWorkTaskID;
+            decimal decTotalCount;
+            decimal decTaskCount = 0;
+            decimal decPercentage;
+            int intGreaterThan;
+            int intRecordsReturned;
+
+            PleaseWait PleaseWait = new PleaseWait();
+            PleaseWait.Show();
 
             try
             {
                 TheProductionTasksForSheetsDataSet.productiontasks.Rows.Clear();
 
+                datTransactionDate = DateTime.Now;
+
+                datTransactionDate = TheDateSearchClass.SubtractingDays(datTransactionDate, 90);
+
+                TheFindWorkTaskIDTotalCountByDateDataSet = TheWorkTaskClass.FindWorkTaskIDTotalCountByDate(datTransactionDate);
+
                 TheFindWorkTaskDepartmentByLOBDepartmentDataSet = TheWorkTaskClass.FindWorkTaskDepartmentByLOBDepartment(gintBusinessLineID, gintDepartmentID);
+
+                decTotalCount = Convert.ToDecimal(TheFindWorkTaskIDTotalCountByDateDataSet.FindWorkTaskIDTotalCountByDate[0].TotalCount);
 
                 intNumberOfRecords = TheFindWorkTaskDepartmentByLOBDepartmentDataSet.FindWorkTaskDepartmentByLOBDepartment.Rows.Count;
 
@@ -164,10 +186,38 @@ namespace NewBlueJayERP
                 {
                     for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                     {
+                        intWorkTaskID = TheFindWorkTaskDepartmentByLOBDepartmentDataSet.FindWorkTaskDepartmentByLOBDepartment[intCounter].WorkTaskID;
+
+                        TheFindWorkTaskUsageByDateTaskDataSet = TheWorkTaskClass.FindWorkTaskUsageByDateTask(datTransactionDate, intWorkTaskID);
+
+                        intRecordsReturned = TheFindWorkTaskUsageByDateTaskDataSet.FindWorkTaskUsageByDateTask.Rows.Count;
+
+                        if(intRecordsReturned < 1)
+                        {
+                            decTaskCount = 0;
+                        }
+                        else if(intRecordsReturned > 0)
+                        {
+
+                            decTaskCount = Convert.ToDecimal(TheFindWorkTaskUsageByDateTaskDataSet.FindWorkTaskUsageByDateTask[0].TotalCount);
+                        }
+
+                        decPercentage = decTaskCount / decTotalCount;
+
                         ProductionTasksForSheetsDataSet.productiontasksRow NewProductionCode = TheProductionTasksForSheetsDataSet.productiontasks.NewproductiontasksRow();
 
                         NewProductionCode.WorkTask = TheFindWorkTaskDepartmentByLOBDepartmentDataSet.FindWorkTaskDepartmentByLOBDepartment[intCounter].WorkTask;
-                        NewProductionCode.UseCode = true;
+
+                        intGreaterThan = decimal.Compare(decPercentage, Convert.ToDecimal(.001));
+
+                        if(intGreaterThan < 0)
+                        {
+                            NewProductionCode.UseCode = false;
+                        }
+                        else if(intGreaterThan > -1)
+                        {
+                            NewProductionCode.UseCode = true;
+                        }
 
                         TheProductionTasksForSheetsDataSet.productiontasks.Rows.Add(NewProductionCode);
                     }
@@ -181,6 +231,8 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+
+            PleaseWait.Close();
         }
 
         private void cboSelectDepartment_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -228,6 +280,7 @@ namespace NewBlueJayERP
 
             try
             {
+                expPrintSheet.IsExpanded = false;
                 PrintDialog pdProductivityReport = new PrintDialog();
                
                 if (pdProductivityReport.ShowDialog().Value == true)
@@ -299,7 +352,8 @@ namespace NewBlueJayERP
                     FirstCrewRow.FontWeight = FontWeights.UltraBold;
                     FirstCrewRow.FontFamily = new FontFamily("Century Gothic");
                     FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("Crew"))));
-                    FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("|  Start"))));
+                    FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("|  Office Start"))));
+                    FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("|  Drive Start"))));
                     FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("|  Arrive"))));
                     FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("|  Depart"))));
                     FirstCrewRow.Cells.Add(new TableCell(new Paragraph(new Run("|  Stop"))));
@@ -313,6 +367,7 @@ namespace NewBlueJayERP
                     FirstCrewRow1.FontWeight = FontWeights.UltraBold;
                     FirstCrewRow1.FontFamily = new FontFamily("Century Gothic");
                     FirstCrewRow1.Cells.Add(new TableCell(new Paragraph(new Run("CREW LEAD"))));
+                    FirstCrewRow1.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow1.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow1.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow1.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
@@ -332,6 +387,7 @@ namespace NewBlueJayERP
                     FirstCrewRow2.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow2.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow2.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
+                    FirstCrewRow2.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
 
                     CrewTable.RowGroups[0].Rows.Add(new TableRow());
                     TableRow FirstCrewRow3 = CrewTable.RowGroups[0].Rows[3];
@@ -341,6 +397,7 @@ namespace NewBlueJayERP
                     FirstCrewRow3.FontWeight = FontWeights.UltraBold;
                     FirstCrewRow3.FontFamily = new FontFamily("Century Gothic");
                     FirstCrewRow3.Cells.Add(new TableCell(new Paragraph(new Run("NAME"))));
+                    FirstCrewRow3.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow3.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow3.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow3.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
@@ -360,6 +417,7 @@ namespace NewBlueJayERP
                     FirstCrewRow4.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow4.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow4.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
+                    FirstCrewRow4.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
 
                     CrewTable.RowGroups[0].Rows.Add(new TableRow());
                     TableRow FirstCrewRow5 = CrewTable.RowGroups[0].Rows[5];
@@ -373,6 +431,7 @@ namespace NewBlueJayERP
                     FirstCrewRow5.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow5.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     FirstCrewRow5.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
+                    FirstCrewRow5.Cells.Add(new TableCell(new Paragraph(new Run("|"))));                    
                     FirstCrewRow5.Cells.Add(new TableCell(new Paragraph(new Run("|"))));
                     fdAcceptLetter.Blocks.Add(CrewTable);
 
@@ -605,6 +664,45 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void expSelectAllTasks_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+                expSelectAllTasks.IsExpanded = false;
+
+                intNumberOfRecords = TheProductionTasksForSheetsDataSet.productiontasks.Rows.Count;
+
+                if(intNumberOfRecords < 1)
+                {
+                    TheMessagesClass.ErrorMessage("The Business Line and Department have not Been Selected Yet");
+                    return;
+                }
+
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    TheProductionTasksForSheetsDataSet.productiontasks[intCounter].UseCode = true;
+                }
+
+                dgrProductionCodes.ItemsSource = TheProductionTasksForSheetsDataSet.productiontasks;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Create Production Sheet // Select All Task Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expResetTasks_Expanded(object sender, RoutedEventArgs e)
+        {
+            expResetTasks.IsExpanded = false;
+
+            UpdateGrid();
         }
     }
 }
