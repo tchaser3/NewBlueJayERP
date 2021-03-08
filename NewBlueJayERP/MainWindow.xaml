@@ -85,8 +85,9 @@
                                 <Expander x:Name="expEmployeeProductivityByDateRange" Header="Employee Productivity By Date Range" />
                                 <Expander x:Name="expProductionEmployeeProductivityMeasure" Header="Employee Productivity Measure" />
                                 <Expander x:Name="expEmployeeOvertimeReport" Header="Employee Overtime Report" Expanded="expEmployeeOvertimeReport_Expanded" />
-                                <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" />
+                                <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" Expanded="expEmployeePunchedVsProductionHours_Expanded" />
                                 <Expander x:Name="expEmployeeRoster" Header="Employee Roster" Expanded="expEmployeeRoster_Expanded" />
+                                <Expander x:Name="expManagerProductivityPunchedReport" Header="Manager Productivity Punched Graph" Expanded="expManagerProductivityPunchedReport_Expanded" />
                                 <Expander x:Name="expNonProductionEmployeeProductivity" Header="Non-Production Employee Productivity" Expanded="expNonProductionEmployeeProductivity_Expanded" />
                                 <Expander x:Name="expViewEmployeePunches" Header="View Employee Punches" />
                                 <Expander x:Name="expEmployeeLookup" Header="Employee Lookup" Expanded="expEmployeeLookup_Expanded" />

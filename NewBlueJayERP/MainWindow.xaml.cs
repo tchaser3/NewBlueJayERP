@@ -180,6 +180,8 @@ namespace NewBlueJayERP
         public static CreateProductionSheet CreateProductionSheetWindow = new CreateProductionSheet();
         public static AssignWorkTaskBusinessLine AssignWorkTaskBusinessLineWindow = new AssignWorkTaskBusinessLine();
         public static AddWorkTask AddWorkTaskWindow = new AddWorkTask();
+        public static EmployeePunchedVsProductionHours EmployeePunchedVsProductionHoursWindow = new EmployeePunchedVsProductionHours();
+        public static ManagerProductivityPunched ManagerProductivityPunchedWindow = new ManagerProductivityPunched();
 
         public MainWindow()
         {
@@ -305,6 +307,8 @@ namespace NewBlueJayERP
             CreateProductionSheetWindow.Visibility = Visibility.Hidden;
             AssignWorkTaskBusinessLineWindow.Visibility = Visibility.Hidden;
             AddWorkTaskWindow.Visibility = Visibility.Hidden;
+            EmployeePunchedVsProductionHoursWindow.Visibility = Visibility.Hidden;
+            ManagerProductivityPunchedWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1553,6 +1557,7 @@ namespace NewBlueJayERP
             expEmployeeReports.IsExpanded = false;
             expNonProductionEmployeeProductivity.IsExpanded = false;
             expEmployeeOvertimeReport.IsExpanded = false;
+            expManagerProductivityPunchedReport.IsExpanded = false;
         }
 
         private void expEmployeeLookup_Expanded(object sender, RoutedEventArgs e)
@@ -1795,6 +1800,18 @@ namespace NewBlueJayERP
         {
             ResetProjectAdministrationExpanders();
             AddWorkTaskWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeePunchedVsProductionHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            EmployeePunchedVsProductionHoursWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expManagerProductivityPunchedReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            ManagerProductivityPunchedWindow.Visibility = Visibility.Visible;
         }
     }
 }
