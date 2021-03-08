@@ -908,6 +908,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectsForVoidingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectsForVoidingDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ProjectShopAnalysis.xaml.cs">
       <DependentUpon>ProjectShopAnalysis.xaml</DependentUpon>
     </Compile>
@@ -1026,6 +1031,9 @@
     </Compile>
     <Compile Include="VoidInventoryTransaction.xaml.cs">
       <DependentUpon>VoidInventoryTransaction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VoidProductivitySheet.xaml.cs">
+      <DependentUpon>VoidProductivitySheet.xaml</DependentUpon>
     </Compile>
     <Compile Include="WarehouseCountDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1490,6 +1498,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VoidInventoryTransaction.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VoidProductivitySheet.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1966,6 +1978,17 @@
     </None>
     <None Include="ProjectProductivityReportDataSet.xss">
       <DependentUpon>ProjectProductivityReportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectsForVoidingDataSet.xsc">
+      <DependentUpon>ProjectsForVoidingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectsForVoidingDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectsForVoidingDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProjectsForVoidingDataSet.xss">
+      <DependentUpon>ProjectsForVoidingDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectWorkCompletedDataSet.xsc">
       <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>

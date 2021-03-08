@@ -173,6 +173,7 @@
                                 <Expander x:Name="expImportEditedProductionCodes" Header="Import Edited Production Codes" Margin="10,1,1,1" Expanded="expImportEditedProductionCodes_Expanded" />
                                 <Expander x:Name="expImportProductionCodesForSheets" Header="Import Codes for Sheets" Margin="10,1,1,1" Expanded="expImportProductionCodesForSheets_Expanded" />
                                 <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
+                                <Expander x:Name="expVoidProductivitySheet" Header="Void Productivity Sheet" Margin="10,1,1,1" Expanded="expVoidProductivitySheet_Expanded"/>
                             </StackPanel>                            
                         </Expander>
                     </StackPanel>

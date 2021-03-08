@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ProjectsForVoidingDataSet" targetNamespace="http://tempuri.org/ProjectsForVoidingDataSet.xsd" xmlns:mstns="http://tempuri.org/ProjectsForVoidingDataSet.xsd" xmlns="http://tempuri.org/ProjectsForVoidingDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ProjectsForVoidingDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ProjectsForVoidingDataSet" msprop:Generator_UserDSName="ProjectsForVoidingDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="projectsforvoiding" msprop:Generator_TableClassName="projectsforvoidingDataTable" msprop:Generator_TableVarName="tableprojectsforvoiding" msprop:Generator_TablePropName="projectsforvoiding" msprop:Generator_RowDeletingName="projectsforvoidingRowDeleting" msprop:Generator_RowChangingName="projectsforvoidingRowChanging" msprop:Generator_RowEvHandlerName="projectsforvoidingRowChangeEventHandler" msprop:Generator_RowDeletedName="projectsforvoidingRowDeleted" msprop:Generator_UserTableName="projectsforvoiding" msprop:Generator_RowChangedName="projectsforvoidingRowChanged" msprop:Generator_RowEvArgName="projectsforvoidingRowChangeEvent" msprop:Generator_RowClassName="projectsforvoidingRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="AssignmentTransactionID" msprop:Generator_ColumnVarNameInTable="columnAssignmentTransactionID" msprop:Generator_ColumnPropNameInRow="AssignmentTransactionID" msprop:Generator_ColumnPropNameInTable="AssignmentTransactionIDColumn" msprop:Generator_UserColumnName="AssignmentTransactionID" type="xs:int" minOccurs="0" />
+              <xs:element name="CustomerProjectID" msprop:Generator_ColumnVarNameInTable="columnCustomerProjectID" msprop:Generator_ColumnPropNameInRow="CustomerProjectID" msprop:Generator_ColumnPropNameInTable="CustomerProjectIDColumn" msprop:Generator_UserColumnName="CustomerProjectID" type="xs:string" />
+              <xs:element name="AssignedProjectID" msprop:Generator_ColumnVarNameInTable="columnAssignedProjectID" msprop:Generator_ColumnPropNameInRow="AssignedProjectID" msprop:Generator_ColumnPropNameInTable="AssignedProjectIDColumn" msprop:Generator_UserColumnName="AssignedProjectID" type="xs:string" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="CrewTransactionID" msprop:Generator_ColumnVarNameInTable="columnCrewTransactionID" msprop:Generator_ColumnPropNameInRow="CrewTransactionID" msprop:Generator_ColumnPropNameInTable="CrewTransactionIDColumn" msprop:Generator_UserColumnName="CrewTransactionID" type="xs:int" />
+              <xs:element name="TaskTransactionID" msprop:Generator_ColumnVarNameInTable="columnTaskTransactionID" msprop:Generator_ColumnPropNameInRow="TaskTransactionID" msprop:Generator_ColumnPropNameInTable="TaskTransactionIDColumn" msprop:Generator_UserColumnName="TaskTransactionID" type="xs:int" />
+              <xs:element name="WorkTask" msprop:Generator_ColumnVarNameInTable="columnWorkTask" msprop:Generator_ColumnPropNameInRow="WorkTask" msprop:Generator_ColumnPropNameInTable="WorkTaskColumn" msprop:Generator_UserColumnName="WorkTask" type="xs:string" />
+              <xs:element name="Void" msprop:Generator_ColumnVarNameInTable="columnVoid" msprop:Generator_ColumnPropNameInRow="Void" msprop:Generator_ColumnPropNameInTable="VoidColumn" msprop:Generator_UserColumnName="Void" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:projectsforvoiding" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

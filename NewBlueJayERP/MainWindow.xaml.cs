@@ -182,6 +182,7 @@ namespace NewBlueJayERP
         public static AddWorkTask AddWorkTaskWindow = new AddWorkTask();
         public static EmployeePunchedVsProductionHours EmployeePunchedVsProductionHoursWindow = new EmployeePunchedVsProductionHours();
         public static ManagerProductivityPunched ManagerProductivityPunchedWindow = new ManagerProductivityPunched();
+        public static VoidProductivitySheet VoidProductivitySheetWindow = new VoidProductivitySheet();
 
         public MainWindow()
         {
@@ -309,6 +310,7 @@ namespace NewBlueJayERP
             AddWorkTaskWindow.Visibility = Visibility.Hidden;
             EmployeePunchedVsProductionHoursWindow.Visibility = Visibility.Hidden;
             ManagerProductivityPunchedWindow.Visibility = Visibility.Hidden;
+            VoidProductivitySheetWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1488,6 +1490,7 @@ namespace NewBlueJayERP
             expUpdateEmployeeVehicleActive.IsExpanded = false;
             expEmployeeDoubleHours.IsExpanded = false;
             expAddProductivityWorkTask.IsExpanded = false;
+            expVoidProductivitySheet.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1683,6 +1686,7 @@ namespace NewBlueJayERP
             expImportProductionCodesForSheets.IsExpanded = false;
             expAssignTaskBusinessLine.IsExpanded = false;
             expAddWorkTask.IsExpanded = false;
+            expVoidProductivitySheet.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1812,6 +1816,12 @@ namespace NewBlueJayERP
         {
             ResetEmployeeReportExpanders();
             ManagerProductivityPunchedWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVoidProductivitySheet_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            VoidProductivitySheetWindow.Visibility = Visibility.Visible;
         }
     }
 }
