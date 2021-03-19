@@ -155,6 +155,7 @@ namespace NewBlueJayERP
             int intCounter;
             int intNumberOfRecords;
             int intStatusID;
+            string strProjectNotes;
 
             try
             {
@@ -211,6 +212,7 @@ namespace NewBlueJayERP
                 TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(gintProjectID);
 
                 strProjectName = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
+                strProjectNotes = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
 
                 intStatusID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
 
@@ -252,6 +254,7 @@ namespace NewBlueJayERP
                 txtAssignedProjectID.Text = strAssignedProjectID;
                 txtCustomerProjectID.Text = strCustomerProjectID;
                 txtProjectName.Text = strProjectName;
+                txtProjectNotes.Text = strProjectNotes;
 
                 TheFindProductionProjectUpdateByProjectIDDataSet = TheProductionProjectUpdatesClass.FindProductionProjectUpdateByProjectID(gintProjectID);
 

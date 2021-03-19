@@ -78,7 +78,7 @@
                         <Button x:Name="btnProcess" TabIndex="1" Content="Process" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="45" Width="125" Margin="100,2,1,1" Click="btnProcess_Click"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="50" Width="350">
-                        <Label x:Name="lblCompanyMean" Content="Company Aveage" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150"/>
+                        <Label x:Name="lblCompanyMean" Content="Company Average" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150"/>
                         <TextBox x:Name="txtCompanyAverage" IsReadOnly="True" Background="LightGray" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Height="50" Width="350">

@@ -436,6 +436,9 @@
     <Compile Include="AddCableReel.xaml.cs">
       <DependentUpon>AddCableReel.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddCellPhone.xaml.cs">
+      <DependentUpon>AddCellPhone.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddDepartment.xaml.cs">
       <DependentUpon>AddDepartment.xaml</DependentUpon>
     </Compile>
@@ -457,6 +460,9 @@
     <Compile Include="AddNewTool.xaml.cs">
       <DependentUpon>AddNewTool.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddPhoneExt.xaml.cs">
+      <DependentUpon>AddPhoneExt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddProductionProjectInfo.xaml.cs">
       <DependentUpon>AddProductionProjectInfo.xaml</DependentUpon>
     </Compile>
@@ -471,6 +477,12 @@
     </Compile>
     <Compile Include="AddWorkTask.xaml.cs">
       <DependentUpon>AddWorkTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWOVBillingCodes.xaml.cs">
+      <DependentUpon>AddWOVBillingCodes.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddWOVTasks.xaml.cs">
+      <DependentUpon>AddWOVTasks.xaml</DependentUpon>
     </Compile>
     <Compile Include="AfterWorkEmployeesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -576,6 +588,9 @@
     </Compile>
     <Compile Include="EditWorkTask.xaml.cs">
       <DependentUpon>EditWorkTask.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditWOVBillingCodes.xaml.cs">
+      <DependentUpon>EditWOVBillingCodes.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeDoubleHours.xaml.cs">
       <DependentUpon>EmployeeDoubleHours.xaml</DependentUpon>
@@ -722,6 +737,14 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportITAssets.xaml.cs">
+      <DependentUpon>ImportITAssets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportITAssetsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportITAssetsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ImportNonProductionTask.xaml.cs">
       <DependentUpon>ImportNonProductionTask.xaml</DependentUpon>
@@ -1057,6 +1080,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddCellPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddDepartment.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1085,6 +1112,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddPhoneExt.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddProductionProjectInfo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1102,6 +1133,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddWorkTask.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddWOVBillingCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddWOVTasks.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1205,6 +1244,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditWOVBillingCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EmployeeDoubleHours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1290,6 +1333,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportInventoryLocations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportITAssets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1758,6 +1805,17 @@
     </None>
     <None Include="ImportInventoryLocationsDataSet.xss">
       <DependentUpon>ImportInventoryLocationsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportITAssetsDataSet.xsc">
+      <DependentUpon>ImportITAssetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportITAssetsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportITAssetsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportITAssetsDataSet.xss">
+      <DependentUpon>ImportITAssetsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportNonProductionTasksDataSet.xsc">
       <DependentUpon>ImportNonProductionTasksDataSet.xsd</DependentUpon>

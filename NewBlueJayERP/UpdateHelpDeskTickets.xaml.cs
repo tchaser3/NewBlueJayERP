@@ -23,7 +23,8 @@ using HelpDeskDLL;
 using PhonesDLL;
 using VehiclesInShopDLL;
 using System.IO;
-using System.Text;
+using DataValidationDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -39,18 +40,21 @@ namespace NewBlueJayERP
         HelpDeskClass TheHelpDeskClass = new HelpDeskClass();
         PhonesClass ThePhoneClass = new PhonesClass();
         SendEmailClass TheSendEmailClass = new SendEmailClass();
+        DataValidationClass TheDataValidationClass = new DataValidationClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
-        FindOpenHelpDeskTicketsDataSet TheFindOpenHelpDeskTicketsDataSet;
-        FindHelpDeskTicketsNotAssignedByTicketIDDataSet TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet = new FindHelpDeskTicketsNotAssignedByTicketIDDataSet();
-        FindHelpDeskTicketUpdatesByTicketIDDataSet TheFindTicketUpdatesByTicketIDDataSet = new FindHelpDeskTicketUpdatesByTicketIDDataSet();
-        FindHelpDeskTicketCurrentAssignmentDataSet TheFindHelpDeskTicketCurrentAssignmentDataSet = new FindHelpDeskTicketCurrentAssignmentDataSet();
+        FindOpenHelpDeskTicketsDataSet TheFindOpenHelpDeskTicketsDataSet = new FindOpenHelpDeskTicketsDataSet();
+        FindHelpDeskTicketsByTicketIDDataSet TheFindHelpDeskTicketsByTicketIDDataSet = new FindHelpDeskTicketsByTicketIDDataSet();
+        FindHelpDeskTicketUpdatesByTicketIDDataSet TheFindHelpDeskTicketUpdatesByTicketIDDataSet = new FindHelpDeskTicketUpdatesByTicketIDDataSet();
         FindSortedHelpDeskProblemTypeDataSet TheFindSortedHelpDeskProblemTypeDataSet = new FindSortedHelpDeskProblemTypeDataSet();
         FindPhoneExtensionByEmployeeIDDataSet TheFindPhoneExtensionByEmployeeIDDataSet = new FindPhoneExtensionByEmployeeIDDataSet();
         FindEmployeeByDepartmentDataSet TheFindEmployeeByDepartmentDataSet = new FindEmployeeByDepartmentDataSet();
         FindEmployeeByEmployeeIDDataSet TheFindEmployeeByEmployeeIDDataSet = new FindEmployeeByEmployeeIDDataSet();
         FindOpenHelpDeskTicketsAssignedDataSet TheFindOpenHelpDeskTicketsAssignedDataSet = new FindOpenHelpDeskTicketsAssignedDataSet();
         OpenHelpDeskTicketsDataSet TheOpenHelpDeskTicketsDataSet = new OpenHelpDeskTicketsDataSet();
+        FindOpenHelpDeskTicketsForAssignmentDataSet TheFindOpenHelpDeskTicketsForAssignmentDataSet = new FindOpenHelpDeskTicketsForAssignmentDataSet();
+        FindHelpDeskTicketCurrentAssignmentDataSet TheFindHelpDeskCurrentAssignmentDataSet = new FindHelpDeskTicketCurrentAssignmentDataSet();
 
         string gstrTicketStatus;
         string gstrUserEmailAddress;
@@ -109,22 +113,43 @@ namespace NewBlueJayERP
             try
             {
                 txtComputerName.Text = "";
-                txtUpdateNotes.Text = "";
+                txtCurrentUpdte.Text = "";
                 txtExtension.Text = "";
+                txtTicketUpdates.Text = "";
 
-                cboSelectProblemType.Items.Clear();
-                cboSelectProblemType.Items.Add("Select Problem Type");
+                TheFindOpenHelpDeskTicketsDataSet = TheHelpDeskClass.FindOpenHelpDeskTickets();
+
+                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
+
+                intNumberOfRecords = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined.Rows.Count;
+
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicketRow = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
+
+                    NewTicketRow.FirstName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].FirstName;
+                    NewTicketRow.LastName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].LastName;
+                    NewTicketRow.ReportedProblem = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].ReportedProblem;
+                    NewTicketRow.TicketDate = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketDate;
+                    NewTicketRow.TicketID = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketID;
+
+                    TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicketRow);
+                }
+
+                dgrOpenTickets.ItemsSource = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets;
 
                 TheFindSortedHelpDeskProblemTypeDataSet = TheHelpDeskClass.FindSortedHelpDeskProblemType();
 
-                intNumberOfRecords = TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType.Rows.Count - 1;
+                intNumberOfRecords = TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType.Rows.Count;
+                cboProblemType.Items.Clear();
+                cboProblemType.Items.Add("Select Problem Type");
 
-                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                 {
-                    cboSelectProblemType.Items.Add(TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType[intCounter].ProblemType);
+                    cboProblemType.Items.Add(TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType[intCounter].ProblemType);
                 }
 
-                cboSelectProblemType.SelectedIndex = 0;
+                cboProblemType.SelectedIndex = 0;
 
                 cboTicketStatus.Items.Clear();
                 cboTicketStatus.Items.Add("Select Status");
@@ -137,13 +162,12 @@ namespace NewBlueJayERP
 
                 TheFindEmployeeByDepartmentDataSet = TheEmployeeClass.FindEmployeeByDepartment("INFORMATION TECHNOLOGY");
 
-                intNumberOfRecords = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment.Rows.Count - 1;
-
                 cboSelectEmployee.Items.Clear();
                 cboSelectEmployee.Items.Add("Select Employee");
-                cboSelectEmployee.Items.Add("Unassigned");
 
-                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                intNumberOfRecords = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment.Rows.Count;
+
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                 {
                     strFullName = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intCounter].FirstName + " ";
                     strFullName += TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intCounter].LastName;
@@ -153,9 +177,7 @@ namespace NewBlueJayERP
 
                 cboSelectEmployee.SelectedIndex = 0;
 
-                TheFindOpenHelpDeskTicketsDataSet = TheHelpDeskClass.FindOpenHelpDeskTickets();
-
-                dgrOpenTickets.ItemsSource = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets;
+                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Update Help Desk Tickets");
             }
             catch (Exception Ex)
             {
@@ -164,236 +186,6 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
             
-        }
-
-        private void dgrOpenTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataGrid dataGrid;
-            DataGridRow selectedRow;
-            DataGridCell TicketID;
-            string strTicketID;
-            int intCounter;
-            int intNumberOfRecords;
-            int intEmployeeID;
-            int intRecordsReturned;
-            string strTicketStatus;
-            int intSelectedIndex = 0;
-            int intEmployeeRecords;
-
-            try
-            {
-                if (dgrOpenTickets.SelectedIndex > -1)
-                {
-
-                    //setting local variable
-                    dataGrid = dgrOpenTickets;
-                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
-                    TicketID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
-                    strTicketID = ((TextBlock)TicketID.Content).Text;
-
-                    //find the record
-                    MainWindow.gintTicketID = Convert.ToInt32(strTicketID);
-
-                    TheFindTicketUpdatesByTicketIDDataSet = TheHelpDeskClass.FindHelpDeskTicketUpdatesByTicketID(MainWindow.gintTicketID);
-
-                    dgrTicketUpdates.ItemsSource = TheFindTicketUpdatesByTicketIDDataSet.FindHelpDeskTicketUpdatesByTicketID;
-
-                    TheFindHelpDeskTicketCurrentAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketCurrentAssignment(MainWindow.gintTicketID);
-
-                    intNumberOfRecords = TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment.Rows.Count;
-
-                    if(intNumberOfRecords == 0)
-                    {
-                        cboSelectEmployee.SelectedIndex = 0;
-                    } 
-                    else if(intNumberOfRecords > 0)
-                    {
-                        intEmployeeRecords = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment.Rows.Count - 1;
-
-                        intEmployeeID = TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment[0].EmployeeID;
-
-                        for(intCounter = 0; intCounter <= intEmployeeRecords; intCounter++)
-                        {
-                            if (intEmployeeID == TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intCounter].EmployeeID)
-                            {
-                                cboSelectEmployee.SelectedIndex = intCounter + 2;
-                            }
-
-                        }
-                    }
-
-                    TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet = TheHelpDeskClass.FindHelpDeskTicketsNotAssignedByTicketID(MainWindow.gintTicketID);
-
-                    txtComputerName.Text = TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet.FindHelpDeskTicketsNotAssignedByTicketID[0].ComputerName;
-                    intEmployeeID = TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet.FindHelpDeskTicketsNotAssignedByTicketID[0].EmployeeID;
-                    TheFindPhoneExtensionByEmployeeIDDataSet = ThePhoneClass.FindPhoneExtensionByEmployeeID(intEmployeeID);
-                    TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intEmployeeID);
-
-                    if(TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].IsEmailAddressNull() == true)
-                    {
-                        gblnEmailAddress = false;
-                    }
-                    else
-                    {
-                        gstrUserEmailAddress = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress;
-
-                        if(gstrUserEmailAddress.Contains("bluejaycommunications.com") == false)
-                        {
-                            gblnEmailAddress = false;
-                        }
-                        else
-                        {
-                            gblnEmailAddress = true;
-                            gstrUserEmailAddress = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress;
-                        }
-                    }
-
-                    intRecordsReturned = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID.Rows.Count;
-
-                    if(intRecordsReturned == 0)
-                    {
-                        txtExtension.Text = "0";
-                    }
-                    else
-                    {
-                        txtExtension.Text = Convert.ToString(TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[0].Extension);
-                    }
-
-                    MainWindow.gintProblemTypeID = TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet.FindHelpDeskTicketsNotAssignedByTicketID[0].ProblemTypeID;
-
-                    intNumberOfRecords = TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType.Rows.Count - 1;
-
-                    for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                    {
-                        if(MainWindow.gintProblemTypeID == TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType[intCounter].ProblemTypeID)
-                        {
-                            cboSelectProblemType.SelectedIndex = intCounter + 1;
-                        }
-                    }
-
-                    strTicketStatus = TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet.FindHelpDeskTicketsNotAssignedByTicketID[0].TicketStatus;
-
-                    intNumberOfRecords = cboTicketStatus.Items.Count - 1;
-
-                    for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                    {
-                        cboTicketStatus.SelectedIndex = intCounter;
-
-                        if(cboTicketStatus.SelectedItem.ToString() == strTicketStatus)
-                        {
-                            intSelectedIndex = intCounter;
-                        }
-                    }
-
-                    cboTicketStatus.SelectedIndex = intSelectedIndex;
-                }
-
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Open Ticket Grids " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void cboSelectProblemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int intSelectedIndex;
-            bool blnFatalError = false;
-
-            try
-            {
-                intSelectedIndex = cboSelectProblemType.SelectedIndex - 1;
-
-                if(intSelectedIndex > -1)
-                {
-                    MainWindow.gintProblemTypeID = TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType[intSelectedIndex].ProblemTypeID;
-
-                    TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet = TheHelpDeskClass.FindHelpDeskTicketsNotAssignedByTicketID(MainWindow.gintTicketID);
-
-                    if (MainWindow.gintProblemTypeID != TheFindHelpDeskTicketsNotAssignedByTicketIDDataSet.FindHelpDeskTicketsNotAssignedByTicketID[0].ProblemTypeID)
-                    {
-                        blnFatalError = TheHelpDeskClass.UpdateHelpDeskTicketProblemType(MainWindow.gintTicketID, MainWindow.gintProblemTypeID);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-
-                        TheMessagesClass.InformationMessage("The Ticket Problem Type has been Updated");
-
-                        TheFindOpenHelpDeskTicketsDataSet = TheHelpDeskClass.FindOpenHelpDeskTickets();
-
-                        dgrOpenTickets.ItemsSource = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets;
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Select Problem Type " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-
-        }
-
-        private void cboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int intSelectedIndex;
-            int intNumberOfRecords;
-            bool blnFatalError = false;
-            int intTransactionID;
-            string strFullName;
-
-            try
-            {
-                intSelectedIndex = cboSelectEmployee.SelectedIndex - 2;
-
-                if(intSelectedIndex > -1)
-                {
-                    MainWindow.gintEmployeeID = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].EmployeeID;
-                    strFullName = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].FirstName + " ";
-                    strFullName += TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].LastName;
-
-                    TheFindHelpDeskTicketCurrentAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketCurrentAssignment(MainWindow.gintTicketID);
-
-                    intNumberOfRecords = TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment.Rows.Count;
-
-                    if(intNumberOfRecords == 0)
-                    {
-                        blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketAssignment(MainWindow.gintTicketID, MainWindow.gintEmployeeID);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-
-                        SendEmailRegardingCurrentAssignment(MainWindow.gintTicketID, strFullName);
-                    }
-                    else if(intNumberOfRecords > 0)
-                    {
-                        intTransactionID = TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment[0].TransactionID;
-
-                        if(MainWindow.gintEmployeeID != TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment[0].EmployeeID)
-                        {
-                            blnFatalError = TheHelpDeskClass.UpdateHelpDeskTicketCurrrentAssignment(intTransactionID, false);
-
-                            if (blnFatalError == true)
-                                throw new Exception();
-
-                            blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketAssignment(MainWindow.gintTicketID, MainWindow.gintEmployeeID);
-
-                            if (blnFatalError == true)
-                                throw new Exception();
-
-                            SendEmailRegardingCurrentAssignment(MainWindow.gintTicketID, strFullName);
-                        }
-                    }
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Select Employee Combo Box " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
         }
         private void SendEmailRegardingCurrentAssignment(int intTicketID, string strFullName)
         {
@@ -421,55 +213,401 @@ namespace NewBlueJayERP
             }
         }
 
-        private void cboTicketStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
         {
+            expHelpDesk.IsExpanded = false;
+            TheMessagesClass.LaunchHelpDeskTickets();
+        }
+
+        private void expMyTickets_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intEmployeeID;
+            int intCounter;
+            int intNumberOfRecords;
+
             try
             {
-                if(cboTicketStatus.SelectedIndex > 0)
+                expMyTickets.IsExpanded = false;
+                intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
+
+                TheFindOpenHelpDeskTicketsAssignedDataSet = TheHelpDeskClass.FindOpenHelpDeskTicketsAssigned(intEmployeeID);
+                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
+
+                intNumberOfRecords = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined.Rows.Count;
+
+                if(intNumberOfRecords > 0)
                 {
-                    gstrTicketStatus = cboTicketStatus.SelectedItem.ToString();
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicketRow = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
+
+                        NewTicketRow.FirstName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].FirstName;
+                        NewTicketRow.LastName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].LastName;
+                        NewTicketRow.ReportedProblem = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].ReportedProblem;
+                        NewTicketRow.TicketDate = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketDate;
+                        NewTicketRow.TicketID = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketID;
+
+                        TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicketRow);
+                    }
                 }
+
+                dgrOpenTickets.ItemsSource = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets;
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Ticket Status Combo Box " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // My Tickets Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
 
-        private void btnUpdateTicket_Click(object sender, RoutedEventArgs e)
+        private void expUnassigned_Expanded(object sender, RoutedEventArgs e)
         {
-            string strUpdateNotes;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+                expUnassigned.IsExpanded = false;
+                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
+
+                TheFindOpenHelpDeskTicketsForAssignmentDataSet = TheHelpDeskClass.FindOpenHelpDeskTicketsForAssignment();
+
+                intNumberOfRecords = TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment.Rows.Count;
+
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        if(TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment[intCounter].IsCurrentAssignmentNull() == true)
+                        {
+                            OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicketRow = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
+
+                            NewTicketRow.FirstName = TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment[intCounter].FirstName;
+                            NewTicketRow.LastName = TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment[intCounter].LastName;
+                            NewTicketRow.TicketDate = TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment[intCounter].TicketDate;
+                            NewTicketRow.TicketID = TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment[intCounter].TicketID;
+                            NewTicketRow.ReportedProblem = TheFindOpenHelpDeskTicketsForAssignmentDataSet.FindOpenHelpDeskTicketsForAssignment[intCounter].ReportedProblem;
+
+                            TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicketRow);
+                        }         
+                    }
+                }
+
+                dgrOpenTickets.ItemsSource = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Unassigned Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expResetWindow_Expanded(object sender, RoutedEventArgs e)
+        {
+            expResetWindow.IsExpanded = false;
+
+            ResetControls();
+        }
+
+        private void cboProblemType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            intSelectedIndex = cboProblemType.SelectedIndex - 1;
+
+            if(intSelectedIndex > -1)
+            {
+                MainWindow.gintProblemTypeID = TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType[intSelectedIndex].ProblemTypeID;
+            }
+        }
+
+        private void cboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+            int intRecordsReturned;
             bool blnFatalError = false;
-            string strErrorMessage = "";
-            int intEmployeeID;
-            string strEmailAddress = "itadmin@bluejaycommunications.com";
+            int intTransactionID;
+            string strFullName;
             string strMessage;
             string strHeader;
 
             try
             {
-                if(cboSelectProblemType.SelectedIndex < 1)
+                intSelectedIndex = cboSelectEmployee.SelectedIndex - 1;
+
+                if (intSelectedIndex > -1)
+                {
+                    MainWindow.gintEmployeeID = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].EmployeeID;
+
+                    strFullName = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].FirstName + " ";
+                    strFullName += TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intSelectedIndex].LastName;
+
+                    strHeader = "Ticket " + Convert.ToString(MainWindow.gintTicketID) + " Has Been Assigned To " + strFullName;
+                    strMessage = "<h1>" + strHeader + "</h1>";
+
+                    TheFindHelpDeskCurrentAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketCurrentAssignment(MainWindow.gintTicketID);
+
+                    intRecordsReturned = TheFindHelpDeskCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        if(MainWindow.gintEmployeeID != TheFindHelpDeskCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment[0].EmployeeID)
+                        {
+                            intTransactionID = TheFindHelpDeskCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment[0].TransactionID;
+
+                            blnFatalError = TheHelpDeskClass.UpdateHelpDeskTicketCurrrentAssignment(intTransactionID, false);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+
+                            blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketAssignment(MainWindow.gintTicketID, MainWindow.gintEmployeeID);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+
+                            blnFatalError = !(TheSendEmailClass.SendEmail(gstrUserEmailAddress, strHeader, strMessage));
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+
+                            blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketUpdate(MainWindow.gintTicketID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strHeader);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+
+                            blnFatalError = !(TheSendEmailClass.SendEmail("itadmin@bluejaycommunications.com", strHeader, strMessage));
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                    else if(intRecordsReturned < 1)
+                    {
+                        blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketAssignment(MainWindow.gintTicketID, MainWindow.gintEmployeeID);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+
+                        blnFatalError = !(TheSendEmailClass.SendEmail(gstrUserEmailAddress, strHeader, strMessage));
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+
+                        blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketUpdate(MainWindow.gintTicketID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strHeader);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+
+                        blnFatalError = !(TheSendEmailClass.SendEmail("itadmin@bluejaycommunications.com", strHeader, strMessage));
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+                    }
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Select Employee Combo Box " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+            
+        }
+
+        private void cboTicketStatus_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            intSelectedIndex = cboTicketStatus.SelectedIndex;
+
+            if(intSelectedIndex > 0)
+            {
+                gstrTicketStatus = cboTicketStatus.SelectedItem.ToString();
+            }
+        }
+
+        private void dgrOpenTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid;
+            DataGridRow selectedRow;
+            DataGridCell TicketID;
+            string strTicketID;
+            int intRecordsReturned;
+            int intEmployeeID;
+            int intProblemTypeID;
+            int intAssignedEmployeeID;
+            int intCounter;
+            int intNumberOfRecords;
+            int intSelectedIndex = 0;
+            string strTicketStatus = "";
+            string strTicketUpdate;
+            bool blnFatalError;
+
+            try
+            {
+                if (dgrOpenTickets.SelectedIndex > -1)
+                {
+                    //setting local variable
+                    dataGrid = dgrOpenTickets;
+                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+                    TicketID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
+                    strTicketID = ((TextBlock)TicketID.Content).Text;
+
+
+                    //find the record
+                    MainWindow.gintTicketID = Convert.ToInt32(strTicketID);
+
+                    TheFindHelpDeskTicketsByTicketIDDataSet = TheHelpDeskClass.FindHelpDeskTicketByTicketID(MainWindow.gintTicketID);
+
+                    intEmployeeID = TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].EmployeeID;
+                    txtComputerName.Text = TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].ComputerName;
+
+                    strTicketUpdate = TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].FirstName + " ";
+                    strTicketUpdate += TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].LastName + " - ";
+                    strTicketUpdate += Convert.ToString(TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].TicketDate) + " - ";
+                    strTicketUpdate += TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].ReportedProblem + "\n\n";
+
+                    TheFindEmployeeByEmployeeIDDataSet = TheEmployeeClass.FindEmployeeByEmployeeID(intEmployeeID);
+
+                    if (TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].IsEmailAddressNull() == true)
+                    {
+                        gstrUserEmailAddress = "techadmin@bluejaycommunications.com";
+                    }
+                    else
+                    {
+                        gstrUserEmailAddress = TheFindEmployeeByEmployeeIDDataSet.FindEmployeeByEmployeeID[0].EmailAddress;
+
+                        blnFatalError = TheDataValidationClass.VerifyEmailAddress(gstrUserEmailAddress);
+
+                        if(blnFatalError == true)
+                        {
+                            gstrUserEmailAddress = "techadmin@bluejaycommunications.com";
+                        }
+                    }
+
+                    TheFindHelpDeskCurrentAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketCurrentAssignment(MainWindow.gintTicketID);
+
+                    intRecordsReturned = TheFindHelpDeskCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        intAssignedEmployeeID = TheFindHelpDeskCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment[0].EmployeeID;
+                        intNumberOfRecords = TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment.Rows.Count;
+
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            if(intAssignedEmployeeID == TheFindEmployeeByDepartmentDataSet.FindEmployeeByDepartment[intCounter].EmployeeID)
+                            {
+                                cboSelectEmployee.SelectedIndex = intCounter + 1;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        cboSelectEmployee.SelectedIndex = 0;
+                    }
+
+                    intProblemTypeID = TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].ProblemTypeID;
+
+                    intNumberOfRecords = TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType.Rows.Count;
+
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        if(intProblemTypeID == TheFindSortedHelpDeskProblemTypeDataSet.FindSortedHelpDeskProblemType[intCounter].ProblemTypeID)
+                        {
+                            cboProblemType.SelectedIndex = intCounter + 1;
+                        }
+                    }
+
+                    strTicketStatus = TheFindHelpDeskTicketsByTicketIDDataSet.FindHelpDeskTicketsByTicketID[0].TicketStatus;
+
+                    intNumberOfRecords = cboTicketStatus.Items.Count;
+
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        cboTicketStatus.SelectedIndex = intCounter;
+
+                        if(strTicketStatus == cboTicketStatus.SelectedItem.ToString())
+                        {
+                            intSelectedIndex = intCounter;
+                        }
+                    }
+
+                    cboTicketStatus.SelectedIndex = intSelectedIndex;
+
+                    TheFindPhoneExtensionByEmployeeIDDataSet = ThePhoneClass.FindPhoneExtensionByEmployeeID(intEmployeeID);
+
+                    intRecordsReturned = TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID.Rows.Count;
+
+                    if(intRecordsReturned > 0)
+                    {
+                        txtExtension.Text = Convert.ToString(TheFindPhoneExtensionByEmployeeIDDataSet.FindPhoneExtensionByEmployeeID[0].Extension);
+                    }
+                    else
+                    {
+                        txtExtension.Text = "0";
+                    }
+
+                    TheFindHelpDeskTicketUpdatesByTicketIDDataSet = TheHelpDeskClass.FindHelpDeskTicketUpdatesByTicketID(MainWindow.gintTicketID);
+
+                    intNumberOfRecords = TheFindHelpDeskTicketUpdatesByTicketIDDataSet.FindHelpDeskTicketUpdatesByTicketID.Rows.Count;
+
+                    if(intNumberOfRecords > 0)
+                    {
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            strTicketUpdate += Convert.ToString(TheFindHelpDeskTicketUpdatesByTicketIDDataSet.FindHelpDeskTicketUpdatesByTicketID[intCounter].TransactionDate) + " - ";
+                            strTicketUpdate += TheFindHelpDeskTicketUpdatesByTicketIDDataSet.FindHelpDeskTicketUpdatesByTicketID[intCounter].FirstName + " ";
+                            strTicketUpdate += TheFindHelpDeskTicketUpdatesByTicketIDDataSet.FindHelpDeskTicketUpdatesByTicketID[intCounter].LastName + " - ";
+                            strTicketUpdate += TheFindHelpDeskTicketUpdatesByTicketIDDataSet.FindHelpDeskTicketUpdatesByTicketID[intCounter].UpdateNotes + "\n\n";
+                        }
+                    }
+
+                    txtTicketUpdates.Text = strTicketUpdate;
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // dgr Open Tickets Grid Selection " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expUpdateTicket_Expanded(object sender, RoutedEventArgs e)
+        {
+            bool blnFatalError = false;
+            string strErrorMessage = "";
+            string strCurrentUpdate;
+            string strHeader;
+            string strMessage;
+
+            try
+            {
+                expUpdateTicket.IsExpanded = false;
+                if(cboProblemType.SelectedIndex < 1)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Problem Type Was Not Selected\n";
                 }
-                if(cboSelectEmployee.SelectedIndex < 2)
+                if(cboSelectEmployee.SelectedIndex < 1)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Ticket was not Assigned\n";
+                    strErrorMessage += "The Employee Was Not Selected\n";
                 }
                 if(cboTicketStatus.SelectedIndex < 1)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Ticket Status Was not Selected\n";
+                    strErrorMessage += "The Ticket Status was not Selected\n";
                 }
-                strUpdateNotes = txtUpdateNotes.Text;
-                if(strUpdateNotes.Length < 15)
+                strCurrentUpdate = txtCurrentUpdte.Text;
+                if(strCurrentUpdate.Length < 15)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Update Notes were not Long Enough\n";
+                    strErrorMessage += "The Current Update is not Long Enough\n";
                 }
                 if(blnFatalError == true)
                 {
@@ -477,29 +615,32 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
-
-                blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketUpdate(MainWindow.gintTicketID, intEmployeeID, strUpdateNotes);
-
-                if (blnFatalError == true)
-                    throw new Exception();
-
                 blnFatalError = TheHelpDeskClass.UpdateHelpDeskTicketStatus(MainWindow.gintTicketID, gstrTicketStatus);
 
                 if (blnFatalError == true)
                     throw new Exception();
 
-                strHeader = "Ticket " + Convert.ToString(MainWindow.gintTicketID) + " Has Been Updated";
-                strMessage = "<h1>Ticket " + Convert.ToString(MainWindow.gintTicketID) + " Has Been Updated</h1>";
-                strMessage += "<h3>Current Status:  " + gstrTicketStatus + "</h3>";
-                strMessage += "<h3> Update Notes: " + strUpdateNotes + "</h3>";
-
-                blnFatalError = !(TheSendEmailClass.SendEmail(strEmailAddress, strHeader, strMessage));
+                blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketUpdate(MainWindow.gintTicketID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strCurrentUpdate);
 
                 if (blnFatalError == true)
                     throw new Exception();
 
+                blnFatalError = TheHelpDeskClass.UpdateHelpDeskTicketProblemType(MainWindow.gintTicketID, MainWindow.gintProblemTypeID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                strHeader = "Ticket Number " + Convert.ToString(MainWindow.gintTicketID) + "Has Been Updated";
+
+                strMessage = "<h1>" + strHeader + "</h1>";
+                strMessage += "<p>" + strCurrentUpdate + "</p>";
+
                 blnFatalError = !(TheSendEmailClass.SendEmail(gstrUserEmailAddress, strHeader, strMessage));
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = !(TheSendEmailClass.SendEmail("itadmin@bluejaycommunications.com", strHeader, strMessage));
 
                 if (blnFatalError == true)
                     throw new Exception();
@@ -510,126 +651,19 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Update Ticket Button " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Update Ticket Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
 
-        private void expRefreshTickets_Expanded(object sender, RoutedEventArgs e)
+        private void btnViewDocuments_Click(object sender, RoutedEventArgs e)
         {
-            expRefreshTickets.IsExpanded = false;
-            ResetControls();
+            ViewHelpDeskAttachments ViewHelpDeskAttachments = new ViewHelpDeskAttachments();
+            ViewHelpDeskAttachments.ShowDialog();
         }
 
-        private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
-        {
-            expHelpDesk.IsExpanded = false;
-            TheMessagesClass.LaunchHelpDeskTickets();
-
-        }
-
-        private void expMyOpenTickets_Expanded(object sender, RoutedEventArgs e)
-        {
-            int intEmployeeID;
-            int intCounter;
-            int intNumberOfRecords;
-
-            try
-            {
-                expMyOpenTickets.IsExpanded = false;
-
-                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
-
-                intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
-
-                TheFindOpenHelpDeskTicketsAssignedDataSet = TheHelpDeskClass.FindOpenHelpDeskTicketsAssigned(intEmployeeID);
-
-                intNumberOfRecords = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined.Rows.Count - 1;
-
-                if(intNumberOfRecords < 0)
-                {
-                    TheMessagesClass.InformationMessage("There Are No Open Tickets for You");
-
-                    return;
-                }
-
-                for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                {
-                    OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicket = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
-
-                    NewTicket.FirstName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].FirstName;
-                    NewTicket.LastName = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].LastName;
-                    NewTicket.TicketDate = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketDate;
-                    NewTicket.ReportedProblem = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].ReportedProblem;
-                    NewTicket.TicketID = TheFindOpenHelpDeskTicketsAssignedDataSet.FindOpenHelpDeskTicketsAssgined[intCounter].TicketID;
-
-                    TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicket);
-                }
-
-                dgrOpenTickets.ItemsSource = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets;
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // My Open Tickets Expander " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void expUnassignedTickets_Expanded(object sender, RoutedEventArgs e)
-        {
-            int intCounter;
-            int intNumberOfRecords;
-            int intTicketID;
-            int intRecordsReturned;
-
-            try
-            {
-                expUnassignedTickets.IsExpanded = false;
-
-                TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Clear();
-
-                TheFindOpenHelpDeskTicketsDataSet = TheHelpDeskClass.FindOpenHelpDeskTickets();
-
-                intNumberOfRecords = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets.Rows.Count - 1;
-
-                if(intNumberOfRecords > -1)
-                {
-                    for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                    {
-                        intTicketID = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].TicketID;
-
-                        TheFindHelpDeskTicketCurrentAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketCurrentAssignment(intTicketID);
-
-                        intRecordsReturned = TheFindHelpDeskTicketCurrentAssignmentDataSet.FindHelpDeskTicketCurrentAssignment.Rows.Count;
-
-                        if(intRecordsReturned == 0)
-                        {
-                            OpenHelpDeskTicketsDataSet.openhelpdeskticketsRow NewTicketRow = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.NewopenhelpdeskticketsRow();
-
-                            NewTicketRow.FirstName = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].FirstName;
-                            NewTicketRow.LastName = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].LastName;
-                            NewTicketRow.ReportedProblem = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].ReportedProblem;
-                            NewTicketRow.TicketDate = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].TicketDate;
-                            NewTicketRow.TicketID = TheFindOpenHelpDeskTicketsDataSet.FindOpenHelpDeskTickets[intCounter].TicketID;
-
-                            TheOpenHelpDeskTicketsDataSet.openhelpdesktickets.Rows.Add(NewTicketRow);
-                        }
-                    }
-
-                    dgrOpenTickets.ItemsSource = TheOpenHelpDeskTicketsDataSet.openhelpdesktickets;
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Unassigned Tickets Expander " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void btnAddDocumentation_Click(object sender, RoutedEventArgs e)
+        private void btnAddDocuments_Click(object sender, RoutedEventArgs e)
         {
             //setting local variables
             DateTime datTransactionDate = DateTime.Now;
@@ -681,16 +715,10 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Ticket // Attach Documentation Button " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Help Desk Tickets // Attach Documents " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
-        }
-
-        private void btnViewAttachments_Click(object sender, RoutedEventArgs e)
-        {
-            ViewHelpDeskAttachments ViewHelpDeskAttachments = new ViewHelpDeskAttachments();
-            ViewHelpDeskAttachments.ShowDialog();
         }
     }
 }

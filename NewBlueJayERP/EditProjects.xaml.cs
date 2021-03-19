@@ -579,6 +579,7 @@ namespace NewBlueJayERP
             int intRecordsReturned;
             string strValueForValidation;
             int intTransactionID = 0;
+            string strCurrentProjectNotes = "";
 
             try
             {
@@ -675,6 +676,8 @@ namespace NewBlueJayERP
                     return;
                 }
 
+                strCurrentProjectNotes = txtPRojectNotes.Text;
+
                 blnFatalError = TheProjectMatrixClass.UpdateProjectMatrixAssignedProjectID(intTransactionID, strAssignedProjectID);
 
                 if (blnFatalError == true)
@@ -706,7 +709,7 @@ namespace NewBlueJayERP
 
                 intTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
 
-                blnFatalError = TheProductionProjectClass.UpdateProductionProject(intTransactionID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datECDDate, strProjectNotes);
+                blnFatalError = TheProductionProjectClass.UpdateProductionProject(intTransactionID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datECDDate, strCurrentProjectNotes);
 
                 if (blnFatalError == true)
                     throw new Exception();

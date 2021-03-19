@@ -68,8 +68,8 @@
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
             <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Height="400" Width="830" Margin="157,157,7,237">
-            <StackPanel Height="400" Width="415">
+        <StackPanel Orientation="Horizontal" Height="500" Width="830" Margin="155,156,9,138" >
+            <StackPanel Height="500" Width="415">
                 <StackPanel Orientation="Horizontal" Height="50" Width="415">
                     <Label x:Name="lblEnterProjectID" Content="Enter Project ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Width="150"/>
                     <TextBox x:Name="txtEnterProjectID" TabIndex="0" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="40" Width="150" Margin="10,1,1,1" />
@@ -87,13 +87,18 @@
                     <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="95" Width="150"/>
                     <TextBox x:Name="txtProjectName" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="90" Width="225" Margin="10,1,1,1" TextWrapping="Wrap"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="100" Width="415">
+                    <Label x:Name="lblProjectNotes" Content="Project Notes" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="95" Width="150"/>
+                    <TextBox x:Name="txtProjectNotes" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Margin="10,1,1,1" Height="90" Width="225" TextWrapping="Wrap"/>
+
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="150" Width="415">                    
                         <Label x:Name="lblProjectUpdates" Content="Project Updates" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="95" Width="150"/>
-                        <TextBox x:Name="txtProjectUpdates" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="140" Width="225" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                        <TextBox x:Name="txtProjectUpdates" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Margin="10,1,1,1" Height="140" Width="225" TextWrapping="Wrap"/>
                     
                 </StackPanel>
             </StackPanel>
-            <StackPanel Height="400" Width="415">
+            <StackPanel Height="500" Width="415">
                 <StackPanel Height="50" Width="415">
                     <Label x:Name="lblSelectStatus" Content="Select Status" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" FontSize="20"/>
                 </StackPanel>
@@ -109,9 +114,9 @@
                     <RadioButton x:Name="rdoInvoiced" TabIndex="8" Content="Invoiced" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="10,1,1,1" Checked="rdoInvoiced_Checked" />
                     <RadioButton x:Name="rdoClosed" TabIndex="9" Content="Closed" FontSize="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Margin="10,1,1,1" Checked="rdoClosed_Checked" />
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="80" Width="415">
+                <StackPanel Orientation="Horizontal" Height="175" Width="415">
                     <Label x:Name="lblUpdateNotes" Content="Update Notes" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="75" Width="150"/>
-                    <TextBox x:Name="txtUpdateNotes" TabIndex="10" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="70" Width="225" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                    <TextBox x:Name="txtUpdateNotes" TabIndex="10" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="165" Width="225" Margin="10,1,1,1" TextWrapping="Wrap"/>
                 </StackPanel>
                 <StackPanel Height="65" Width="415">
                     <Button x:Name="btnProcessUpdate" TabIndex="11" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="60" Width="150" FontSize="25" Margin="60,2,1,1" Click="btnProcessUpdate_Click"/>

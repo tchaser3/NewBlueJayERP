@@ -398,7 +398,7 @@ namespace NewBlueJayERP
                 strProjectNotes = txtPRojectNotes.Text;
                 if(strProjectNotes.Length < 1)
                 {
-                    strProjectNotes = "NO NOTES ENTERED";
+                    strProjectNotes = "PROJECT CREATED";
                 }
                 if(blnFatalError == true)
                 {
@@ -418,6 +418,11 @@ namespace NewBlueJayERP
                     gintProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
 
                     blnFatalError = TheProductionProjectClass.InsertProdutionProject(gintProjectID, gintDepartmentID, strAddress, strCity, strState, gintManagerID, gintOfficeID, datDateReceived, datECDDate, gintStatusID, strProjectNotes);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+
+                    blnFatalError = TheProductionProjectClass.InsertProductionProjectUpdate(gintProjectID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, DateTime.Now, strProjectNotes);
 
                     if (blnFatalError == true)
                         throw new Exception();

@@ -183,6 +183,12 @@ namespace NewBlueJayERP
         public static EmployeePunchedVsProductionHours EmployeePunchedVsProductionHoursWindow = new EmployeePunchedVsProductionHours();
         public static ManagerProductivityPunched ManagerProductivityPunchedWindow = new ManagerProductivityPunched();
         public static VoidProductivitySheet VoidProductivitySheetWindow = new VoidProductivitySheet();
+        public static AddWOVBillingCodes AddWOVBillingCodesWindow = new AddWOVBillingCodes();
+        public static EditWOVBillingCodes EditWOVBillingCodesWindow = new EditWOVBillingCodes();
+        public static AddWOVTasks AddWOVTasksWindow = new AddWOVTasks();
+        public static AddCellPhone AddCellPhoneWindow = new AddCellPhone();
+        public static AddPhoneExt AddPhoneExtWindow = new AddPhoneExt();
+        public static ImportITAssets ImportITAssetsWindow = new ImportITAssets();
 
         public MainWindow()
         {
@@ -311,6 +317,12 @@ namespace NewBlueJayERP
             EmployeePunchedVsProductionHoursWindow.Visibility = Visibility.Hidden;
             ManagerProductivityPunchedWindow.Visibility = Visibility.Hidden;
             VoidProductivitySheetWindow.Visibility = Visibility.Hidden;
+            AddWOVBillingCodesWindow.Visibility = Visibility.Hidden;
+            EditWOVBillingCodesWindow.Visibility = Visibility.Hidden;
+            AddWOVTasksWindow.Visibility = Visibility.Hidden;
+            AddCellPhoneWindow.Visibility = Visibility.Hidden;
+            AddPhoneExtWindow.Visibility = Visibility.Hidden;
+            ImportITAssetsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1640,6 +1652,7 @@ namespace NewBlueJayERP
             expCreateHelpDeskProblemType.IsExpanded = false;
             expITCreateHelpDeskTicket.IsExpanded = false;
             expUpdateHelpDeskTickets.IsExpanded = false;
+            expImportITAssets.IsExpanded = false;
         }
 
         private void expDepartmentProjectOpenList_Expanded(object sender, RoutedEventArgs e)
@@ -1687,6 +1700,9 @@ namespace NewBlueJayERP
             expAssignTaskBusinessLine.IsExpanded = false;
             expAddWorkTask.IsExpanded = false;
             expVoidProductivitySheet.IsExpanded = false;
+            expAddWOVBillingCode.IsExpanded = false;
+            expEditWOVBillingCodes.IsExpanded = false;
+            expAddWOVTasks.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1822,6 +1838,49 @@ namespace NewBlueJayERP
         {
             ResetProjectAdministrationExpanders();
             VoidProductivitySheetWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddWOVBillingCode_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            AddWOVBillingCodesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditWOVBillingCodes_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            EditWOVBillingCodesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddWOVTasks_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            AddWOVTasksWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddCellPhone_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetPhoneAdministrationExpanders();
+            AddCellPhoneWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetPhoneAdministrationExpanders()
+        {
+            expInformationTechology.IsExpanded = false;
+            expPhoneAdministration.IsExpanded = false;
+            expAddCellPhone.IsExpanded = false;
+            expAddPhoneExt.IsExpanded = false;
+        }
+
+        private void expAddPhoneExt_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetPhoneAdministrationExpanders();
+            AddPhoneExtWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportITAssets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            ImportITAssetsWindow.Visibility = Visibility.Visible;
         }
     }
 }

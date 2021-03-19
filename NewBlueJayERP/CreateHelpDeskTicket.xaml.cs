@@ -22,6 +22,7 @@ using NewEmployeeDLL;
 using HelpDeskDLL;
 using PhonesDLL;
 using EmployeeDateEntryDLL;
+using System.IO;
 
 namespace NewBlueJayERP
 {
@@ -176,7 +177,7 @@ namespace NewBlueJayERP
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Office Was Not Selected\n";
-                }                
+                }
                 if (cboProblemType.SelectedIndex < 1)
                 {
                     blnFatalError = true;
@@ -258,6 +259,15 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                const string message = "Would You Like to send a Document or Attach a File?";
+                const string caption = "Please Answer";
+                MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    AttachDocuments();
+                }
+
                 this.Close();
 
             }
@@ -272,6 +282,63 @@ namespace NewBlueJayERP
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+        private void AttachDocuments()
+        {
+            //setting local variables
+            DateTime datTransactionDate = DateTime.Now;
+            string strDocumentPath = "";
+            long intResult;
+            string strNewLocation = "";
+            string strTransactionName;
+            bool blnFatalError;
+            string strFileExtension;
+
+            try
+            {
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.FileName = "Document"; // Default file name                
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    // Open document
+                    strDocumentPath = dlg.FileName.ToUpper();
+                }
+                else
+                {
+                    return;
+                }
+
+                FileInfo FileName = new FileInfo(strDocumentPath);
+
+                strFileExtension = FileName.Extension;
+
+                datTransactionDate = DateTime.Now;
+
+                intResult = datTransactionDate.Year * 10000000000 + datTransactionDate.Month * 100000000 + datTransactionDate.Day * 1000000 + datTransactionDate.Hour * 10000 + datTransactionDate.Minute * 100 + datTransactionDate.Second;
+                strTransactionName = Convert.ToString(intResult);
+
+                strNewLocation = "\\\\bjc\\shares\\Documents\\WAREHOUSE\\WhseTrac\\HelpDeskDocuments\\" + strTransactionName + strFileExtension;
+
+                System.IO.File.Copy(strDocumentPath, strNewLocation);
+
+                blnFatalError = TheHelpDeskClass.InsertHelpDeskTicketDocumentation(gintTicketID, datTransactionDate, strNewLocation);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("The Document Has Been Saved");
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Create Help Desk Tickets // Attach Documents " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

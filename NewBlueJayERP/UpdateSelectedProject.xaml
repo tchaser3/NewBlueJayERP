@@ -77,9 +77,13 @@
                     <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="95" Width="135"/>
                     <TextBox x:Name="txtProjectName" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="90" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="150" Width="315">
+                <StackPanel Orientation="Horizontal" Height="90" Width="315">
+                    <Label x:Name="lblProjectNotes" Content="Project Notes" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="85" Width="135"/>
+                    <TextBox x:Name="txtProjectNotes" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="80" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="135" Width="315">
                     <Label x:Name="lblProjectUpdates" Content="Project Updates" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="95" Width="135"/>
-                    <TextBox x:Name="txtProjectUpdates" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="140" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                    <TextBox x:Name="txtProjectUpdates" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="125" Width="165" Margin="10,1,1,1" TextWrapping="Wrap"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Height="430" Width="315">

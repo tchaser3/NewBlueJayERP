@@ -82,6 +82,7 @@ namespace NewBlueJayERP
                 txtCustomerProjectID.Text = TheFindProjectMatrixByProjectProjectIDDataSet.FindProjectMatrixByProjectID[0].CustomerAssignedID;
                 txtProjectName.Text = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
                 intStatusID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].CurrentStatusID;
+                txtProjectNotes.Text = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
 
                 TheFindProductionProjectUpdateByProjectIDDataSet = TheProductionProjectUpdatesClass.FindProductionProjectUpdateByProjectID(MainWindow.gintProjectID);
 
