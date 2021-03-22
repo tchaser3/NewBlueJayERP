@@ -571,6 +571,9 @@
     <Compile Include="EditFuelCard.xaml.cs">
       <DependentUpon>EditFuelCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditPhoneExt.xaml.cs">
+      <DependentUpon>EditPhoneExt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditProductionProjectInfo.xaml.cs">
       <DependentUpon>EditProductionProjectInfo.xaml</DependentUpon>
     </Compile>
@@ -1217,6 +1220,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditFuelCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditPhoneExt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

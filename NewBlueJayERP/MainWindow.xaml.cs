@@ -189,6 +189,7 @@ namespace NewBlueJayERP
         public static AddCellPhone AddCellPhoneWindow = new AddCellPhone();
         public static AddPhoneExt AddPhoneExtWindow = new AddPhoneExt();
         public static ImportITAssets ImportITAssetsWindow = new ImportITAssets();
+        public static EditPhoneExt EditPhoneExtWindow = new EditPhoneExt();
 
         public MainWindow()
         {
@@ -323,6 +324,7 @@ namespace NewBlueJayERP
             AddCellPhoneWindow.Visibility = Visibility.Hidden;
             AddPhoneExtWindow.Visibility = Visibility.Hidden;
             ImportITAssetsWindow.Visibility = Visibility.Hidden;
+            EditPhoneExtWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1869,6 +1871,7 @@ namespace NewBlueJayERP
             expPhoneAdministration.IsExpanded = false;
             expAddCellPhone.IsExpanded = false;
             expAddPhoneExt.IsExpanded = false;
+            expEditPhoneExt.IsExpanded = false;
         }
 
         private void expAddPhoneExt_Expanded(object sender, RoutedEventArgs e)
@@ -1881,6 +1884,12 @@ namespace NewBlueJayERP
         {
             ResetITDataEntryExpanders();
             ImportITAssetsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditPhoneExt_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetPhoneAdministrationExpanders();
+            EditPhoneExtWindow.Visibility = Visibility.Visible;
         }
     }
 }

@@ -370,6 +370,7 @@
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Expander x:Name="expAddCellPhone" Header="Add Cell Phone" Margin="10,1,1,1" Expanded="expAddCellPhone_Expanded"/>
                                 <Expander x:Name="expAddPhoneExt" Header="Add Phone Ext" Margin="10,1,1,1" Expanded="expAddPhoneExt_Expanded" />
+                                <Expander x:Name="expEditPhoneExt" Header="Edit Phone Ext" Margin="10,1,1,1" Expanded="expEditPhoneExt_Expanded" />
                             </StackPanel>
                         </Expander>
                     </StackPanel>
