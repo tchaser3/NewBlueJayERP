@@ -243,6 +243,18 @@ namespace NewBlueJayERP
                     blnFatalError = true;
                     strErrorMessage += "The Office Was not Selected\n";
                 }
+                if(blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage(strErrorMessage);
+                    return;
+                }
+
+                blnFatalError = ThePhonesClass.InsertPhone(intPhoneExt, strDirectNumber, MainWindow.gintEmployeeID, MainWindow.gintWarehouseID, strMACAddress);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                ResetControls();
             }
             catch (Exception Ex)
             {

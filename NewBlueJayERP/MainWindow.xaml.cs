@@ -88,6 +88,7 @@ namespace NewBlueJayERP
         public static bool gblnKeepNewEmployee;
         public static int gintTransactionID;
         public static string gstrLaborCode;
+        public static int gintPhoneID;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -190,6 +191,11 @@ namespace NewBlueJayERP
         public static AddPhoneExt AddPhoneExtWindow = new AddPhoneExt();
         public static ImportITAssets ImportITAssetsWindow = new ImportITAssets();
         public static EditPhoneExt EditPhoneExtWindow = new EditPhoneExt();
+        public static AssignCellPhone AssignCellPhoneWindow = new AssignCellPhone();
+        public static AssignPhoneExtension AssignPhoneExtensionWindow = new AssignPhoneExtension();
+        public static OpenCellPhoneList OpenCellPhoneListWindow = new OpenCellPhoneList();
+        public static CurrentCellPhoneAssignments CurrentCellPhoneAssignmentWindow = new CurrentCellPhoneAssignments();
+        public static MyTickets MyTicketsWindow = new MyTickets();
 
         public MainWindow()
         {
@@ -325,6 +331,11 @@ namespace NewBlueJayERP
             AddPhoneExtWindow.Visibility = Visibility.Hidden;
             ImportITAssetsWindow.Visibility = Visibility.Hidden;
             EditPhoneExtWindow.Visibility = Visibility.Hidden;
+            AssignCellPhoneWindow.Visibility = Visibility.Hidden;
+            AssignPhoneExtensionWindow.Visibility = Visibility.Hidden;
+            OpenCellPhoneListWindow.Visibility = Visibility.Hidden;
+            CurrentCellPhoneAssignmentWindow.Visibility = Visibility.Hidden;
+            MyTicketsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1273,11 +1284,8 @@ namespace NewBlueJayERP
 
         private void expMyTickets_Expanded(object sender, RoutedEventArgs e)
         {
-            expHelpDeskTicketsReport.IsExpanded = false;
-            expInformationTechology.IsExpanded = false;
-            expITReports.IsExpanded = false;
-            expMyOpenTickets.IsExpanded = false;
-            expMyTickets.IsExpanded = false;
+            ITReportsExpanders();
+            MyTicketsWindow.Visibility = Visibility.Visible;
         }
 
         private void expAllProjectProductivityCosting_Expanded(object sender, RoutedEventArgs e)
@@ -1428,6 +1436,8 @@ namespace NewBlueJayERP
             expServerAuditLogReport.IsExpanded = false;
             expITReports.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
+            expOpenCellPhoneList.IsExpanded = false;
+            expCellPhoneAssignment.IsExpanded = false;
         }
 
         private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
@@ -1872,6 +1882,8 @@ namespace NewBlueJayERP
             expAddCellPhone.IsExpanded = false;
             expAddPhoneExt.IsExpanded = false;
             expEditPhoneExt.IsExpanded = false;
+            expAssignCellPhone.IsExpanded = false;
+            expAssignPhoneExtension.IsExpanded = false;
         }
 
         private void expAddPhoneExt_Expanded(object sender, RoutedEventArgs e)
@@ -1890,6 +1902,30 @@ namespace NewBlueJayERP
         {
             ResetPhoneAdministrationExpanders();
             EditPhoneExtWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAssignCellPhone_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetPhoneAdministrationExpanders();
+            AssignCellPhoneWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAssignPhoneExtension_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetPhoneAdministrationExpanders();
+            AssignPhoneExtensionWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expOpenCellPhoneList_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            OpenCellPhoneListWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCellPhoneAssignment_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            CurrentCellPhoneAssignmentWindow.Visibility = Visibility.Visible;
         }
     }
 }

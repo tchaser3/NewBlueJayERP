@@ -98,12 +98,9 @@ namespace NewBlueJayERP
             //setting up the controls
             TheEmployeeOvertimeDataSet.employeeovertime.Rows.Clear();
 
-            dgrEmployees.ItemsSource = TheEmployeeOvertimeDataSet.employeeovertime;
-        }
+            txtPayDate.Text = "";
 
-        private void calPayPeriod_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
-        {
-            gdatSelectedDate = Convert.ToDateTime(calPayPeriod.SelectedDate);
+            dgrEmployees.ItemsSource = TheEmployeeOvertimeDataSet.employeeovertime;
         }
 
         private void expCreateReport_Expanded(object sender, RoutedEventArgs e)
@@ -112,12 +109,27 @@ namespace NewBlueJayERP
             int intNumberOfRecords;
             string strManager;
             int intManagerID;
+            bool blnFatalError = false;
+            string strValueForValidation;
 
             try
             {
                 expCreateReport.IsExpanded = false;
 
                 TheEmployeeOvertimeDataSet.employeeovertime.Rows.Clear();
+
+                //performing data validation
+                strValueForValidation = txtPayDate.Text;
+                blnFatalError = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if(blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage("The Date Entered is not a Date");
+                    return;
+                }
+                else
+                {
+                    gdatSelectedDate = Convert.ToDateTime(strValueForValidation);
+                }
 
                 TheFindEmployeeOverFortyHoursDataSet = TheEmployeePunchedHoursClass.FindEmployeesOverFortyHours(gdatSelectedDate);
 

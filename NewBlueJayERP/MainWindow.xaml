@@ -360,9 +360,11 @@
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                                <Expander x:Name="expCellPhoneAssignment" Header="Cell Phone Assignment" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneAssignment_Expanded"/>
                                 <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
                                 <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />
                                 <Expander x:Name="expHelpDeskTicketsReport" Header="Help Desk Tickets Report" Margin="50,1,1,1" Expanded="expHelpDeskTicketsReport_Expanded"/>
+                                <Expander x:Name="expOpenCellPhoneList" Header="Open Cell Phone List" Margin="50,1,1,1" Expanded="expOpenCellPhoneList_Expanded" />
                                 <Expander x:Name="expServerAuditLogReport" Header="Server Audit Log Report" Margin="50,1,1,1" Expanded="expServerAuditLogReport_Expanded" />
                             </StackPanel>
                         </Expander>
@@ -370,6 +372,8 @@
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
                                 <Expander x:Name="expAddCellPhone" Header="Add Cell Phone" Margin="10,1,1,1" Expanded="expAddCellPhone_Expanded"/>
                                 <Expander x:Name="expAddPhoneExt" Header="Add Phone Ext" Margin="10,1,1,1" Expanded="expAddPhoneExt_Expanded" />
+                                <Expander x:Name="expAssignCellPhone" Header="Assign Cell Phone" Margin="10,1,1,1" Expanded="expAssignCellPhone_Expanded" />
+                                <Expander x:Name="expAssignPhoneExtension" Header="Assign Phone Extension" Margin="10,1,1,1" Expanded="expAssignPhoneExtension_Expanded" />
                                 <Expander x:Name="expEditPhoneExt" Header="Edit Phone Ext" Margin="10,1,1,1" Expanded="expEditPhoneExt_Expanded" />
                             </StackPanel>
                         </Expander>

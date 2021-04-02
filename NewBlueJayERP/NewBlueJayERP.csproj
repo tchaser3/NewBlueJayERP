@@ -494,6 +494,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AssignCellPhone.xaml.cs">
+      <DependentUpon>AssignCellPhone.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AssignPhoneExtension.xaml.cs">
+      <DependentUpon>AssignPhoneExtension.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
@@ -545,6 +551,9 @@
     </Compile>
     <Compile Include="CreateToolProblem.xaml.cs">
       <DependentUpon>CreateToolProblem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CurrentCellPhoneAssignments.xaml.cs">
+      <DependentUpon>CurrentCellPhoneAssignments.xaml</DependentUpon>
     </Compile>
     <Compile Include="DepartmentProductionEmail.xaml.cs">
       <DependentUpon>DepartmentProductionEmail.xaml</DependentUpon>
@@ -829,11 +838,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="MyTickets.xaml.cs">
+      <DependentUpon>MyTickets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="NonProductionEmployeeProductivityReport.xaml.cs">
       <DependentUpon>NonProductionEmployeeProductivityReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="OfficeInfoDashboard.xaml.cs">
       <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="OpenCellPhoneList.xaml.cs">
+      <DependentUpon>OpenCellPhoneList.xaml</DependentUpon>
     </Compile>
     <Compile Include="OpenHelpDeskTicketsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1023,6 +1038,9 @@
     <Compile Include="UpdateSelectedProject.xaml.cs">
       <DependentUpon>UpdateSelectedProject.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateTicketInformation.xaml.cs">
+      <DependentUpon>UpdateTicketInformation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="UpdateToolProblem.xaml.cs">
       <DependentUpon>UpdateToolProblem.xaml</DependentUpon>
     </Compile>
@@ -1147,6 +1165,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AssignCellPhone.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AssignPhoneExtension.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AssignWorkTaskBusinessLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1200,6 +1226,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateToolProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CurrentCellPhoneAssignments.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1411,11 +1441,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MyTickets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="NonProductionEmployeeProductivityReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="OfficeInfoDashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="OpenCellPhoneList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1512,6 +1550,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateSelectedProject.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateTicketInformation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
