@@ -61,7 +61,10 @@
             <Label x:Name="lblTitle" Content="Open Project By Office and Business Line" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
-            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+            <Expander x:Name="expViewDocuments" Header="View Documents" FontSize="16" Margin="4,1,1,1" Expanded="expViewDocuments_Expanded" />
+            <Expander x:Name="expAddQC" Header="Add QC" FontSize="16" Margin="4,1,1,1" Expanded="expAddQC_Expanded" />
+            <Expander x:Name="expAddDocuments" Header="Add Documents" FontSize="16" Margin="4,1,1,1" Expanded="expAddDocuments_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="4,1,1,1" Expanded="expCloseWindow_Expanded" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="430" Width="630" Margin="157,156,7,8">
             <StackPanel Height="430" Width="315">

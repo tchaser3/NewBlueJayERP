@@ -61,12 +61,13 @@
             <Label x:Name="lblTitle" Content="Update Project" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="640" Background="LightBlue">
-            <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,1,1,1" Expanded="expResetWindow_Expanded" />
-            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
-            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
-            <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
-            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
-            <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>
+            <Expander x:Name="expViewDocuments" Header="View Documents" FontSize="16" Margin="4,1,1,1" Expanded="expViewDocuments_Expanded" />
+            <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="4,1,1,1" Expanded="expResetWindow_Expanded" />
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="4,1,1,1" Expanded="expHelpDesk_Expanded" />
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="4,1,1,1" Expanded="expHelp_Expanded" />
+            <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="4,1,1,1" Expanded="expSendEmail_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="4,1,1,1" Expanded="expCloseWindow_Expanded" />
+            <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="4,1,1,1" Expanded="expCloseProgram_Expanded"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="500" Width="830" Margin="155,156,9,138" >
             <StackPanel Height="500" Width="415">
@@ -118,8 +119,24 @@
                     <Label x:Name="lblUpdateNotes" Content="Update Notes" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="75" Width="150"/>
                     <TextBox x:Name="txtUpdateNotes" TabIndex="10" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="165" Width="225" Margin="10,1,1,1" TextWrapping="Wrap"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                    <CheckBox x:Name="chkSplicingComplete" TabIndex="11" Content="Splicing Complete" FontSize="14" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="chkSplicingComplete_Click" ></CheckBox>
+                    <CheckBox x:Name="chkHardRestoration" TabIndex="12" Content="Hard Restoration" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="15,1,1,1" Click="chkHardRestoration_Click"></CheckBox>
+                    <CheckBox x:Name="chkQCPerformed" TabIndex="13" Content="QC Complete" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="15,1,1,1" Click="chkQCPerformed_Click"></CheckBox>
+                </StackPanel>
                 <StackPanel Height="65" Width="415">
-                    <Button x:Name="btnProcessUpdate" TabIndex="11" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="60" Width="150" FontSize="25" Margin="60,2,1,1" Click="btnProcessUpdate_Click"/>
+                    <Button x:Name="btnProcessUpdate" TabIndex="14" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="60" Width="150" FontSize="25" Margin="60,2,1,1" Click="btnProcessUpdate_Click"/>
+                </StackPanel>
+                
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="125" Width="830" Margin="159,665,5,4">
+            <StackPanel Height="125" Width="415">
+                <Button x:Name="btnAddProjectDocumentation" Content="Add Project Documentation" FontSize="20" Height="100" Width="350" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="1,12,1,1" Click="btnAddProjectDocumentation_Click"/>
+            </StackPanel>
+            <StackPanel Height="125" Width="415">
+                <StackPanel Height="125" Width="415">
+                    <Button x:Name="btnAddQCDocumentationj" Content="Add QC Documentation" FontSize="20" Height="100" Width="350" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Margin="1,12,1,1" Click="btnAddQCDocumentationj_Click"/>
                 </StackPanel>
             </StackPanel>
         </StackPanel>

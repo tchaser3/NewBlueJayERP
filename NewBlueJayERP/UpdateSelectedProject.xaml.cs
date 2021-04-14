@@ -283,5 +283,117 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
+
+        private void expViewDocuments_Expanded(object sender, RoutedEventArgs e)
+        {
+            expViewDocuments.IsExpanded = false;
+
+            ViewProjectDocuments ViewProjectDocuments = new ViewProjectDocuments();
+            ViewProjectDocuments.ShowDialog();
+        }
+
+        private void expAddDocuments_Expanded(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            string strDocumentPath;
+            bool blnFatalError = false;
+            DateTime datTransactionDate = DateTime.Now;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.Multiselect = true;
+                dlg.FileName = "Document"; // Default file name
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    intNumberOfRecords = dlg.FileNames.Length - 1;
+
+                    if (intNumberOfRecords > -1)
+                    {
+                        for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            strDocumentPath = dlg.FileNames[intCounter].ToUpper();
+
+                            blnFatalError = TheProductionProjectClass.InsertProductionProjectDocumentation(MainWindow.gintProjectID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, DateTime.Now, strDocumentPath);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                TheMessagesClass.InformationMessage("The Documents have been Added");
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Selected Project // Add Project Documentation Button " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expAddQC_Expanded(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            string strDocumentPath;
+            bool blnFatalError = false;
+            DateTime datTransactionDate = DateTime.Now;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.Multiselect = true;
+                dlg.FileName = "Document"; // Default file name
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    intNumberOfRecords = dlg.FileNames.Length - 1;
+
+                    if (intNumberOfRecords > -1)
+                    {
+                        for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            strDocumentPath = dlg.FileNames[intCounter].ToUpper();
+
+                            blnFatalError = TheProductionProjectClass.InsertProductionProjectQC(MainWindow.gintProjectID, DateTime.Now, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strDocumentPath);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                TheMessagesClass.InformationMessage("The Documents have been Added");
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Selected Project // Add QC Documentation Button " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
     }
 }

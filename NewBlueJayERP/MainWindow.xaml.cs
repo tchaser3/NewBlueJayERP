@@ -196,6 +196,8 @@ namespace NewBlueJayERP
         public static OpenCellPhoneList OpenCellPhoneListWindow = new OpenCellPhoneList();
         public static CurrentCellPhoneAssignments CurrentCellPhoneAssignmentWindow = new CurrentCellPhoneAssignments();
         public static MyTickets MyTicketsWindow = new MyTickets();
+        public static PhoneList PhoneListWindow = new PhoneList();
+        public static CellPhoneList CellPhoneListWindow = new CellPhoneList();
 
         public MainWindow()
         {
@@ -336,6 +338,8 @@ namespace NewBlueJayERP
             OpenCellPhoneListWindow.Visibility = Visibility.Hidden;
             CurrentCellPhoneAssignmentWindow.Visibility = Visibility.Hidden;
             MyTicketsWindow.Visibility = Visibility.Hidden;
+            PhoneListWindow.Visibility = Visibility.Hidden;
+            CellPhoneListWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1438,6 +1442,8 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expOpenCellPhoneList.IsExpanded = false;
             expCellPhoneAssignment.IsExpanded = false;
+            expPhoneList.IsExpanded = false;
+            expCellPhoneList.IsExpanded = false;
         }
 
         private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
@@ -1701,15 +1707,15 @@ namespace NewBlueJayERP
         {
             expProjects.IsExpanded = false;
             expProjectAdministration.IsExpanded = false;
-            expDepartmentProductionEmail.IsExpanded = false;
-            expImportProductionCodes.IsExpanded = false;
+            //expDepartmentProductionEmail.IsExpanded = false;
+            //expImportProductionCodes.IsExpanded = false;
             expRemoveDuplicateProjectMatrix.IsExpanded = false;
             expAddNonProductionTask.IsExpanded = false;
             expImportNonProductionTask.IsExpanded = false;
-            expImportEditedProductionCodes.IsExpanded = false;
+            //expImportEditedProductionCodes.IsExpanded = false;
             expEditWorkTask.IsExpanded = false;
-            expImportProductionCodesForSheets.IsExpanded = false;
-            expAssignTaskBusinessLine.IsExpanded = false;
+            //expImportProductionCodesForSheets.IsExpanded = false;
+            //expAssignTaskBusinessLine.IsExpanded = false;
             expAddWorkTask.IsExpanded = false;
             expVoidProductivitySheet.IsExpanded = false;
             expAddWOVBillingCode.IsExpanded = false;
@@ -1926,6 +1932,18 @@ namespace NewBlueJayERP
         {
             ITReportsExpanders();
             CurrentCellPhoneAssignmentWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expPhoneList_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            PhoneListWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCellPhoneList_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            CellPhoneListWindow.Visibility = Visibility.Visible;
         }
     }
 }

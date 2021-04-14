@@ -51,10 +51,14 @@ namespace NewBlueJayERP
         FindProductionProjectByProjectIDDataSet TheFindProductionProjectByProjectIDDataSet = new FindProductionProjectByProjectIDDataSet();
         FindProdutionProjectsByAssignedProjectIDDataSet TheFindProductionProjectByAssignedProjectIDDataSet = new FindProdutionProjectsByAssignedProjectIDDataSet();
         FindProductionProjectUpdateByProjectIDDataSet TheFindProductionProjectUpdateByProjectIDDataSet = new FindProductionProjectUpdateByProjectIDDataSet();
+        FindProductionProjectInfoDataSet TheFindProductionProjectInfoDataSet = new FindProductionProjectInfoDataSet();
+
+        bool gblnHardRestoration;
+        bool gblnQCPerformed;
+        bool gblnSplicingComplete;
 
         //setting up global variables
         int gintStatusID;
-        int gintProjectID;
 
         public UpdateProject()
         {
@@ -119,6 +123,12 @@ namespace NewBlueJayERP
             txtProjectUpdates.Text = "";
             txtProjectName.Text = "";
             txtUpdateNotes.Text = "";
+            txtProjectNotes.Text = "";
+            chkHardRestoration.IsChecked = false;
+            chkQCPerformed.IsChecked = false;
+            chkSplicingComplete.IsChecked = false;
+
+            expViewDocuments.IsEnabled = false;
 
             EnableRadioButtons(false);
 
@@ -156,6 +166,7 @@ namespace NewBlueJayERP
             int intNumberOfRecords;
             int intStatusID;
             string strProjectNotes;
+            bool blnFatalError = false;
 
             try
             {
@@ -197,19 +208,19 @@ namespace NewBlueJayERP
                     }
                     else if(intRecordsReturned == 1)
                     {
-                        gintProjectID = TheFindProjectMatrxiByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
+                        MainWindow.gintProjectID = TheFindProjectMatrxiByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
                         strCustomerProjectID = TheFindProjectMatrxiByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].CustomerAssignedID;
                     }
                 }
                 else if(intRecordsReturned == 1)
                 {
-                    gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+                    MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
                     strAssignedProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].AssignedProjectID;
                     
                 }
 
-                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
-                TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(gintProjectID);
+                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(MainWindow.gintProjectID);
+                TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(MainWindow.gintProjectID);
 
                 strProjectName = TheFindProjectByProjectIDDataSet.FindProjectByProjectID[0].ProjectName;
                 strProjectNotes = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].ProjectNotes;
@@ -256,7 +267,7 @@ namespace NewBlueJayERP
                 txtProjectName.Text = strProjectName;
                 txtProjectNotes.Text = strProjectNotes;
 
-                TheFindProductionProjectUpdateByProjectIDDataSet = TheProductionProjectUpdatesClass.FindProductionProjectUpdateByProjectID(gintProjectID);
+                TheFindProductionProjectUpdateByProjectIDDataSet = TheProductionProjectUpdatesClass.FindProductionProjectUpdateByProjectID(MainWindow.gintProjectID);
 
                 intNumberOfRecords = TheFindProductionProjectUpdateByProjectIDDataSet.FindProductionProjectUpdatesByProjectID.Rows.Count;
 
@@ -270,6 +281,47 @@ namespace NewBlueJayERP
                 }
 
                 txtProjectUpdates.Text = strProjectUpdates;
+
+                TheFindProductionProjectInfoDataSet = TheProductionProjectClass.FindProductionProjectInfo(MainWindow.gintProjectID);
+
+                intRecordsReturned = TheFindProductionProjectInfoDataSet.FindProductionProjectInfo.Rows.Count;
+
+                if(intRecordsReturned < 1)
+                {
+                    blnFatalError = TheProductionProjectClass.InsertProductionProjectInfo(MainWindow.gintProjectID, 0, " ", " ", 0);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+                else if(intRecordsReturned > 0)
+                {
+                    if(TheFindProductionProjectInfoDataSet.FindProductionProjectInfo[0].HardRestoration == true)
+                    {
+                        chkHardRestoration.IsChecked = true;
+                    }
+                    else
+                    {
+                        chkHardRestoration.IsEnabled = false;
+                    }
+                    if(TheFindProductionProjectInfoDataSet.FindProductionProjectInfo[0].QCPerformed == true)
+                    {
+                        chkQCPerformed.IsChecked = true;
+                    }
+                    else
+                    {
+                        chkQCPerformed.IsChecked = false;
+                    }
+                    if(TheFindProductionProjectInfoDataSet.FindProductionProjectInfo[0].SplicingComple == true)
+                    {
+                        chkSplicingComplete.IsChecked = true;
+                    }
+                    else
+                    {
+                        chkSplicingComplete.IsChecked = false;
+                    }
+                }
+
+                expViewDocuments.IsEnabled = true;
 
             }
             catch (Exception Ex)
@@ -415,7 +467,7 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
+                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(MainWindow.gintProjectID);
 
                 intTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
                 strAssignedProjectID = txtCustomerProjectID.Text;
@@ -425,7 +477,7 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
-                blnFatalError = TheProductionProjectUpdatesClass.InsertProductionProjectUpdate(gintProjectID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strProjectUpdate);
+                blnFatalError = TheProductionProjectUpdatesClass.InsertProductionProjectUpdate(MainWindow.gintProjectID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strProjectUpdate);
 
                 if (blnFatalError == true)
                     throw new Exception();
@@ -433,6 +485,21 @@ namespace NewBlueJayERP
                 TheMessageClass.InformationMessage("The Project Has Been Updated");
 
                 blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Updates Project " + strAssignedProjectID);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectInfoHardRestoration(MainWindow.gintProjectID, gblnHardRestoration);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectInfoQCPerformed(MainWindow.gintProjectID, gblnQCPerformed);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectInfoSplicingComplete(MainWindow.gintProjectID, gblnSplicingComplete);
 
                 if (blnFatalError == true)
                     throw new Exception();
@@ -445,6 +512,142 @@ namespace NewBlueJayERP
 
                 TheMessageClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void chkSplicingComplete_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkSplicingComplete.IsChecked == true)
+                gblnSplicingComplete = true;
+            else
+                gblnSplicingComplete = false;
+        }
+
+        private void chkHardRestoration_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkHardRestoration.IsChecked == true)
+                gblnHardRestoration = true;
+            else
+                gblnHardRestoration = false;
+        }
+
+        private void chkQCPerformed_Click(object sender, RoutedEventArgs e)
+        {
+            if (chkQCPerformed.IsChecked == true)
+                gblnQCPerformed = true;
+            else
+                gblnQCPerformed = false;
+        }
+
+        private void btnAddProjectDocumentation_Click(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            string strDocumentPath;
+            bool blnFatalError = false;
+            DateTime datTransactionDate = DateTime.Now;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.Multiselect = true;
+                dlg.FileName = "Document"; // Default file name
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    intNumberOfRecords = dlg.FileNames.Length - 1;
+
+                    if (intNumberOfRecords > -1)
+                    {
+                        for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            strDocumentPath = dlg.FileNames[intCounter].ToUpper();
+
+                            blnFatalError = TheProductionProjectClass.InsertProductionProjectDocumentation(MainWindow.gintProjectID, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, DateTime.Now, strDocumentPath);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                TheMessageClass.InformationMessage("The Documents have been Added");
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Project // Add Project Documentation Button " + Ex.Message);
+
+                TheMessageClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void btnAddQCDocumentationj_Click(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            string strDocumentPath;
+            bool blnFatalError = false;
+            DateTime datTransactionDate = DateTime.Now;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+
+                Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
+                dlg.Multiselect = true;
+                dlg.FileName = "Document"; // Default file name
+
+                // Show open file dialog box
+                Nullable<bool> result = dlg.ShowDialog();
+
+                // Process open file dialog box results
+                if (result == true)
+                {
+                    intNumberOfRecords = dlg.FileNames.Length - 1;
+
+                    if (intNumberOfRecords > -1)
+                    {
+                        for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+                        {
+                            strDocumentPath = dlg.FileNames[intCounter].ToUpper();
+
+                            blnFatalError = TheProductionProjectClass.InsertProductionProjectQC(MainWindow.gintProjectID, DateTime.Now, MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, strDocumentPath);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+                else
+                {
+                    return;
+                }
+
+                TheMessageClass.InformationMessage("The Documents have been Added");
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Update Project // Add QC Documentation Button " + Ex.Message);
+
+                TheMessageClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expViewDocuments_Expanded(object sender, RoutedEventArgs e)
+        {
+            expViewDocuments.IsExpanded = false;
+
+            ViewProjectDocuments ViewProjectDocuments = new ViewProjectDocuments();
+            ViewProjectDocuments.ShowDialog();
         }
     }
 }

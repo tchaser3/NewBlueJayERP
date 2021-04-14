@@ -503,11 +503,19 @@
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellPhoneList.xaml.cs">
+      <DependentUpon>CellPhoneList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CloseRental.xaml.cs">
       <DependentUpon>CloseRental.xaml</DependentUpon>
     </Compile>
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CompletePhoneListDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompletePhoneListDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="CompleteProjectProductivityDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -909,6 +917,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>PartsListReportDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="PhoneList.xaml.cs">
+      <DependentUpon>PhoneList.xaml</DependentUpon>
+    </Compile>
     <Compile Include="PleaseWait.xaml.cs">
       <DependentUpon>PleaseWait.xaml</DependentUpon>
     </Compile>
@@ -1067,6 +1078,9 @@
     <Compile Include="ViewMyTicketInfo.xaml.cs">
       <DependentUpon>ViewMyTicketInfo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewProjectDocuments.xaml.cs">
+      <DependentUpon>ViewProjectDocuments.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewRental.xaml.cs">
       <DependentUpon>ViewRental.xaml</DependentUpon>
     </Compile>
@@ -1174,6 +1188,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AssignWorkTaskBusinessLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellPhoneList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1481,6 +1499,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="PhoneList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="PleaseWait.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1585,6 +1607,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ViewProjectDocuments.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ViewRental.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1667,6 +1693,17 @@
     </None>
     <None Include="AgedOverdueProjectsDataSet.xss">
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CompletePhoneListDataSet.xsc">
+      <DependentUpon>CompletePhoneListDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CompletePhoneListDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompletePhoneListDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CompletePhoneListDataSet.xss">
+      <DependentUpon>CompletePhoneListDataSet.xsd</DependentUpon>
     </None>
     <None Include="CompleteProjectProductivityDataSet.xsc">
       <DependentUpon>CompleteProjectProductivityDataSet.xsd</DependentUpon>

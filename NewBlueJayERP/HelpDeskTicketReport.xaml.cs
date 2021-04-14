@@ -45,6 +45,9 @@ namespace NewBlueJayERP
         //setting up the data
         FindHelpDeskTicketProblemsByDateRangeDataSet TheFindHelpDeskTicketProblemsByDateRangeDataSet = new FindHelpDeskTicketProblemsByDateRangeDataSet();
 
+        DateTime gdatStartDate;
+        DateTime gdatEndDate;
+
         public HelpDeskTicketReport()
         {
             InitializeComponent();
@@ -110,8 +113,6 @@ namespace NewBlueJayERP
             bool blnFatalError = false;
             bool blnThereIsAProblem = false;
             string strErrorMessage = "";
-            DateTime datStartDate = DateTime.Now;
-            DateTime datEndDate = DateTime.Now;
 
             try
             {
@@ -126,7 +127,7 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    datStartDate = Convert.ToDateTime(strValueForValidation);
+                    gdatStartDate = Convert.ToDateTime(strValueForValidation);
                 }
                 strValueForValidation = txtEndDate.Text;
                 blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
@@ -137,7 +138,7 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    datEndDate = Convert.ToDateTime(strValueForValidation);
+                    gdatEndDate = Convert.ToDateTime(strValueForValidation);
                 }
                 if(blnFatalError == true)
                 {
@@ -146,7 +147,7 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    blnFatalError = TheDataValidationClass.verifyDateRange(datStartDate, datEndDate);
+                    blnFatalError = TheDataValidationClass.verifyDateRange(gdatStartDate, gdatEndDate);
 
                     if (blnFatalError == true)
                     {
@@ -155,7 +156,7 @@ namespace NewBlueJayERP
                     }
                 }
 
-                TheFindHelpDeskTicketProblemsByDateRangeDataSet = TheHelpDeskClass.FindHelpDeskTicketProblemsByDateRanage(datStartDate, datEndDate);
+                TheFindHelpDeskTicketProblemsByDateRangeDataSet = TheHelpDeskClass.FindHelpDeskTicketProblemsByDateRanage(gdatStartDate, gdatEndDate);
 
                 dgrTickets.ItemsSource = TheFindHelpDeskTicketProblemsByDateRangeDataSet.FindHelpDeskTicketProblemsByDateRange;
             }
@@ -228,7 +229,7 @@ namespace NewBlueJayERP
             }
             catch (System.Exception ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Fuel Card PIN Report // Export To Excel " + ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Help Desk Ticket Report // Export To Excel " + ex.Message);
 
                 MessageBox.Show(ex.ToString());
             }
@@ -243,6 +244,42 @@ namespace NewBlueJayERP
         private void dgrTickets_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+            DataGrid dataGrid;
+            DataGridRow selectedRow;
+            DataGridCell TicketID;
+            string strTicketID;
+            int intEmployeeID;
+
+
+            try
+            {
+                if (dgrTickets.SelectedIndex > -1)
+                {
+                    //setting local variable
+                    dataGrid = dgrTickets;
+                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+                    TicketID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
+                    strTicketID = ((TextBlock)TicketID.Content).Text;
+                    MainWindow.gintTicketID = Convert.ToInt32(strTicketID);
+
+                    //find the record
+                    UpdateTicketInformation UpdateTicketInformation = new UpdateTicketInformation();
+                    UpdateTicketInformation.ShowDialog();
+
+                    intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
+
+                    TheFindHelpDeskTicketProblemsByDateRangeDataSet = TheHelpDeskClass.FindHelpDeskTicketProblemsByDateRanage( gdatStartDate, gdatEndDate);
+
+                    dgrTickets.ItemsSource = TheFindHelpDeskTicketProblemsByDateRangeDataSet.FindHelpDeskTicketProblemsByDateRange;
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // My Tickets // Tickets Grid Selection " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

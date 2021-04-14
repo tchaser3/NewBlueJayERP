@@ -98,6 +98,10 @@
                     <Label x:Name="lblEmployeeInformation" Content="Employee Information" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" FontSize="14"/>                    
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
+                    <Label x:Name="lblDriveTime" Content="Drive Time Hours" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
+                    <TextBox x:Name="txtDriveTime" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblEnterLastName" Content="Enter Last Name" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
                     <TextBox x:Name="txtEnterLastName" CharacterCasing="Upper" TabIndex="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" TextChanged="txtEnterLastName_TextChanged"/>
                 </StackPanel>
@@ -108,10 +112,7 @@
                 <StackPanel Height="50" Width="275">
                     <Button x:Name="btnAddEmployee" Content="Add Emplolyee" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnAddEmployee_Click"/>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="40" Width="275">
-                    <Label x:Name="lblCrewID" Content="Crew ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtCrewID" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>
-                </StackPanel>
+                
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblTotalHours" Content="Total Hours" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
                     <TextBox x:Name="txtTotalHours" CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>

@@ -81,6 +81,10 @@ namespace NewBlueJayERP
         int gintDataEntryTransactionID;
         int gintEmployeeCounter;
         int gintTaskCounter;
+        string gstrCrewID;
+        decimal gdecDriveTime;
+        int gintDriveTimeTaskID;
+        bool gblnDriveTimeCalculated;
 
         public AddProjectLabor()
         {
@@ -130,8 +134,8 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
-            txtCrewID.Text = "";
             txtEnterFootage.Text = "";
+            txtDriveTime.Text = "";
             txtEnterHours.Text = "";
             txtEnterLastName.Text = "";
             txtEnterProjectID.Text = "";
@@ -263,7 +267,8 @@ namespace NewBlueJayERP
 
         private void txtEnterLastName_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            string strValueForValidation;
+            bool blnFatalError = false;
             string strLastName;
             int intLength;
             int intCounter;
@@ -273,6 +278,31 @@ namespace NewBlueJayERP
             try
             {
                 CheckProject();
+
+                if(MainWindow.gintProjectID != 104330)
+                {
+                    strValueForValidation = txtDriveTime.Text;
+                    blnFatalError = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
+                    if (blnFatalError == true)
+                    {
+                        TheMessagesClass.ErrorMessage("The Drive Time is not Entered");
+                        return;
+                    }
+                    else
+                    {
+                        gdecDriveTime = Convert.ToDecimal(strValueForValidation);
+
+                        if(gdecDriveTime == 0)
+                        {
+                            TheMessagesClass.ErrorMessage("The Drive Time Cannot be 0");
+                            return;                            
+                        }
+
+                        TheFindWorkTaskByKeywordDataSet = TheWorkTaskClass.FindWorkTaskByTaskKeyword("DRIVE TIME");
+
+                        gintDriveTimeTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[0].WorkTaskID;
+                    }
+                }
 
                 datEndDate = TheDateSearchClass.SubtractingDays(DateTime.Now, 21);
 
@@ -342,7 +372,7 @@ namespace NewBlueJayERP
 
                     if (gblnCrewIDSet == false)
                     {
-                        txtCrewID.Text = MainWindow.gstrLastName;
+                        gstrCrewID = MainWindow.gstrLastName;
                         gblnCrewIDSet = true;
                     }
                 }
@@ -397,6 +427,7 @@ namespace NewBlueJayERP
                 btnAddTask.IsEnabled = true;
                 txtEnterFootage.Text = "0";
                 gdecTotalHours += gdecHours;
+                gdecTotalHours += gdecDriveTime;
                 txtTotalHours.Text = Convert.ToString(gdecTotalHours);
                 gblnHoursEntered = false;
                 txtEnterLastName.Focus();
@@ -820,7 +851,6 @@ namespace NewBlueJayERP
             int intWorkTaskID;
             decimal decTotalHours;
             int intFootagePieces;
-            string strCrewID;
             string strErrorMessage = "";
 
             try
@@ -832,11 +862,6 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                 {
                     strErrorMessage += "The Date is not a Date\n";
-                    blnFatalError = true;
-                }
-                if (txtCrewID.Text == "")
-                {
-                    strErrorMessage += "Crew ID Was Not Entered\n";
                     blnFatalError = true;
                 }
                 if (blnFatalError == true)
@@ -852,7 +877,6 @@ namespace NewBlueJayERP
                     TheMessagesClass.ErrorMessage("The Date Entered is in the Future");
                     return;
                 }
-                strCrewID = txtCrewID.Text;
 
                 intNumberOfRecords = TheProjectWorkCompletedDataSet.workcompleted.Rows.Count - 1;
 
@@ -863,6 +887,11 @@ namespace NewBlueJayERP
                     intWorkTaskID = TheProjectWorkCompletedDataSet.workcompleted[intCounter].TaskID;
                     decTotalHours = TheProjectWorkCompletedDataSet.workcompleted[intCounter].Hours;
                     intFootagePieces = TheProjectWorkCompletedDataSet.workcompleted[intCounter].FootagePieces;
+
+                    blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, MainWindow.gintProjectID, gintDriveTimeTaskID, datTransactionDate, gdecDriveTime);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
 
                     //first insert
                     blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, intProjectID, intWorkTaskID, datTransactionDate, decTotalHours);
@@ -875,7 +904,7 @@ namespace NewBlueJayERP
                     if (blnFatalError == true)
                         throw new Exception();
 
-                    blnFatalError = TheEmployeeCrewAssignmentClass.InsertEmployeeCrewAssignment(strCrewID, intEmployeeID, intProjectID, datTransactionDate);
+                    blnFatalError = TheEmployeeCrewAssignmentClass.InsertEmployeeCrewAssignment(gstrCrewID, intEmployeeID, intProjectID, datTransactionDate);
 
                     if (blnFatalError == true)
                         throw new Exception();

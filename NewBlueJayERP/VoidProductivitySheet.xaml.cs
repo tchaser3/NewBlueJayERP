@@ -137,7 +137,7 @@ namespace NewBlueJayERP
                 TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Clear();
 
                 strProjectID = txtEnterProjectID.Text;
-                if (strProjectID.Length < 6)
+                if (strProjectID.Length < 4)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Project Is Not Long Enough\n";

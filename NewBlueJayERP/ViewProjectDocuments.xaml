@@ -1,0 +1,47 @@
+﻿<Window x:Class="NewBlueJayERP.ViewProjectDocuments"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:NewBlueJayERP"
+        mc:Ignorable="d"
+        Title="ViewProjectDocuments" Height="600" Width="800" Loaded="Window_Loaded">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="800">
+            <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
+            <Label x:Name="lblTitle" Content="Project Documentation" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+        </StackPanel>
+        <StackPanel Height="420" Width="630" Margin="155,166,9,8">
+            <StackPanel Height="260" Width="630">
+                <StackPanel Height="50" Width="630">
+                    <Label x:Name="lblProjectDocumentation" Content="Project Documation" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" FontSize="18"/>
+                </StackPanel>
+                <StackPanel Height="210" Width="630">
+                    <DataGrid x:Name="dgrProjectDocumentation" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="200" Width="620" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrProjectDocumentation_SelectionChanged"/> 
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="160" Width="630">
+                <StackPanel Height="50" Width="630">
+                    <Label x:Name="lblProjectQC" Content="Project QC Documation" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" FontSize="18"/>
+                </StackPanel>
+                <StackPanel Height="110" Width="630">
+                    <DataGrid x:Name="dgrProjectQC" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="100" Width="620" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrProjectQC_SelectionChanged"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
