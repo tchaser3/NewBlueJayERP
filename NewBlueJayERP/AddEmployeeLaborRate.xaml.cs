@@ -30,6 +30,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeLaborRateClass TheEmployeeLaborRateClass = new EmployeeLaborRateClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
@@ -224,6 +225,8 @@ namespace NewBlueJayERP
 
                 if (blnFatalError == true)
                     throw new Exception();
+
+                blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Add Employee Labor Rate ");
 
                 TheMessagesClass.InformationMessage("Employee Has Been Updated");
 

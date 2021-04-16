@@ -569,6 +569,24 @@
     <Compile Include="DepartmentProjectOpenList.xaml.cs">
       <DependentUpon>DepartmentProjectOpenList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DesignDepartmentProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesignEmployeeProductivity.xaml.cs">
+      <DependentUpon>DesignEmployeeProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DesignEmployeeProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignEmployeeProductivityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DesignProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DesignProductivityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DetailedNonProductionEmployeeProductivity.xaml.cs">
       <DependentUpon>DetailedNonProductionEmployeeProductivity.xaml</DependentUpon>
     </Compile>
@@ -852,6 +870,11 @@
     <Compile Include="NonProductionEmployeeProductivityReport.xaml.cs">
       <DependentUpon>NonProductionEmployeeProductivityReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="NormalDistributionDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="OfficeInfoDashboard.xaml.cs">
       <DependentUpon>OfficeInfoDashboard.xaml</DependentUpon>
     </Compile>
@@ -976,6 +999,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectWorkCompletedDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="RatePassword.xaml.cs">
+      <DependentUpon>RatePassword.xaml</DependentUpon>
+    </Compile>
     <Compile Include="RemoveDuplicateProjectMatrix.xaml.cs">
       <DependentUpon>RemoveDuplicateProjectMatrix.xaml</DependentUpon>
     </Compile>
@@ -1086,6 +1112,9 @@
     </Compile>
     <Compile Include="ViewRentalUpdates.xaml.cs">
       <DependentUpon>ViewRentalUpdates.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="VoidDesignProductivity.xaml.cs">
+      <DependentUpon>VoidDesignProductivity.xaml</DependentUpon>
     </Compile>
     <Compile Include="VoidInventoryTransaction.xaml.cs">
       <DependentUpon>VoidInventoryTransaction.xaml</DependentUpon>
@@ -1256,6 +1285,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="DepartmentProjectOpenList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="DesignEmployeeProductivity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1523,6 +1556,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="RatePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="RemoveDuplicateProjectMatrix.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1616,6 +1653,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ViewRentalUpdates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VoidDesignProductivity.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1726,6 +1767,39 @@
     </None>
     <None Include="CreateRentalItemsDataSet.xss">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignDepartmentProductivityDataSet.xsc">
+      <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignDepartmentProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignDepartmentProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignDepartmentProductivityDataSet.xss">
+      <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignEmployeeProductivityDataSet.xsc">
+      <DependentUpon>DesignEmployeeProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignEmployeeProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignEmployeeProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignEmployeeProductivityDataSet.xss">
+      <DependentUpon>DesignEmployeeProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProductivityDataSet.xsc">
+      <DependentUpon>DesignProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DesignProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DesignProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DesignProductivityDataSet.xss">
+      <DependentUpon>DesignProductivityDataSet.xsd</DependentUpon>
     </None>
     <None Include="DuplicateEmployeeDataSet.xsc">
       <DependentUpon>DuplicateEmployeeDataSet.xsd</DependentUpon>
@@ -1979,6 +2053,17 @@
     </None>
     <None Include="MaterialIssuedDataSet.xss">
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NormalDistributionDataSet.xsc">
+      <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="NormalDistributionDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>NormalDistributionDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="NormalDistributionDataSet.xss">
+      <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>
     </None>
     <None Include="OpenHelpDeskTicketsDataSet.xsc">
       <DependentUpon>OpenHelpDeskTicketsDataSet.xsd</DependentUpon>

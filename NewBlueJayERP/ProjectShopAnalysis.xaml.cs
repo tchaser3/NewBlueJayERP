@@ -24,6 +24,7 @@ using NewEventLogDLL;
 using DateSearchDLL;
 using EmployeeProductivityStatsDLL;
 using EmployeeDateEntryDLL;
+using Microsoft.Win32;
 
 
 namespace NewBlueJayERP
@@ -47,6 +48,7 @@ namespace NewBlueJayERP
         FindProjectHoursAboveLimitDataSet TheFindProjectHoursAboveLimitDataSet = new FindProjectHoursAboveLimitDataSet();
         ShopViolatorDataSet TheShopViolatorDataSet = new ShopViolatorDataSet();
         FindProjectStatsDataSet TheFindProjectStatsDataSet = new FindProjectStatsDataSet();
+        NormalDistributionDataSet TheNormalDistributionDataSet = new NormalDistributionDataSet();
 
         //setting variables
         decimal gdecTotalHours;
@@ -114,6 +116,7 @@ namespace NewBlueJayERP
             int intProjectID;
             DateTime datTransactionDate = DateTime.Now;
             DateTime datStartDate = DateTime.Now;
+            decimal decAveragePayRate;
 
             try
             {
@@ -138,6 +141,7 @@ namespace NewBlueJayERP
                 gdecStandDeviation = Convert.ToDecimal(TheFindProjectStatsDataSet.FindProjectStats[0].HoursSTDev);
                 gdecVariance = Convert.ToDecimal(TheFindProjectStatsDataSet.FindProjectStats[0].HoursVariance);
                 gdecTotalHours = Convert.ToDecimal(TheFindProjectStatsDataSet.FindProjectStats[0].TotalHours);
+                decAveragePayRate = TheFindProjectStatsDataSet.FindProjectStats[0].AveragePayRate;
 
                 gdecMean = Math.Round(gdecMean, 4);
 
@@ -172,9 +176,10 @@ namespace NewBlueJayERP
 
                 dgrResults.ItemsSource = TheShopViolatorDataSet.violator;
 
-                gdecProjectHours = gdecMean * 5 * 52;
+                gdecProjectHours =TheFindProjectStatsDataSet.FindProjectStats[0].TotalHours;
                 txtShopHours.Text = Convert.ToString(gdecProjectHours);
-                gdecProjectCost = gdecProjectHours * 12;
+                gdecProjectCost = gdecProjectHours * decAveragePayRate;
+                gdecProjectCost = Math.Round(gdecProjectCost, 4);
                 txtProjectCost.Text = Convert.ToString(gdecProjectCost);
 
                 PleaseWait.Close();
@@ -184,6 +189,107 @@ namespace NewBlueJayERP
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Shop Hours Analysis // Reset Controls " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expNormalDis_Expanded(object sender, RoutedEventArgs e)
+        {
+            decimal decNumber = -2;
+            double douValue = .1;
+
+            try
+            {
+                while (Convert.ToInt32(decNumber) < 6)
+                {
+                    NormalDistributionDataSet.normaldistributionRow NewStatRow = TheNormalDistributionDataSet.normaldistribution.NewnormaldistributionRow();
+
+                    NewStatRow.StdDev = gdecStandDeviation;
+                    NewStatRow.Mean = gdecMean;
+                    NewStatRow.Hours = decNumber;
+
+                    TheNormalDistributionDataSet.normaldistribution.Rows.Add(NewStatRow);
+
+                    decNumber = decNumber + Convert.ToDecimal(douValue);
+                }
+
+                DownloadDistribution();
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Shop Analysis // Normal Distribution Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+        private void DownloadDistribution()
+        {
+            int intRowCounter;
+            int intRowNumberOfRecords;
+            int intColumnCounter;
+            int intColumnNumberOfRecords;
+
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+                worksheet = workbook.ActiveSheet;
+
+                worksheet.Name = "OpenOrders";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+                intRowNumberOfRecords = TheNormalDistributionDataSet.normaldistribution.Rows.Count;
+                intColumnNumberOfRecords = TheNormalDistributionDataSet.normaldistribution.Columns.Count;
+
+                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheNormalDistributionDataSet.normaldistribution.Columns[intColumnCounter].ColumnName;
+
+                    cellColumnIndex++;
+                }
+
+                cellRowIndex++;
+                cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
+                {
+                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                    {
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheNormalDistributionDataSet.normaldistribution[intRowCounter][intColumnCounter].ToString();
+
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+
+                saveDialog.ShowDialog();
+
+                workbook.SaveAs(saveDialog.FileName);
+                MessageBox.Show("Export Successful");
+
+            }
+            catch (System.Exception ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Shop Analyssi // Normal Distribution Method " + ex.Message);
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
             }
         }
     }

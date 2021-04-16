@@ -89,6 +89,7 @@ namespace NewBlueJayERP
         public static int gintTransactionID;
         public static string gstrLaborCode;
         public static int gintPhoneID;
+        public static bool gblnPasswordWorked;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -198,6 +199,8 @@ namespace NewBlueJayERP
         public static MyTickets MyTicketsWindow = new MyTickets();
         public static PhoneList PhoneListWindow = new PhoneList();
         public static CellPhoneList CellPhoneListWindow = new CellPhoneList();
+        public static DesignEmployeeProductivity DesignEmployeeProductivityWindow = new DesignEmployeeProductivity();
+        public static VoidDesignProductivity VoidDesignProductivityWindow = new VoidDesignProductivity();
 
         public MainWindow()
         {
@@ -340,6 +343,8 @@ namespace NewBlueJayERP
             MyTicketsWindow.Visibility = Visibility.Hidden;
             PhoneListWindow.Visibility = Visibility.Hidden;
             CellPhoneListWindow.Visibility = Visibility.Hidden;
+            DesignEmployeeProductivityWindow.Visibility = Visibility.Hidden;
+            VoidDesignProductivityWindow.Visibility = Visibility.Hidden; 
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1521,6 +1526,7 @@ namespace NewBlueJayERP
             expEmployeeDoubleHours.IsExpanded = false;
             expAddProductivityWorkTask.IsExpanded = false;
             expVoidProductivitySheet.IsExpanded = false;
+            expVoidDesignProductivity.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1642,7 +1648,14 @@ namespace NewBlueJayERP
         private void expEmployeeLaborRate_Expanded(object sender, RoutedEventArgs e)
         {
             ResetEmployeeAdministration();
-            AddEmployeeLaborRateWindow.Visibility = Visibility.Visible;
+
+            RatePassword RatePassword = new RatePassword();
+            RatePassword.ShowDialog();
+
+            if (gblnPasswordWorked == true)
+            {
+                AddEmployeeLaborRateWindow.Visibility = Visibility.Visible;
+            }            
         }
 
         private void expImportEmployeeHours_Expanded(object sender, RoutedEventArgs e)
@@ -1944,6 +1957,18 @@ namespace NewBlueJayERP
         {
             ITReportsExpanders();
             CellPhoneListWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expDesignEmployeeProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            DesignEmployeeProductivityWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVoidDesignProductivity_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            VoidDesignProductivityWindow.Visibility = Visibility.Visible;
         }
     }
 }

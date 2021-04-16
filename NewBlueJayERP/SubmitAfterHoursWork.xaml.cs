@@ -30,6 +30,7 @@ using System.Net;
 using Excel = Microsoft.Office.Interop.Excel;
 using TowMotorDLL;
 using DateSearchDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
@@ -50,6 +51,7 @@ namespace NewBlueJayERP
         SendEmailClass TheSendEmailClass = new SendEmailClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
         ProjectClass TheProjectClass = new ProjectClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
         FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
@@ -163,6 +165,8 @@ namespace NewBlueJayERP
                 cboSelectDepartment.SelectedIndex = 0;
 
                 cboSelectEmployee.Items.Clear();
+
+                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Submit After Hours Work");
             }
             catch (Exception Ex)
             {

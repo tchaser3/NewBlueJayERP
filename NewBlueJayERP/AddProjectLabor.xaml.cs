@@ -303,6 +303,10 @@ namespace NewBlueJayERP
                         gintDriveTimeTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[0].WorkTaskID;
                     }
                 }
+                if(MainWindow.gintProjectID == 104330)
+                {
+                    gdecDriveTime = 0;
+                }
 
                 datEndDate = TheDateSearchClass.SubtractingDays(DateTime.Now, 21);
 
@@ -878,6 +882,18 @@ namespace NewBlueJayERP
                     return;
                 }
 
+                intNumberOfRecords = TheEmployeeWorkCompleteDataSet.workcompleted.Rows.Count;
+
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    intEmployeeID = TheEmployeeWorkCompleteDataSet.workcompleted[intCounter].EmployeeID;
+
+                    blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, MainWindow.gintProjectID, gintDriveTimeTaskID, datTransactionDate, gdecDriveTime);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }                
+
                 intNumberOfRecords = TheProjectWorkCompletedDataSet.workcompleted.Rows.Count - 1;
 
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
@@ -887,11 +903,6 @@ namespace NewBlueJayERP
                     intWorkTaskID = TheProjectWorkCompletedDataSet.workcompleted[intCounter].TaskID;
                     decTotalHours = TheProjectWorkCompletedDataSet.workcompleted[intCounter].Hours;
                     intFootagePieces = TheProjectWorkCompletedDataSet.workcompleted[intCounter].FootagePieces;
-
-                    blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, MainWindow.gintProjectID, gintDriveTimeTaskID, datTransactionDate, gdecDriveTime);
-
-                    if (blnFatalError == true)
-                        throw new Exception();
 
                     //first insert
                     blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, intProjectID, intWorkTaskID, datTransactionDate, decTotalHours);
