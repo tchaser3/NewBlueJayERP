@@ -82,7 +82,7 @@
                                 <Expander x:Name="expManagerHourlyDailyReport" Header="Manager Hourly Daily Report" Expanded="expManagerHourlyDailyReport_Expanded" />
                                 <Expander x:Name="expEmployeeHoursOverDateRange" Header="Employee Hours Over Date Range" />
                                 <Expander x:Name="expEmployeeHoursPunched" Header="Employee Hours Punched" Expanded="expEmployeeHoursPunched_Expanded" />
-                                <Expander x:Name="expEmployeeProductivityByDateRange" Header="Employee Productivity By Date Range" />
+                                <Expander x:Name="expEmployeeProductivityByDateRange" Header="Employee Productivity By Date Range" Expanded="expEmployeeProductivityByDateRange_Expanded" />
                                 <Expander x:Name="expProductionEmployeeProductivityMeasure" Header="Employee Productivity Measure" />
                                 <Expander x:Name="expEmployeeOvertimeReport" Header="Employee Overtime Report" Expanded="expEmployeeOvertimeReport_Expanded" />
                                 <Expander x:Name="expEmployeePunchedVsProductionHours" Header="Employee Punched VS Production Hours" Expanded="expEmployeePunchedVsProductionHours_Expanded" />
@@ -164,14 +164,17 @@
                             <StackPanel>
                                 <Expander x:Name="expAddNonProductionTask" Header="Add Non-Production Task" Margin="10,1,1,1" />
                                 <Expander x:Name="expAddProductivityWorkTask" Header="Add Productivity Work Task" Margin="10,1,1,1" Expanded="expAddProductivityWorkTask_Expanded" />
+                                
                                 <Expander x:Name="expAddWorkTask" Header="Add Work Task" Margin="10,1,1,1" Expanded="expAddWorkTask_Expanded" />
                                 <Expander x:Name="expAddWOVBillingCode" Header="Add WOV Billing Code" Margin="10,1,1,1" Expanded="expAddWOVBillingCode_Expanded" />
                                 <Expander x:Name="expAddWOVTasks" Header="Add WOV Tasks" Margin="10,1,1,1" Expanded="expAddWOVTasks_Expanded" />
+                                <Expander x:Name="expAssignworkTask" Header="Assigng Work Task" Margin="10,1,1,1" Expanded="expAssignworkTask_Expanded"/>
                                 <Expander x:Name="expImportNonProductionTask" Header="Import Non-Production Task" Margin="10,1,1,1" Expanded="expImportNonProductionTask_Expanded" />
                                 <Expander x:Name="expEditWorkTask" Header="Edit Work Task" Margin="10,1,1,1" Expanded="expEditWorkTask_Expanded" />
                                 <Expander x:Name="expEditWOVBillingCodes" Header="Edit WOV Billing Codes" Margin="10,1,1,1" Expanded="expEditWOVBillingCodes_Expanded" />
                                 <Expander x:Name="expRemoveDuplicateProjectMatrix" Header="Remove Duplicate Project Matrix" Margin="10,1,1,1" Expanded="expRemoveDuplicateProjectMatrix_Expanded"/>
                                 <Expander x:Name="expVoidProductivitySheet" Header="Void Productivity Sheet" Margin="10,1,1,1" Expanded="expVoidProductivitySheet_Expanded"/>
+                                <Expander x:Name="expVoidDriveTime" Header="Void Drive Time" Margin="10,1,1,1" Expanded="expVoidDriveTime_Expanded" />
                                 <Expander x:Name="expVoidDesignProductivity" Header="Void Design Productivity" Margin="10,1,1,1" Expanded="expVoidDesignProductivity_Expanded" />
                             </StackPanel>                            
                         </Expander>

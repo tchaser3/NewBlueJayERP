@@ -56,43 +56,58 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="1000">
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="1000">
             <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
             <Label x:Name="lblTitle" Content="Problem Information" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="640" Background="LightBlue">
+            <Expander x:Name="expAttachDocument" Header="Attach Invoice" FontSize="16" Margin="10,1,1,1" Expanded="expAttachDocument_Expanded"/>
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="825" Margin="159,157,10,597">
-            <Label x:Name="lblProblemID" Content="ProblemID" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="35,1,1,1"/>
-            <TextBox x:Name="txtProblemID" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="125" Margin="10,1,1,1"/>
-            <Label x:Name="lblTransactionDate" Content="Date" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
-            <TextBox x:Name="txtTransactionDate" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="150" Margin="10,1,1,1"/>
-            <Label x:Name="lblProblem" Content="Problem" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
-            <TextBox x:Name="txtProblem" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="250" Margin="10,1,1,1"/>
+        <StackPanel Height="620" Width="830" Margin="159,164,5,10">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="830" >
+                <Label x:Name="lblProblemID" Content="ProblemID" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="35,1,1,1"/>
+                <TextBox x:Name="txtProblemID" Background="LightGray" IsReadOnly="True" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="125" Margin="10,1,1,1"/>
+                <Label x:Name="lblTransactionDate" Content="Date" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtTransactionDate" Background="LightGray" IsReadOnly="True" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="150" Margin="10,1,1,1"/>
+                <Label x:Name="lblProblem" Content="Problem" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtProblem" Background="LightGray" IsReadOnly="True" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="250" Margin="10,1,1,1"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="80" Width="825">
+                <Label x:Name="lblProblemStatus" Content="Problem Status" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="15,1,1,1"/>
+                <TextBox x:Name="txtProblemStatus" TabIndex="0" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="125" Margin="10,1,1,1"/>
+                <Label x:Name="lblProblemResolution" Content="Problem Resolution" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtProblemResolution" TabIndex="1" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="70" Width="400" Margin="10,1,1,1" TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="830">
+                <Label x:Name="lblInvoiceAmount" Content="Invoice Amount" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="60,1,1,1"/>
+                <TextBox x:Name="txtInvoiceAmount" TabIndex="2" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="125" Margin="10,1,1,1" />
+                <Label x:Name="lblInvoicePath" Content="Invoice Path" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtInvoicePath" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="350" Margin="10,1,1,1" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="150" Width="830">
+                <Label x:Name="lblCurrentUpdates" Content="Current Updates" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtCurrentUpdates" IsReadOnly="True" Background="LightGray" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="140" Width="275" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                <Label x:Name="lblNewUpdate" Content="New Update" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtNewUpdate" TabIndex="3" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="140" Width="300" Margin="10,1,1,1" TextWrapping="Wrap"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="60" Width="830">
+                <Label x:Name="lblInvoiceNumber" Content="Invoice Number" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="40,1,1,1"/>
+                <TextBox x:Name="txtInvoiceNumber" TabIndex="5" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="175" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                <Label x:Name="lblUpdateDate" Content="Update Date" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtUpdateDate" TabIndex="6" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="175" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                <Button x:Name="btnProcessUpdate" TabIndex="7" Content="Process Update" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" FontSize="18" Height="50" Width="150" Margin="10,1,1,1" Click="btnProcessUpdate_Click"/>
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="240" Width="825" >
+                <Label x:Name="lblProblemDocumentation" Content="Problem Documentation" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" />
+                <DataGrid x:Name="dgrProblemDocumentation" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="180" Width="815" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+            </StackPanel>
+
         </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="825" Margin="159,202,10,552" >
-            <Label x:Name="lblProblemStatus" Content="Problem Status" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="15,1,1,1"/>
-            <TextBox x:Name="txtProblemStatus" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="125" Margin="10,1,1,1"/>
-            <Label x:Name="lblProblemResolution" Content="Problem Resolution" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
-            <TextBox x:Name="txtProblemResolution" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="400" Margin="10,1,1,1"/>
-        </StackPanel>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="40" Width="825" Margin="155,247,14,507">
-            <Label x:Name="lblInvoiceAmount" Content="Invoice Amount" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="60,1,1,1"/>
-            <TextBox x:Name="txtInvoiceAmount" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="125" Margin="10,1,1,1" />
-            <Label x:Name="lblInvoicePath" Content="Invoice Path" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Margin="10,1,1,1"/>
-            <TextBox x:Name="txtInvoicePath" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="14" Height="35" Width="350" Margin="10,1,1,1" />
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="200" Width="825" Margin="155,292,14,302">
-            <Label x:Name="lblProblemDocumentation" Content="Problem Documentation" FontSize="18" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50" />
-            <DataGrid x:Name="dgrProblemDocumentation" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="140" Width="815" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
-        </StackPanel>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="287" Width="824" Margin="160,497,10,10">
-            <Label x:Name="lblProblemUpdates" Content="Problem Updates" HorizontalAlignment="Center" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontSize="18" Height="50"/>
-            <DataGrid x:Name="dgrProblemUpdates" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="816" Height="232" Margin="4,0" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
-        </StackPanel>
+        
+       
     </Grid>
 </Window>

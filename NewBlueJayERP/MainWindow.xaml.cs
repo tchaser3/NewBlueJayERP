@@ -201,6 +201,8 @@ namespace NewBlueJayERP
         public static CellPhoneList CellPhoneListWindow = new CellPhoneList();
         public static DesignEmployeeProductivity DesignEmployeeProductivityWindow = new DesignEmployeeProductivity();
         public static VoidDesignProductivity VoidDesignProductivityWindow = new VoidDesignProductivity();
+        public static VoidDriveTime VoidDriveTimeWindow = new VoidDriveTime();
+        public static EmployeeProductivityOverDateRange EmployeeProductivityOverDateRangeWindow = new EmployeeProductivityOverDateRange();
 
         public MainWindow()
         {
@@ -344,7 +346,9 @@ namespace NewBlueJayERP
             PhoneListWindow.Visibility = Visibility.Hidden;
             CellPhoneListWindow.Visibility = Visibility.Hidden;
             DesignEmployeeProductivityWindow.Visibility = Visibility.Hidden;
-            VoidDesignProductivityWindow.Visibility = Visibility.Hidden; 
+            VoidDesignProductivityWindow.Visibility = Visibility.Hidden;
+            VoidDriveTimeWindow.Visibility = Visibility.Hidden;
+            EmployeeProductivityOverDateRangeWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -840,7 +844,6 @@ namespace NewBlueJayERP
                     expProjectAdministration.IsEnabled = false;
                     expEmployeeAdministration.IsEnabled = false;
                     expCompanyFootages.IsEnabled = false;
-                    expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
@@ -1527,6 +1530,7 @@ namespace NewBlueJayERP
             expAddProductivityWorkTask.IsExpanded = false;
             expVoidProductivitySheet.IsExpanded = false;
             expVoidDesignProductivity.IsExpanded = false;
+            expVoidDriveTime.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1734,6 +1738,9 @@ namespace NewBlueJayERP
             expAddWOVBillingCode.IsExpanded = false;
             expEditWOVBillingCodes.IsExpanded = false;
             expAddWOVTasks.IsExpanded = false;
+            expAssignworkTask.IsExpanded = false;
+            expVoidDriveTime.IsExpanded = false;
+            expVoidDesignProductivity.IsExpanded = false;
         }
 
         private void expJSIReports_Expanded(object sender, RoutedEventArgs e)
@@ -1967,8 +1974,26 @@ namespace NewBlueJayERP
 
         private void expVoidDesignProductivity_Expanded(object sender, RoutedEventArgs e)
         {
-            ResetEmployeeAdministration();
+            ResetProjectAdministrationExpanders();
             VoidDesignProductivityWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVoidDriveTime_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            VoidDriveTimeWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmployeeProductivityByDateRange_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            EmployeeProductivityOverDateRangeWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAssignworkTask_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetProjectAdministrationExpanders();
+            AssignWorkTaskBusinessLineWindow.Visibility = Visibility.Visible;
         }
     }
 }

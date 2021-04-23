@@ -587,8 +587,18 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DesignProductivityDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="DetailedEmployeeProductivityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DetailedEmployeeProductivityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DetailedNonProductionEmployeeProductivity.xaml.cs">
       <DependentUpon>DetailedNonProductionEmployeeProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DriveTimeForVoidingDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DriveTimeForVoidingDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="DuplicateEmployeeDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -662,6 +672,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeProductivityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeProductivityOverDateRange.xaml.cs">
+      <DependentUpon>EmployeeProductivityOverDateRange.xaml</DependentUpon>
     </Compile>
     <Compile Include="EmployeeProjectLaborReport.xaml.cs">
       <DependentUpon>EmployeeProjectLaborReport.xaml</DependentUpon>
@@ -1116,6 +1129,9 @@
     <Compile Include="VoidDesignProductivity.xaml.cs">
       <DependentUpon>VoidDesignProductivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VoidDriveTime.xaml.cs">
+      <DependentUpon>VoidDriveTime.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VoidInventoryTransaction.xaml.cs">
       <DependentUpon>VoidInventoryTransaction.xaml</DependentUpon>
     </Compile>
@@ -1353,6 +1369,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EmployeeOvertimeReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmployeeProductivityOverDateRange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1660,6 +1680,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="VoidDriveTime.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="VoidInventoryTransaction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1800,6 +1824,28 @@
     </None>
     <None Include="DesignProductivityDataSet.xss">
       <DependentUpon>DesignProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DetailedEmployeeProductivityDataSet.xsc">
+      <DependentUpon>DetailedEmployeeProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DetailedEmployeeProductivityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DetailedEmployeeProductivityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DetailedEmployeeProductivityDataSet.xss">
+      <DependentUpon>DetailedEmployeeProductivityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DriveTimeForVoidingDataSet.xsc">
+      <DependentUpon>DriveTimeForVoidingDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DriveTimeForVoidingDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DriveTimeForVoidingDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DriveTimeForVoidingDataSet.xss">
+      <DependentUpon>DriveTimeForVoidingDataSet.xsd</DependentUpon>
     </None>
     <None Include="DuplicateEmployeeDataSet.xsc">
       <DependentUpon>DuplicateEmployeeDataSet.xsd</DependentUpon>
