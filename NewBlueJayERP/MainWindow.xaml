@@ -77,7 +77,7 @@
                         </Expander>
                         <Expander x:Name="expEmployeeReports" Header="Employee Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" Expanded="expEmployeeReports_Expanded">
                             <StackPanel Background="LightBlue" HorizontalAlignment="Center" Margin="10,1,1,1">
-                                <Expander x:Name="expCompareEmployeeCrews" Header="Compare Employee Crews" />
+                                <Expander x:Name="expCompareEmployeeCrews" Header="Compare Employee Crews" Expanded="expCompareEmployeeCrews_Expanded" />
                                 <Expander x:Name="expDesignEmployeeProductivity" Header="Design Employee Productivity" Expanded="expDesignEmployeeProductivity_Expanded" />
                                 <Expander x:Name="expManagerHourlyDailyReport" Header="Manager Hourly Daily Report" Expanded="expManagerHourlyDailyReport_Expanded" />
                                 <Expander x:Name="expEmployeeHoursOverDateRange" Header="Employee Hours Over Date Range" />
@@ -319,7 +319,9 @@
                             </StackPanel>                            
                         </Expander>
                         <Expander x:Name="expToolReports" Header="Tool Reports" ExpandDirection="Right" Margin="23,1,1,1" Background="LightBlue" Expanded="expToolReports_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expCreateWASPToolReport" Header="Create WASP Tool Report" Margin="40,1,1,1" Expanded="expCreateWASPToolReport_Expanded"/>
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expToolAdministration" Header="Tool Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expToolAdministration_Expanded">
 

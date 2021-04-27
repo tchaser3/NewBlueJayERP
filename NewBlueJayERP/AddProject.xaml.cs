@@ -30,6 +30,7 @@ using ProjectMatrixDLL;
 using System.Runtime.Serialization;
 using ProductionProjectDLL.FindProdutionProjectsByAssignedProjectIDDataSetTableAdapters;
 using ProjectNumberAssignmentDLL;
+using ATTProjectNumberAssignmentDLL;
 
 namespace NewBlueJayERP
 {
@@ -51,6 +52,7 @@ namespace NewBlueJayERP
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
         ProjectNumberAssignment TheProjectNumberAssignmentClass = new ProjectNumberAssignment();
+        ATTProjectNumberAssignmentClass TheATTProjectNumberAssignmentClass = new ATTProjectNumberAssignmentClass();
 
         //setting up the data
         
@@ -201,11 +203,11 @@ namespace NewBlueJayERP
 
             intSelectedIndex = cboSelectDepartment.SelectedIndex - 1;
 
-            if (intSelectedIndex > -1)
+            if (intSelectedIndex > -1) 
             {
                 gintDepartmentID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intSelectedIndex].DepartmentID;
 
-                if(gintDepartmentID != 1009)
+                if((gintDepartmentID != 1009) && (gintDepartmentID != 1010))
                 {
                     strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
 
@@ -936,28 +938,21 @@ namespace NewBlueJayERP
             }
         }
 
-        private void rdoYes_Checked(object sender, RoutedEventArgs e)
-        {
-            string strAssignedProjectID;
-
-            gblnOver2500 = true;
-            strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
-
-            txtAssignedProjectID.Text = strAssignedProjectID;
-        }
-
-        private void rdoNo_Checked(object sender, RoutedEventArgs e)
-        {
-            gblnOver2500 = false;
-        }
-
-
         private void rdoOverYes_Checked(object sender, RoutedEventArgs e)
         {
-            string strAssignedProjectID;
+            string strAssignedProjectID = "";
 
             gblnOver2500 = true;
-            strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
+
+            if (gintDepartmentID == 1009)
+            {
+                strAssignedProjectID = TheProjectNumberAssignmentClass.CreateProjectNumberAssignment();
+            }
+            else if(gintDepartmentID == 1010)
+            {
+                strAssignedProjectID = TheATTProjectNumberAssignmentClass.CreateATTProjectNumberAssignment();
+            }
+            
 
             txtAssignedProjectID.Text = strAssignedProjectID;
         }

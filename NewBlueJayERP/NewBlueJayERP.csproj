@@ -50,6 +50,9 @@
     <Reference Include="AssignedTasksDLL">
       <HintPath>..\..\Blue Jay Class Library\AssignedTasksDLL.dll</HintPath>
     </Reference>
+    <Reference Include="ATTProjectNumberAssignmentDLL">
+      <HintPath>..\..\Blue Jay Class Library\ATTProjectNumberAssignmentDLL.dll</HintPath>
+    </Reference>
     <Reference Include="AuditReportEmailListDLL">
       <HintPath>..\..\Blue Jay Class Library\AuditReportEmailListDLL.dll</HintPath>
     </Reference>
@@ -512,6 +515,14 @@
     <Compile Include="CompanyProjectFootages.xaml.cs">
       <DependentUpon>CompanyProjectFootages.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CompareCrewEmployeesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CompareCrewEmployeesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CompareCrews.xaml.cs">
+      <DependentUpon>CompareCrews.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CompletePhoneListDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -559,6 +570,9 @@
     </Compile>
     <Compile Include="CreateToolProblem.xaml.cs">
       <DependentUpon>CreateToolProblem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CreateWASPToolReport.xaml.cs">
+      <DependentUpon>CreateWASPToolReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="CurrentCellPhoneAssignments.xaml.cs">
       <DependentUpon>CurrentCellPhoneAssignments.xaml</DependentUpon>
@@ -1146,6 +1160,11 @@
     <Compile Include="WarehouseInventoryReport.xaml.cs">
       <DependentUpon>WarehouseInventoryReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="WASPToolsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WASPToolsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="WorkTaskAssignedDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1248,6 +1267,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CompareCrews.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CreateAsset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1289,6 +1312,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CreateToolProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CreateWASPToolReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1758,6 +1785,17 @@
     </None>
     <None Include="AgedOverdueProjectsDataSet.xss">
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CompareCrewEmployeesDataSet.xsc">
+      <DependentUpon>CompareCrewEmployeesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CompareCrewEmployeesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CompareCrewEmployeesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CompareCrewEmployeesDataSet.xss">
+      <DependentUpon>CompareCrewEmployeesDataSet.xsd</DependentUpon>
     </None>
     <None Include="CompletePhoneListDataSet.xsc">
       <DependentUpon>CompletePhoneListDataSet.xsd</DependentUpon>
@@ -2367,6 +2405,17 @@
     </None>
     <None Include="WarehouseCountDataSet.xss">
       <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WASPToolsDataSet.xsc">
+      <DependentUpon>WASPToolsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WASPToolsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WASPToolsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WASPToolsDataSet.xss">
+      <DependentUpon>WASPToolsDataSet.xsd</DependentUpon>
     </None>
     <None Include="WorkTaskAssignedDataSet.xsc">
       <DependentUpon>WorkTaskAssignedDataSet.xsd</DependentUpon>

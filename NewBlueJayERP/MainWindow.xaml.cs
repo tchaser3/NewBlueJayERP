@@ -203,6 +203,8 @@ namespace NewBlueJayERP
         public static VoidDesignProductivity VoidDesignProductivityWindow = new VoidDesignProductivity();
         public static VoidDriveTime VoidDriveTimeWindow = new VoidDriveTime();
         public static EmployeeProductivityOverDateRange EmployeeProductivityOverDateRangeWindow = new EmployeeProductivityOverDateRange();
+        public static CreateWASPToolReport CreateWASPToolReportWindow = new CreateWASPToolReport();
+        public static CompareCrews CompareCrewsWindow = new CompareCrews();
 
         public MainWindow()
         {
@@ -349,6 +351,8 @@ namespace NewBlueJayERP
             VoidDesignProductivityWindow.Visibility = Visibility.Hidden;
             VoidDriveTimeWindow.Visibility = Visibility.Hidden;
             EmployeeProductivityOverDateRangeWindow.Visibility = Visibility.Hidden;
+            CreateWASPToolReportWindow.Visibility = Visibility.Hidden;
+            CompareCrewsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1994,6 +1998,24 @@ namespace NewBlueJayERP
         {
             ResetProjectAdministrationExpanders();
             AssignWorkTaskBusinessLineWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCreateWASPToolReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetToolReportExpanders();
+            CreateWASPToolReportWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetToolReportExpanders()
+        {
+            expTools.IsExpanded = false;
+            expToolReports.IsExpanded = false;
+            expCreateWASPToolReport.IsExpanded = false;
+        }
+
+        private void expCompareEmployeeCrews_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            CompareCrewsWindow.Visibility = Visibility.Visible;
         }
     }
 }
