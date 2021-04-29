@@ -22,6 +22,8 @@ using NewEmployeeDLL;
 using DataValidationDLL;
 using DateSearchDLL;
 using EmployeeTimeClockEntriesDLL;
+using EmployeeDateEntryDLL;
+using Microsoft.Win32;
 
 namespace NewBlueJayERP
 {
@@ -37,6 +39,7 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
         EmployeeTimeClockEntriesClass TheEmployeeTimeClockEntriesClass = new EmployeeTimeClockEntriesClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the datasets
         FindSortedEmployeeManagersDataSet TheFindSortedEmployeeManagersDataSet = new FindSortedEmployeeManagersDataSet();
@@ -95,13 +98,18 @@ namespace NewBlueJayERP
             int intSecondNumberOfRecords;
             int intRemander;
             DateTime datPunchDate;
-            DateTime datSecondPunchDate;
+            DateTime datSecondPunchDate = DateTime.Now;
             string strFirstName;
             string strLastName;
             TimeSpan tspTotalHours;
             int intHours;
             int intMinutes;
             decimal decTotalHours;
+            int intRecordsReturned;
+            int intCounterDifference;
+
+            PleaseWait PleaseWait = new PleaseWait();
+            PleaseWait.Show();
             
             try
             {
@@ -171,164 +179,95 @@ namespace NewBlueJayERP
                         {
                             TheFindEmployeeTimeCardEntriesDataSet = TheEmployeeTimeClockEntriesClass.FindEmployeeTimeCardEntries(intEmployeeID, datStartingDate, datLimitingDate);
 
-                            intSecondNumberOfRecords = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries.Rows.Count - 1;
+                            intSecondNumberOfRecords = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries.Rows.Count;
 
-                            intRemander = (intSecondNumberOfRecords + 1) % 2;
+                            intRemander = (intSecondNumberOfRecords) % 2;
 
-                            if(intSecondNumberOfRecords > 0)
+                            intRecordsReturned = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries.Rows.Count;
+
+                            datPunchDate = datStartingDate;
+
+                            if (intSecondNumberOfRecords > 0)
                             {
-                                for (intSecondCounter = 0; intSecondCounter <= intSecondNumberOfRecords; intSecondCounter++)
+                                for(intSecondCounter = 0; intSecondCounter < intSecondNumberOfRecords; intSecondCounter++)
                                 {
                                     datPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
 
-                                    EmployeeTimePunchesDataSet.employeetimepunchesRow NewPunchRow = TheEmployeetimePunchesDataSet.employeetimepunches.NewemployeetimepunchesRow();
-
-                                    NewPunchRow.EmployeeID = intEmployeeID;
-                                    NewPunchRow.FirstName = strFirstName;
-                                    NewPunchRow.LastName = strLastName;
-
-                                    if (intRemander > 0)
+                                    if (intRemander == 0)
+                                    {                                        
+                                        intSecondCounter++;
+                                        datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
+                                    }
+                                    else if(intRemander > 0)
                                     {
-                                        if (datPunchDate.Hour < 5)
+                                        if(intRecordsReturned == 1)
                                         {
-                                            if (datPunchDate.Minute > 0)
+                                            if(datPunchDate.Hour < 7)
                                             {
-                                                tspTotalHours = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter + 1].PunchTime - datPunchDate;
+                                                datSecondPunchDate = datPunchDate;
+                                                datPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
+                                            }
+                                            else if(datPunchDate.Hour >= 7)
+                                            {
+                                                datSecondPunchDate = datPunchDate;
+                                                datSecondPunchDate = TheDateSearchClass.RemoveTime(datSecondPunchDate);
+                                                datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
+                                            }
+                                        }
+                                        else if(intRecordsReturned > 1)
+                                        {
+                                            intCounterDifference = (intSecondNumberOfRecords - 1) - intSecondCounter;
 
-                                                if(tspTotalHours.Hours > 8)
-                                                {
-                                                    datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter + 1].PunchTime;
+                                            datPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
 
-                                                    tspTotalHours = datSecondPunchDate - datPunchDate;
-
-                                                    intHours = tspTotalHours.Hours;
-                                                    intMinutes = tspTotalHours.Minutes;
-
-                                                    douTotalHours = Convert.ToDouble(intHours);
-                                                    douTotalHours += (Convert.ToDouble(intMinutes)) / 60;
-
-                                                    if (douTotalHours > 6)
-                                                    {
-                                                        douTotalHours--;
-                                                    }
-
-                                                    decTotalHours = Convert.ToDecimal(Math.Round(douTotalHours, 2));
-
-                                                    intSecondCounter++;
-
-                                                    NewPunchRow.StartDate = datPunchDate;
-                                                    NewPunchRow.EndDate = datSecondPunchDate;
-                                                    NewPunchRow.TotalHours = decTotalHours;
-                                                }
-                                                else
+                                            if (intCounterDifference == 0)
+                                            {
+                                                if (datPunchDate.Hour < 7)
                                                 {
                                                     datSecondPunchDate = datPunchDate;
-                                                    datPunchDate = datStartingDate;
-
-                                                    tspTotalHours = datPunchDate - datSecondPunchDate;
-
-                                                    intHours = tspTotalHours.Hours;
-                                                    intMinutes = tspTotalHours.Minutes;
-
-                                                    douTotalHours = Convert.ToDouble(intHours);
-                                                    douTotalHours += (Convert.ToDouble(intMinutes)) / 60;
-
-                                                    if(douTotalHours > 6)
-                                                    {
-                                                        douTotalHours--;
-                                                    }
-
-                                                    decTotalHours = Convert.ToDecimal(Math.Round(douTotalHours, 2));
-
-                                                    intRemander = 0;
-
-                                                    NewPunchRow.StartDate = datPunchDate;
-                                                    NewPunchRow.EndDate = datSecondPunchDate;
-                                                    NewPunchRow.TotalHours = decTotalHours;
+                                                    datPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
                                                 }
+                                                else if ((datPunchDate.Hour >= 7) && (datPunchDate.Hour < 20))
+                                                {
+                                                    datSecondPunchDate = datPunchDate;
+                                                    datSecondPunchDate = TheDateSearchClass.RemoveTime(datSecondPunchDate);
+                                                    datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
+                                                }
+                                                else if(datPunchDate.Hour >= 20)
+                                                {
+                                                    datSecondPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
+                                                    datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
+                                                }
+
                                             }
-
-                                        }
-                                        else if (datPunchDate.Hour > 20)
-                                        {
-                                            datSecondPunchDate = datStartingDate;
-                                            datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
-
-                                            tspTotalHours = datSecondPunchDate - datPunchDate;
-
-                                            intHours = tspTotalHours.Hours;
-                                            intMinutes = tspTotalHours.Minutes;
-
-                                            douTotalHours = Convert.ToDouble(intHours);
-                                            douTotalHours += (Convert.ToDouble(intMinutes)) / 60;
-
-                                            if (douTotalHours > 6)
+                                            else if(intCounterDifference > 1)
                                             {
-                                                douTotalHours--;
+                                                intSecondCounter++;
+                                                datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
                                             }
-
-                                            decTotalHours = Convert.ToDecimal(Math.Round(douTotalHours, 2));
-
-                                            intRemander = 0;
-
-                                            NewPunchRow.StartDate = datPunchDate;
-                                            NewPunchRow.EndDate = datSecondPunchDate;
-                                            NewPunchRow.TotalHours = decTotalHours;
                                         }
-                                        else
-                                        {
-                                            datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter + 1].PunchTime;
 
-                                            tspTotalHours = datSecondPunchDate - datPunchDate;
-
-                                            intHours = tspTotalHours.Hours;
-                                            intMinutes = tspTotalHours.Minutes;
-
-                                            douTotalHours = Convert.ToDouble(intHours);
-                                            douTotalHours += (Convert.ToDouble(intMinutes)) / 60;
-
-                                            if (douTotalHours > 6)
-                                            {
-                                                douTotalHours--;
-                                            }
-
-                                            decTotalHours = Convert.ToDecimal(Math.Round(douTotalHours, 2));
-
-                                            intSecondCounter++;
-
-                                            NewPunchRow.StartDate = datPunchDate;
-                                            NewPunchRow.EndDate = datSecondPunchDate;
-                                            NewPunchRow.TotalHours = decTotalHours;
-                                        }
                                     }
-                                    else
+
+                                    tspTotalHours = datSecondPunchDate - datPunchDate;
+                                    decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
+
+                                    if(decTotalHours > 6)
                                     {
-                                        datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter + 1].PunchTime;
-
-                                        tspTotalHours = datSecondPunchDate - datPunchDate;
-
-                                        intHours = tspTotalHours.Hours;
-                                        intMinutes = tspTotalHours.Minutes;
-
-                                        douTotalHours = Convert.ToDouble(intHours);
-                                        douTotalHours += (Convert.ToDouble(intMinutes)) / 60;
-
-                                        if (douTotalHours > 6)
-                                        {
-                                            douTotalHours--;
-                                        }
-
-                                        decTotalHours = Convert.ToDecimal(Math.Round(douTotalHours, 2));
-
-                                        intSecondCounter++;
-
-                                        NewPunchRow.StartDate = datPunchDate;
-                                        NewPunchRow.EndDate = datSecondPunchDate;
-                                        NewPunchRow.TotalHours = decTotalHours;
+                                        decTotalHours = decTotalHours - 1;
                                     }
 
-                                    TheEmployeetimePunchesDataSet.employeetimepunches.Rows.Add(NewPunchRow);
+                                    decTotalHours = Math.Round(decTotalHours, 2);
 
+                                    EmployeeTimePunchesDataSet.employeetimepunchesRow NewEmployeeRow = TheEmployeetimePunchesDataSet.employeetimepunches.NewemployeetimepunchesRow();
+
+                                    NewEmployeeRow.EndDate = datSecondPunchDate;
+                                    NewEmployeeRow.FirstName = strFirstName;
+                                    NewEmployeeRow.LastName = strLastName;
+                                    NewEmployeeRow.StartDate = datPunchDate;
+                                    NewEmployeeRow.TotalHours = decTotalHours;
+
+                                    TheEmployeetimePunchesDataSet.employeetimepunches.Rows.Add(NewEmployeeRow);
                                 }
                             }     
 
@@ -346,6 +285,8 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(EX.ToString());
             }
+
+            PleaseWait.Close();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -381,6 +322,8 @@ namespace NewBlueJayERP
             }
 
             cboSelectManager.SelectedIndex = 0;
+
+            TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Employee Hours Punched Report");
         }
 
         private void cboSelectManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -398,6 +341,79 @@ namespace NewBlueJayERP
             expHelpDesk.IsExpanded = false;
             TheMessagesClass.LaunchHelpDeskTickets();
 
+        }
+
+        private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intRowCounter;
+            int intRowNumberOfRecords;
+            int intColumnCounter;
+            int intColumnNumberOfRecords;
+
+            // Creating a Excel object. 
+            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
+
+            try
+            {
+                expExportToExcel.IsExpanded = false;
+
+                worksheet = workbook.ActiveSheet;
+
+                worksheet.Name = "OpenOrders";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+                intRowNumberOfRecords = TheEmployeetimePunchesDataSet.employeetimepunches.Rows.Count;
+                intColumnNumberOfRecords = TheEmployeetimePunchesDataSet.employeetimepunches.Columns.Count;
+
+                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                {
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheEmployeetimePunchesDataSet.employeetimepunches.Columns[intColumnCounter].ColumnName;
+
+                    cellColumnIndex++;
+                }
+
+                cellRowIndex++;
+                cellColumnIndex = 1;
+
+                //Loop through each row and read value from each column. 
+                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
+                {
+                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
+                    {
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheEmployeetimePunchesDataSet.employeetimepunches.Rows[intRowCounter][intColumnCounter].ToString();
+
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                //Getting the location and file name of the excel to save from user. 
+                SaveFileDialog saveDialog = new SaveFileDialog();
+                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                saveDialog.FilterIndex = 1;
+
+                saveDialog.ShowDialog();
+
+                workbook.SaveAs(saveDialog.FileName);
+                MessageBox.Show("Export Successful");
+
+            }
+            catch (System.Exception ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Employee Hours Punched // Export To Excel " + ex.Message);
+
+                MessageBox.Show(ex.ToString());
+            }
+            finally
+            {
+                excel.Quit();
+                workbook = null;
+                excel = null;
+            }
         }
     }
 }

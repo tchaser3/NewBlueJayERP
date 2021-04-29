@@ -297,6 +297,11 @@ namespace NewBlueJayERP
                             TheMessagesClass.ErrorMessage("The Drive Time Cannot be 0");
                             return;                            
                         }
+                        else if(gdecDriveTime > 16)
+                        {
+                            TheMessagesClass.ErrorMessage("Drive Time Cannot Be Greater Than 16");
+                            return;
+                        }
 
                         TheFindWorkTaskByKeywordDataSet = TheWorkTaskClass.FindWorkTaskByTaskKeyword("DRIVE TIME");
 

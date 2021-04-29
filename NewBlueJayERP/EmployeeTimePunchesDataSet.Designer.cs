@@ -281,8 +281,6 @@ namespace NewBlueJayERP {
             
             private global::System.Data.DataColumn columnTransactionID;
             
-            private global::System.Data.DataColumn columnEmployeeID;
-            
             private global::System.Data.DataColumn columnFirstName;
             
             private global::System.Data.DataColumn columnLastName;
@@ -331,14 +329,6 @@ namespace NewBlueJayERP {
             public global::System.Data.DataColumn TransactionIDColumn {
                 get {
                     return this.columnTransactionID;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn EmployeeIDColumn {
-                get {
-                    return this.columnEmployeeID;
                 }
             }
             
@@ -419,11 +409,10 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public employeetimepunchesRow AddemployeetimepunchesRow(int EmployeeID, string FirstName, string LastName, System.DateTime StartDate, System.DateTime EndDate, decimal TotalHours) {
+            public employeetimepunchesRow AddemployeetimepunchesRow(string FirstName, string LastName, System.DateTime StartDate, System.DateTime EndDate, decimal TotalHours) {
                 employeetimepunchesRow rowemployeetimepunchesRow = ((employeetimepunchesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
-                        EmployeeID,
                         FirstName,
                         LastName,
                         StartDate,
@@ -459,7 +448,6 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             internal void InitVars() {
                 this.columnTransactionID = base.Columns["TransactionID"];
-                this.columnEmployeeID = base.Columns["EmployeeID"];
                 this.columnFirstName = base.Columns["FirstName"];
                 this.columnLastName = base.Columns["LastName"];
                 this.columnStartDate = base.Columns["StartDate"];
@@ -472,8 +460,6 @@ namespace NewBlueJayERP {
             private void InitClass() {
                 this.columnTransactionID = new global::System.Data.DataColumn("TransactionID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionID);
-                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEmployeeID);
                 this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstName);
                 this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
@@ -491,7 +477,6 @@ namespace NewBlueJayERP {
                 this.columnTransactionID.AutoIncrementStep = -1;
                 this.columnTransactionID.AllowDBNull = false;
                 this.columnTransactionID.Unique = true;
-                this.columnEmployeeID.AllowDBNull = false;
                 this.columnFirstName.AllowDBNull = false;
                 this.columnLastName.AllowDBNull = false;
                 this.columnStartDate.AllowDBNull = false;
@@ -644,17 +629,6 @@ namespace NewBlueJayERP {
                 }
                 set {
                     this[this.tableemployeetimepunches.TransactionIDColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int EmployeeID {
-                get {
-                    return ((int)(this[this.tableemployeetimepunches.EmployeeIDColumn]));
-                }
-                set {
-                    this[this.tableemployeetimepunches.EmployeeIDColumn] = value;
                 }
             }
             
