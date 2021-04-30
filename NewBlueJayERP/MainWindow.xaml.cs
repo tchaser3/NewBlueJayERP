@@ -205,6 +205,7 @@ namespace NewBlueJayERP
         public static EmployeeProductivityOverDateRange EmployeeProductivityOverDateRangeWindow = new EmployeeProductivityOverDateRange();
         public static CreateWASPToolReport CreateWASPToolReportWindow = new CreateWASPToolReport();
         public static CompareCrews CompareCrewsWindow = new CompareCrews();
+        public static ProductivityDataEntryReport ProductivityDataEntryReportWindow = new ProductivityDataEntryReport();
 
         public MainWindow()
         {
@@ -353,6 +354,7 @@ namespace NewBlueJayERP
             EmployeeProductivityOverDateRangeWindow.Visibility = Visibility.Hidden;
             CreateWASPToolReportWindow.Visibility = Visibility.Hidden;
             CompareCrewsWindow.Visibility = Visibility.Hidden;
+            ProductivityDataEntryReportWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1535,6 +1537,7 @@ namespace NewBlueJayERP
             expVoidProductivitySheet.IsExpanded = false;
             expVoidDesignProductivity.IsExpanded = false;
             expVoidDriveTime.IsExpanded = false;
+            expProductivityDataEntryReport.IsExpanded = false;
         }
 
         private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1592,13 +1595,10 @@ namespace NewBlueJayERP
             expCompareEmployeeCrews.IsExpanded = false;
             expDesignEmployeeProductivity.IsExpanded = false;
             expManagerHourlyDailyReport.IsExpanded = false;
-            expEmployeeHoursOverDateRange.IsExpanded = false;
             expEmployeeHoursPunched.IsExpanded = false;
             expEmployeeProductivityByDateRange.IsExpanded = false;
-            expProductionEmployeeProductivityMeasure.IsExpanded = false;
             expEmployeePunchedVsProductionHours.IsExpanded = false;
             expEmployeeRoster.IsExpanded = false;
-            expViewEmployeePunches.IsExpanded = false;
             expEmployeeLookup.IsExpanded = false;
             expEmployees.IsExpanded = false;
             expEmployeeReports.IsExpanded = false;
@@ -2016,6 +2016,12 @@ namespace NewBlueJayERP
         {
             ResetEmployeeReportExpanders();
             CompareCrewsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expProductivityDataEntryReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            ProductivityDataEntryReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

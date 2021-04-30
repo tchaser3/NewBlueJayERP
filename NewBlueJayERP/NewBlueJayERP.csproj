@@ -989,6 +989,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProductionTasksForSheetsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProductivityDataEntryDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProductivityDataEntryDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ProductivityDataEntryReport.xaml.cs">
+      <DependentUpon>ProductivityDataEntryReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ProjectFootagesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1584,6 +1592,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="PleaseWait.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ProductivityDataEntryReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2258,6 +2270,17 @@
     </None>
     <None Include="ProductionTasksForSheetsDataSet.xss">
       <DependentUpon>ProductionTasksForSheetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductivityDataEntryDataSet.xsc">
+      <DependentUpon>ProductivityDataEntryDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ProductivityDataEntryDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProductivityDataEntryDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ProductivityDataEntryDataSet.xss">
+      <DependentUpon>ProductivityDataEntryDataSet.xsd</DependentUpon>
     </None>
     <None Include="ProjectFootagesDataSet.xsc">
       <DependentUpon>ProjectFootagesDataSet.xsd</DependentUpon>
