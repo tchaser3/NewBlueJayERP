@@ -583,6 +583,11 @@
     <Compile Include="DepartmentProjectOpenList.xaml.cs">
       <DependentUpon>DepartmentProjectOpenList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="DepartmentWorkTaskDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DepartmentWorkTaskDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="DesignDepartmentProductivityDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -608,6 +613,9 @@
     </Compile>
     <Compile Include="DetailedNonProductionEmployeeProductivity.xaml.cs">
       <DependentUpon>DetailedNonProductionEmployeeProductivity.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DriveTimeAnalysis.xaml.cs">
+      <DependentUpon>DriveTimeAnalysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="DriveTimeForVoidingDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -656,6 +664,11 @@
     </Compile>
     <Compile Include="EmployeeDoubleHours.xaml.cs">
       <DependentUpon>EmployeeDoubleHours.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EmployeeDriveTimeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeDriveTimeDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="EmployeeHoursPunched.xaml.cs">
       <DependentUpon>EmployeeHoursPunched.xaml</DependentUpon>
@@ -1347,6 +1360,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="DriveTimeAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditEmployee.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1842,6 +1859,17 @@
     <None Include="CreateRentalItemsDataSet.xss">
       <DependentUpon>CreateRentalItemsDataSet.xsd</DependentUpon>
     </None>
+    <None Include="DepartmentWorkTaskDataSet.xsc">
+      <DependentUpon>DepartmentWorkTaskDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="DepartmentWorkTaskDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DepartmentWorkTaskDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="DepartmentWorkTaskDataSet.xss">
+      <DependentUpon>DepartmentWorkTaskDataSet.xsd</DependentUpon>
+    </None>
     <None Include="DesignDepartmentProductivityDataSet.xsc">
       <DependentUpon>DesignDepartmentProductivityDataSet.xsd</DependentUpon>
     </None>
@@ -1918,6 +1946,17 @@
     </None>
     <None Include="DuplicateProjectsDataSet.xss">
       <DependentUpon>DuplicateProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeDriveTimeDataSet.xsc">
+      <DependentUpon>EmployeeDriveTimeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeDriveTimeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeDriveTimeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeDriveTimeDataSet.xss">
+      <DependentUpon>EmployeeDriveTimeDataSet.xsd</DependentUpon>
     </None>
     <None Include="EmployeeOvertimeDataSet.xsc">
       <DependentUpon>EmployeeOvertimeDataSet.xsd</DependentUpon>

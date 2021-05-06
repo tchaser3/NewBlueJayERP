@@ -19,9 +19,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NewEventLogDLL;
 using ProjectCostingDLL;
-using ProjectsDLL;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
+using ProjectMatrixDLL;
 
 namespace NewBlueJayERP
 {
@@ -34,10 +34,11 @@ namespace NewBlueJayERP
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         ProjectCostingClass TheProjectCostingClass = new ProjectCostingClass();
-        ProjectClass TheProjectClass = new ProjectClass();
+        ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
 
         //setting up the data
-        FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
+        FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
+        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
         FindProjectTaskCostsDataSet TheFindProjectTaskCostsDataSet = new FindProjectTaskCostsDataSet();
 
         public EmployeeProjectLaborReport()
@@ -87,14 +88,26 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strAssignedProjectID);
+                TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strAssignedProjectID);
 
-                intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
+                intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
 
                 if(intRecordsReturned < 1)
                 {
-                    TheMessagesClass.ErrorMessage("The Project Was Not Found");
-                    return;
+                    TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strAssignedProjectID);
+
+                    intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+
+                    if(intRecordsReturned < 1)
+                    {
+                        TheMessagesClass.ErrorMessage("The Project Was Not Found");
+                        return;
+                    }
+                    else
+                    {
+                        strAssignedProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].CustomerAssignedID;
+                    }
+
                 }
 
                 TheFindProjectTaskCostsDataSet = TheProjectCostingClass.FindProjectTasksCosts(strAssignedProjectID);

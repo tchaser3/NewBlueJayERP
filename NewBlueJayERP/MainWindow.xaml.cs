@@ -206,6 +206,7 @@ namespace NewBlueJayERP
         public static CreateWASPToolReport CreateWASPToolReportWindow = new CreateWASPToolReport();
         public static CompareCrews CompareCrewsWindow = new CompareCrews();
         public static ProductivityDataEntryReport ProductivityDataEntryReportWindow = new ProductivityDataEntryReport();
+        public static DriveTimeAnalysis DriveTimeAnalysisWindow = new DriveTimeAnalysis();
 
         public MainWindow()
         {
@@ -355,6 +356,7 @@ namespace NewBlueJayERP
             CreateWASPToolReportWindow.Visibility = Visibility.Hidden;
             CompareCrewsWindow.Visibility = Visibility.Hidden;
             ProductivityDataEntryReportWindow.Visibility = Visibility.Hidden;
+            DriveTimeAnalysisWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1605,6 +1607,7 @@ namespace NewBlueJayERP
             expNonProductionEmployeeProductivity.IsExpanded = false;
             expEmployeeOvertimeReport.IsExpanded = false;
             expManagerProductivityPunchedReport.IsExpanded = false;
+            expDriveTimeAnalysis.IsExpanded = false;
         }
 
         private void expEmployeeLookup_Expanded(object sender, RoutedEventArgs e)
@@ -2022,6 +2025,12 @@ namespace NewBlueJayERP
         {
             ResetEmployeeAdministration();
             ProductivityDataEntryReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expDriveTimeAnalysis_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            DriveTimeAnalysisWindow.Visibility = Visibility.Visible;
         }
     }
 }

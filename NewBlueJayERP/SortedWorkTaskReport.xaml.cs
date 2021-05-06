@@ -22,7 +22,7 @@ using WorkTaskDLL;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
 using EmployeeDateEntryDLL;
-using Microsoft.Office.Core;
+using DepartmentDLL;
 
 namespace NewBlueJayERP
 {
@@ -36,9 +36,15 @@ namespace NewBlueJayERP
         WorkTaskClass TheWorkTaskClass = new WorkTaskClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
+        DepartmentClass TheDepartmentClass = new DepartmentClass();
 
         //setting up the data
-        FindSortedWorkTaskImportDataSet TheFindSortedWorkTaskImportDataSet = new FindSortedWorkTaskImportDataSet();
+        FindSortedCustomerLinesDataSet TheFindSortedCustomerLinesDataSEt = new FindSortedCustomerLinesDataSet();
+        FindWorkTaskByDepartmentDataSet TheFindWorkTaskByDepartmentDataSet = new FindWorkTaskByDepartmentDataSet();
+        DepartmentWorkTaskDataSet TheDepartmentWorkTaskDataSet = new DepartmentWorkTaskDataSet();
+        FindWorkTaskImportByWorkTaskIDDataSet TheFindWorkTaskImportByWorkTaskIDDataSet = new FindWorkTaskImportByWorkTaskIDDataSet();
+        FindWorkTaskDepartmentForBusinessLineDataSet TheFindWorkTaskDepartmentForBusinessLineDataSet = new FindWorkTaskDepartmentForBusinessLineDataSet();
+        FindDepartmentByDepartmentIDDataSet TheFindDepartmentByDepartmentIDDataSet = new FindDepartmentByDepartmentIDDataSet();
 
         public SortedWorkTaskReport()
         {
@@ -91,16 +97,37 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
-            bool blnFatalError = TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Sorted Work Task Report");
+            int intCounter;
+            int intNumberOfRecords;
 
-            if(blnFatalError == true)
+            try
             {
-                TheMessagesClass.ErrorMessage("Contact IT");
+                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Sorted Work Task Report");
+
+                cboSelectBusinessLine.Items.Clear();
+                cboSelectBusinessLine.Items.Add("Select Business Line");
+
+                TheFindSortedCustomerLinesDataSEt = TheDepartmentClass.FindSortedCustomerLines();
+
+                intNumberOfRecords = TheFindSortedCustomerLinesDataSEt.FindSortedCustomerLines.Rows.Count;
+
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    cboSelectBusinessLine.Items.Add(TheFindSortedCustomerLinesDataSEt.FindSortedCustomerLines[intCounter].Department);
+                }
+
+                cboSelectBusinessLine.SelectedIndex = 0;
+
+                TheFindWorkTaskByDepartmentDataSet = TheWorkTaskClass.FindWorkTaskByDepartment(-1);
+
+                dgrWorkTasks.ItemsSource = TheDepartmentWorkTaskDataSet.worktask;
             }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Sorted Work Task Report // Reset Controls " + Ex.Message);
 
-            TheFindSortedWorkTaskImportDataSet = TheWorkTaskClass.FindSortedWorkTaskImport();
-
-            dgrResult.ItemsSource = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport;
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
 
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
@@ -125,12 +152,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Rows.Count;
-                intColumnNumberOfRecords = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Columns.Count;
+                intRowNumberOfRecords = TheDepartmentWorkTaskDataSet.worktask.Rows.Count;
+                intColumnNumberOfRecords = TheDepartmentWorkTaskDataSet.worktask.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheDepartmentWorkTaskDataSet.worktask.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -143,7 +170,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindSortedWorkTaskImportDataSet.FindSortedWorkTaskImport.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheDepartmentWorkTaskDataSet.worktask.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
@@ -173,6 +200,92 @@ namespace NewBlueJayERP
                 excel.Quit();
                 workbook = null;
                 excel = null;
+            }
+
+        }
+
+        private void cboSelectBusinessLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+            int intDepartmentID;
+            int intCounter;
+            int intNumberOfNumber;
+            int intWorkTaskID;
+            int intBusinessLineID;
+            string strDescription = "";
+            string strDepartment = "";
+            string strWorkTask;
+            int intRecordsReturned;
+
+            try
+            {
+                intSelectedIndex = cboSelectBusinessLine.SelectedIndex - 1;
+
+                TheDepartmentWorkTaskDataSet.worktask.Rows.Clear();
+
+                if(intSelectedIndex > -1)
+                {
+                    intBusinessLineID = TheFindSortedCustomerLinesDataSEt.FindSortedCustomerLines[intSelectedIndex].DepartmentID;
+
+                    TheFindWorkTaskByDepartmentDataSet = TheWorkTaskClass.FindWorkTaskByDepartment(intBusinessLineID);
+
+                    intNumberOfNumber = TheFindWorkTaskByDepartmentDataSet.FindWorkTaskByDepartment.Rows.Count;
+
+                    if(intNumberOfNumber > 0)
+                    {
+                        for(intCounter = 0; intCounter < intNumberOfNumber; intCounter++)
+                        {
+                            intWorkTaskID = TheFindWorkTaskByDepartmentDataSet.FindWorkTaskByDepartment[intCounter].WorkTaskID;
+                            strWorkTask = TheFindWorkTaskByDepartmentDataSet.FindWorkTaskByDepartment[intCounter].WorkTask;
+
+                            TheFindWorkTaskImportByWorkTaskIDDataSet = TheWorkTaskClass.FindWorkTaskImportByWorkTaskID(intWorkTaskID);
+
+                            intRecordsReturned = TheFindWorkTaskImportByWorkTaskIDDataSet.FindWorkTaskImportByWorkTaskID.Rows.Count;
+
+                            if(intRecordsReturned == 0)
+                            {
+                                strDescription = "";
+                            }
+                            else if(intRecordsReturned > 0)
+                            {
+                                strDescription = TheFindWorkTaskImportByWorkTaskIDDataSet.FindWorkTaskImportByWorkTaskID[0].ItemDescription;
+                            }
+
+                            TheFindWorkTaskDepartmentForBusinessLineDataSet = TheWorkTaskClass.FindWorkTaskDepartmentForBusienssLine(intBusinessLineID, intWorkTaskID);
+
+                            intRecordsReturned = TheFindWorkTaskDepartmentForBusinessLineDataSet.FindWorkTaskDepartmentForBusinessLine.Rows.Count;
+
+                            if(intRecordsReturned > 1)
+                            {
+                                strDepartment = "BOTH";
+                            }
+                            else if(intRecordsReturned == 1)
+                            {
+                                intDepartmentID = TheFindWorkTaskDepartmentForBusinessLineDataSet.FindWorkTaskDepartmentForBusinessLine[0].DepartmentID;
+
+                                TheFindDepartmentByDepartmentIDDataSet = TheDepartmentClass.FindDepartmentByDepartmentID(intDepartmentID);
+
+                                strDepartment = TheFindDepartmentByDepartmentIDDataSet.FindDepartmentByDepartmentID[0].Department;
+                            }
+
+                            DepartmentWorkTaskDataSet.worktaskRow NewWorkTask = TheDepartmentWorkTaskDataSet.worktask.NewworktaskRow();
+
+                            NewWorkTask.Department = strDepartment;
+                            NewWorkTask.Description = strDescription;
+                            NewWorkTask.WorkTask = strWorkTask;
+
+                            TheDepartmentWorkTaskDataSet.worktask.Rows.Add(NewWorkTask);
+                        }
+                    }
+
+                    dgrWorkTasks.ItemsSource = TheDepartmentWorkTaskDataSet.worktask;
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Sorted Work Task Report // Select Business Line Combo Box " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
     }
