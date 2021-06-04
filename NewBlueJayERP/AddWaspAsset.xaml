@@ -1,0 +1,120 @@
+﻿<Window x:Class="NewBlueJayERP.AddWaspAsset"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        xmlns:local="clr-namespace:NewBlueJayERP"
+        mc:Ignorable="d"
+        Title="AddWaspAsset" Height="600" Width="800" Loaded="Window_Loaded">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#358AB1" />
+            <Setter Property="Foreground" Value="#FFC9E0DC" />
+            <Setter Property="FontSize" Value="15" />
+            <Setter Property="FontFamily" Value="./#Segoe UI" />
+            <Setter Property="SnapsToDevicePixels" Value="True" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                            <Grid>
+                                <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                            </Grid>
+                        </Border>
+
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsFocused" Value="true">
+                                <Setter Property="Background" Value="#FF635B5B" />
+                                <Setter Property="Foreground" Value="White" />
+                                <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#FF981E2A" />
+                                <Setter Property="Foreground" Value="White" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="AliceBlue" Offset="0"/>
+                <GradientStop Color="LightBlue" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="800">
+            <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
+            <Label x:Name="lblTitle" Content="Add Wasp Assets" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+        </StackPanel>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Height="430" Width="630" Margin="155,155,9,9">
+            <StackPanel Height="430" Width="315">
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblAssetID" Content="AssetID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtAssetID" FontSize="16" CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="100" Width="315">
+                    <Label x:Name="lblDescription" Content="Description" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtDescription" FontSize="16" TabIndex="0" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="90" Width="175" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblAssetCategory" Content="Category" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <ComboBox x:Name="cboAssetCategory" FontSize="16" TabIndex="1" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1" SelectionChanged="cboAssetCategory_SelectionChanged"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblBJCAssetID" Content="BJC Asset ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtBJCAssetID" FontSize="16" TabIndex="2" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblSite" Content="Site" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtSite" FontSize="16" CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblLocation" Content="Location" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtLocation" FontSize="16"  CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+            </StackPanel>
+            <StackPanel Height="430" Width="315">
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblWarehouseID" Content="WHSE ID" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtWarehouseID" FontSize="16"  CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblDate" Content="Date" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtDate" FontSize="16"  CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblSerialNo" Content="Serial No" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtSerialNo" TabIndex="3" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblManufacturer" Content="Mfg" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtManufacturer" FontSize="16" CharacterCasing="Upper" TabIndex="4" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="315">
+                    <Label x:Name="lblModel" Content="Model" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
+                    <TextBox x:Name="txtModel" FontSize="16" TabIndex="5" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                </StackPanel>
+                <StackPanel Height="100" Width="315">
+                    <Button x:Name="btnProcess" TabIndex="6" Content="Process" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="80" Width="175" FontSize="28" Margin="1,10,1,1" Click="btnProcess_Click"/>
+                </StackPanel>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

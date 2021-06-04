@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportWaspToolAssetsDataSet" targetNamespace="http://tempuri.org/ImportWaspToolAssetsDataSet.xsd" xmlns:mstns="http://tempuri.org/ImportWaspToolAssetsDataSet.xsd" xmlns="http://tempuri.org/ImportWaspToolAssetsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportWaspToolAssetsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportWaspToolAssetsDataSet" msprop:Generator_UserDSName="ImportWaspToolAssetsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="importassets" msprop:Generator_TableClassName="importassetsDataTable" msprop:Generator_TableVarName="tableimportassets" msprop:Generator_TablePropName="importassets" msprop:Generator_RowDeletingName="importassetsRowDeleting" msprop:Generator_RowChangingName="importassetsRowChanging" msprop:Generator_RowEvHandlerName="importassetsRowChangeEventHandler" msprop:Generator_RowDeletedName="importassetsRowDeleted" msprop:Generator_UserTableName="importassets" msprop:Generator_RowChangedName="importassetsRowChanged" msprop:Generator_RowEvArgName="importassetsRowChangeEvent" msprop:Generator_RowClassName="importassetsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AssetID" msprop:Generator_ColumnVarNameInTable="columnAssetID" msprop:Generator_ColumnPropNameInRow="AssetID" msprop:Generator_ColumnPropNameInTable="AssetIDColumn" msprop:Generator_UserColumnName="AssetID" type="xs:int" />
+              <xs:element name="AssetDescription" msprop:Generator_ColumnVarNameInTable="columnAssetDescription" msprop:Generator_ColumnPropNameInRow="AssetDescription" msprop:Generator_ColumnPropNameInTable="AssetDescriptionColumn" msprop:Generator_UserColumnName="AssetDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="AssetType" msprop:Generator_ColumnVarNameInTable="columnAssetType" msprop:Generator_ColumnPropNameInRow="AssetType" msprop:Generator_ColumnPropNameInTable="AssetTypeColumn" msprop:Generator_UserColumnName="AssetType" type="xs:string" minOccurs="0" />
+              <xs:element name="WarehouseID" msprop:Generator_ColumnVarNameInTable="columnWarehouseID" msprop:Generator_ColumnPropNameInRow="WarehouseID" msprop:Generator_ColumnPropNameInTable="WarehouseIDColumn" msprop:Generator_UserColumnName="WarehouseID" type="xs:int" />
+              <xs:element name="Site" msprop:Generator_ColumnVarNameInTable="columnSite" msprop:Generator_ColumnPropNameInRow="Site" msprop:Generator_ColumnPropNameInTable="SiteColumn" msprop:Generator_UserColumnName="Site" type="xs:string" minOccurs="0" />
+              <xs:element name="BJCAssetID" msprop:Generator_ColumnVarNameInTable="columnBJCAssetID" msprop:Generator_ColumnPropNameInRow="BJCAssetID" msprop:Generator_ColumnPropNameInTable="BJCAssetIDColumn" msprop:Generator_UserColumnName="BJCAssetID" type="xs:string" />
+              <xs:element name="Location" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_UserColumnName="Location" type="xs:string" minOccurs="0" />
+              <xs:element name="SerialNumber" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_UserColumnName="SerialNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Manufacturer" msprop:Generator_ColumnVarNameInTable="columnManufacturer" msprop:Generator_ColumnPropNameInRow="Manufacturer" msprop:Generator_ColumnPropNameInTable="ManufacturerColumn" msprop:Generator_UserColumnName="Manufacturer" type="xs:string" minOccurs="0" />
+              <xs:element name="Model" msprop:Generator_ColumnVarNameInTable="columnModel" msprop:Generator_ColumnPropNameInRow="Model" msprop:Generator_ColumnPropNameInTable="ModelColumn" msprop:Generator_UserColumnName="Model" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:importassets" />
+      <xs:field xpath="mstns:AssetID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

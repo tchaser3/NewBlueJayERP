@@ -90,6 +90,8 @@ namespace NewBlueJayERP
         public static string gstrLaborCode;
         public static int gintPhoneID;
         public static bool gblnPasswordWorked;
+        public static int gintAssetID;
+        public static string gstrAssetLocation;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -207,6 +209,10 @@ namespace NewBlueJayERP
         public static CompareCrews CompareCrewsWindow = new CompareCrews();
         public static ProductivityDataEntryReport ProductivityDataEntryReportWindow = new ProductivityDataEntryReport();
         public static DriveTimeAnalysis DriveTimeAnalysisWindow = new DriveTimeAnalysis();
+        public static ImportVehicleAssets ImportVehicleAssetsWindow = new ImportVehicleAssets();
+        public static ImportWaspAssetLocations ImportWaspAssetLocationsWindow = new ImportWaspAssetLocations();
+        public static ImportWaspITAssets ImportWaspITAssetsWindow = new ImportWaspITAssets();
+        public static UpdateWaspAssets UpdateWaspAssetWindow = new UpdateWaspAssets();
 
         public MainWindow()
         {
@@ -357,6 +363,10 @@ namespace NewBlueJayERP
             CompareCrewsWindow.Visibility = Visibility.Hidden;
             ProductivityDataEntryReportWindow.Visibility = Visibility.Hidden;
             DriveTimeAnalysisWindow.Visibility = Visibility.Hidden;
+            ImportVehicleAssetsWindow.Visibility = Visibility.Hidden;
+            ImportWaspAssetLocationsWindow.Visibility = Visibility.Hidden;
+            ImportWaspITAssetsWindow.Visibility = Visibility.Hidden;
+            UpdateWaspAssetWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1245,25 +1255,30 @@ namespace NewBlueJayERP
 
         private void expImportAssets_Expanded(object sender, RoutedEventArgs e)
         {
-            expAssets.IsExpanded = false;
-            expAssetAdministration.IsExpanded = false;
-            expImportAssets.IsExpanded = false;
+            ResetAssetAdministration();
             ImportAssetsWindow.Visibility = Visibility.Visible;
         }
 
         private void expCreateAssetType_Expanded(object sender, RoutedEventArgs e)
         {
+            ResetAssetAdministration();
+            CreateAssetTypeWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetAssetAdministration()
+        {
             expAssets.IsExpanded = false;
             expAssetAdministration.IsExpanded = false;
             expCreateAssetType.IsExpanded = false;
-            CreateAssetTypeWindow.Visibility = Visibility.Visible;
+            expCreateAsset.IsExpanded = false;
+            expImportAssets.IsExpanded = false;
+            expImportVehicleAssets.IsExpanded = false;
+            expImportAssetLocations.IsExpanded = false;
+            expWaspImportITAssets.IsExpanded = false;
         }
 
         private void expCreateAsset_Expanded(object sender, RoutedEventArgs e)
         {
-            expAssets.IsExpanded = false;
-            expAssetAdministration.IsExpanded = false;
-            expCreateAsset.IsExpanded = false;
+            ResetEmployeeAdministration();
             CreateAssetWindow.Visibility = Visibility.Visible;
         }
 
@@ -2031,6 +2046,36 @@ namespace NewBlueJayERP
         {
             ResetEmployeeReportExpanders();
             DriveTimeAnalysisWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportVehicleAssets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetAdministration();
+            ImportVehicleAssetsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportAssetLocations_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetAdministration();
+            ImportWaspAssetLocationsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expWaspImportITAssets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetAdministration();
+            ImportWaspITAssetsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expUpdateWaspAssets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetDataEntryExpanders();
+            UpdateWaspAssetWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetAssetDataEntryExpanders()
+        {
+            expAssetDataEntry.IsExpanded = false;
+            expAssets.IsExpanded = false;
+            expUpdateWaspAssets.IsExpanded = false;
         }
     }
 }

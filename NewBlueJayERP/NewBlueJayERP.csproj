@@ -478,6 +478,9 @@
     <Compile Include="AddProjectLabor.xaml.cs">
       <DependentUpon>AddProjectLabor.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddWaspAsset.xaml.cs">
+      <DependentUpon>AddWaspAsset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddWorkTask.xaml.cs">
       <DependentUpon>AddWorkTask.xaml</DependentUpon>
     </Compile>
@@ -655,6 +658,9 @@
     </Compile>
     <Compile Include="EditVehicleProblems.xaml.cs">
       <DependentUpon>EditVehicleProblems.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditWaspAsset.xaml.cs">
+      <DependentUpon>EditWaspAsset.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditWorkTask.xaml.cs">
       <DependentUpon>EditWorkTask.xaml</DependentUpon>
@@ -849,6 +855,9 @@
     <Compile Include="ImportTowMotors.xaml.cs">
       <DependentUpon>ImportTowMotors.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportVehicleAssets.xaml.cs">
+      <DependentUpon>ImportVehicleAssets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportVendors.xaml.cs">
       <DependentUpon>ImportVendors.xaml</DependentUpon>
     </Compile>
@@ -856,6 +865,30 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportVendorsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWaspAssetLocations.xaml.cs">
+      <DependentUpon>ImportWaspAssetLocations.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWaspAssetLocationsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportWaspAssetLocationsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWaspITAssets.xaml.cs">
+      <DependentUpon>ImportWaspITAssets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWASPITAssetsDataSet.cs">
+      <DependentUpon>ImportWASPITAssetsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWASPITAssetsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportWASPITAssetsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWaspToolAssetsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportWaspToolAssetsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ImportWorkTaskDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1132,6 +1165,9 @@
     <Compile Include="UpdateTrailerProblems.xaml.cs">
       <DependentUpon>UpdateTrailerProblems.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UpdateWaspAssets.xaml.cs">
+      <DependentUpon>UpdateWaspAssets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VehicleRoster.xaml.cs">
       <DependentUpon>VehicleRoster.xaml</DependentUpon>
     </Compile>
@@ -1249,6 +1285,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProjectLabor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddWaspAsset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1396,6 +1436,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="EditWaspAsset.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="EditWorkTask.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1516,7 +1560,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportVehicleAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportVendors.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportWaspAssetLocations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportWaspITAssets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1697,6 +1753,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UpdateTrailerProblems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UpdateWaspAssets.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2144,6 +2204,39 @@
     </None>
     <None Include="ImportVendorsDataSet.xss">
       <DependentUpon>ImportVendorsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportWaspAssetLocationsDataSet.xsc">
+      <DependentUpon>ImportWaspAssetLocationsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportWaspAssetLocationsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportWaspAssetLocationsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportWaspAssetLocationsDataSet.xss">
+      <DependentUpon>ImportWaspAssetLocationsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportWASPITAssetsDataSet.xsc">
+      <DependentUpon>ImportWASPITAssetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportWASPITAssetsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportWASPITAssetsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportWASPITAssetsDataSet.xss">
+      <DependentUpon>ImportWASPITAssetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportWaspToolAssetsDataSet.xsc">
+      <DependentUpon>ImportWaspToolAssetsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportWaspToolAssetsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportWaspToolAssetsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportWaspToolAssetsDataSet.xss">
+      <DependentUpon>ImportWaspToolAssetsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportWorkTaskDataSet.xsc">
       <DependentUpon>ImportWorkTaskDataSet.xsd</DependentUpon>

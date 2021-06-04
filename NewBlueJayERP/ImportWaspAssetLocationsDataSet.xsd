@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ImportWaspAssetLocationsDataSet" targetNamespace="http://tempuri.org/ImportWaspAssetLocationsDataSet.xsd" xmlns:mstns="http://tempuri.org/ImportWaspAssetLocationsDataSet.xsd" xmlns="http://tempuri.org/ImportWaspAssetLocationsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ImportWaspAssetLocationsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ImportWaspAssetLocationsDataSet" msprop:Generator_UserDSName="ImportWaspAssetLocationsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="waspassetlocations" msprop:Generator_TableClassName="waspassetlocationsDataTable" msprop:Generator_TableVarName="tablewaspassetlocations" msprop:Generator_TablePropName="waspassetlocations" msprop:Generator_RowDeletingName="waspassetlocationsRowDeleting" msprop:Generator_RowChangingName="waspassetlocationsRowChanging" msprop:Generator_RowEvHandlerName="waspassetlocationsRowChangeEventHandler" msprop:Generator_RowDeletedName="waspassetlocationsRowDeleted" msprop:Generator_UserTableName="waspassetlocations" msprop:Generator_RowChangedName="waspassetlocationsRowChanged" msprop:Generator_RowEvArgName="waspassetlocationsRowChangeEvent" msprop:Generator_RowClassName="waspassetlocationsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="AssetLocation" msprop:Generator_ColumnVarNameInTable="columnAssetLocation" msprop:Generator_ColumnPropNameInRow="AssetLocation" msprop:Generator_ColumnPropNameInTable="AssetLocationColumn" msprop:Generator_UserColumnName="AssetLocation" type="xs:string" />
+              <xs:element name="AssetSite" msprop:Generator_ColumnVarNameInTable="columnAssetSite" msprop:Generator_ColumnPropNameInRow="AssetSite" msprop:Generator_ColumnPropNameInTable="AssetSiteColumn" msprop:Generator_UserColumnName="AssetSite" type="xs:string" />
+              <xs:element name="SiteDescription" msprop:Generator_ColumnVarNameInTable="columnSiteDescription" msprop:Generator_ColumnPropNameInRow="SiteDescription" msprop:Generator_ColumnPropNameInTable="SiteDescriptionColumn" msprop:Generator_UserColumnName="SiteDescription" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:waspassetlocations" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

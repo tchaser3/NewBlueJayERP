@@ -91,7 +91,7 @@ namespace NewBlueJayERP
 
                 intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count - 1;
                 cboSelectLocation.Items.Clear();
-                cboSelectLocation.Items.Add("Select Location");
+                cboSelectLocation.Items.Add("Select Site");
 
                 for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {

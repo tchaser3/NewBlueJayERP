@@ -332,7 +332,9 @@
                 <Expander x:Name="expAssets" Header="Assets" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expAssets_Expanded">
                     <StackPanel Margin="33,1,1,1" Background="LightBlue">
                         <Expander x:Name="expAssetDataEntry" Header="Asset Data Entry" ExpandDirection="Right" Background="LightBlue" Margin="15,1,1,1" Expanded="expAssetDataEntry_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expUpdateWaspAssets" Header="Update Wasp Assets" Margin="50,1,1,1" Expanded="expUpdateWaspAssets_Expanded"/>
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expAssentReports" Header="Asset Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expAssentReports_Expanded">
 
@@ -342,6 +344,9 @@
                                 <Expander x:Name="expCreateAsset" Header="Create Asset" Expanded="expCreateAsset_Expanded" />
                                 <Expander x:Name="expCreateAssetType" Header="Create Asset Type" Expanded="expCreateAssetType_Expanded" />
                                 <Expander x:Name="expImportAssets" Header="Import Assets" Expanded="expImportAssets_Expanded" />
+                                <Expander x:Name="expImportVehicleAssets" Header="Import Wasp Vehicle Assets" Expanded="expImportVehicleAssets_Expanded" />
+                                <Expander x:Name="expImportAssetLocations" Header="Import Wasp Asset Locations" Expanded="expImportAssetLocations_Expanded" />
+                                <Expander x:Name="expWaspImportITAssets" Header="Import Wasp IT Assets" Expanded="expWaspImportITAssets_Expanded" />
                             </StackPanel>
                         </Expander>
                     </StackPanel>
