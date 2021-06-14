@@ -1,8 +1,8 @@
-﻿/* Title:           Edit Wasp Asset
- * Date:            6-2-21
+﻿/* Title:           Edit Selected Wasp Asset
+ * Date:            6-14-21
  * Author:          Terry Holmes
  * 
- * Description:     This is used to edit a Wasp Asset */
+ * Description:     This is used to edit the asset */
 
 using System;
 using System.Collections.Generic;
@@ -28,9 +28,9 @@ using DataValidationDLL;
 namespace NewBlueJayERP
 {
     /// <summary>
-    /// Interaction logic for EditWaspAsset.xaml
+    /// Interaction logic for EditSelectedWaspAsset.xaml
     /// </summary>
-    public partial class EditWaspAsset : Window
+    public partial class EditSelectedWaspAsset : Window
     {
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         EventLogClass TheEventLogClass = new EventLogClass();
@@ -51,7 +51,7 @@ namespace NewBlueJayERP
         bool gblnUploaded;
         bool gblnNewCategory;
 
-        public EditWaspAsset()
+        public EditSelectedWaspAsset()
         {
             InitializeComponent();
         }
@@ -65,6 +65,34 @@ namespace NewBlueJayERP
         {
             expHelpDesk.IsExpanded = false;
             TheMessagesClass.LaunchHelpDeskTickets();
+        }
+
+        private void expRemoveAsset_Expanded(object sender, RoutedEventArgs e)
+        {
+            bool blnFatalError = false;
+
+            try
+            {
+                const string message = "Are You Sure You Want To Remove This Asset?";
+                const string caption = "Are You Sure";
+                MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    blnFatalError = TheAssetClass.DeleteWaspAsset(MainWindow.gintAssetID);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+
+                    TheMessagesClass.InformationMessage("The Asset Has Been Deleted");
+
+                    this.Close();
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Selected Wasp Asset // Remove Asset Expander " + Ex.Message);
+            }
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -84,7 +112,7 @@ namespace NewBlueJayERP
 
                 intNumberOfRecords = TheFindSortedToolCategoryDataSet.FindSortedToolCategory.Rows.Count;
 
-                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                 {
                     cboAssetCategory.Items.Add(TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intCounter].ToolCategory);
                 }
@@ -98,9 +126,9 @@ namespace NewBlueJayERP
                 txtBJCAssetID.Text = TheFindWaspAssetByAssetIDDataSet.FindWaspAssetByAssetID[0].BJCAssetID;
                 strAsseetCategory = TheFindWaspAssetByAssetIDDataSet.FindWaspAssetByAssetID[0].AssetCategory;
 
-                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                 {
-                    if(strAsseetCategory == TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intCounter].ToolCategory)
+                    if (strAsseetCategory == TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intCounter].ToolCategory)
                     {
                         cboAssetCategory.SelectedIndex = intCounter + 1;
                     }
@@ -121,11 +149,10 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Wasp Asset // Window Loaded Method " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Selected Wasp Asset // Window Loaded Method " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
-
         }
 
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -147,7 +174,7 @@ namespace NewBlueJayERP
 
             try
             {
-                
+
                 intSelectedIndex = cboAssetCategory.SelectedIndex - 1;
 
                 if ((intSelectedIndex > -1) && (gblnUploaded == true))
@@ -156,6 +183,7 @@ namespace NewBlueJayERP
 
                     if (strBJCAssetID.Length < 4)
                     {
+
                         MainWindow.gintCategoryID = TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intSelectedIndex].CategoryID;
                         gstrAssetCategory = TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intSelectedIndex].ToolCategory;
 
@@ -179,8 +207,8 @@ namespace NewBlueJayERP
                             else if (blnStringID == false)
                             {
                                 while (blnToolExists == true)
-                                {                                  
-                                    
+                                {
+
                                     intToolID = Convert.ToInt32(strToolID);
 
                                     intToolID = intToolID + 1;
@@ -197,23 +225,20 @@ namespace NewBlueJayERP
                                     {
                                         blnToolExists = false;
                                     }
-                                    
+
                                 }
                             }
 
                             txtBJCAssetID.Text = strToolID;
                         }
-                        else
-                        {
-                            txtBJCAssetID.Text = "None Found";
-                            TheMessagesClass.InformationMessage("There is not a Tool ID for this Tool in the Database, Please Look at Old Tool Spreadsheet");
-                        }
 
                     }
                     else if(strBJCAssetID.Length > 3)
                     {
+                        
                         gstrAssetCategory = TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intSelectedIndex].ToolCategory;
                         MainWindow.gintCategoryID = TheFindSortedToolCategoryDataSet.FindSortedToolCategory[intSelectedIndex].CategoryID;
+                        
                     }
 
                 }
@@ -247,18 +272,18 @@ namespace NewBlueJayERP
             try
             {
                 strDescription = txtDescription.Text;
-                if(strDescription.Length < 6)
+                if (strDescription.Length < 6)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Description is to Short\n";
                 }
-                if(cboAssetCategory.SelectedIndex < 1)
+                if (cboAssetCategory.SelectedIndex < 1)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Category Was Not Selected\n";
                 }
                 strBJCAssetID = txtBJCAssetID.Text;
-                if(strBJCAssetID.Length < 4)
+                if (strBJCAssetID.Length < 4)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The BJC Asset ID is to Short\n";
@@ -269,7 +294,7 @@ namespace NewBlueJayERP
 
                     intRecordsReturned = TheFindActiveToolByToolIDDataSet.FindActiveToolByToolID.Rows.Count;
 
-                    if(intRecordsReturned > 0)
+                    if (intRecordsReturned > 0)
                     {
                         blnItemExists = true;
                         intToolKey = TheFindActiveToolByToolIDDataSet.FindActiveToolByToolID[0].ToolKey;
@@ -279,7 +304,7 @@ namespace NewBlueJayERP
                         strToolNotes = TheFindActiveToolByToolIDDataSet.FindActiveToolByToolID[0].ToolNotes;
                     }
                 }
-                if(blnFatalError == true)
+                if (blnFatalError == true)
                 {
                     TheMessagesClass.ErrorMessage(strErrorMessage);
 
@@ -295,14 +320,14 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
-                if(blnItemExists == false)
+                if (blnItemExists == false)
                 {
                     blnFatalError = TheToolsClass.InsertTools(strBJCAssetID, MainWindow.gintWarehouseID, strSerialNumber, MainWindow.gintCategoryID, strDescription, 0, MainWindow.gintWarehouseID);
 
                     if (blnFatalError == true)
                         throw new Exception();
                 }
-                else if(blnItemExists == true)
+                else if (blnItemExists == true)
                 {
                     blnFatalError = TheToolsClass.UpdateToolActive(intToolKey, true);
 
@@ -331,34 +356,6 @@ namespace NewBlueJayERP
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Wasp Asset // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void expRemoveAsset_Expanded(object sender, RoutedEventArgs e)
-        {
-            bool blnFatalError = false;
-
-            try
-            {
-                const string message = "Are You Sure You Want To Remove This Asset?";
-                const string caption = "Are You Sure";
-                MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
-
-                if (result == MessageBoxResult.Yes)
-                {
-                    blnFatalError = TheAssetClass.DeleteWaspAsset(MainWindow.gintAssetID);
-
-                    if (blnFatalError == true)
-                        throw new Exception();
-
-                    TheMessagesClass.InformationMessage("The Asset Has Been Deleted");
-
-                    this.Close();
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Wasp Asset // Remove Asset Expander " + Ex.Message);
             }
         }
     }

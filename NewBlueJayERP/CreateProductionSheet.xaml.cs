@@ -618,11 +618,11 @@ namespace NewBlueJayERP
                                     {
                                         if (TheProductionTasksForSheetsDataSet.productiontasks[intCounter].UseCode == true)
                                         {
-                                            if (intCounter > intNumberOfRows)
+                                            if (intCounter >= intNumberOfRows)
                                             {
                                                 strWorkTask = TheFindWorkTaskDepartmentByLOBDepartmentDataSet.FindWorkTaskDepartmentByLOBDepartment[intCounter].WorkTask;
                                             }
-                                            else if (intCounter <= intNumberOfRows)
+                                            else if (intCounter < intNumberOfRows)
                                             {
                                                 strWorkTask = "";
                                             }

@@ -334,6 +334,7 @@
                         <Expander x:Name="expAssetDataEntry" Header="Asset Data Entry" ExpandDirection="Right" Background="LightBlue" Margin="15,1,1,1" Expanded="expAssetDataEntry_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expUpdateWaspAssets" Header="Update Wasp Assets" Margin="50,1,1,1" Expanded="expUpdateWaspAssets_Expanded"/>
+                                <Expander x:Name="expEditWaspAsset" Header="Edit Wasp Asset" Margin="50,1,1,1" Expanded="expEditWaspAsset_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expAssentReports" Header="Asset Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expAssentReports_Expanded">

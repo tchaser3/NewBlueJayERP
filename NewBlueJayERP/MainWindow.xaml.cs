@@ -213,6 +213,7 @@ namespace NewBlueJayERP
         public static ImportWaspAssetLocations ImportWaspAssetLocationsWindow = new ImportWaspAssetLocations();
         public static ImportWaspITAssets ImportWaspITAssetsWindow = new ImportWaspITAssets();
         public static UpdateWaspAssets UpdateWaspAssetWindow = new UpdateWaspAssets();
+        public static SelectWaspAsset SelectWaspAssetWindow = new SelectWaspAsset();
 
         public MainWindow()
         {
@@ -367,6 +368,7 @@ namespace NewBlueJayERP
             ImportWaspAssetLocationsWindow.Visibility = Visibility.Hidden;
             ImportWaspITAssetsWindow.Visibility = Visibility.Hidden;
             UpdateWaspAssetWindow.Visibility = Visibility.Hidden;
+            SelectWaspAssetWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -2076,6 +2078,13 @@ namespace NewBlueJayERP
             expAssetDataEntry.IsExpanded = false;
             expAssets.IsExpanded = false;
             expUpdateWaspAssets.IsExpanded = false;
+            expEditWaspAsset.IsExpanded = false;
+        }
+
+        private void expEditWaspAsset_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetDataEntryExpanders();
+            SelectWaspAssetWindow.Visibility = Visibility.Visible;
         }
     }
 }

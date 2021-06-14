@@ -61,6 +61,8 @@
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="640" Background="LightBlue">
             <Expander x:Name="expAddAsset" Header="Add Asset" FontSize="16" Margin="10,1,1,1" Expanded="expAddAsset_Expanded" />
+            <Expander x:Name="expCreateImportSheet" Header="Create Sheet" FontSize="16" Margin="10,1,1,1" Expanded="expCreateImportSheet_Expanded"/>
+            <Expander x:Name="expAssetReport" Header="Asset Report" FontSize="16" Margin="10,1,1,1" Expanded="expAssetReport_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />

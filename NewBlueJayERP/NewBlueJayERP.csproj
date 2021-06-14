@@ -653,6 +653,9 @@
     <Compile Include="EditSelectedVehicleProblem.xaml.cs">
       <DependentUpon>EditSelectedVehicleProblem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditSelectedWaspAsset.xaml.cs">
+      <DependentUpon>EditSelectedWaspAsset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditTool.xaml.cs">
       <DependentUpon>EditTool.xaml</DependentUpon>
     </Compile>
@@ -1103,6 +1106,9 @@
     <Compile Include="SelectWarehouse.xaml.cs">
       <DependentUpon>SelectWarehouse.xaml</DependentUpon>
     </Compile>
+    <Compile Include="SelectWaspAsset.xaml.cs">
+      <DependentUpon>SelectWaspAsset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="SendEmailClass.cs" />
     <Compile Include="ServerAuditLog.xaml.cs">
       <DependentUpon>ServerAuditLog.xaml</DependentUpon>
@@ -1216,6 +1222,11 @@
     </Compile>
     <Compile Include="WarehouseInventoryReport.xaml.cs">
       <DependentUpon>WarehouseInventoryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WaspAssetForImportDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>WaspAssetForImportDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="WASPToolsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1425,6 +1436,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditSelectedVehicleProblem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditSelectedWaspAsset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1705,6 +1720,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SelectWarehouse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SelectWaspAsset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2560,6 +2579,17 @@
     </None>
     <None Include="WarehouseCountDataSet.xss">
       <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WaspAssetForImportDataSet.xsc">
+      <DependentUpon>WaspAssetForImportDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="WaspAssetForImportDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>WaspAssetForImportDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="WaspAssetForImportDataSet.xss">
+      <DependentUpon>WaspAssetForImportDataSet.xsd</DependentUpon>
     </None>
     <None Include="WASPToolsDataSet.xsc">
       <DependentUpon>WASPToolsDataSet.xsd</DependentUpon>
