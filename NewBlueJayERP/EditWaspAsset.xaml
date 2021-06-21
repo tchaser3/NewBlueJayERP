@@ -60,9 +60,10 @@
             <Label x:Name="lblTitle" Content="Update Wasp Assets" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="440" Background="LightBlue">
-            <Expander x:Name="expRemoveAsset" Header="Remove Asset" FontSize="16" Margin="10,1,1,1" Expanded="expRemoveAsset_Expanded" />
-            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
-            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
+            <Expander x:Name="expRemoveAsset" Header="Remove Asset" FontSize="16" Margin="4,1,1,1" Expanded="expRemoveAsset_Expanded" />
+            <Expander x:Name="expChangeLocation" Header="Change Location" FontSize="16" Margin="4,1,1,1" Expanded="expChangeLocation_Expanded" />
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="4,1,1,1" Expanded="expHelpDesk_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="4,1,1,1" Expanded="expCloseWindow_Expanded" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Height="430" Width="630" Margin="155,155,9,9">
             <StackPanel Height="430" Width="315">

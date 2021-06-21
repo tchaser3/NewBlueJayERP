@@ -368,16 +368,18 @@ namespace NewBlueJayERP
             int intEmployeeID;
             int intProjectID;
             int intVehicleID;
-            DateTime datWorkDate;
+            DateTime datWorkDate = DateTime.Now;
             string strOutTime;
             string strWorkLocation;
             string strInETA;
             bool blnFatalError = false;
             DateTime datStartDate = DateTime.Now;
+            DateTime datLimitingDate = DateTime.Now;
             DateTime datEndDate;
 
             try
             {
+                expSubmitForm.IsExpanded = false;
                 intNumberOfRecords = TheSubmitAfterHoursWorkDataSet.submitafterhourswork.Rows.Count;
 
                 for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
@@ -393,6 +395,11 @@ namespace NewBlueJayERP
                     strWorkLocation = TheSubmitAfterHoursWorkDataSet.submitafterhourswork[intCounter].WorkLocation;
                     strInETA = TheSubmitAfterHoursWorkDataSet.submitafterhourswork[intCounter].InETA;
 
+                    if(datWorkDate > datLimitingDate)
+                    {
+                        datLimitingDate = datWorkDate;
+                    }
+
                     blnFatalError = TheAfterHoursClass.InsertEmployeeOverNightWork(intWarehouseID, intDepartmentID, intEmployeeID, intManagerID, intVehicleID, intProjectID, datWorkDate, strOutTime, strWorkLocation, strInETA, DateTime.Now);
 
                     if (blnFatalError == true)
@@ -400,7 +407,7 @@ namespace NewBlueJayERP
                 }
 
                 datStartDate = TheDateSearchClass.RemoveTime(datStartDate);
-                datEndDate = TheDateSearchClass.AddingDays(datStartDate, 1);
+                datEndDate = TheDateSearchClass.AddingDays(datLimitingDate, 1);
                 intManagerID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
 
                 TheFindEmployeeOverNightWorkByManagerIDDataSet = TheAfterHoursClass.FindEmployeeOverNightWorkByManagerID(intManagerID, datStartDate, datEndDate);

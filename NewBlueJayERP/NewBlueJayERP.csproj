@@ -512,6 +512,9 @@
     <Compile Include="CellPhoneList.xaml.cs">
       <DependentUpon>CellPhoneList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangeWaspAssetLocation.xaml.cs">
+      <DependentUpon>ChangeWaspAssetLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CloseRental.xaml.cs">
       <DependentUpon>CloseRental.xaml</DependentUpon>
     </Compile>
@@ -1328,6 +1331,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CellPhoneList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeWaspAssetLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

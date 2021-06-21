@@ -337,6 +337,9 @@ namespace NewBlueJayERP
         private void expRemoveAsset_Expanded(object sender, RoutedEventArgs e)
         {
             bool blnFatalError = false;
+            string strToolID;
+            int intToolKey;
+            int intRecordsReturned;
 
             try
             {
@@ -351,6 +354,35 @@ namespace NewBlueJayERP
                     if (blnFatalError == true)
                         throw new Exception();
 
+                    const string secmessage = "Are You Sure You Want To Remove This From The Tool Table?";
+                    const string seccaption = "Are You Sure";
+                    MessageBoxResult secresult = MessageBox.Show(secmessage, seccaption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                    if (secresult == MessageBoxResult.Yes)
+                    {
+                        strToolID = txtBJCAssetID.Text;
+                        if(strToolID.Length > 3)
+                        {
+                            TheFindActiveToolByToolIDDataSet = TheToolsClass.FindActiveToolByToolID(strToolID);
+
+                            intRecordsReturned = TheFindActiveToolByToolIDDataSet.FindActiveToolByToolID.Rows.Count;
+
+                            if(intRecordsReturned > 0)
+                            {
+                                intToolKey = TheFindActiveToolByToolIDDataSet.FindActiveToolByToolID[0].ToolKey;
+
+                                blnFatalError = TheToolsClass.DeleteTool(intToolKey);
+
+                                if (blnFatalError == true)
+                                    throw new Exception();
+                            }
+                            else if(intRecordsReturned < 1)
+                            {
+                                TheMessagesClass.ErrorMessage("The Tool Was Not Found");
+                            }
+                        }
+                    }
+
                     TheMessagesClass.InformationMessage("The Asset Has Been Deleted");
 
                     this.Close();
@@ -360,6 +392,17 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Wasp Asset // Remove Asset Expander " + Ex.Message);
             }
+        }
+
+        private void expChangeLocation_Expanded(object sender, RoutedEventArgs e)
+        {
+            expChangeLocation.IsExpanded = false;
+
+            ChangeWaspAssetLocation ChangeWaspAssetLocation = new ChangeWaspAssetLocation();
+            ChangeWaspAssetLocation.ShowDialog();
+
+            this.Close();
+
         }
     }
 }
