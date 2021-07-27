@@ -170,6 +170,8 @@ namespace NewBlueJayERP
             int intEmployeeID;
             decimal decHours;
             DateTime datEndDate;
+            int intHours;
+            int intRemainder;
 
             try
             {
@@ -236,6 +238,16 @@ namespace NewBlueJayERP
                     gblnProjectFound = true;
                     intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
                     decHours = Convert.ToDecimal(txtEnterHours.Text);
+
+                    intHours = Convert.ToInt32(decHours * 100);
+
+                    intRemainder = intHours % 25;
+
+                    if(intRemainder > 0)
+                    {
+                        TheMessagesClass.ErrorMessage("The Hours Inputted are not a .25, .5, .75. .00. The Transaction is Rejected");
+                        return;
+                    }
 
                     blnFatalError = TheProductivityDataEntryClass.InsertProductivityDataEntry(intEmployeeID, MainWindow.gintProjectID, datTodaysDate, decHours, 0, 0);
 
@@ -895,7 +907,7 @@ namespace NewBlueJayERP
 
                     blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, MainWindow.gintProjectID, gintDriveTimeTaskID, datTransactionDate, gdecDriveTime);
 
-                    if (blnFatalError == true)
+                    if(blnFatalError == true)
                         throw new Exception();
                 }                
 

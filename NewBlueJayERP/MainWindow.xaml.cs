@@ -214,6 +214,10 @@ namespace NewBlueJayERP
         public static ImportWaspITAssets ImportWaspITAssetsWindow = new ImportWaspITAssets();
         public static UpdateWaspAssets UpdateWaspAssetWindow = new UpdateWaspAssets();
         public static SelectWaspAsset SelectWaspAssetWindow = new SelectWaspAsset();
+        public static ImportToolSheets ImportToolSheetsWindow = new ImportToolSheets();
+        public static ChangeLocationSite ChangeLocationSiteWindow = new ChangeLocationSite();
+        public static AddToolCategoryID AddToolCategoryIDWindow = new AddToolCategoryID();
+        public static ImportWaspMonitors ImportWaspMonitorsWindow = new ImportWaspMonitors();
 
         public MainWindow()
         {
@@ -369,6 +373,10 @@ namespace NewBlueJayERP
             ImportWaspITAssetsWindow.Visibility = Visibility.Hidden;
             UpdateWaspAssetWindow.Visibility = Visibility.Hidden;
             SelectWaspAssetWindow.Visibility = Visibility.Hidden;
+            ImportToolSheetsWindow.Visibility = Visibility.Hidden;
+            ChangeLocationSiteWindow.Visibility = Visibility.Hidden;
+            AddToolCategoryIDWindow.Visibility = Visibility.Hidden;
+            ImportWaspMonitorsWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1276,6 +1284,8 @@ namespace NewBlueJayERP
             expImportVehicleAssets.IsExpanded = false;
             expImportAssetLocations.IsExpanded = false;
             expWaspImportITAssets.IsExpanded = false;
+            expImportToolSheets.IsExpanded = false;
+            expChangeAssetSite.IsExpanded = false;
         }
 
         private void expCreateAsset_Expanded(object sender, RoutedEventArgs e)
@@ -1712,6 +1722,7 @@ namespace NewBlueJayERP
             expITCreateHelpDeskTicket.IsExpanded = false;
             expUpdateHelpDeskTickets.IsExpanded = false;
             expImportITAssets.IsExpanded = false;
+            expImportWaspMonitors.IsExpanded = false;
         }
 
         private void expDepartmentProjectOpenList_Expanded(object sender, RoutedEventArgs e)
@@ -2085,6 +2096,36 @@ namespace NewBlueJayERP
         {
             ResetAssetDataEntryExpanders();
             SelectWaspAssetWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportToolSheets_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetAdministration();
+            ImportToolSheetsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expChangeAssetSite_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetAdministration();
+            ChangeLocationSiteWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddToolCategoryID_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetToolAdministrationExpanders();
+            AddToolCategoryIDWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetToolAdministrationExpanders()
+        {
+            expTools.IsExpanded = false;
+            expToolAdministration.IsExpanded = false;
+            expAddToolCategoryID.IsExpanded = false;
+        }
+
+        private void expImportWaspMonitors_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            ImportWaspMonitorsWindow.Visibility = Visibility.Visible;
         }
     }
 }

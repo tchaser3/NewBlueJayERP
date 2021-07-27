@@ -463,6 +463,9 @@
     <Compile Include="AddNewTool.xaml.cs">
       <DependentUpon>AddNewTool.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddNewWaspAsset.xaml.cs">
+      <DependentUpon>AddNewWaspAsset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddPhoneExt.xaml.cs">
       <DependentUpon>AddPhoneExt.xaml</DependentUpon>
     </Compile>
@@ -477,6 +480,9 @@
     </Compile>
     <Compile Include="AddProjectLabor.xaml.cs">
       <DependentUpon>AddProjectLabor.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddToolCategoryID.xaml.cs">
+      <DependentUpon>AddToolCategoryID.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddWaspAsset.xaml.cs">
       <DependentUpon>AddWaspAsset.xaml</DependentUpon>
@@ -506,11 +512,17 @@
     <Compile Include="AssignPhoneExtension.xaml.cs">
       <DependentUpon>AssignPhoneExtension.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AssignToolAsset.xaml.cs">
+      <DependentUpon>AssignToolAsset.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
     <Compile Include="CellPhoneList.xaml.cs">
       <DependentUpon>CellPhoneList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeLocationSite.xaml.cs">
+      <DependentUpon>ChangeLocationSite.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangeWaspAssetLocation.xaml.cs">
       <DependentUpon>ChangeWaspAssetLocation.xaml</DependentUpon>
@@ -745,6 +757,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeToolAssetDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeToolAssetDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EnterAgreementNumber.xaml.cs">
       <DependentUpon>EnterAgreementNumber.xaml</DependentUpon>
     </Compile>
@@ -850,6 +867,9 @@
     <Compile Include="ImportProductionCodes.xaml.cs">
       <DependentUpon>ImportProductionCodes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportToolSheets.xaml.cs">
+      <DependentUpon>ImportToolSheets.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ImportTowMotorDataSet.cs">
       <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
     </Compile>
@@ -890,6 +910,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportWASPITAssetsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportWaspMonitors.xaml.cs">
+      <DependentUpon>ImportWaspMonitors.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportWaspToolAssetsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -942,6 +965,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MonitorsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MonitorsDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MyTickets.xaml.cs">
       <DependentUpon>MyTickets.xaml</DependentUpon>
@@ -1282,6 +1310,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddNewWaspAsset.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddPhoneExt.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1299,6 +1331,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddProjectLabor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddToolCategoryID.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1326,11 +1362,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AssignToolAsset.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AssignWorkTaskBusinessLine.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="CellPhoneList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeLocationSite.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1578,6 +1622,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportToolSheets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportTowMotors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1595,6 +1643,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportWaspITAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportWaspMonitors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2110,6 +2162,17 @@
     <None Include="EmployeeTimePunchesDataSet.xss">
       <DependentUpon>EmployeeTimePunchesDataSet.xsd</DependentUpon>
     </None>
+    <None Include="EmployeeToolAssetDataSet.xsc">
+      <DependentUpon>EmployeeToolAssetDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeToolAssetDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeToolAssetDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeToolAssetDataSet.xss">
+      <DependentUpon>EmployeeToolAssetDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ImportDocumentsDataSet.xsc">
       <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
     </None>
@@ -2307,6 +2370,17 @@
     </None>
     <None Include="MaterialIssuedDataSet.xss">
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MonitorsDataSet.xsc">
+      <DependentUpon>MonitorsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MonitorsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MonitorsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MonitorsDataSet.xss">
+      <DependentUpon>MonitorsDataSet.xsd</DependentUpon>
     </None>
     <None Include="NormalDistributionDataSet.xsc">
       <DependentUpon>NormalDistributionDataSet.xsd</DependentUpon>

@@ -45,6 +45,7 @@ namespace NewBlueJayERP
         FindSortedToolCategoryDataSet TheFindSortedToolCategoryDataSet = new FindSortedToolCategoryDataSet();
         FindToolIDByCategoryDataSet TheFindToolIDByCategoryDataSet = new FindToolIDByCategoryDataSet();
         FindActiveToolByToolIDDataSet TheFindActiveToolByToolIDDataSet = new FindActiveToolByToolIDDataSet();
+        FindWaspAssetByBJCAssetIDDataSet TheFindWaspAsssetByBJCAssetIDDataSet = new FindWaspAssetByBJCAssetIDDataSet();
 
         int gintTransactionID;
         string gstrAssetCategory;
@@ -195,9 +196,15 @@ namespace NewBlueJayERP
 
                                     if (intRecordsReturned < 1)
                                     {
-                                        blnToolExists = false;
-                                    }
-                                    
+                                        TheFindWaspAsssetByBJCAssetIDDataSet = TheAssetClass.FindWaspAssetByBJCAssetID(strToolID);
+
+                                        intRecordsReturned = TheFindWaspAsssetByBJCAssetIDDataSet.FindWaspAssetByBJCAssetID.Rows.Count;
+
+                                        if(intRecordsReturned < 1)
+                                        {
+                                            blnToolExists = false;
+                                        }                                        
+                                    }                                    
                                 }
                             }
 

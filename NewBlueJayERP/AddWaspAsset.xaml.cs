@@ -53,6 +53,7 @@ namespace NewBlueJayERP
 
         string gstrAssetCategory;
         int gintTransactionID;
+        bool gblnTool;
 
         public AddWaspAsset()
         {
@@ -89,6 +90,7 @@ namespace NewBlueJayERP
             try
             {
                 TheWaspAssetIDDataSet = TheAssetClass.GetWaspAssetIDInfo();
+                chkIsTool.IsChecked = false;
 
                 intAssetID = TheWaspAssetIDDataSet.waspassetid[0].CreatedAssetID;
                 intTransactionID = TheWaspAssetIDDataSet.waspassetid[0].TransactionID;
@@ -246,9 +248,11 @@ namespace NewBlueJayERP
             string strErrorMessage = "";
             bool blnFatalError = false;
             int intRecordsReturned;
+            int intEmployeeID;
 
             try
             {
+                intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
                 intAssetID = Convert.ToInt32(txtAssetID.Text);
                 strDescription = txtDescription.Text;
                 if(strDescription.Length < 10)
@@ -295,6 +299,15 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                if(gblnTool == true)
+                {
+                    blnFatalError = TheToolsClass.InsertTools(strBJCAssetID, MainWindow.gintWarehouseID, " ", MainWindow.gintCategoryID, strDescription, 0, MainWindow.gintWarehouseID);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+                
+
                 TheMessagesClass.InformationMessage("The Asset Has Been Added");
 
                 this.Close();
@@ -306,5 +319,18 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
+
+        private void chkIsTool_Click(object sender, RoutedEventArgs e)
+        {
+            if(chkIsTool.IsChecked == true)
+            {
+                gblnTool = true;
+            }
+            else
+            {
+                gblnTool = false;
+            }
+        }
+    
     }
 }

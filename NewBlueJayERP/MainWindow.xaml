@@ -323,7 +323,9 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expToolAdministration" Header="Tool Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expToolAdministration_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expAddToolCategoryID" Header="Add Tool Category ID" Margin="5,1,1,1" Expanded="expAddToolCategoryID_Expanded"/>
+                            </StackPanel>
                         </Expander>
                     </StackPanel>
                 </Expander>
@@ -342,9 +344,11 @@
                         </Expander>
                         <Expander x:Name="expAssetAdministration" Header="Asset Administration" ExpandDirection="Right" Expanded="expAssetAdministration_Expanded" >
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,1,1,1">
+                                <Expander x:Name="expChangeAssetSite" Header="Change Location Site" Expanded="expChangeAssetSite_Expanded" />
                                 <Expander x:Name="expCreateAsset" Header="Create Asset" Expanded="expCreateAsset_Expanded" />
                                 <Expander x:Name="expCreateAssetType" Header="Create Asset Type" Expanded="expCreateAssetType_Expanded" />
                                 <Expander x:Name="expImportAssets" Header="Import Assets" Expanded="expImportAssets_Expanded" />
+                                <Expander x:Name="expImportToolSheets" Header="Import Tool Sheets" Expanded="expImportToolSheets_Expanded" />
                                 <Expander x:Name="expImportVehicleAssets" Header="Import Wasp Vehicle Assets" Expanded="expImportVehicleAssets_Expanded" />
                                 <Expander x:Name="expImportAssetLocations" Header="Import Wasp Asset Locations" Expanded="expImportAssetLocations_Expanded" />
                                 <Expander x:Name="expWaspImportITAssets" Header="Import Wasp IT Assets" Expanded="expWaspImportITAssets_Expanded" />
@@ -362,6 +366,7 @@
                                 <Expander x:Name="expITCreateHelpDeskTicket" Header="IT Create Help Desk Ticket" Margin="35,1,1,1" Expanded="expITCreateHelpDeskTicket_Expanded" />
                                 <Expander x:Name="expUpdateHelpDeskTickets" Header="Update Help Desk Tickets" Margin="35,1,1,1" Expanded="expUpdateHelpDeskTickets_Expanded"/>
                                 <Expander x:Name="expImportITAssets" Header="Import IT Assets" Margin="35,1,1,1" Expanded="expImportITAssets_Expanded" />
+                                <Expander x:Name="expImportWaspMonitors" Header="Import Wasp Monitors" Margin="35,1,1,1" Expanded="expImportWaspMonitors_Expanded"  />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">

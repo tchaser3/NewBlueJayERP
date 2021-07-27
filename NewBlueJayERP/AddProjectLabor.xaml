@@ -99,7 +99,7 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblDriveTime" Content="Drive Time Hours" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtDriveTime" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>
+                    <TextBox x:Name="txtDriveTime" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblEnterLastName" Content="Enter Last Name" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>

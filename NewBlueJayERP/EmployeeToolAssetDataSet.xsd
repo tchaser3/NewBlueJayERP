@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="EmployeeToolAssetDataSet" targetNamespace="http://tempuri.org/EmployeeToolAssetDataSet.xsd" xmlns:mstns="http://tempuri.org/EmployeeToolAssetDataSet.xsd" xmlns="http://tempuri.org/EmployeeToolAssetDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="EmployeeToolAssetDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="EmployeeToolAssetDataSet" msprop:Generator_UserDSName="EmployeeToolAssetDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="employeetoolassets" msprop:Generator_TableClassName="employeetoolassetsDataTable" msprop:Generator_TableVarName="tableemployeetoolassets" msprop:Generator_RowChangedName="employeetoolassetsRowChanged" msprop:Generator_TablePropName="employeetoolassets" msprop:Generator_RowDeletingName="employeetoolassetsRowDeleting" msprop:Generator_RowChangingName="employeetoolassetsRowChanging" msprop:Generator_RowEvHandlerName="employeetoolassetsRowChangeEventHandler" msprop:Generator_RowDeletedName="employeetoolassetsRowDeleted" msprop:Generator_RowClassName="employeetoolassetsRow" msprop:Generator_UserTableName="employeetoolassets" msprop:Generator_RowEvArgName="employeetoolassetsRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AssetID" msprop:Generator_ColumnVarNameInTable="columnAssetID" msprop:Generator_ColumnPropNameInRow="AssetID" msprop:Generator_ColumnPropNameInTable="AssetIDColumn" msprop:Generator_UserColumnName="AssetID" type="xs:int" />
+              <xs:element name="BJCAssetID" msprop:Generator_ColumnVarNameInTable="columnBJCAssetID" msprop:Generator_ColumnPropNameInRow="BJCAssetID" msprop:Generator_ColumnPropNameInTable="BJCAssetIDColumn" msprop:Generator_UserColumnName="BJCAssetID" type="xs:string" minOccurs="0" />
+              <xs:element name="ToolDescription" msprop:Generator_ColumnVarNameInTable="columnToolDescription" msprop:Generator_ColumnPropNameInRow="ToolDescription" msprop:Generator_ColumnPropNameInTable="ToolDescriptionColumn" msprop:Generator_UserColumnName="ToolDescription" type="xs:string" minOccurs="0" />
+              <xs:element name="ToolCategory" msprop:Generator_ColumnVarNameInTable="columnToolCategory" msprop:Generator_ColumnPropNameInRow="ToolCategory" msprop:Generator_ColumnPropNameInTable="ToolCategoryColumn" msprop:Generator_UserColumnName="ToolCategory" type="xs:string" minOccurs="0" />
+              <xs:element name="SerialNumber" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_UserColumnName="SerialNumber" type="xs:string" minOccurs="0" />
+              <xs:element name="Office" msprop:Generator_ColumnVarNameInTable="columnOffice" msprop:Generator_ColumnPropNameInRow="Office" msprop:Generator_ColumnPropNameInTable="OfficeColumn" msprop:Generator_UserColumnName="Office" type="xs:string" minOccurs="0" />
+              <xs:element name="ToolLocation" msprop:Generator_ColumnVarNameInTable="columnToolLocation" msprop:Generator_ColumnPropNameInRow="ToolLocation" msprop:Generator_ColumnPropNameInTable="ToolLocationColumn" msprop:Generator_UserColumnName="ToolLocation" type="xs:string" minOccurs="0" />
+              <xs:element name="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" minOccurs="0" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:employeetoolassets" />
+      <xs:field xpath="mstns:AssetID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

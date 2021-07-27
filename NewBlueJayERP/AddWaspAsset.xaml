@@ -89,6 +89,9 @@
                     <Label x:Name="lblLocation" Content="Location" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" FontSize="16"/>
                     <TextBox x:Name="txtLocation" FontSize="16"  CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
                 </StackPanel>
+                <StackPanel Height="50" Width="315">
+                    <CheckBox x:Name="chkIsTool" Content="Check if Tool" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="20" Height="50" Click="chkIsTool_Click" />
+                </StackPanel>
             </StackPanel>
             <StackPanel Height="430" Width="315">
                 <StackPanel Orientation="Horizontal" Height="50" Width="315">

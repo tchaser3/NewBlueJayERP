@@ -162,6 +162,9 @@ namespace NewBlueJayERP
             int intSelectedIndex;
             string strToolCategory;
             int intRecordsReturned;
+            string strToolID;
+            int intToolID;
+            bool blnToolFound;
 
             try
             {
@@ -178,14 +181,37 @@ namespace NewBlueJayERP
 
                     if (intRecordsReturned > 0)
                     {
-                        txtToolID.Text = TheFindToolIDByCategoryDataSet.FindToolIDByCategory[0].ToolID;
-                        gintTransactionID = TheFindToolIDByCategoryDataSet.FindToolIDByCategory[0].TransactionID;
-                        gblnNewToolCategory = false;
+                        blnToolFound = true;
+
+                        while(blnToolFound == true)
+                        {
+                            strToolID = TheFindToolIDByCategoryDataSet.FindToolIDByCategory[0].ToolID;
+
+                            intToolID = Convert.ToInt32(strToolID);
+
+                            intToolID++;
+
+                            strToolID = Convert.ToString(intToolID);
+
+                            TheFindActiveToolByToolIDDataSet = TheToolsClass.FindActiveToolByToolID(strToolID);
+
+                            intRecordsReturned = TheFindActiveToolByToolIDDataSet.FindActiveToolByToolID.Rows.Count;
+
+                            if(intRecordsReturned < 1)
+                            {
+                                blnToolFound = false;
+                            }
+
+                            txtToolID.Text = strToolID;
+                            gintTransactionID = TheFindToolIDByCategoryDataSet.FindToolIDByCategory[0].TransactionID;
+                            gblnNewToolCategory = false;
+                        }
+                        
                     }
                     else
                     {
                         txtToolID.Text = "None Found";
-                        TheMessagesClass.InformationMessage("There is not a Tool ID for this Tool in the Database, Please Look at Old Tool Spreadsheet");
+                        TheMessagesClass.InformationMessage("There is not a Tool ID for this Tool in the Database, Please Contact IT");
                         gblnNewToolCategory = true;
                     }
                 }
