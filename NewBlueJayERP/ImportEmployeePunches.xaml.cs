@@ -175,13 +175,23 @@ namespace NewBlueJayERP
                             intPayID = Convert.ToInt32(strValueForValidation);
                         }
                         strValueForValidation = Convert.ToString((range.Cells[intCounter, 3] as Excel.Range).Value2);
-                        double douMyDate = Convert.ToDouble(strValueForValidation);
+                        //double douMyDate = Convert.ToDouble(strValueForValidation);
 
-                        DateTime datMyDate = DateTime.FromOADate(douMyDate);
+                        //DateTime datMyDate = DateTime.FromOADate(douMyDate);
 
                         blnFatalError = TheDataValidationClass.VerifyDateData(strValueForValidation);
+
+                        if(blnFatalError == true)
+                        {
+                            TheMessagesClass.ErrorMessage("Date is not a Date");
+                            return;
+                        }
+                        else
+                        {
+                            datPunchDate = Convert.ToDateTime(strValueForValidation);
+                        }
                         
-                        datPunchDate = datMyDate;
+                       
                         
                         strPunchStatus = Convert.ToString((range.Cells[intCounter, 4] as Excel.Range).Value2);
                         if (strPunchStatus == "")

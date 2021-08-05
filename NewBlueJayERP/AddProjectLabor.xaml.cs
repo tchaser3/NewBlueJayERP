@@ -85,6 +85,7 @@ namespace NewBlueJayERP
         decimal gdecDriveTime;
         int gintDriveTimeTaskID;
         bool gblnDriveTimeCalculated;
+        decimal gdecNonProductiveTime;
 
         public AddProjectLabor()
         {
@@ -136,6 +137,7 @@ namespace NewBlueJayERP
         {
             txtEnterFootage.Text = "";
             txtDriveTime.Text = "";
+            txtNonProductive.Text = "";
             txtEnterHours.Text = "";
             txtEnterLastName.Text = "";
             txtEnterProjectID.Text = "";
@@ -153,6 +155,7 @@ namespace NewBlueJayERP
             txtEnterTask.Text = "";
             gblnHoursEntered = false;
             btnResetTask.IsEnabled = false;
+
         }
 
         private void btnCheckProject_Click(object sender, RoutedEventArgs e)
@@ -229,6 +232,13 @@ namespace NewBlueJayERP
                         MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
                     }
 
+                    if(MainWindow.gintProjectID == 104330)
+                    {
+                        TheMessagesClass.ErrorMessage("You do not have to Enter the Project Shop.  Place the hours for Non-Productive Time in the Non-Prod Time Box");
+                        gblnProjectFound = false;
+                        return;
+                    }
+
                     TheFindProjectByProjectIDDataSet = TheProjectClass.FindProjectByProjectID(MainWindow.gintProjectID);
 
                     MainWindow.gstrAssignedProjectID = strProjectID;
@@ -291,39 +301,45 @@ namespace NewBlueJayERP
             {
                 CheckProject();
 
-                if(MainWindow.gintProjectID != 104330)
+                
+                strValueForValidation = txtDriveTime.Text;
+                blnFatalError = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
+                if (blnFatalError == true)
                 {
-                    strValueForValidation = txtDriveTime.Text;
-                    blnFatalError = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
-                    if (blnFatalError == true)
+                    TheMessagesClass.ErrorMessage("The Drive Time is not Entered");
+                    return;
+                }
+                else
+                {
+                    gdecDriveTime = Convert.ToDecimal(strValueForValidation);
+
+                    if(gdecDriveTime == 0)
                     {
-                        TheMessagesClass.ErrorMessage("The Drive Time is not Entered");
+                        TheMessagesClass.ErrorMessage("The Drive Time Cannot be 0");
+                        return;                            
+                    }
+                    else if(gdecDriveTime > 16)
+                    {
+                        TheMessagesClass.ErrorMessage("Drive Time Cannot Be Greater Than 16");
                         return;
                     }
-                    else
-                    {
-                        gdecDriveTime = Convert.ToDecimal(strValueForValidation);
 
-                        if(gdecDriveTime == 0)
-                        {
-                            TheMessagesClass.ErrorMessage("The Drive Time Cannot be 0");
-                            return;                            
-                        }
-                        else if(gdecDriveTime > 16)
-                        {
-                            TheMessagesClass.ErrorMessage("Drive Time Cannot Be Greater Than 16");
-                            return;
-                        }
+                    TheFindWorkTaskByKeywordDataSet = TheWorkTaskClass.FindWorkTaskByTaskKeyword("DRIVE TIME");
 
-                        TheFindWorkTaskByKeywordDataSet = TheWorkTaskClass.FindWorkTaskByTaskKeyword("DRIVE TIME");
-
-                        gintDriveTimeTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[0].WorkTaskID;
-                    }
+                    gintDriveTimeTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[0].WorkTaskID;
                 }
-                if(MainWindow.gintProjectID == 104330)
+                strValueForValidation = txtNonProductive.Text;
+                blnFatalError = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
+                if(blnFatalError == true)
                 {
-                    gdecDriveTime = 0;
+                    TheMessagesClass.ErrorMessage("The Non-Productivity Time is not Numeric\n");
+                    return;
                 }
+                else
+                {
+                    gdecNonProductiveTime = Convert.ToDecimal(strValueForValidation);
+                }
+                
 
                 datEndDate = TheDateSearchClass.SubtractingDays(DateTime.Now, 21);
 
@@ -449,6 +465,7 @@ namespace NewBlueJayERP
                 txtEnterFootage.Text = "0";
                 gdecTotalHours += gdecHours;
                 gdecTotalHours += gdecDriveTime;
+                gdecTotalHours += gdecNonProductiveTime;
                 txtTotalHours.Text = Convert.ToString(gdecTotalHours);
                 gblnHoursEntered = false;
                 txtEnterLastName.Focus();
@@ -581,16 +598,14 @@ namespace NewBlueJayERP
             {
                 MainWindow.gintWorkTaskID = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[intSelectedIndex].WorkTaskID;
                 MainWindow.gstrWorkTask = TheFindWorkTaskByKeywordDataSet.FindWorkTaskByTaskKeyword[intSelectedIndex].WorkTask;
-
-                if (MainWindow.gintProjectID == 104330)
-                {
-                    if (MainWindow.gintWorkTaskID != 1230)
-                    {
-                        TheMessagesClass.ErrorMessage("You Must Use BJC1 - NON-PRODUCTIVE TIME");
-                        cboSelectTask.SelectedIndex = 0;
-                        return;
-                    }
-                }
+                
+               if (MainWindow.gintWorkTaskID == 1230)
+               {
+                    TheMessagesClass.ErrorMessage("BJC1 - NON-PRODUCTIVE TIME Cannot Be Used, The Time is calculated in the Non-Prod Time Box");
+                    cboSelectTask.SelectedIndex = 0;
+                    return;
+               }
+                
             }
         }
 
@@ -878,6 +893,7 @@ namespace NewBlueJayERP
             {
                 btnResetTask.IsEnabled = true;
                 btnResetEmployees.IsEnabled = false;
+                expProcess.IsExpanded = false;
 
                 blnThereIsAProblem = TheDataValidationClass.VerifyDateData(txtEnterDate.Text);
                 if (blnFatalError == true)
@@ -909,7 +925,15 @@ namespace NewBlueJayERP
 
                     if(blnFatalError == true)
                         throw new Exception();
-                }                
+
+                    if(gdecNonProductiveTime > 0)
+                    {
+                        blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, 104330, 1230, datTransactionDate, gdecDriveTime);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+                    }
+                }             
 
                 intNumberOfRecords = TheProjectWorkCompletedDataSet.workcompleted.Rows.Count - 1;
 
