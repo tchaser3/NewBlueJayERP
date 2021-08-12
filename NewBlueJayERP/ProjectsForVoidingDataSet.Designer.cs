@@ -283,21 +283,21 @@ namespace NewBlueJayERP {
             
             private global::System.Data.DataColumn columnAssignmentTransactionID;
             
+            private global::System.Data.DataColumn columnProjectID;
+            
             private global::System.Data.DataColumn columnCustomerProjectID;
             
             private global::System.Data.DataColumn columnAssignedProjectID;
             
-            private global::System.Data.DataColumn columnFirstName;
-            
-            private global::System.Data.DataColumn columnLastName;
-            
-            private global::System.Data.DataColumn columnCrewTransactionID;
+            private global::System.Data.DataColumn columnTotalHours;
             
             private global::System.Data.DataColumn columnTaskTransactionID;
             
+            private global::System.Data.DataColumn columnWorkTaskID;
+            
             private global::System.Data.DataColumn columnWorkTask;
             
-            private global::System.Data.DataColumn columnVoid;
+            private global::System.Data.DataColumn columnFootage;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -350,6 +350,14 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn ProjectIDColumn {
+                get {
+                    return this.columnProjectID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn CustomerProjectIDColumn {
                 get {
                     return this.columnCustomerProjectID;
@@ -366,25 +374,9 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn FirstNameColumn {
+            public global::System.Data.DataColumn TotalHoursColumn {
                 get {
-                    return this.columnFirstName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn LastNameColumn {
-                get {
-                    return this.columnLastName;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn CrewTransactionIDColumn {
-                get {
-                    return this.columnCrewTransactionID;
+                    return this.columnTotalHours;
                 }
             }
             
@@ -398,6 +390,14 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn WorkTaskIDColumn {
+                get {
+                    return this.columnWorkTaskID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public global::System.Data.DataColumn WorkTaskColumn {
                 get {
                     return this.columnWorkTask;
@@ -406,9 +406,9 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public global::System.Data.DataColumn VoidColumn {
+            public global::System.Data.DataColumn FootageColumn {
                 get {
-                    return this.columnVoid;
+                    return this.columnFootage;
                 }
             }
             
@@ -449,19 +449,19 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public projectsforvoidingRow AddprojectsforvoidingRow(int AssignmentTransactionID, string CustomerProjectID, string AssignedProjectID, string FirstName, string LastName, int CrewTransactionID, int TaskTransactionID, string WorkTask, bool Void) {
+            public projectsforvoidingRow AddprojectsforvoidingRow(int AssignmentTransactionID, int ProjectID, string CustomerProjectID, string AssignedProjectID, decimal TotalHours, int TaskTransactionID, int WorkTaskID, string WorkTask, decimal Footage) {
                 projectsforvoidingRow rowprojectsforvoidingRow = ((projectsforvoidingRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
                         AssignmentTransactionID,
+                        ProjectID,
                         CustomerProjectID,
                         AssignedProjectID,
-                        FirstName,
-                        LastName,
-                        CrewTransactionID,
+                        TotalHours,
                         TaskTransactionID,
+                        WorkTaskID,
                         WorkTask,
-                        Void};
+                        Footage};
                 rowprojectsforvoidingRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowprojectsforvoidingRow);
                 return rowprojectsforvoidingRow;
@@ -493,14 +493,14 @@ namespace NewBlueJayERP {
             internal void InitVars() {
                 this.columnTransactionID = base.Columns["TransactionID"];
                 this.columnAssignmentTransactionID = base.Columns["AssignmentTransactionID"];
+                this.columnProjectID = base.Columns["ProjectID"];
                 this.columnCustomerProjectID = base.Columns["CustomerProjectID"];
                 this.columnAssignedProjectID = base.Columns["AssignedProjectID"];
-                this.columnFirstName = base.Columns["FirstName"];
-                this.columnLastName = base.Columns["LastName"];
-                this.columnCrewTransactionID = base.Columns["CrewTransactionID"];
+                this.columnTotalHours = base.Columns["TotalHours"];
                 this.columnTaskTransactionID = base.Columns["TaskTransactionID"];
+                this.columnWorkTaskID = base.Columns["WorkTaskID"];
                 this.columnWorkTask = base.Columns["WorkTask"];
-                this.columnVoid = base.Columns["Void"];
+                this.columnFootage = base.Columns["Footage"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -510,22 +510,22 @@ namespace NewBlueJayERP {
                 base.Columns.Add(this.columnTransactionID);
                 this.columnAssignmentTransactionID = new global::System.Data.DataColumn("AssignmentTransactionID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAssignmentTransactionID);
+                this.columnProjectID = new global::System.Data.DataColumn("ProjectID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProjectID);
                 this.columnCustomerProjectID = new global::System.Data.DataColumn("CustomerProjectID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnCustomerProjectID);
                 this.columnAssignedProjectID = new global::System.Data.DataColumn("AssignedProjectID", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnAssignedProjectID);
-                this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFirstName);
-                this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnLastName);
-                this.columnCrewTransactionID = new global::System.Data.DataColumn("CrewTransactionID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnCrewTransactionID);
+                this.columnTotalHours = new global::System.Data.DataColumn("TotalHours", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTotalHours);
                 this.columnTaskTransactionID = new global::System.Data.DataColumn("TaskTransactionID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTaskTransactionID);
+                this.columnWorkTaskID = new global::System.Data.DataColumn("WorkTaskID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnWorkTaskID);
                 this.columnWorkTask = new global::System.Data.DataColumn("WorkTask", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnWorkTask);
-                this.columnVoid = new global::System.Data.DataColumn("Void", typeof(bool), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnVoid);
+                this.columnFootage = new global::System.Data.DataColumn("Footage", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFootage);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionID}, true));
                 this.columnTransactionID.AutoIncrement = true;
@@ -533,14 +533,14 @@ namespace NewBlueJayERP {
                 this.columnTransactionID.AutoIncrementStep = -1;
                 this.columnTransactionID.AllowDBNull = false;
                 this.columnTransactionID.Unique = true;
+                this.columnProjectID.AllowDBNull = false;
                 this.columnCustomerProjectID.AllowDBNull = false;
                 this.columnAssignedProjectID.AllowDBNull = false;
-                this.columnFirstName.AllowDBNull = false;
-                this.columnLastName.AllowDBNull = false;
-                this.columnCrewTransactionID.AllowDBNull = false;
+                this.columnTotalHours.AllowDBNull = false;
                 this.columnTaskTransactionID.AllowDBNull = false;
+                this.columnWorkTaskID.AllowDBNull = false;
                 this.columnWorkTask.AllowDBNull = false;
-                this.columnVoid.AllowDBNull = false;
+                this.columnFootage.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -711,6 +711,17 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int ProjectID {
+                get {
+                    return ((int)(this[this.tableprojectsforvoiding.ProjectIDColumn]));
+                }
+                set {
+                    this[this.tableprojectsforvoiding.ProjectIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string CustomerProjectID {
                 get {
                     return ((string)(this[this.tableprojectsforvoiding.CustomerProjectIDColumn]));
@@ -733,34 +744,12 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string FirstName {
+            public decimal TotalHours {
                 get {
-                    return ((string)(this[this.tableprojectsforvoiding.FirstNameColumn]));
+                    return ((decimal)(this[this.tableprojectsforvoiding.TotalHoursColumn]));
                 }
                 set {
-                    this[this.tableprojectsforvoiding.FirstNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public string LastName {
-                get {
-                    return ((string)(this[this.tableprojectsforvoiding.LastNameColumn]));
-                }
-                set {
-                    this[this.tableprojectsforvoiding.LastNameColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public int CrewTransactionID {
-                get {
-                    return ((int)(this[this.tableprojectsforvoiding.CrewTransactionIDColumn]));
-                }
-                set {
-                    this[this.tableprojectsforvoiding.CrewTransactionIDColumn] = value;
+                    this[this.tableprojectsforvoiding.TotalHoursColumn] = value;
                 }
             }
             
@@ -777,6 +766,17 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int WorkTaskID {
+                get {
+                    return ((int)(this[this.tableprojectsforvoiding.WorkTaskIDColumn]));
+                }
+                set {
+                    this[this.tableprojectsforvoiding.WorkTaskIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public string WorkTask {
                 get {
                     return ((string)(this[this.tableprojectsforvoiding.WorkTaskColumn]));
@@ -788,12 +788,12 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
-            public bool Void {
+            public decimal Footage {
                 get {
-                    return ((bool)(this[this.tableprojectsforvoiding.VoidColumn]));
+                    return ((decimal)(this[this.tableprojectsforvoiding.FootageColumn]));
                 }
                 set {
-                    this[this.tableprojectsforvoiding.VoidColumn] = value;
+                    this[this.tableprojectsforvoiding.FootageColumn] = value;
                 }
             }
             

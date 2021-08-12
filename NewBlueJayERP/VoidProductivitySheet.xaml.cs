@@ -24,7 +24,7 @@ using EmployeeDateEntryDLL;
 using ProjectMatrixDLL;
 using ProjectsDLL;
 using ProjectTaskDLL;
-using EmployeeCrewAssignmentDLL;
+using NewEmployeeDLL;
 
 namespace NewBlueJayERP
 {
@@ -42,16 +42,17 @@ namespace NewBlueJayERP
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
         ProjectClass TheProjectClass = new ProjectClass();
         ProjectTaskClass TheProjectTaskClass = new ProjectTaskClass();
-        EmployeeCrewAssignmentClass TheEmployeeCrewAssignmentClass = new EmployeeCrewAssignmentClass();
+        EmployeeClass TheEmployeeClass = new EmployeeClass();
 
-        FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
-        FindProjectMatrixByCustomerAssignedIDForEmailDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerAssignedIDForEmailDataSet();
-        FindProductivitySheetForVoidingDataSet TheFindProductivitySheetForVoidingDataSet = new FindProductivitySheetForVoidingDataSet();
-        FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
+        FindProjectTaskForVoidingDataSet TheFindProjectTaskForVoidingDataSet = new FindProjectTaskForVoidingDataSet();
+        FindEmployeeProjectAssignmentForVoidingDataSet TheFindEmployeeProjectAssignmentForVoidingDataSet = new FindEmployeeProjectAssignmentForVoidingDataSet();
         ProjectsForVoidingDataSet TheProjectsForVoidingDataSet = new ProjectsForVoidingDataSet();
+        ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
 
         int gintCounter;
         int gintNumberOfRecords;
+        int gintEmployeeID;
+        DateTime gdatTransactionDate;
 
         public VoidProductivitySheet()
         {
@@ -105,7 +106,10 @@ namespace NewBlueJayERP
         private void ResetControls()
         {
             txtEnterDate.Text = "";
-            txtEnterProjectID.Text = "";
+            txtEnterLastName.Text = "";
+            cboSelectEmployee.Items.Clear();
+            cboSelectEmployee.Items.Add("Select Employee");
+            cboSelectEmployee.SelectedIndex = 0;
 
             TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Clear();
 
@@ -114,44 +118,140 @@ namespace NewBlueJayERP
             TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Void Productivity Sheet");
         }
 
-        private void expFindProject_Expanded(object sender, RoutedEventArgs e)
+
+        private void expVoidItems_Expanded(object sender, RoutedEventArgs e)
         {
-            int intRecordsReturned;
-            string strValueForValidation;
-            bool blnThereIsAProblem = false;
-            bool blnFatalError = false;
-            string strErrorMessage = "";
-            string strProjectID;
-            int intProjectID = 0;
-            DateTime datTransactionDate = DateTime.Now;
             int intCounter;
             int intNumberOfRecords;
-            int intSecondCounter;
-            bool blnItemFound;
-            int intAssignmentTransactionID;
-            int intCrewTransactionID;
+            int intAssignedTransactionID;
             int intTaskTransactionID;
+            bool blnFatalError;
 
             try
             {
-                TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Clear();
+                expVoidItems.IsExpanded = false;
+                intNumberOfRecords = TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Count;
 
-                strProjectID = txtEnterProjectID.Text;
-                if (strProjectID.Length < 4)
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        intAssignedTransactionID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].AssignmentTransactionID;
+                        intTaskTransactionID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].TaskTransactionID;
+
+                        blnFatalError = TheEmployeeProjectAssignmentClass.UpdateEmployeeLaborHours(intAssignedTransactionID, 0);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+
+                        if(intTaskTransactionID > -1)
+                        {
+                            blnFatalError = TheProjectTaskClass.UpdateProjectTaskFootage(intTaskTransactionID, 0);
+
+                            if (blnFatalError == true)
+                                throw new Exception();
+                        }
+                    }
+                }
+
+                TheMessagesClass.InformationMessage("The Transactions Have Been Voided");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Void Production Sheets // Void Items Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void txtEnterLastName_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //setting up local variables
+            string strLastName;
+            int intCounter;
+            int intNumberOfRecords;
+
+            try
+            {
+                strLastName = txtEnterLastName.Text;
+
+                if(strLastName.Length > 2)
+                {
+                    TheComboEmployeeDataSet = TheEmployeeClass.FillEmployeeComboBox(strLastName);
+
+                    intNumberOfRecords = TheComboEmployeeDataSet.employees.Rows.Count;
+
+                    if(intNumberOfRecords < 1)
+                    {
+                        TheMessagesClass.ErrorMessage("Employee Was Not Found");
+                        return;
+                    }
+
+                    cboSelectEmployee.Items.Clear();
+                    cboSelectEmployee.Items.Add("Select Employee");
+
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        cboSelectEmployee.Items.Add(TheComboEmployeeDataSet.employees[intCounter].FullName);
+                    }
+
+                    cboSelectEmployee.SelectedIndex = 0;
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Void Productivity Sheet // Enter Last Name Text Box " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void cboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            int intSelectedIndex;
+
+            intSelectedIndex = cboSelectEmployee.SelectedIndex - 1;
+
+            if (intSelectedIndex > -1)
+            {
+                gintEmployeeID = TheComboEmployeeDataSet.employees[intSelectedIndex].EmployeeID;
+            }
+        }
+
+        private void expFindTransactions_Expanded(object sender, RoutedEventArgs e)
+        {
+            bool blnFatalError = false;
+            int intCounter;
+            int intNumberOfRecords;
+            string strValueForValidation;
+            string strErrorMessage = "";
+            bool blnThereIsAProblem = false;
+            int intProjectID;
+            int intTaskID;
+            int intSecondCounter;
+            int intSecondNumberOfRecords;
+
+            try
+            {
+                //data validation
+                expFindTransactions.IsExpanded = false;
+                if(cboSelectEmployee.SelectedIndex < 1)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Project Is Not Long Enough\n";
+                    strErrorMessage += "The Employee Was Not Selected\n";
                 }
                 strValueForValidation = txtEnterDate.Text;
                 blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
                 if(blnThereIsAProblem == true)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Date is not a Date\n";
+                    strErrorMessage += "The Date Entered is not a Date\n";
                 }
                 else
                 {
-                    datTransactionDate = Convert.ToDateTime(strValueForValidation);
+                    gdatTransactionDate = Convert.ToDateTime(strValueForValidation);
                 }
                 if(blnFatalError == true)
                 {
@@ -159,124 +259,50 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerAssignedIDForEmail(strProjectID);
+                TheFindEmployeeProjectAssignmentForVoidingDataSet = TheEmployeeProjectAssignmentClass.FindEmployeeProjectAssignmentForVoiding(gintEmployeeID, gdatTransactionDate);
 
-                intRecordsReturned = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerAssignedIDForEmail.Rows.Count;
+                intNumberOfRecords = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding.Rows.Count;
 
-                if(intRecordsReturned < 1)
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                 {
-                    TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strProjectID);
+                    ProjectsForVoidingDataSet.projectsforvoidingRow NewProjectRow = TheProjectsForVoidingDataSet.projectsforvoiding.NewprojectsforvoidingRow();
 
-                    intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
+                    NewProjectRow.AssignedProjectID = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].AssignedProjectID;
+                    NewProjectRow.AssignmentTransactionID = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].TransactionID;
+                    NewProjectRow.CustomerProjectID = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].CustomerAssignedID;
+                    NewProjectRow.Footage = 0;
+                    NewProjectRow.ProjectID = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].ProjectID;
+                    NewProjectRow.TaskTransactionID = -1;
+                    NewProjectRow.TotalHours = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].TotalHours;
+                    NewProjectRow.WorkTask = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].WorkTask;
+                    NewProjectRow.WorkTaskID = TheFindEmployeeProjectAssignmentForVoidingDataSet.FindEmployeeProjectAssignmentForVoiding[intCounter].TaskID;
 
-                    if(intRecordsReturned < 1)
-                    {
-                        TheMessagesClass.ErrorMessage("The Project was not Found");
-                        return;
-                    }
-
-                    intProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
-                }
-                else if(intRecordsReturned > 0)
-                {
-                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strProjectID);
-
-                    intProjectID = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID[0].ProjectID;
+                    TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Add(NewProjectRow);
                 }
 
-                TheFindProductivitySheetForVoidingDataSet = TheEmployeeProjectAssignmentClass.FindProductivitySheetForVoiding(intProjectID, datTransactionDate);
+                TheFindProjectTaskForVoidingDataSet = TheProjectTaskClass.FindProjectTaskForVoiding(gintEmployeeID, gdatTransactionDate);
 
-                intNumberOfRecords = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding.Rows.Count;
-                gintCounter = 0;
-                gintNumberOfRecords = 0;
+                intNumberOfRecords = TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Count;
+                intSecondNumberOfRecords = TheFindProjectTaskForVoidingDataSet.FindProjectTaskForVoiding.Rows.Count;
 
                 if(intNumberOfRecords > 0)
                 {
                     for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                     {
-                        blnItemFound = false;
-                        intAssignmentTransactionID = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].TransactionID;
+                        intTaskID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].WorkTaskID;
+                        intProjectID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].ProjectID;
 
-                        if(gintCounter > 0)
+                        if(intSecondNumberOfRecords > 0)
                         {
-                            for(intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
+                            for(intSecondCounter = 0; intSecondCounter < intSecondNumberOfRecords; intSecondCounter++)
                             {
-                                if (TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].AssignmentTransactionID == intAssignmentTransactionID)
+                                if(intTaskID == TheFindProjectTaskForVoidingDataSet.FindProjectTaskForVoiding[intSecondCounter].WorkTaskID)
                                 {
-                                    blnItemFound = true;
-                                }
-                            }
-                        }
-
-                        if(blnItemFound == false)
-                        {
-                            ProjectsForVoidingDataSet.projectsforvoidingRow NewProjectRow = TheProjectsForVoidingDataSet.projectsforvoiding.NewprojectsforvoidingRow();
-
-                            NewProjectRow.AssignedProjectID = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].AssignedProjectID;
-                            NewProjectRow.AssignmentTransactionID = intAssignmentTransactionID;
-                            NewProjectRow.CrewTransactionID = 0;
-                            NewProjectRow.CustomerProjectID = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].CustomerAssignedID;
-                            NewProjectRow.FirstName = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].FirstName;
-                            NewProjectRow.LastName = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].LastName;
-                            NewProjectRow.TaskTransactionID = 0;
-                            NewProjectRow.WorkTask = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].WorkTask;
-                            NewProjectRow.Void = false;
-
-                            TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Add(NewProjectRow);
-                            gintCounter++;
-                            gintNumberOfRecords = gintCounter;
-                            
-                        }
-                    }
-
-                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                    {
-                        blnItemFound = false;
-                        intCrewTransactionID = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].CrewID;
-                        intTaskTransactionID = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].TaskPerformedID;
-
-                        for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
-                        {
-                            if(TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].CrewTransactionID == intCrewTransactionID)
-                            {
-                                blnItemFound = true;
-                            }
-                        }
-
-                        if(blnItemFound == false)
-                        {
-                            for(intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
-                            {
-                                if(TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].CrewTransactionID == 0)
-                                {
-                                    TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].CrewTransactionID = intCrewTransactionID;
-                                    intCrewTransactionID = 0;
-                                }
-                            }
-                        }
-                    }
-
-                    for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                    {
-                        blnItemFound = false;
-                        intTaskTransactionID = TheFindProductivitySheetForVoidingDataSet.FindProductivitySheetForVoiding[intCounter].TaskPerformedID;
-
-                        for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
-                        {
-                            if (TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].TaskTransactionID == intTaskTransactionID)
-                            {
-                                blnItemFound = true;
-                            }
-                        }
-
-                        if (blnItemFound == false)
-                        {
-                            for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
-                            {
-                                if (TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].TaskTransactionID == 0)
-                                {
-                                    TheProjectsForVoidingDataSet.projectsforvoiding[intSecondCounter].TaskTransactionID = intTaskTransactionID;
-                                    intTaskTransactionID = 0;
+                                    if(intProjectID == TheFindProjectTaskForVoidingDataSet.FindProjectTaskForVoiding[intSecondCounter].ProjectID)
+                                    {
+                                        TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].TaskTransactionID = TheFindProjectTaskForVoidingDataSet.FindProjectTaskForVoiding[intSecondCounter].TransactionID;
+                                        TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].Footage = TheFindProjectTaskForVoidingDataSet.FindProjectTaskForVoiding[intSecondCounter].FootagePieces;
+                                    }
                                 }
                             }
                         }
@@ -287,56 +313,7 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Void Productivity Sheet // Find Project Expander " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void expVoidItems_Expanded(object sender, RoutedEventArgs e)
-        {
-            int intCounter;
-            int intNumberOfRecords;
-            int intAssignedTransactionID;
-            int intCrewTransactionID;
-            int intTaskTransactionID;
-            bool blnFatalError;
-
-            try
-            {
-                intNumberOfRecords = TheProjectsForVoidingDataSet.projectsforvoiding.Rows.Count;
-
-                if(intNumberOfRecords > 0)
-                {
-                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                    {
-                        if(TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].Void == true)
-                        {
-                            intAssignedTransactionID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].AssignmentTransactionID;
-                            intCrewTransactionID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].CrewTransactionID;
-                            intTaskTransactionID = TheProjectsForVoidingDataSet.projectsforvoiding[intCounter].TaskTransactionID;
-
-                            blnFatalError = TheEmployeeProjectAssignmentClass.UpdateEmployeeLaborHours(intAssignedTransactionID, 0);
-
-                            if (blnFatalError == true)
-                                throw new Exception();
-
-                            blnFatalError = TheProjectTaskClass.UpdateProjectTaskFootage(intTaskTransactionID, 0);
-
-                            if (blnFatalError == true)
-                                throw new Exception();
-                            
-                        }
-                    }
-                }
-
-                TheMessagesClass.InformationMessage("The Selected Transactions Have Been Voided");
-
-                ResetControls();
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Void Production Sheets // Void Items Expander " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay Erp // Void Productivity Sheet // Find Transactions Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

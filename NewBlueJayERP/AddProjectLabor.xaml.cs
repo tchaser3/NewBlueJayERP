@@ -928,7 +928,7 @@ namespace NewBlueJayERP
 
                     if(gdecNonProductiveTime > 0)
                     {
-                        blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, 104330, 1230, datTransactionDate, gdecDriveTime);
+                        blnFatalError = TheEmployeeProjectAssignmentClass.InsertEmployeeProjectAssignment(intEmployeeID, 104330, 1230, datTransactionDate, gdecNonProductiveTime);
 
                         if (blnFatalError == true)
                             throw new Exception();

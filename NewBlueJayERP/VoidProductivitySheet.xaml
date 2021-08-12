@@ -7,7 +7,7 @@
         WindowStyle="None"
         xmlns:local="clr-namespace:NewBlueJayERP"
         mc:Ignorable="d"
-        Title="VoidProductivitySheet" Height="600" Width="800" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
+        Title="VoidProductivitySheet" Height="800" Width="1000" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#358AB1" />
@@ -55,28 +55,30 @@
             </LinearGradientBrush>
         </Grid.Background>
         <Grid Height="23" VerticalAlignment="Top" Background="AliceBlue" MouseLeftButtonDown="Grid_MouseLeftButtonDown"/>
-        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="800">
+        <StackPanel HorizontalAlignment="Center" VerticalAlignment="Top" Height="150" Width="1000">
             <Image x:Name="imgLogo" Source="logo.png" HorizontalAlignment="Center" VerticalAlignment="Top" Height="100"/>
             <Label x:Name="lblTitle" Content="Void Production Sheet Transactions" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="430" Background="LightBlue">
-            <Expander x:Name="expFindProject" Header="Find Project" FontSize="16" Margin="10,1,1,1" Expanded="expFindProject_Expanded" />
-            <Expander x:Name="expVoidItems" Header="Void Items" FontSize="16" Margin="10,1,1,1" Expanded="expVoidItems_Expanded" />
-            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
-            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
-            <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
-            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="10,1,1,1" Expanded="expCloseWindow_Expanded" />
-            <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="630" Background="LightBlue">
+            <Expander x:Name="expFindTransactions" TabIndex="3" Header="Find Production" FontSize="16" Margin="5,1,1,1" Expanded="expFindTransactions_Expanded" />
+            <Expander x:Name="expVoidItems" TabIndex="4" Header="Void Items" FontSize="16" Margin="5,1,1,1" Expanded="expVoidItems_Expanded" />
+            <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="5,1,1,1" Expanded="expHelpDesk_Expanded" />
+            <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="5,1,1,1" Expanded="expHelp_Expanded" />
+            <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="5,1,1,1" Expanded="expSendEmail_Expanded" />
+            <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="5,1,1,1" Expanded="expCloseWindow_Expanded" />
+            <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="5,1,1,1" Expanded="expCloseProgram_Expanded"/>
         </StackPanel>
-        <StackPanel Height="420" Width="630" Margin="159,167,5,7">
-            <StackPanel Orientation="Horizontal" Height="50" Width="630">                
-                <Label x:Name="lblEnterProjectID" Content="Enter Project ID" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Margin="25,1,1,1"/>
-                <TextBox x:Name="txtEnterProjectID" FontSize="16" TabIndex="0" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
-                <Label x:Name="lblEnterDate" Content="Enter Date" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45"/>
-                <TextBox x:Name="txtEnterDate" FontSize="16" TabIndex="1" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+        <StackPanel Height="620" Width="830" Margin="154,164,10,10" >
+            <StackPanel Orientation="Horizontal" Height="50" Width="830">                
+                <Label x:Name="lblEnterLastName" Content="Enter Last Name" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Margin="20,1,1,1"/>
+                <TextBox x:Name="txtEnterLastName" FontSize="16" TabIndex="0" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="135" Margin="10,1,1,1" TextChanged="txtEnterLastName_TextChanged"/>
+                <Label x:Name="lblSelectEmployee" Content="Select Employee" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Margin="10,1,1,1"/>
+                <ComboBox x:Name="cboSelectEmployee" FontSize="16" TabIndex="1" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="135" Margin="10,1,1,1" SelectionChanged="cboSelectEmployee_SelectionChanged"/>
+                <Label x:Name="lblEnterDate" Content="Enter Date" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Margin="10,1,1,1"/>
+                <TextBox x:Name="txtEnterDate" FontSize="16" TabIndex="2" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="135" Margin="10,1,1,1"/>
             </StackPanel>
-            <StackPanel Height="370" Width="630">
-                <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="360" Width="620" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+            <StackPanel Height="570" Width="830">
+                <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="560" Width="820" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
             </StackPanel>
         </StackPanel>
     </Grid>
