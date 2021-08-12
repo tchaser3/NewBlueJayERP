@@ -218,6 +218,7 @@ namespace NewBlueJayERP
         public static ChangeLocationSite ChangeLocationSiteWindow = new ChangeLocationSite();
         public static AddToolCategoryID AddToolCategoryIDWindow = new AddToolCategoryID();
         public static ImportWaspMonitors ImportWaspMonitorsWindow = new ImportWaspMonitors();
+        public static ViewEmployeeProduction ViewEmployeeProductionWindow = new ViewEmployeeProduction();
 
         public MainWindow()
         {
@@ -377,6 +378,7 @@ namespace NewBlueJayERP
             ChangeLocationSiteWindow.Visibility = Visibility.Hidden;
             AddToolCategoryIDWindow.Visibility = Visibility.Hidden;
             ImportWaspMonitorsWindow.Visibility = Visibility.Hidden;
+            ViewEmployeeProductionWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1635,6 +1637,7 @@ namespace NewBlueJayERP
             expEmployeeOvertimeReport.IsExpanded = false;
             expManagerProductivityPunchedReport.IsExpanded = false;
             expDriveTimeAnalysis.IsExpanded = false;
+            expViewEmployeeProduction.IsExpanded = false;
         }
 
         private void expEmployeeLookup_Expanded(object sender, RoutedEventArgs e)
@@ -2126,6 +2129,12 @@ namespace NewBlueJayERP
         {
             ResetITDataEntryExpanders();
             ImportWaspMonitorsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expViewEmployeeProduction_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeReportExpanders();
+            ViewEmployeeProductionWindow.Visibility = Visibility.Visible;
         }
     }
 }

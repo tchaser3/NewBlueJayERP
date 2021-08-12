@@ -89,6 +89,7 @@
                                 <Expander x:Name="expManagerProductivityPunchedReport" Header="Manager Productivity Punched Graph" Expanded="expManagerProductivityPunchedReport_Expanded" />
                                 <Expander x:Name="expNonProductionEmployeeProductivity" Header="Non-Production Employee Productivity" Expanded="expNonProductionEmployeeProductivity_Expanded" />
                                 <Expander x:Name="expEmployeeLookup" Header="Employee Lookup" Expanded="expEmployeeLookup_Expanded" />
+                                <Expander x:Name="expViewEmployeeProduction" Header="View Employee Production" Expanded="expViewEmployeeProduction_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expEmployeeAdministration" Header="Employees Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expEmployeeAdministration_Expanded">

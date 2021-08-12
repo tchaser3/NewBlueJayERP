@@ -1216,6 +1216,14 @@
     <Compile Include="VehicleUsageReport.xaml.cs">
       <DependentUpon>VehicleUsageReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ViewEmployeeProduction.xaml.cs">
+      <DependentUpon>ViewEmployeeProduction.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewEmployeeProductionDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ViewEmployeeProductionDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ViewHelpDeskAttachments.xaml.cs">
       <DependentUpon>ViewHelpDeskAttachments.xaml</DependentUpon>
     </Compile>
@@ -1843,6 +1851,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VehicleUsageReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ViewEmployeeProduction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2649,6 +2661,17 @@
     </None>
     <None Include="VehicleUsageDataSet.xss">
       <DependentUpon>VehicleUsageDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ViewEmployeeProductionDataSet.xsc">
+      <DependentUpon>ViewEmployeeProductionDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ViewEmployeeProductionDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ViewEmployeeProductionDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ViewEmployeeProductionDataSet.xss">
+      <DependentUpon>ViewEmployeeProductionDataSet.xsd</DependentUpon>
     </None>
     <None Include="WarehouseCountDataSet.xsc">
       <DependentUpon>WarehouseCountDataSet.xsd</DependentUpon>
