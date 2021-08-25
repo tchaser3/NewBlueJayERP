@@ -361,7 +361,7 @@
             <StackPanel>
                 <Expander x:Name="expInformationTechology" Header="IT Info" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expInformationTechology_Expanded">
                     <StackPanel Margin="30,1,1,1" HorizontalAlignment="Center" Background="LightBlue">
-                        <Expander x:Name="expITDataEntry" Header="IT Data Entry" ExpandDirection="Right" Margin="31,1,1,1" Background="LightBlue" Expanded="expITDataEntry_Expanded">
+                        <Expander x:Name="expITDataEntry" Header="IT Data Entry" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" ExpandDirection="Right" Margin="31,1,1,1" Background="LightBlue" Expanded="expITDataEntry_Expanded">
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" >
                                 <Expander x:Name="expCreateHelpDeskProblemType" Header="Create Help Desk Problem Type" Margin="35,1,1,1" Expanded="expCreateHelpDeskProblemType_Expanded"/>
                                 <Expander x:Name="expITCreateHelpDeskTicket" Header="IT Create Help Desk Ticket" Margin="35,1,1,1" Expanded="expITCreateHelpDeskTicket_Expanded" />
@@ -370,10 +370,10 @@
                                 <Expander x:Name="expImportWaspMonitors" Header="Import Wasp Monitors" Margin="35,1,1,1" Expanded="expImportWaspMonitors_Expanded"  />
                             </StackPanel>
                         </Expander>
-                        <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
+                        <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" FlowDirection="LeftToRight" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
+                            <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Expander x:Name="expCellPhoneAssignment" Header="Cell Phone Assignment" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneAssignment_Expanded"/>
-                                <Expander x:Name="expCellPhoneList" Header="Cell Phone List" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneList_Expanded" />
+                                <Expander x:Name="expCellPhoneList" Header="Cell Phone List" FontSize="16" Margin="50,1,1,1"  Expanded="expCellPhoneList_Expanded" />
                                 <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
                                 <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />
                                 <Expander x:Name="expHelpDeskTicketsReport" Header="Help Desk Tickets Report" Margin="50,1,1,1" Expanded="expHelpDeskTicketsReport_Expanded"/>

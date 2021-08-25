@@ -38,7 +38,7 @@ namespace NewBlueJayERP
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
-        FindHelpDeskTicketsByAssignmentDataSet TheFindHelpDeskTicketsByAssignmentDataSet = new FindHelpDeskTicketsByAssignmentDataSet();
+        FindHelpDeskTicketsForUserDataSet TheFindHelpDeskTicketsForUserDataSet = new FindHelpDeskTicketsForUserDataSet();
 
         //setting up global variables
         DateTime gdatStartDate;
@@ -99,9 +99,9 @@ namespace NewBlueJayERP
             txtStartDate.Text = "";
             TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // My Tickets");
 
-            TheFindHelpDeskTicketsByAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketsbyAssignment(-1, DateTime.Now, DateTime.Now);
+            TheFindHelpDeskTicketsForUserDataSet = TheHelpDeskClass.FindHelpDeskTicketsForUser(-1, DateTime.Now, DateTime.Now);
 
-            dgrTickets.ItemsSource = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment;
+            dgrTickets.ItemsSource = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser;
         }
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
@@ -154,9 +154,9 @@ namespace NewBlueJayERP
 
                 intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
 
-                TheFindHelpDeskTicketsByAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketsbyAssignment(intEmployeeID, gdatStartDate, gdatEndDate);
+                TheFindHelpDeskTicketsForUserDataSet = TheHelpDeskClass.FindHelpDeskTicketsForUser(intEmployeeID, gdatStartDate, gdatEndDate);
 
-                dgrTickets.ItemsSource = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment;
+                dgrTickets.ItemsSource = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser;
             }
             catch (Exception Ex)
             {
@@ -188,12 +188,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment.Rows.Count;
-                intColumnNumberOfRecords = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment.Columns.Count;
+                intRowNumberOfRecords = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser.Rows.Count;
+                intColumnNumberOfRecords = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -206,7 +206,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
@@ -266,9 +266,9 @@ namespace NewBlueJayERP
 
                     intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
 
-                    TheFindHelpDeskTicketsByAssignmentDataSet = TheHelpDeskClass.FindHelpDeskTicketsbyAssignment(intEmployeeID, gdatStartDate, gdatEndDate);
+                    TheFindHelpDeskTicketsForUserDataSet = TheHelpDeskClass.FindHelpDeskTicketsForUser(intEmployeeID, gdatStartDate, gdatEndDate);
 
-                    dgrTickets.ItemsSource = TheFindHelpDeskTicketsByAssignmentDataSet.FindHelpDeskTicketsByAssignment;
+                    dgrTickets.ItemsSource = TheFindHelpDeskTicketsForUserDataSet.FindHelpDeskTicketsByUser;
                 }
 
             }

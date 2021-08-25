@@ -391,7 +391,7 @@ namespace NewBlueJayERP
                     AttachDocuments();
                 }
 
-                this.Close();
+                this.Visibility = Visibility.Hidden;
 
             }
             catch (Exception Ex)

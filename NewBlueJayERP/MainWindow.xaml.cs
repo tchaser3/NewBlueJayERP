@@ -942,6 +942,7 @@ namespace NewBlueJayERP
 
         private void expSignOut_Expanded(object sender, RoutedEventArgs e)
         {
+            expSignOut.IsExpanded = false;
             EmployeeSignsIn();
         }
 
