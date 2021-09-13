@@ -219,6 +219,8 @@ namespace NewBlueJayERP
         public static AddToolCategoryID AddToolCategoryIDWindow = new AddToolCategoryID();
         public static ImportWaspMonitors ImportWaspMonitorsWindow = new ImportWaspMonitors();
         public static ViewEmployeeProduction ViewEmployeeProductionWindow = new ViewEmployeeProduction();
+        public static ImportCellCalls ImportCellCallsWindow = new ImportCellCalls();
+        public static CellPhoneCallSearch CellPhoneCallSearchWindow = new CellPhoneCallSearch();
 
         public MainWindow()
         {
@@ -379,6 +381,8 @@ namespace NewBlueJayERP
             AddToolCategoryIDWindow.Visibility = Visibility.Hidden;
             ImportWaspMonitorsWindow.Visibility = Visibility.Hidden;
             ViewEmployeeProductionWindow.Visibility = Visibility.Hidden;
+            ImportCellCallsWindow.Visibility = Visibility.Hidden;
+            CellPhoneCallSearchWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1490,6 +1494,7 @@ namespace NewBlueJayERP
             expCellPhoneAssignment.IsExpanded = false;
             expPhoneList.IsExpanded = false;
             expCellPhoneList.IsExpanded = false;
+            expCellPhoneCallSearch.IsExpanded = false;
         }
 
         private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
@@ -1727,6 +1732,7 @@ namespace NewBlueJayERP
             expUpdateHelpDeskTickets.IsExpanded = false;
             expImportITAssets.IsExpanded = false;
             expImportWaspMonitors.IsExpanded = false;
+            expImportCellCalls.IsExpanded = false;
         }
 
         private void expDepartmentProjectOpenList_Expanded(object sender, RoutedEventArgs e)
@@ -2136,6 +2142,18 @@ namespace NewBlueJayERP
         {
             ResetEmployeeReportExpanders();
             ViewEmployeeProductionWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportCellCalls_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            ImportCellCallsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCellPhoneCallSearch_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            CellPhoneCallSearchWindow.Visibility = Visibility.Visible;
         }
     }
 }

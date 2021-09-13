@@ -71,6 +71,9 @@
     <Reference Include="CableInventoryDLL">
       <HintPath>..\..\Blue Jay Class Library\CableInventoryDLL.dll</HintPath>
     </Reference>
+    <Reference Include="CellPhoneCallsDLL">
+      <HintPath>..\..\Blue Jay Class Library\CellPhoneCallsDLL.dll</HintPath>
+    </Reference>
     <Reference Include="CellPhoneHistoryDLL">
       <HintPath>..\..\Blue Jay Class Library\CellPhoneHistoryDLL.dll</HintPath>
     </Reference>
@@ -518,6 +521,14 @@
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellPhoneCallsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CellPhoneCallsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="CellPhoneCallSearch.xaml.cs">
+      <DependentUpon>CellPhoneCallSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CellPhoneList.xaml.cs">
       <DependentUpon>CellPhoneList.xaml</DependentUpon>
     </Compile>
@@ -782,6 +793,9 @@
     </Compile>
     <Compile Include="ImportAssets.xaml.cs">
       <DependentUpon>ImportAssets.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCellCalls.xaml.cs">
+      <DependentUpon>ImportCellCalls.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportCodesForSheets.xaml.cs">
       <DependentUpon>ImportCodesForSheets.xaml</DependentUpon>
@@ -1378,6 +1392,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CellPhoneCallSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CellPhoneList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1583,6 +1601,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportAssets.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportCellCalls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1964,6 +1986,17 @@
     </None>
     <None Include="AgedOverdueProjectsDataSet.xss">
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CellPhoneCallsDataSet.xsc">
+      <DependentUpon>CellPhoneCallsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CellPhoneCallsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CellPhoneCallsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CellPhoneCallsDataSet.xss">
+      <DependentUpon>CellPhoneCallsDataSet.xsd</DependentUpon>
     </None>
     <None Include="CompareCrewEmployeesDataSet.xsc">
       <DependentUpon>CompareCrewEmployeesDataSet.xsd</DependentUpon>

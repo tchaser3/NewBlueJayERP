@@ -443,6 +443,14 @@ namespace NewBlueJayERP
 
                 gdecHours = Convert.ToDecimal(txtEnterHours.Text);
 
+                if(gdecHours > 16)
+                {
+                    TheMessagesClass.ErrorMessage("Employees Cannot work more than 16 Hours");
+                    return;
+                }
+
+                gdecHours = gdecHours - gdecDriveTime - gdecNonProductiveTime;
+
                 //adding the record
                 ProjectWorkCompletedDataSet.workcompletedRow NewWorkRow = TheEmployeeWorkCompleteDataSet.workcompleted.NewworkcompletedRow();
 
@@ -464,8 +472,6 @@ namespace NewBlueJayERP
                 btnAddTask.IsEnabled = true;
                 txtEnterFootage.Text = "0";
                 gdecTotalHours += gdecHours;
-                gdecTotalHours += gdecDriveTime;
-                gdecTotalHours += gdecNonProductiveTime;
                 txtTotalHours.Text = Convert.ToString(gdecTotalHours);
                 gblnHoursEntered = false;
                 txtEnterLastName.Focus();

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CellPhoneCallsDataSet" targetNamespace="http://tempuri.org/CellPhoneCallsDataSet.xsd" xmlns:mstns="http://tempuri.org/CellPhoneCallsDataSet.xsd" xmlns="http://tempuri.org/CellPhoneCallsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CellPhoneCallsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="CellPhoneCallsDataSet" msprop:Generator_UserDSName="CellPhoneCallsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="cellphonecalls" msprop:Generator_TableClassName="cellphonecallsDataTable" msprop:Generator_TableVarName="tablecellphonecalls" msprop:Generator_TablePropName="cellphonecalls" msprop:Generator_RowDeletingName="cellphonecallsRowDeleting" msprop:Generator_RowChangingName="cellphonecallsRowChanging" msprop:Generator_RowEvHandlerName="cellphonecallsRowChangeEventHandler" msprop:Generator_RowDeletedName="cellphonecallsRowDeleted" msprop:Generator_UserTableName="cellphonecalls" msprop:Generator_RowChangedName="cellphonecallsRowChanged" msprop:Generator_RowEvArgName="cellphonecallsRowChangeEvent" msprop:Generator_RowClassName="cellphonecallsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="CellNumber" msprop:Generator_ColumnVarNameInTable="columnCellNumber" msprop:Generator_ColumnPropNameInRow="CellNumber" msprop:Generator_ColumnPropNameInTable="CellNumberColumn" msprop:Generator_UserColumnName="CellNumber" type="xs:string" />
+              <xs:element name="PhoneID" msprop:Generator_ColumnVarNameInTable="columnPhoneID" msprop:Generator_ColumnPropNameInRow="PhoneID" msprop:Generator_ColumnPropNameInTable="PhoneIDColumn" msprop:Generator_UserColumnName="PhoneID" type="xs:int" />
+              <xs:element name="EmployeeID" msprop:Generator_ColumnVarNameInTable="columnEmployeeID" msprop:Generator_ColumnPropNameInRow="EmployeeID" msprop:Generator_ColumnPropNameInTable="EmployeeIDColumn" msprop:Generator_UserColumnName="EmployeeID" type="xs:int" />
+              <xs:element name="FirstName" msprop:Generator_ColumnVarNameInTable="columnFirstName" msprop:Generator_ColumnPropNameInRow="FirstName" msprop:Generator_ColumnPropNameInTable="FirstNameColumn" msprop:Generator_UserColumnName="FirstName" type="xs:string" />
+              <xs:element name="LastName" msprop:Generator_ColumnVarNameInTable="columnLastName" msprop:Generator_ColumnPropNameInRow="LastName" msprop:Generator_ColumnPropNameInTable="LastNameColumn" msprop:Generator_UserColumnName="LastName" type="xs:string" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="Destination" msprop:Generator_ColumnVarNameInTable="columnDestination" msprop:Generator_ColumnPropNameInRow="Destination" msprop:Generator_ColumnPropNameInTable="DestinationColumn" msprop:Generator_UserColumnName="Destination" type="xs:string" />
+              <xs:element name="CallMinutes" msprop:Generator_ColumnVarNameInTable="columnCallMinutes" msprop:Generator_ColumnPropNameInRow="CallMinutes" msprop:Generator_ColumnPropNameInTable="CallMinutesColumn" msprop:Generator_UserColumnName="CallMinutes" type="xs:int" />
+              <xs:element name="CallTime" msprop:Generator_ColumnVarNameInTable="columnCallTime" msprop:Generator_ColumnPropNameInRow="CallTime" msprop:Generator_ColumnPropNameInTable="CallTimeColumn" msprop:Generator_UserColumnName="CallTime" type="xs:string" />
+              <xs:element name="TransactionNumber" msprop:Generator_ColumnVarNameInTable="columnTransactionNumber" msprop:Generator_ColumnPropNameInRow="TransactionNumber" msprop:Generator_ColumnPropNameInTable="TransactionNumberColumn" msprop:Generator_UserColumnName="TransactionNumber" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:cellphonecalls" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

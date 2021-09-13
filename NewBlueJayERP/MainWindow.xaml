@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterScreen"
         xmlns:local="clr-namespace:NewBlueJayERP"
         mc:Ignorable="d"
-        Title="MainWindow" Height="800" Width="1000" Loaded="Window_Loaded" Closing="Window_Closing">
+        Title="MainWindow" Height="900" Width="1000" Loaded="Window_Loaded" Closing="Window_Closing">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Background" Value="#358AB1" />
@@ -62,11 +62,11 @@
             <Image HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="149" Stretch="Fill" Source="logo.png"/>
             <Label x:Name="lblTitle" Content="Blue Jay ERP" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="35" Height="75" Margin="154,0,10,0" Width="828" Grid.ColumnSpan="2" />
         </Grid>
-        <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="690" Width="100" Background="LightBlue"/>
+        <Grid HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="790" Width="100" Background="LightBlue"/>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
             <Image x:Name="imgLogo" Source="logo.png" Width="400"/>
         </StackPanel>
-        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="690" Width="600" >
+        <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Height="790" Width="600" >
             <StackPanel>
                 <Expander x:Name="expEmployees" Header="Employees"  HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Background="LightBlue" Margin="10,1,1,1" Expanded="expEmployees_Expanded">
                     <StackPanel Margin="10,1,1,1" Background="LightBlue">
@@ -368,12 +368,14 @@
                                 <Expander x:Name="expUpdateHelpDeskTickets" Header="Update Help Desk Tickets" Margin="35,1,1,1" Expanded="expUpdateHelpDeskTickets_Expanded"/>
                                 <Expander x:Name="expImportITAssets" Header="Import IT Assets" Margin="35,1,1,1" Expanded="expImportITAssets_Expanded" />
                                 <Expander x:Name="expImportWaspMonitors" Header="Import Wasp Monitors" Margin="35,1,1,1" Expanded="expImportWaspMonitors_Expanded"  />
+                                <Expander x:Name="expImportCellCalls" Header="Import Cell Calls" Margin="35,1,1,1" Expanded="expImportCellCalls_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" FlowDirection="LeftToRight" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
                             <StackPanel HorizontalAlignment="Left" VerticalAlignment="Top">
                                 <Expander x:Name="expCellPhoneAssignment" Header="Cell Phone Assignment" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneAssignment_Expanded"/>
                                 <Expander x:Name="expCellPhoneList" Header="Cell Phone List" FontSize="16" Margin="50,1,1,1"  Expanded="expCellPhoneList_Expanded" />
+                                <Expander x:Name="expCellPhoneCallSearch" Header="Cell Phone Call Search" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneCallSearch_Expanded" />
                                 <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
                                 <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />
                                 <Expander x:Name="expHelpDeskTicketsReport" Header="Help Desk Tickets Report" Margin="50,1,1,1" Expanded="expHelpDeskTicketsReport_Expanded"/>
