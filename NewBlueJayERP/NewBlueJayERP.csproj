@@ -813,6 +813,11 @@
     <Compile Include="ImportEditedWorkTasks.xaml.cs">
       <DependentUpon>ImportEditedWorkTasks.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportedPhoneCallsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportedPhoneCallsDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImportedPunchesDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -874,6 +879,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ImportNonProductionTasksDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportPhoneCalls.xaml.cs">
+      <DependentUpon>ImportPhoneCalls.xaml</DependentUpon>
     </Compile>
     <Compile Include="ImportPrices.xaml.cs">
       <DependentUpon>ImportPrices.xaml</DependentUpon>
@@ -1144,6 +1152,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ReportedNonProductionProductivityDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="SearchPhoneCalls.xaml.cs">
+      <DependentUpon>SearchPhoneCalls.xaml</DependentUpon>
     </Compile>
     <Compile Include="SelectRental.xaml.cs">
       <DependentUpon>SelectRental.xaml</DependentUpon>
@@ -1644,6 +1655,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ImportPhoneCalls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ImportPrices.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1801,6 +1816,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="RentalItems.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SearchPhoneCalls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2239,6 +2258,17 @@
     </None>
     <None Include="ImportEditedWorkTaskDataSet.xss">
       <DependentUpon>ImportEditedWorkTaskDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportedPhoneCallsDataSet.xsc">
+      <DependentUpon>ImportedPhoneCallsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportedPhoneCallsDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportedPhoneCallsDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportedPhoneCallsDataSet.xss">
+      <DependentUpon>ImportedPhoneCallsDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportedPunchesDataSet.xsc">
       <DependentUpon>ImportedPunchesDataSet.xsd</DependentUpon>

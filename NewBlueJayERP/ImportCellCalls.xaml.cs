@@ -162,7 +162,7 @@ namespace NewBlueJayERP
                 intNumberOfRecords = range.Rows.Count;
                 intColumnRange = range.Columns.Count;
 
-                for (intCounter = 19000; intCounter <= intNumberOfRecords; intCounter++)
+                for (intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
                 {
                     strCellNumber = Convert.ToString((range.Cells[intCounter, 1] as Excel.Range).Value2).ToUpper();
                     strDestination = Convert.ToString((range.Cells[intCounter, 2] as Excel.Range).Value2).ToUpper();
