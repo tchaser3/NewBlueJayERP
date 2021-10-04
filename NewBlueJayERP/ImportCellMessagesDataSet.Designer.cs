@@ -20,17 +20,17 @@ namespace NewBlueJayERP {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("ImportedPunchesDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("ImportCellMessagesDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class ImportedPunchesDataSet : global::System.Data.DataSet {
+    public partial class ImportCellMessagesDataSet : global::System.Data.DataSet {
         
-        private punchesDataTable tablepunches;
+        private importcellmessagesDataTable tableimportcellmessages;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public ImportedPunchesDataSet() {
+        public ImportCellMessagesDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace NewBlueJayERP {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected ImportedPunchesDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected ImportCellMessagesDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace NewBlueJayERP {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["punches"] != null)) {
-                    base.Tables.Add(new punchesDataTable(ds.Tables["punches"]));
+                if ((ds.Tables["importcellmessages"] != null)) {
+                    base.Tables.Add(new importcellmessagesDataTable(ds.Tables["importcellmessages"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace NewBlueJayERP {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public punchesDataTable punches {
+        public importcellmessagesDataTable importcellmessages {
             get {
-                return this.tablepunches;
+                return this.tableimportcellmessages;
             }
         }
         
@@ -127,7 +127,7 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            ImportedPunchesDataSet cln = ((ImportedPunchesDataSet)(base.Clone()));
+            ImportCellMessagesDataSet cln = ((ImportCellMessagesDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace NewBlueJayERP {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["punches"] != null)) {
-                    base.Tables.Add(new punchesDataTable(ds.Tables["punches"]));
+                if ((ds.Tables["importcellmessages"] != null)) {
+                    base.Tables.Add(new importcellmessagesDataTable(ds.Tables["importcellmessages"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tablepunches = ((punchesDataTable)(base.Tables["punches"]));
+            this.tableimportcellmessages = ((importcellmessagesDataTable)(base.Tables["importcellmessages"]));
             if ((initTable == true)) {
-                if ((this.tablepunches != null)) {
-                    this.tablepunches.InitVars();
+                if ((this.tableimportcellmessages != null)) {
+                    this.tableimportcellmessages.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "ImportedPunchesDataSet";
+            this.DataSetName = "ImportCellMessagesDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/ImportedPunchesDataSet.xsd";
+            this.Namespace = "http://tempuri.org/ImportCellMessagesDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tablepunches = new punchesDataTable();
-            base.Tables.Add(this.tablepunches);
+            this.tableimportcellmessages = new importcellmessagesDataTable();
+            base.Tables.Add(this.tableimportcellmessages);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializepunches() {
+        private bool ShouldSerializeimportcellmessages() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            ImportedPunchesDataSet ds = new ImportedPunchesDataSet();
+            ImportCellMessagesDataSet ds = new ImportCellMessagesDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,16 +270,20 @@ namespace NewBlueJayERP {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void punchesRowChangeEventHandler(object sender, punchesRowChangeEvent e);
+        public delegate void importcellmessagesRowChangeEventHandler(object sender, importcellmessagesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class punchesDataTable : global::System.Data.TypedTableBase<punchesRow> {
+        public partial class importcellmessagesDataTable : global::System.Data.TypedTableBase<importcellmessagesRow> {
             
             private global::System.Data.DataColumn columnTransactionID;
+            
+            private global::System.Data.DataColumn columnPhoneID;
+            
+            private global::System.Data.DataColumn columnPhoneNumber;
             
             private global::System.Data.DataColumn columnEmployeeID;
             
@@ -287,18 +291,18 @@ namespace NewBlueJayERP {
             
             private global::System.Data.DataColumn columnLastName;
             
-            private global::System.Data.DataColumn columnPayID;
+            private global::System.Data.DataColumn columnTransactionDate;
             
-            private global::System.Data.DataColumn columnStartDate;
+            private global::System.Data.DataColumn columnTransactionNumber;
             
-            private global::System.Data.DataColumn columnEndDate;
+            private global::System.Data.DataColumn columnMessageDirection;
             
-            private global::System.Data.DataColumn columnTotalHours;
+            private global::System.Data.DataColumn columnMessageType;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public punchesDataTable() {
-                this.TableName = "punches";
+            public importcellmessagesDataTable() {
+                this.TableName = "importcellmessages";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -306,7 +310,7 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal punchesDataTable(global::System.Data.DataTable table) {
+            internal importcellmessagesDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -323,7 +327,7 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected punchesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected importcellmessagesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -333,6 +337,22 @@ namespace NewBlueJayERP {
             public global::System.Data.DataColumn TransactionIDColumn {
                 get {
                     return this.columnTransactionID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PhoneIDColumn {
+                get {
+                    return this.columnPhoneID;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn PhoneNumberColumn {
+                get {
+                    return this.columnPhoneNumber;
                 }
             }
             
@@ -362,33 +382,33 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn PayIDColumn {
+            public global::System.Data.DataColumn TransactionDateColumn {
                 get {
-                    return this.columnPayID;
+                    return this.columnTransactionDate;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn StartDateColumn {
+            public global::System.Data.DataColumn TransactionNumberColumn {
                 get {
-                    return this.columnStartDate;
+                    return this.columnTransactionNumber;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn EndDateColumn {
+            public global::System.Data.DataColumn MessageDirectionColumn {
                 get {
-                    return this.columnEndDate;
+                    return this.columnMessageDirection;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn TotalHoursColumn {
+            public global::System.Data.DataColumn MessageTypeColumn {
                 get {
-                    return this.columnTotalHours;
+                    return this.columnMessageType;
                 }
             }
             
@@ -403,52 +423,61 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public punchesRow this[int index] {
+            public importcellmessagesRow this[int index] {
                 get {
-                    return ((punchesRow)(this.Rows[index]));
+                    return ((importcellmessagesRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event punchesRowChangeEventHandler punchesRowChanging;
+            public event importcellmessagesRowChangeEventHandler importcellmessagesRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event punchesRowChangeEventHandler punchesRowChanged;
+            public event importcellmessagesRowChangeEventHandler importcellmessagesRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event punchesRowChangeEventHandler punchesRowDeleting;
+            public event importcellmessagesRowChangeEventHandler importcellmessagesRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event punchesRowChangeEventHandler punchesRowDeleted;
+            public event importcellmessagesRowChangeEventHandler importcellmessagesRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddpunchesRow(punchesRow row) {
+            public void AddimportcellmessagesRow(importcellmessagesRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public punchesRow AddpunchesRow(int EmployeeID, string FirstName, string LastName, int PayID, System.DateTime StartDate, System.DateTime EndDate, decimal TotalHours) {
-                punchesRow rowpunchesRow = ((punchesRow)(this.NewRow()));
+            public importcellmessagesRow AddimportcellmessagesRow(int PhoneID, string PhoneNumber, int EmployeeID, string FirstName, string LastName, System.DateTime TransactionDate, string TransactionNumber, string MessageDirection, string MessageType) {
+                importcellmessagesRow rowimportcellmessagesRow = ((importcellmessagesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
+                        PhoneID,
+                        PhoneNumber,
                         EmployeeID,
                         FirstName,
                         LastName,
-                        PayID,
-                        StartDate,
-                        EndDate,
-                        TotalHours};
-                rowpunchesRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowpunchesRow);
-                return rowpunchesRow;
+                        TransactionDate,
+                        TransactionNumber,
+                        MessageDirection,
+                        MessageType};
+                rowimportcellmessagesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowimportcellmessagesRow);
+                return rowimportcellmessagesRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public importcellmessagesRow FindByTransactionID(int TransactionID) {
+                return ((importcellmessagesRow)(this.Rows.Find(new object[] {
+                            TransactionID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                punchesDataTable cln = ((punchesDataTable)(base.Clone()));
+                importcellmessagesDataTable cln = ((importcellmessagesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -456,20 +485,22 @@ namespace NewBlueJayERP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new punchesDataTable();
+                return new importcellmessagesDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnTransactionID = base.Columns["TransactionID"];
+                this.columnPhoneID = base.Columns["PhoneID"];
+                this.columnPhoneNumber = base.Columns["PhoneNumber"];
                 this.columnEmployeeID = base.Columns["EmployeeID"];
                 this.columnFirstName = base.Columns["FirstName"];
                 this.columnLastName = base.Columns["LastName"];
-                this.columnPayID = base.Columns["PayID"];
-                this.columnStartDate = base.Columns["StartDate"];
-                this.columnEndDate = base.Columns["EndDate"];
-                this.columnTotalHours = base.Columns["TotalHours"];
+                this.columnTransactionDate = base.Columns["TransactionDate"];
+                this.columnTransactionNumber = base.Columns["TransactionNumber"];
+                this.columnMessageDirection = base.Columns["MessageDirection"];
+                this.columnMessageType = base.Columns["MessageType"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -477,57 +508,66 @@ namespace NewBlueJayERP {
             private void InitClass() {
                 this.columnTransactionID = new global::System.Data.DataColumn("TransactionID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionID);
+                this.columnPhoneID = new global::System.Data.DataColumn("PhoneID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhoneID);
+                this.columnPhoneNumber = new global::System.Data.DataColumn("PhoneNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPhoneNumber);
                 this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnEmployeeID);
                 this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnFirstName);
                 this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnLastName);
-                this.columnPayID = new global::System.Data.DataColumn("PayID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnPayID);
-                this.columnStartDate = new global::System.Data.DataColumn("StartDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnStartDate);
-                this.columnEndDate = new global::System.Data.DataColumn("EndDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnEndDate);
-                this.columnTotalHours = new global::System.Data.DataColumn("TotalHours", typeof(decimal), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnTotalHours);
+                this.columnTransactionDate = new global::System.Data.DataColumn("TransactionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionDate);
+                this.columnTransactionNumber = new global::System.Data.DataColumn("TransactionNumber", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionNumber);
+                this.columnMessageDirection = new global::System.Data.DataColumn("MessageDirection", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMessageDirection);
+                this.columnMessageType = new global::System.Data.DataColumn("MessageType", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnMessageType);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnTransactionID}, true));
                 this.columnTransactionID.AutoIncrement = true;
                 this.columnTransactionID.AutoIncrementSeed = -1;
                 this.columnTransactionID.AutoIncrementStep = -1;
                 this.columnTransactionID.AllowDBNull = false;
+                this.columnTransactionID.Unique = true;
+                this.columnPhoneID.AllowDBNull = false;
+                this.columnPhoneNumber.AllowDBNull = false;
                 this.columnEmployeeID.AllowDBNull = false;
                 this.columnFirstName.AllowDBNull = false;
                 this.columnLastName.AllowDBNull = false;
-                this.columnPayID.AllowDBNull = false;
-                this.columnStartDate.AllowDBNull = false;
-                this.columnEndDate.AllowDBNull = false;
-                this.columnTotalHours.AllowDBNull = false;
+                this.columnTransactionDate.AllowDBNull = false;
+                this.columnTransactionNumber.AllowDBNull = false;
+                this.columnMessageDirection.AllowDBNull = false;
+                this.columnMessageType.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public punchesRow NewpunchesRow() {
-                return ((punchesRow)(this.NewRow()));
+            public importcellmessagesRow NewimportcellmessagesRow() {
+                return ((importcellmessagesRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new punchesRow(builder);
+                return new importcellmessagesRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(punchesRow);
+                return typeof(importcellmessagesRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.punchesRowChanged != null)) {
-                    this.punchesRowChanged(this, new punchesRowChangeEvent(((punchesRow)(e.Row)), e.Action));
+                if ((this.importcellmessagesRowChanged != null)) {
+                    this.importcellmessagesRowChanged(this, new importcellmessagesRowChangeEvent(((importcellmessagesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -535,8 +575,8 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.punchesRowChanging != null)) {
-                    this.punchesRowChanging(this, new punchesRowChangeEvent(((punchesRow)(e.Row)), e.Action));
+                if ((this.importcellmessagesRowChanging != null)) {
+                    this.importcellmessagesRowChanging(this, new importcellmessagesRowChangeEvent(((importcellmessagesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -544,8 +584,8 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.punchesRowDeleted != null)) {
-                    this.punchesRowDeleted(this, new punchesRowChangeEvent(((punchesRow)(e.Row)), e.Action));
+                if ((this.importcellmessagesRowDeleted != null)) {
+                    this.importcellmessagesRowDeleted(this, new importcellmessagesRowChangeEvent(((importcellmessagesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -553,14 +593,14 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.punchesRowDeleting != null)) {
-                    this.punchesRowDeleting(this, new punchesRowChangeEvent(((punchesRow)(e.Row)), e.Action));
+                if ((this.importcellmessagesRowDeleting != null)) {
+                    this.importcellmessagesRowDeleting(this, new importcellmessagesRowChangeEvent(((importcellmessagesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemovepunchesRow(punchesRow row) {
+            public void RemoveimportcellmessagesRow(importcellmessagesRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -569,7 +609,7 @@ namespace NewBlueJayERP {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                ImportedPunchesDataSet ds = new ImportedPunchesDataSet();
+                ImportCellMessagesDataSet ds = new ImportCellMessagesDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -587,7 +627,7 @@ namespace NewBlueJayERP {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "punchesDataTable";
+                attribute2.FixedValue = "importcellmessagesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -631,25 +671,47 @@ namespace NewBlueJayERP {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class punchesRow : global::System.Data.DataRow {
+        public partial class importcellmessagesRow : global::System.Data.DataRow {
             
-            private punchesDataTable tablepunches;
+            private importcellmessagesDataTable tableimportcellmessages;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal punchesRow(global::System.Data.DataRowBuilder rb) : 
+            internal importcellmessagesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tablepunches = ((punchesDataTable)(this.Table));
+                this.tableimportcellmessages = ((importcellmessagesDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int TransactionID {
                 get {
-                    return ((int)(this[this.tablepunches.TransactionIDColumn]));
+                    return ((int)(this[this.tableimportcellmessages.TransactionIDColumn]));
                 }
                 set {
-                    this[this.tablepunches.TransactionIDColumn] = value;
+                    this[this.tableimportcellmessages.TransactionIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int PhoneID {
+                get {
+                    return ((int)(this[this.tableimportcellmessages.PhoneIDColumn]));
+                }
+                set {
+                    this[this.tableimportcellmessages.PhoneIDColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string PhoneNumber {
+                get {
+                    return ((string)(this[this.tableimportcellmessages.PhoneNumberColumn]));
+                }
+                set {
+                    this[this.tableimportcellmessages.PhoneNumberColumn] = value;
                 }
             }
             
@@ -657,10 +719,10 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int EmployeeID {
                 get {
-                    return ((int)(this[this.tablepunches.EmployeeIDColumn]));
+                    return ((int)(this[this.tableimportcellmessages.EmployeeIDColumn]));
                 }
                 set {
-                    this[this.tablepunches.EmployeeIDColumn] = value;
+                    this[this.tableimportcellmessages.EmployeeIDColumn] = value;
                 }
             }
             
@@ -668,10 +730,10 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string FirstName {
                 get {
-                    return ((string)(this[this.tablepunches.FirstNameColumn]));
+                    return ((string)(this[this.tableimportcellmessages.FirstNameColumn]));
                 }
                 set {
-                    this[this.tablepunches.FirstNameColumn] = value;
+                    this[this.tableimportcellmessages.FirstNameColumn] = value;
                 }
             }
             
@@ -679,54 +741,54 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public string LastName {
                 get {
-                    return ((string)(this[this.tablepunches.LastNameColumn]));
+                    return ((string)(this[this.tableimportcellmessages.LastNameColumn]));
                 }
                 set {
-                    this[this.tablepunches.LastNameColumn] = value;
+                    this[this.tableimportcellmessages.LastNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int PayID {
+            public System.DateTime TransactionDate {
                 get {
-                    return ((int)(this[this.tablepunches.PayIDColumn]));
+                    return ((global::System.DateTime)(this[this.tableimportcellmessages.TransactionDateColumn]));
                 }
                 set {
-                    this[this.tablepunches.PayIDColumn] = value;
+                    this[this.tableimportcellmessages.TransactionDateColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime StartDate {
+            public string TransactionNumber {
                 get {
-                    return ((global::System.DateTime)(this[this.tablepunches.StartDateColumn]));
+                    return ((string)(this[this.tableimportcellmessages.TransactionNumberColumn]));
                 }
                 set {
-                    this[this.tablepunches.StartDateColumn] = value;
+                    this[this.tableimportcellmessages.TransactionNumberColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime EndDate {
+            public string MessageDirection {
                 get {
-                    return ((global::System.DateTime)(this[this.tablepunches.EndDateColumn]));
+                    return ((string)(this[this.tableimportcellmessages.MessageDirectionColumn]));
                 }
                 set {
-                    this[this.tablepunches.EndDateColumn] = value;
+                    this[this.tableimportcellmessages.MessageDirectionColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public decimal TotalHours {
+            public string MessageType {
                 get {
-                    return ((decimal)(this[this.tablepunches.TotalHoursColumn]));
+                    return ((string)(this[this.tableimportcellmessages.MessageTypeColumn]));
                 }
                 set {
-                    this[this.tablepunches.TotalHoursColumn] = value;
+                    this[this.tableimportcellmessages.MessageTypeColumn] = value;
                 }
             }
         }
@@ -735,22 +797,22 @@ namespace NewBlueJayERP {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class punchesRowChangeEvent : global::System.EventArgs {
+        public class importcellmessagesRowChangeEvent : global::System.EventArgs {
             
-            private punchesRow eventRow;
+            private importcellmessagesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public punchesRowChangeEvent(punchesRow row, global::System.Data.DataRowAction action) {
+            public importcellmessagesRowChangeEvent(importcellmessagesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public punchesRow Row {
+            public importcellmessagesRow Row {
                 get {
                     return this.eventRow;
                 }

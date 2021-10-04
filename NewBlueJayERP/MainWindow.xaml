@@ -103,8 +103,6 @@
                                 <Expander x:Name="expEditFuelCard" Header="Edit Fuel Card" Expanded="expEditFuelCard_Expanded" />
                                 <Expander x:Name="expFuelCardPINReport" Header="Fuel Card PIN Report" Expanded="expFuelCardPINReport_Expanded" />
                                 <Expander x:Name="expEmployeeLaborRate" Header="Employee Labor Rate" Expanded="expEmployeeLaborRate_Expanded" />
-                                <Expander x:Name="expEmployeeDoubleHours" Header="Employee Double Hours" Expanded="expEmployeeDoubleHours_Expanded" />
-                                <Expander x:Name="expImportEmployeeHours" Header="Import Employee Hours" Expanded="expImportEmployeeHours_Expanded" />
                                 <Expander x:Name="expImportEmployeePunches" Header="Import Employee Punches" Expanded="expImportEmployeePunches_Expanded" />
                                 <Expander x:Name="expManuallAddFuelPin" Header="Manually Add Fuel PIN" Expanded="expManuallAddFuelPin_Expanded" />
                                 <Expander x:Name="expTerminateEmployee" Header="Terminate Employee" />
@@ -370,6 +368,8 @@
                                 <Expander x:Name="expImportWaspMonitors" Header="Import Wasp Monitors" Margin="35,1,1,1" Expanded="expImportWaspMonitors_Expanded"  />
                                 <Expander x:Name="expImportCellCalls" Header="Import Cell Calls" Margin="35,1,1,1" Expanded="expImportCellCalls_Expanded" />
                                 <Expander x:Name="expImportPhoneCalls" Header="Import Phone Calls" Margin="35,1,1,1" Expanded="expImportPhoneCalls_Expanded" />
+                                <Expander x:Name="expImportCellData" Header="Import Cell Data" Margin="35,1,1,1" Expanded="expImportCellData_Expanded" />
+                                <Expander x:Name="expImportCellMessages" Header="Import Cell Messages" Margin="35,1,1,1" Expanded="expImportCellMessages_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" FlowDirection="LeftToRight" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">
@@ -377,6 +377,7 @@
                                 <Expander x:Name="expCellPhoneAssignment" Header="Cell Phone Assignment" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneAssignment_Expanded"/>
                                 <Expander x:Name="expCellPhoneList" Header="Cell Phone List" FontSize="16" Margin="50,1,1,1"  Expanded="expCellPhoneList_Expanded" />
                                 <Expander x:Name="expCellPhoneCallSearch" Header="Cell Phone Call Search" FontSize="16" Margin="50,1,1,1" Expanded="expCellPhoneCallSearch_Expanded" />
+                                <Expander x:Name="expCellMessageSearch" Header="Cell Message Search" FontSize="16" Margin="50,1,1,1" Expanded="expCellMessageSearch_Expanded" />
                                 <Expander x:Name="expPhoneCallSearch" Header="Phone Call Search" FontSize="16" Margin="50,1,1,1" Expanded="expPhoneCallSearch_Expanded" />
                                 <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
                                 <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />

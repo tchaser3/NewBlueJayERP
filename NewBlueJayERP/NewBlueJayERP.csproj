@@ -521,6 +521,9 @@
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellMessageSearch.xaml.cs">
+      <DependentUpon>CellMessageSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CellPhoneCallsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -797,6 +800,22 @@
     <Compile Include="ImportCellCalls.xaml.cs">
       <DependentUpon>ImportCellCalls.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportCellData.xaml.cs">
+      <DependentUpon>ImportCellData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCellMessagesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportCellMessagesDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCellMessaging.xaml.cs">
+      <DependentUpon>ImportCellMessaging.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportCellPhoneDataDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportCellPhoneDataDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImportCodesForSheets.xaml.cs">
       <DependentUpon>ImportCodesForSheets.xaml</DependentUpon>
     </Compile>
@@ -987,6 +1006,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MessagesForEmployeeDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>MessagesForEmployeeDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="MonitorsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1403,6 +1427,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CellMessageSearch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="CellPhoneCallSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1616,6 +1644,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ImportCellCalls.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportCellData.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ImportCellMessaging.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2237,6 +2273,28 @@
     <None Include="EmployeeToolAssetDataSet.xss">
       <DependentUpon>EmployeeToolAssetDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ImportCellMessagesDataSet.xsc">
+      <DependentUpon>ImportCellMessagesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportCellMessagesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportCellMessagesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportCellMessagesDataSet.xss">
+      <DependentUpon>ImportCellMessagesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportCellPhoneDataDataSet.xsc">
+      <DependentUpon>ImportCellPhoneDataDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportCellPhoneDataDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportCellPhoneDataDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportCellPhoneDataDataSet.xss">
+      <DependentUpon>ImportCellPhoneDataDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ImportDocumentsDataSet.xsc">
       <DependentUpon>ImportDocumentsDataSet.xsd</DependentUpon>
     </None>
@@ -2445,6 +2503,17 @@
     </None>
     <None Include="MaterialIssuedDataSet.xss">
       <DependentUpon>MaterialIssuedDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MessagesForEmployeeDataSet.xsc">
+      <DependentUpon>MessagesForEmployeeDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="MessagesForEmployeeDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>MessagesForEmployeeDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="MessagesForEmployeeDataSet.xss">
+      <DependentUpon>MessagesForEmployeeDataSet.xsd</DependentUpon>
     </None>
     <None Include="MonitorsDataSet.xsc">
       <DependentUpon>MonitorsDataSet.xsd</DependentUpon>

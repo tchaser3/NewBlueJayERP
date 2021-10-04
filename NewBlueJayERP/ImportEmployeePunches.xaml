@@ -30,7 +30,14 @@
             <Expander x:Name="expCloseProgram" Header="Close Program" FontSize="16" Margin="10,1,1,1" Expanded="expCloseProgram_Expanded"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Height="530" Width="730" Margin="155,155,7,7">
-            <DataGrid x:Name="dgrResults" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="500" Width="720" Margin="1,10,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+            <StackPanel Orientation="Horizontal" Height="50" Width="730">
+                <Label x:Name="lblPayDate" Content="Enter Pay Date" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Margin="225,1,1,1"/>
+                <TextBox x:Name="txtPayDate" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+            </StackPanel>
+            <StackPanel Height="460" Width="730">
+                <DataGrid x:Name="dgrResults" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="450" Width="720" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+            </StackPanel>
+            
         </StackPanel>
     </Grid>
 </Window>

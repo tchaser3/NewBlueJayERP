@@ -1,8 +1,8 @@
-﻿/* Title:           Import Cell Calls
- * Date:            9-10-21
+﻿/* Title:           Import Cell Data
+ * Date:            9-28-21
  * Author:          Terry Holmes
  * 
- * Description:     This is used to import the cell calls */
+ * Description:     This is used to import data */
 
 using System;
 using System.Collections.Generic;
@@ -17,35 +17,35 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using CellPhoneCallsDLL;
-using PhonesDLL;
-using DataValidationDLL;
-using NewEventLogDLL;
 using Excel = Microsoft.Office.Interop.Excel;
 using Microsoft.Win32;
+using DataValidationDLL;
+using NewEventLogDLL;
+using CellPhoneCallsDLL;
+using PhonesDLL;
 using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {
     /// <summary>
-    /// Interaction logic for ImportCellCalls.xaml
+    /// Interaction logic for ImportCellData.xaml
     /// </summary>
-    public partial class ImportCellCalls : Window
+    public partial class ImportCellData : Window
     {
-        //setting up the classes
+        //setting up classes
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
-        CellPhoneCallsClass TheCellPhoneCallsClass = new CellPhoneCallsClass();
-        PhonesClass ThePhonesClass = new PhonesClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EventLogClass TheEventLogClass = new EventLogClass();
-        EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
+        CellPhoneCallsClass TheCellPhoneCallsClass = new CellPhoneCallsClass();
+        PhonesClass ThePhonesClass = new PhonesClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         //setting up the data
-        CellPhoneCallsDataSet TheCellPhoneCallsDataSet = new CellPhoneCallsDataSet();
+        ImportCellPhoneDataDataSet TheImportCellPhoneDataDataSet = new ImportCellPhoneDataDataSet();
         FindCellPhoneByLastFourDataSet TheFindCellPhoneByLastFourDataSet = new FindCellPhoneByLastFourDataSet();
-        FindCellPhoneCallForVerificationDataSet TheFindCellPhoneCallForVerificationDataSet = new FindCellPhoneCallForVerificationDataSet();
+        FindCellPhoneDataValidationDataSet TheFindCellPhoneDataValidationDataSet = new FindCellPhoneDataValidationDataSet();
 
-        public ImportCellCalls()
+        public ImportCellData()
         {
             InitializeComponent();
         }
@@ -94,14 +94,13 @@ namespace NewBlueJayERP
         {
             ResetControls();
         }
-        private void  ResetControls()
+        private void ResetControls()
         {
-            TheCellPhoneCallsDataSet.cellphonecalls.Rows.Clear();
+            TheImportCellPhoneDataDataSet.importcellphonedata.Rows.Clear();
 
-            dgrCellCalls.ItemsSource = TheCellPhoneCallsDataSet.cellphonecalls;
+            dgrCellData.ItemsSource = TheImportCellPhoneDataDataSet.importcellphonedata;
 
-            TheEmployeeDataEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "Blue Jay ERP // Import Cell Calls " );
-
+            TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "Blue Jay ERP // Import Cell Data ");
         }
 
         private void expImportExcel_Expanded(object sender, RoutedEventArgs e)
@@ -120,21 +119,17 @@ namespace NewBlueJayERP
             int intEmployeeID;
             string strFirstName;
             string strLastName;
-            DateTime datTransactionDate;
-            string strDestination;
-            int intCallMinutes;
-            string strCallTime;
-            string strTransactionNumber;
             string strTransactionDate;
-            string strCallMinutes;
+            DateTime datTransactionDate;
+            string strGigaBytesUsed;
+            decimal decGigaBytesUsed;
             int intRecordsReturned;
             double douDate;
-            double douTime;
 
             try
             {
                 expImportExcel.IsExpanded = false;
-                TheCellPhoneCallsDataSet.cellphonecalls.Rows.Clear();
+                TheImportCellPhoneDataDataSet.importcellphonedata.Rows.Clear();
 
                 Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
                 dlg.FileName = "Document"; // Default file name
@@ -164,16 +159,13 @@ namespace NewBlueJayERP
 
                 for (intCounter = 2; intCounter <= intNumberOfRecords; intCounter++)
                 {
-                    strCellNumber = Convert.ToString((range.Cells[intCounter, 1] as Excel.Range).Value2).ToUpper();
-                    strDestination = Convert.ToString((range.Cells[intCounter, 2] as Excel.Range).Value2).ToUpper();
-                    strTransactionDate = Convert.ToString((range.Cells[intCounter, 3] as Excel.Range).Value2).ToUpper();
-                    strCallMinutes = Convert.ToString((range.Cells[intCounter, 4] as Excel.Range).Value2).ToUpper();
-                    strTransactionNumber = Convert.ToString((range.Cells[intCounter, 5] as Excel.Range).Value2).ToUpper();
-                    strCallTime = Convert.ToString((range.Cells[intCounter, 6] as Excel.Range).Value2).ToUpper();
+                    strCellNumber = Convert.ToString((range.Cells[intCounter, 2] as Excel.Range).Value2).ToUpper();
+                    strTransactionDate = Convert.ToString((range.Cells[intCounter, 6] as Excel.Range).Value2).ToUpper();
+                    strGigaBytesUsed = Convert.ToString((range.Cells[intCounter, 11] as Excel.Range).Value2).ToUpper();
 
                     strLastFour = strCellNumber.Substring(8, 4);
 
-                    if(strLastFour != "5546")
+                    if (strLastFour != "5546")
                     {
                         TheFindCellPhoneByLastFourDataSet = ThePhonesClass.FindCellPhoneByLastFour(strLastFour);
 
@@ -193,42 +185,38 @@ namespace NewBlueJayERP
 
                         douDate = Convert.ToDouble(strTransactionDate);
 
-                        douTime = Convert.ToDouble(strCallTime);
-
-                        douDate = douDate + douTime;
-
                         datTransactionDate = DateTime.FromOADate(douDate);
 
+                        decGigaBytesUsed = Convert.ToDecimal(strGigaBytesUsed);
 
+                        TheFindCellPhoneDataValidationDataSet = TheCellPhoneCallsClass.FindCellPhoneDataValidation(intPhoneID, intEmployeeID, datTransactionDate, decGigaBytesUsed);
 
-                        strCallTime = "";
+                        intRecordsReturned = TheFindCellPhoneDataValidationDataSet.FindCellPhoneDataValidation.Rows.Count;
 
-                        intCallMinutes = Convert.ToInt32(strCallMinutes);
+                        if(intRecordsReturned < 1)
+                        {
+                            ImportCellPhoneDataDataSet.importcellphonedataRow NewDataRow = TheImportCellPhoneDataDataSet.importcellphonedata.NewimportcellphonedataRow();
 
-                        CellPhoneCallsDataSet.cellphonecallsRow NewCallRow = TheCellPhoneCallsDataSet.cellphonecalls.NewcellphonecallsRow();
+                            NewDataRow.EmployeeID = intEmployeeID;
+                            NewDataRow.FirstName = strFirstName;
+                            NewDataRow.GigaByteUsed = decGigaBytesUsed;
+                            NewDataRow.LastName = strLastName;
+                            NewDataRow.PhoneID = intPhoneID;
+                            NewDataRow.PhoneNumber = strCellNumber;
+                            NewDataRow.TransactionDate = datTransactionDate;
 
-                        NewCallRow.CallMinutes = intCallMinutes;
-                        NewCallRow.CallTime = strCallTime;
-                        NewCallRow.CellNumber = strCellNumber;
-                        NewCallRow.Destination = strDestination;
-                        NewCallRow.EmployeeID = intEmployeeID;
-                        NewCallRow.FirstName = strFirstName;
-                        NewCallRow.LastName = strLastName;
-                        NewCallRow.PhoneID = intPhoneID;
-                        NewCallRow.TransactionDate = datTransactionDate;
-                        NewCallRow.TransactionNumber = strTransactionNumber;
-
-                        TheCellPhoneCallsDataSet.cellphonecalls.Rows.Add(NewCallRow);
+                            TheImportCellPhoneDataDataSet.importcellphonedata.Rows.Add(NewDataRow);
+                        }
                     }
                 }
 
-                dgrCellCalls.ItemsSource = TheCellPhoneCallsDataSet.cellphonecalls;
+                dgrCellData.ItemsSource = TheImportCellPhoneDataDataSet.importcellphonedata;
                 PleaseWait.Close();
 
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Cell Calls // Import Excel  " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Cell Data // Import Excel  " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -238,17 +226,11 @@ namespace NewBlueJayERP
         {
             int intCounter;
             int intNumberOfRecords;
-            bool blnFatalError = false;
             int intPhoneID;
             int intEmployeeID;
             DateTime datTransactionDate;
-            string strDestination;
-            int intCallMinutes;
-            string strCallTime;
-            string strTransactionNumber;
-            int intRecordsReturned;
-
-            
+            decimal decGigaBytesUsed;
+            bool blnFatalError = false;
 
             try
             {
@@ -257,50 +239,36 @@ namespace NewBlueJayERP
                 PleaseWait PleaseWait = new PleaseWait();
                 PleaseWait.Show();
 
-                intNumberOfRecords = TheCellPhoneCallsDataSet.cellphonecalls.Rows.Count;
+                intNumberOfRecords = TheImportCellPhoneDataDataSet.importcellphonedata.Rows.Count;
 
-                if(intNumberOfRecords > 0)
+                if(intNumberOfRecords > -1)
                 {
                     for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                     {
-                        intPhoneID = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].PhoneID;
-                        intEmployeeID = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].EmployeeID;
-                        datTransactionDate = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].TransactionDate;
-                        strDestination = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].Destination;
-                        intCallMinutes = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].CallMinutes;
-                        strCallTime = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].CallTime;
-                        strTransactionNumber = TheCellPhoneCallsDataSet.cellphonecalls[intCounter].TransactionNumber;
+                        intPhoneID = TheImportCellPhoneDataDataSet.importcellphonedata[intCounter].PhoneID;
+                        intEmployeeID = TheImportCellPhoneDataDataSet.importcellphonedata[intCounter].EmployeeID;
+                        datTransactionDate = TheImportCellPhoneDataDataSet.importcellphonedata[intCounter].TransactionDate;
+                        decGigaBytesUsed = TheImportCellPhoneDataDataSet.importcellphonedata[intCounter].GigaByteUsed;
 
-                        TheFindCellPhoneCallForVerificationDataSet = TheCellPhoneCallsClass.FindCellPhoneCallForVerification(intPhoneID, datTransactionDate, intCallMinutes, strCallTime, strTransactionNumber);
+                        blnFatalError = TheCellPhoneCallsClass.InsertCellPhoneData(intPhoneID, intEmployeeID, datTransactionDate, decGigaBytesUsed);
 
-                        intRecordsReturned = TheFindCellPhoneCallForVerificationDataSet.FindCellPhoneCallForVerification.Rows.Count;
-
-                        if(intRecordsReturned < 1)
-                        {
-                            blnFatalError = TheCellPhoneCallsClass.InsertCellPhoneCall(intPhoneID, intEmployeeID, datTransactionDate, strDestination, intCallMinutes, strCallTime, strTransactionNumber);
-
-                            if(blnFatalError == true)
-                            {
-                                throw new Exception();
-                            }
-                        }
+                        if (blnFatalError == true)
+                            throw new Exception();
                     }
                 }
 
                 PleaseWait.Close();
 
-                TheMessagesClass.InformationMessage("All Calls Have Been Imported");
+                TheMessagesClass.InformationMessage("Data Has Been Imported");
 
                 ResetControls();
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Cell Calls // Process Import " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Cell Data // Process Import " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
-
-           
         }
     }
 }

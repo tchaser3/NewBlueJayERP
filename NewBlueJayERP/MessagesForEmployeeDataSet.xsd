@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="MessagesForEmployeeDataSet" targetNamespace="http://tempuri.org/MessagesForEmployeeDataSet.xsd" xmlns:mstns="http://tempuri.org/MessagesForEmployeeDataSet.xsd" xmlns="http://tempuri.org/MessagesForEmployeeDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="MessagesForEmployeeDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="MessagesForEmployeeDataSet" msprop:Generator_DataSetName="MessagesForEmployeeDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="messagesforemployee" msprop:Generator_RowEvHandlerName="messagesforemployeeRowChangeEventHandler" msprop:Generator_RowDeletedName="messagesforemployeeRowDeleted" msprop:Generator_RowDeletingName="messagesforemployeeRowDeleting" msprop:Generator_RowEvArgName="messagesforemployeeRowChangeEvent" msprop:Generator_TablePropName="messagesforemployee" msprop:Generator_RowChangedName="messagesforemployeeRowChanged" msprop:Generator_RowChangingName="messagesforemployeeRowChanging" msprop:Generator_TableClassName="messagesforemployeeDataTable" msprop:Generator_RowClassName="messagesforemployeeRow" msprop:Generator_TableVarName="tablemessagesforemployee" msprop:Generator_UserTableName="messagesforemployee">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="TransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="PhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_UserColumnName="PhoneNumber" type="xs:string" />
+              <xs:element name="Employee" msprop:Generator_ColumnPropNameInRow="Employee" msprop:Generator_ColumnPropNameInTable="EmployeeColumn" msprop:Generator_ColumnVarNameInTable="columnEmployee" msprop:Generator_UserColumnName="Employee" type="xs:string" />
+              <xs:element name="TransactionNumber" msprop:Generator_ColumnPropNameInRow="TransactionNumber" msprop:Generator_ColumnPropNameInTable="TransactionNumberColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionNumber" msprop:Generator_UserColumnName="TransactionNumber" type="xs:string" />
+              <xs:element name="Respondent" msprop:Generator_ColumnPropNameInRow="Respondent" msprop:Generator_ColumnPropNameInTable="RespondentColumn" msprop:Generator_ColumnVarNameInTable="columnRespondent" msprop:Generator_UserColumnName="Respondent" type="xs:string" />
+              <xs:element name="MessageDirection" msprop:Generator_ColumnPropNameInRow="MessageDirection" msprop:Generator_ColumnPropNameInTable="MessageDirectionColumn" msprop:Generator_ColumnVarNameInTable="columnMessageDirection" msprop:Generator_UserColumnName="MessageDirection" type="xs:string" />
+              <xs:element name="MessageType" msprop:Generator_ColumnPropNameInRow="MessageType" msprop:Generator_ColumnPropNameInTable="MessageTypeColumn" msprop:Generator_ColumnVarNameInTable="columnMessageType" msprop:Generator_UserColumnName="MessageType" type="xs:string" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:messagesforemployee" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

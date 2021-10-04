@@ -223,6 +223,9 @@ namespace NewBlueJayERP
         public static CellPhoneCallSearch CellPhoneCallSearchWindow = new CellPhoneCallSearch();
         public static ImportPhoneCalls ImportPhoneCallsWindow = new ImportPhoneCalls();
         public static SearchPhoneCalls SearchPhoneCallsWindow = new SearchPhoneCalls();
+        public static ImportCellData ImportCellDataWindow = new ImportCellData();
+        public static ImportCellMessaging ImportCellMessagingWindow = new ImportCellMessaging();
+        public static CellMessageSearch CellMessagesSearchWindow = new CellMessageSearch();
 
         public MainWindow()
         {
@@ -387,8 +390,9 @@ namespace NewBlueJayERP
             CellPhoneCallSearchWindow.Visibility = Visibility.Hidden;
             ImportPhoneCallsWindow.Visibility = Visibility.Hidden;
             SearchPhoneCallsWindow.Visibility = Visibility.Hidden;
-
-
+            ImportCellDataWindow.Visibility = Visibility.Hidden;
+            ImportCellMessagingWindow.Visibility = Visibility.Hidden;
+            CellMessagesSearchWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1502,6 +1506,7 @@ namespace NewBlueJayERP
             expCellPhoneList.IsExpanded = false;
             expCellPhoneCallSearch.IsExpanded = false;
             expPhoneCallSearch.IsExpanded = false;
+            expCellMessageSearch.IsExpanded = false;
         }
 
         private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
@@ -1565,9 +1570,7 @@ namespace NewBlueJayERP
             expAddEmployeeToVehicleEmailList.IsExpanded = false;
             expEditEmployee.IsExpanded = false;
             expEmployeeLaborRate.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
             expImportEmployeePunches.IsExpanded = false;
-            expImportEmployeeHours.IsExpanded = false;
             expTerminateEmployee.IsExpanded = false;
             expCreateFuelCardNumber.IsExpanded = false;
             expEmployeeAdministration.IsExpanded = false;
@@ -1576,7 +1579,6 @@ namespace NewBlueJayERP
             expFuelCardPINReport.IsExpanded = false;
             expManuallAddFuelPin.IsExpanded = false;
             expUpdateEmployeeVehicleActive.IsExpanded = false;
-            expEmployeeDoubleHours.IsExpanded = false;
             expAddProductivityWorkTask.IsExpanded = false;
             expVoidProductivitySheet.IsExpanded = false;
             expVoidDesignProductivity.IsExpanded = false;
@@ -1741,6 +1743,8 @@ namespace NewBlueJayERP
             expImportWaspMonitors.IsExpanded = false;
             expImportCellCalls.IsExpanded = false;
             expImportPhoneCalls.IsExpanded = false;
+            expImportCellData.IsExpanded = false;
+            expImportCellMessages.IsExpanded = false;
         }
 
         private void expDepartmentProjectOpenList_Expanded(object sender, RoutedEventArgs e)
@@ -2174,6 +2178,24 @@ namespace NewBlueJayERP
         {
             ITReportsExpanders();
             SearchPhoneCallsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportCellData_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            ImportCellDataWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expImportCellMessages_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            ImportCellMessagingWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expCellMessageSearch_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            CellMessagesSearchWindow.Visibility = Visibility.Visible;
         }
     }
 }
