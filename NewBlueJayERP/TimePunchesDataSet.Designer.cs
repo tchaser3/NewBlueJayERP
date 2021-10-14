@@ -20,17 +20,17 @@ namespace NewBlueJayERP {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("WorkTaskAssignedDataSet")]
+    [global::System.Xml.Serialization.XmlRootAttribute("TimePunchesDataSet")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class WorkTaskAssignedDataSet : global::System.Data.DataSet {
+    public partial class TimePunchesDataSet : global::System.Data.DataSet {
         
-        private worktaskassignedDataTable tableworktaskassigned;
+        private timepunchesDataTable tabletimepunches;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public WorkTaskAssignedDataSet() {
+        public TimePunchesDataSet() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace NewBlueJayERP {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected WorkTaskAssignedDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected TimePunchesDataSet(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -54,8 +54,8 @@ namespace NewBlueJayERP {
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["worktaskassigned"] != null)) {
-                    base.Tables.Add(new worktaskassignedDataTable(ds.Tables["worktaskassigned"]));
+                if ((ds.Tables["timepunches"] != null)) {
+                    base.Tables.Add(new timepunchesDataTable(ds.Tables["timepunches"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -79,9 +79,9 @@ namespace NewBlueJayERP {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Browsable(false)]
         [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public worktaskassignedDataTable worktaskassigned {
+        public timepunchesDataTable timepunches {
             get {
-                return this.tableworktaskassigned;
+                return this.tabletimepunches;
             }
         }
         
@@ -127,7 +127,7 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            WorkTaskAssignedDataSet cln = ((WorkTaskAssignedDataSet)(base.Clone()));
+            TimePunchesDataSet cln = ((TimePunchesDataSet)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -152,8 +152,8 @@ namespace NewBlueJayERP {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["worktaskassigned"] != null)) {
-                    base.Tables.Add(new worktaskassignedDataTable(ds.Tables["worktaskassigned"]));
+                if ((ds.Tables["timepunches"] != null)) {
+                    base.Tables.Add(new timepunchesDataTable(ds.Tables["timepunches"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -188,10 +188,10 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableworktaskassigned = ((worktaskassignedDataTable)(base.Tables["worktaskassigned"]));
+            this.tabletimepunches = ((timepunchesDataTable)(base.Tables["timepunches"]));
             if ((initTable == true)) {
-                if ((this.tableworktaskassigned != null)) {
-                    this.tableworktaskassigned.InitVars();
+                if ((this.tabletimepunches != null)) {
+                    this.tabletimepunches.InitVars();
                 }
             }
         }
@@ -199,18 +199,18 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "WorkTaskAssignedDataSet";
+            this.DataSetName = "TimePunchesDataSet";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/WorkTaskAssignedDataSet.xsd";
+            this.Namespace = "http://tempuri.org/TimePunchesDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableworktaskassigned = new worktaskassignedDataTable();
-            base.Tables.Add(this.tableworktaskassigned);
+            this.tabletimepunches = new timepunchesDataTable();
+            base.Tables.Add(this.tabletimepunches);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeworktaskassigned() {
+        private bool ShouldSerializetimepunches() {
             return false;
         }
         
@@ -225,7 +225,7 @@ namespace NewBlueJayERP {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            WorkTaskAssignedDataSet ds = new WorkTaskAssignedDataSet();
+            TimePunchesDataSet ds = new TimePunchesDataSet();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -270,29 +270,33 @@ namespace NewBlueJayERP {
         }
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void worktaskassignedRowChangeEventHandler(object sender, worktaskassignedRowChangeEvent e);
+        public delegate void timepunchesRowChangeEventHandler(object sender, timepunchesRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
         ///</summary>
         [global::System.Serializable()]
         [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class worktaskassignedDataTable : global::System.Data.TypedTableBase<worktaskassignedRow> {
+        public partial class timepunchesDataTable : global::System.Data.TypedTableBase<timepunchesRow> {
             
             private global::System.Data.DataColumn columnTransactionID;
             
-            private global::System.Data.DataColumn columnWorkTaskID;
+            private global::System.Data.DataColumn columnPayID;
             
-            private global::System.Data.DataColumn columnWorkTask;
+            private global::System.Data.DataColumn columnEmployeeID;
             
-            private global::System.Data.DataColumn columnBusinessLine;
+            private global::System.Data.DataColumn columnFirstName;
             
-            private global::System.Data.DataColumn columnFunction;
+            private global::System.Data.DataColumn columnLastName;
+            
+            private global::System.Data.DataColumn columnTransactionDate;
+            
+            private global::System.Data.DataColumn columnSource;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedDataTable() {
-                this.TableName = "worktaskassigned";
+            public timepunchesDataTable() {
+                this.TableName = "timepunches";
                 this.BeginInit();
                 this.InitClass();
                 this.EndInit();
@@ -300,7 +304,7 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal worktaskassignedDataTable(global::System.Data.DataTable table) {
+            internal timepunchesDataTable(global::System.Data.DataTable table) {
                 this.TableName = table.TableName;
                 if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
                     this.CaseSensitive = table.CaseSensitive;
@@ -317,7 +321,7 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected worktaskassignedDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+            protected timepunchesDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                     base(info, context) {
                 this.InitVars();
             }
@@ -332,33 +336,49 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn WorkTaskIDColumn {
+            public global::System.Data.DataColumn PayIDColumn {
                 get {
-                    return this.columnWorkTaskID;
+                    return this.columnPayID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn WorkTaskColumn {
+            public global::System.Data.DataColumn EmployeeIDColumn {
                 get {
-                    return this.columnWorkTask;
+                    return this.columnEmployeeID;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn BusinessLineColumn {
+            public global::System.Data.DataColumn FirstNameColumn {
                 get {
-                    return this.columnBusinessLine;
+                    return this.columnFirstName;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn FunctionColumn {
+            public global::System.Data.DataColumn LastNameColumn {
                 get {
-                    return this.columnFunction;
+                    return this.columnLastName;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn TransactionDateColumn {
+                get {
+                    return this.columnTransactionDate;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn SourceColumn {
+                get {
+                    return this.columnSource;
                 }
             }
             
@@ -373,56 +393,58 @@ namespace NewBlueJayERP {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedRow this[int index] {
+            public timepunchesRow this[int index] {
                 get {
-                    return ((worktaskassignedRow)(this.Rows[index]));
+                    return ((timepunchesRow)(this.Rows[index]));
                 }
             }
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event worktaskassignedRowChangeEventHandler worktaskassignedRowChanging;
+            public event timepunchesRowChangeEventHandler timepunchesRowChanging;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event worktaskassignedRowChangeEventHandler worktaskassignedRowChanged;
+            public event timepunchesRowChangeEventHandler timepunchesRowChanged;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event worktaskassignedRowChangeEventHandler worktaskassignedRowDeleting;
+            public event timepunchesRowChangeEventHandler timepunchesRowDeleting;
             
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event worktaskassignedRowChangeEventHandler worktaskassignedRowDeleted;
+            public event timepunchesRowChangeEventHandler timepunchesRowDeleted;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddworktaskassignedRow(worktaskassignedRow row) {
+            public void AddtimepunchesRow(timepunchesRow row) {
                 this.Rows.Add(row);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedRow AddworktaskassignedRow(int TransactionID, int WorkTaskID, string WorkTask, string BusinessLine, string Function) {
-                worktaskassignedRow rowworktaskassignedRow = ((worktaskassignedRow)(this.NewRow()));
+            public timepunchesRow AddtimepunchesRow(int PayID, int EmployeeID, string FirstName, string LastName, System.DateTime TransactionDate, string Source) {
+                timepunchesRow rowtimepunchesRow = ((timepunchesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
-                        TransactionID,
-                        WorkTaskID,
-                        WorkTask,
-                        BusinessLine,
-                        Function};
-                rowworktaskassignedRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowworktaskassignedRow);
-                return rowworktaskassignedRow;
+                        null,
+                        PayID,
+                        EmployeeID,
+                        FirstName,
+                        LastName,
+                        TransactionDate,
+                        Source};
+                rowtimepunchesRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowtimepunchesRow);
+                return rowtimepunchesRow;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedRow FindByTransactionID(int TransactionID) {
-                return ((worktaskassignedRow)(this.Rows.Find(new object[] {
+            public timepunchesRow FindByTransactionID(int TransactionID) {
+                return ((timepunchesRow)(this.Rows.Find(new object[] {
                             TransactionID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public override global::System.Data.DataTable Clone() {
-                worktaskassignedDataTable cln = ((worktaskassignedDataTable)(base.Clone()));
+                timepunchesDataTable cln = ((timepunchesDataTable)(base.Clone()));
                 cln.InitVars();
                 return cln;
             }
@@ -430,17 +452,19 @@ namespace NewBlueJayERP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataTable CreateInstance() {
-                return new worktaskassignedDataTable();
+                return new timepunchesDataTable();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             internal void InitVars() {
                 this.columnTransactionID = base.Columns["TransactionID"];
-                this.columnWorkTaskID = base.Columns["WorkTaskID"];
-                this.columnWorkTask = base.Columns["WorkTask"];
-                this.columnBusinessLine = base.Columns["BusinessLine"];
-                this.columnFunction = base.Columns["Function"];
+                this.columnPayID = base.Columns["PayID"];
+                this.columnEmployeeID = base.Columns["EmployeeID"];
+                this.columnFirstName = base.Columns["FirstName"];
+                this.columnLastName = base.Columns["LastName"];
+                this.columnTransactionDate = base.Columns["TransactionDate"];
+                this.columnSource = base.Columns["Source"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -448,48 +472,57 @@ namespace NewBlueJayERP {
             private void InitClass() {
                 this.columnTransactionID = new global::System.Data.DataColumn("TransactionID", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnTransactionID);
-                this.columnWorkTaskID = new global::System.Data.DataColumn("WorkTaskID", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWorkTaskID);
-                this.columnWorkTask = new global::System.Data.DataColumn("WorkTask", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnWorkTask);
-                this.columnBusinessLine = new global::System.Data.DataColumn("BusinessLine", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnBusinessLine);
-                this.columnFunction = new global::System.Data.DataColumn("Function", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnFunction);
+                this.columnPayID = new global::System.Data.DataColumn("PayID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPayID);
+                this.columnEmployeeID = new global::System.Data.DataColumn("EmployeeID", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnEmployeeID);
+                this.columnFirstName = new global::System.Data.DataColumn("FirstName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnFirstName);
+                this.columnLastName = new global::System.Data.DataColumn("LastName", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnLastName);
+                this.columnTransactionDate = new global::System.Data.DataColumn("TransactionDate", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnTransactionDate);
+                this.columnSource = new global::System.Data.DataColumn("Source", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnSource);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columnTransactionID}, true));
+                this.columnTransactionID.AutoIncrement = true;
+                this.columnTransactionID.AutoIncrementSeed = -1;
+                this.columnTransactionID.AutoIncrementStep = -1;
                 this.columnTransactionID.AllowDBNull = false;
                 this.columnTransactionID.Unique = true;
-                this.columnWorkTaskID.AllowDBNull = false;
-                this.columnWorkTask.AllowDBNull = false;
-                this.columnBusinessLine.AllowDBNull = false;
-                this.columnFunction.AllowDBNull = false;
+                this.columnPayID.AllowDBNull = false;
+                this.columnEmployeeID.AllowDBNull = false;
+                this.columnFirstName.AllowDBNull = false;
+                this.columnLastName.AllowDBNull = false;
+                this.columnTransactionDate.AllowDBNull = false;
+                this.columnSource.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedRow NewworktaskassignedRow() {
-                return ((worktaskassignedRow)(this.NewRow()));
+            public timepunchesRow NewtimepunchesRow() {
+                return ((timepunchesRow)(this.NewRow()));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new worktaskassignedRow(builder);
+                return new timepunchesRow(builder);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override global::System.Type GetRowType() {
-                return typeof(worktaskassignedRow);
+                return typeof(timepunchesRow);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanged(e);
-                if ((this.worktaskassignedRowChanged != null)) {
-                    this.worktaskassignedRowChanged(this, new worktaskassignedRowChangeEvent(((worktaskassignedRow)(e.Row)), e.Action));
+                if ((this.timepunchesRowChanged != null)) {
+                    this.timepunchesRowChanged(this, new timepunchesRowChangeEvent(((timepunchesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -497,8 +530,8 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowChanging(e);
-                if ((this.worktaskassignedRowChanging != null)) {
-                    this.worktaskassignedRowChanging(this, new worktaskassignedRowChangeEvent(((worktaskassignedRow)(e.Row)), e.Action));
+                if ((this.timepunchesRowChanging != null)) {
+                    this.timepunchesRowChanging(this, new timepunchesRowChangeEvent(((timepunchesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -506,8 +539,8 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleted(e);
-                if ((this.worktaskassignedRowDeleted != null)) {
-                    this.worktaskassignedRowDeleted(this, new worktaskassignedRowChangeEvent(((worktaskassignedRow)(e.Row)), e.Action));
+                if ((this.timepunchesRowDeleted != null)) {
+                    this.timepunchesRowDeleted(this, new timepunchesRowChangeEvent(((timepunchesRow)(e.Row)), e.Action));
                 }
             }
             
@@ -515,14 +548,14 @@ namespace NewBlueJayERP {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
                 base.OnRowDeleting(e);
-                if ((this.worktaskassignedRowDeleting != null)) {
-                    this.worktaskassignedRowDeleting(this, new worktaskassignedRowChangeEvent(((worktaskassignedRow)(e.Row)), e.Action));
+                if ((this.timepunchesRowDeleting != null)) {
+                    this.timepunchesRowDeleting(this, new timepunchesRowChangeEvent(((timepunchesRow)(e.Row)), e.Action));
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveworktaskassignedRow(worktaskassignedRow row) {
+            public void RemovetimepunchesRow(timepunchesRow row) {
                 this.Rows.Remove(row);
             }
             
@@ -531,7 +564,7 @@ namespace NewBlueJayERP {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                WorkTaskAssignedDataSet ds = new WorkTaskAssignedDataSet();
+                TimePunchesDataSet ds = new TimePunchesDataSet();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -549,7 +582,7 @@ namespace NewBlueJayERP {
                 type.Attributes.Add(attribute1);
                 global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
                 attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "worktaskassignedDataTable";
+                attribute2.FixedValue = "timepunchesDataTable";
                 type.Attributes.Add(attribute2);
                 type.Particle = sequence;
                 global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
@@ -593,69 +626,91 @@ namespace NewBlueJayERP {
         /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
-        public partial class worktaskassignedRow : global::System.Data.DataRow {
+        public partial class timepunchesRow : global::System.Data.DataRow {
             
-            private worktaskassignedDataTable tableworktaskassigned;
+            private timepunchesDataTable tabletimepunches;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal worktaskassignedRow(global::System.Data.DataRowBuilder rb) : 
+            internal timepunchesRow(global::System.Data.DataRowBuilder rb) : 
                     base(rb) {
-                this.tableworktaskassigned = ((worktaskassignedDataTable)(this.Table));
+                this.tabletimepunches = ((timepunchesDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public int TransactionID {
                 get {
-                    return ((int)(this[this.tableworktaskassigned.TransactionIDColumn]));
+                    return ((int)(this[this.tabletimepunches.TransactionIDColumn]));
                 }
                 set {
-                    this[this.tableworktaskassigned.TransactionIDColumn] = value;
+                    this[this.tabletimepunches.TransactionIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int WorkTaskID {
+            public int PayID {
                 get {
-                    return ((int)(this[this.tableworktaskassigned.WorkTaskIDColumn]));
+                    return ((int)(this[this.tabletimepunches.PayIDColumn]));
                 }
                 set {
-                    this[this.tableworktaskassigned.WorkTaskIDColumn] = value;
+                    this[this.tabletimepunches.PayIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string WorkTask {
+            public int EmployeeID {
                 get {
-                    return ((string)(this[this.tableworktaskassigned.WorkTaskColumn]));
+                    return ((int)(this[this.tabletimepunches.EmployeeIDColumn]));
                 }
                 set {
-                    this[this.tableworktaskassigned.WorkTaskColumn] = value;
+                    this[this.tabletimepunches.EmployeeIDColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string BusinessLine {
+            public string FirstName {
                 get {
-                    return ((string)(this[this.tableworktaskassigned.BusinessLineColumn]));
+                    return ((string)(this[this.tabletimepunches.FirstNameColumn]));
                 }
                 set {
-                    this[this.tableworktaskassigned.BusinessLineColumn] = value;
+                    this[this.tabletimepunches.FirstNameColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Function {
+            public string LastName {
                 get {
-                    return ((string)(this[this.tableworktaskassigned.FunctionColumn]));
+                    return ((string)(this[this.tabletimepunches.LastNameColumn]));
                 }
                 set {
-                    this[this.tableworktaskassigned.FunctionColumn] = value;
+                    this[this.tabletimepunches.LastNameColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime TransactionDate {
+                get {
+                    return ((global::System.DateTime)(this[this.tabletimepunches.TransactionDateColumn]));
+                }
+                set {
+                    this[this.tabletimepunches.TransactionDateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public string Source {
+                get {
+                    return ((string)(this[this.tabletimepunches.SourceColumn]));
+                }
+                set {
+                    this[this.tabletimepunches.SourceColumn] = value;
                 }
             }
         }
@@ -664,22 +719,22 @@ namespace NewBlueJayERP {
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class worktaskassignedRowChangeEvent : global::System.EventArgs {
+        public class timepunchesRowChangeEvent : global::System.EventArgs {
             
-            private worktaskassignedRow eventRow;
+            private timepunchesRow eventRow;
             
             private global::System.Data.DataRowAction eventAction;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedRowChangeEvent(worktaskassignedRow row, global::System.Data.DataRowAction action) {
+            public timepunchesRowChangeEvent(timepunchesRow row, global::System.Data.DataRowAction action) {
                 this.eventRow = row;
                 this.eventAction = action;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public worktaskassignedRow Row {
+            public timepunchesRow Row {
                 get {
                     return this.eventRow;
                 }

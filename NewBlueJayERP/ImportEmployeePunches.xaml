@@ -21,8 +21,9 @@
             <Label x:Name="lblTitle" Content="Import Employee Time Card Punches" FontSize="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="540" Background="LightBlue">
-            <Expander x:Name="expProcess" Header="Process" FontSize="16" Margin="10,1,1,1" Expanded="expProcess_Expanded" />
             <Expander x:Name="expImportPunches" Header="Import Punches" FontSize="16" Margin="10,1,1,1" Expanded="expImportPunches_Expanded" />
+            <Expander x:Name="expProcessReport" Header="Process Report" FontSize="16" Margin="10,1,1,1" Expanded="expProcessReport_Expanded" />
+            <Expander x:Name="expUploadData" Header="Upload Date" FontSize="16" Margin="10,1,1,1" Expanded="expUploadData_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />

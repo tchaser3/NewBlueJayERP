@@ -8,12 +8,13 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>NewBlueJayERP</RootNamespace>
     <AssemblyName>NewBlueJayERP</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -521,6 +522,9 @@
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CellDataSearch.xaml.cs">
+      <DependentUpon>CellDataSearch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="CellMessageSearch.xaml.cs">
       <DependentUpon>CellMessageSearch.xaml</DependentUpon>
     </Compile>
@@ -908,6 +912,11 @@
     <Compile Include="ImportProductionCodes.xaml.cs">
       <DependentUpon>ImportProductionCodes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ImportTimePunchesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportTimePunchesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ImportToolSheets.xaml.cs">
       <DependentUpon>ImportToolSheets.xaml</DependentUpon>
     </Compile>
@@ -1214,6 +1223,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="TimePunchesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>TimePunchesDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="TopAgedOverdueProjectsDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -1424,6 +1438,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AssignWorkTaskBusinessLine.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CellDataSearch.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2405,6 +2423,17 @@
     <None Include="ImportNonProductionTasksDataSet.xss">
       <DependentUpon>ImportNonProductionTasksDataSet.xsd</DependentUpon>
     </None>
+    <None Include="ImportTimePunchesDataSet.xsc">
+      <DependentUpon>ImportTimePunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportTimePunchesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportTimePunchesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportTimePunchesDataSet.xss">
+      <DependentUpon>ImportTimePunchesDataSet.xsd</DependentUpon>
+    </None>
     <None Include="ImportTowMotorDataSet.xsc">
       <DependentUpon>ImportTowMotorDataSet.xsd</DependentUpon>
     </None>
@@ -2760,6 +2789,17 @@
     </None>
     <None Include="SubmitAfterHoursWorkDataSet.xss">
       <DependentUpon>SubmitAfterHoursWorkDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TimePunchesDataSet.xsc">
+      <DependentUpon>TimePunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="TimePunchesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>TimePunchesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="TimePunchesDataSet.xss">
+      <DependentUpon>TimePunchesDataSet.xsd</DependentUpon>
     </None>
     <None Include="TopAgedOverdueProjectsDataSet.xsc">
       <DependentUpon>TopAgedOverdueProjectsDataSet.xsd</DependentUpon>
