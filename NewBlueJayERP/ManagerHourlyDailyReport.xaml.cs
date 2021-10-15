@@ -26,6 +26,8 @@ using EmployeeTimeClockEntriesDLL;
 using NewEmployeeDLL;
 using EmployeeProjectAssignmentDLL;
 using EmployeeLaborRateDLL;
+using EmployeePunchedHoursDLL;
+using EmployeeDateEntryDLL;
 
 namespace NewBlueJayERP
 {

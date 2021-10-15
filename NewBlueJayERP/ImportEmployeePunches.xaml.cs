@@ -258,11 +258,28 @@ namespace NewBlueJayERP
                     {
                         datEndTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
 
-                        tspTotalHours = datEndTime - datStartTime;
+                        if (datStartTime.Day == datEndTime.Day)
+                        {
+                            tspTotalHours = datEndTime - datStartTime;
 
-                        decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
+                            decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
 
-                        decTotalHours = Math.Round(decTotalHours, 3);
+                            decTotalHours = Math.Round(decTotalHours, 3);
+                        }
+                        else if (datStartTime.Day < datEndTime.Day)
+                        {
+                            intCounter--;
+
+                            datEndTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
+
+                            datStartTime = TheTimePunchesDataSet.timepunches[intCounter - 1].TransactionDate;
+
+                            tspTotalHours = datEndTime - datStartTime;
+
+                            decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
+
+                            decTotalHours = Math.Round(decTotalHours, 3);
+                        }
                     }
                     else
                     {

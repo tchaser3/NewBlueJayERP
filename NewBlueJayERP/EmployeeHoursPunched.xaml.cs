@@ -24,6 +24,7 @@ using DateSearchDLL;
 using EmployeeTimeClockEntriesDLL;
 using EmployeeDateEntryDLL;
 using Microsoft.Win32;
+using EmployeePunchedHoursDLL;
 
 namespace NewBlueJayERP
 {
@@ -40,14 +41,13 @@ namespace NewBlueJayERP
         DateSearchClass TheDateSearchClass = new DateSearchClass();
         EmployeeTimeClockEntriesClass TheEmployeeTimeClockEntriesClass = new EmployeeTimeClockEntriesClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        EmployeePunchedHoursClass TheEmployeePunchedHoursClass = new EmployeePunchedHoursClass();
 
         //setting up the datasets
-        FindSortedEmployeeManagersDataSet TheFindSortedEmployeeManagersDataSet = new FindSortedEmployeeManagersDataSet();
-        FindEmployeeTimeCardEntriesDataSet TheFindEmployeeTimeCardEntriesDataSet = new FindEmployeeTimeCardEntriesDataSet();
+        FindSortedEmployeeManagersDataSet TheFindSortedEmployeeManagersDataSet = new FindSortedEmployeeManagersDataSet();        
         FindSortedManagersHourlyEmployeesDataSet TheFindSortedManagersHourlyEmployeesDataSet = new FindSortedManagersHourlyEmployeesDataSet();
-        EmployeeTimePunchesDataSet TheEmployeetimePunchesDataSet = new EmployeeTimePunchesDataSet();
-        EmployeeTimePunchesDataSet TheComputedEmployeetimePunchesDataSet = new EmployeeTimePunchesDataSet();
-
+        FindAlohaEmployeePunchesByManagerDataSet TheFindAlohaEmployeePunchesForManagerDataSet = new FindAlohaEmployeePunchesByManagerDataSet();
+        
         //setting global variables
         int gintManagerID;
         DateTime gdatStartDate;
@@ -83,46 +83,17 @@ namespace NewBlueJayERP
 
         private void expProecess_Expanded(object sender, RoutedEventArgs e)
         {
-            //setting local variables
-            bool blnFatalError = false;
-            bool blnThereIsAProblem = false;
+            string strValueForValidation;
             string strErrorMessage = "";
-            string strValueForValdation;
-            int intCounter;
-            int intNumberOfRecords;
-            DateTime datStartingDate;
-            DateTime datLimitingDate;
-            double douTotalHours;
-            int intEmployeeID;
-            int intSecondCounter;
-            int intSecondNumberOfRecords;
-            int intRemander;
-            DateTime datPunchDate;
-            DateTime datSecondPunchDate = DateTime.Now;
-            string strFirstName;
-            string strLastName;
-            TimeSpan tspTotalHours;
-            int intHours;
-            int intMinutes;
-            decimal decTotalHours;
-            int intRecordsReturned;
-            int intCounterDifference;
-
-            PleaseWait PleaseWait = new PleaseWait();
-            PleaseWait.Show();
+            bool blnThereIsAProblem = false;
+            bool blnFatalError = false;
             
             try
             {
                 expProecess.IsExpanded = false;
-                TheEmployeetimePunchesDataSet.employeetimepunches.Rows.Clear();
 
-                if(cboSelectManager.SelectedIndex < 1)
-                {
-                    blnFatalError = true;
-                    strErrorMessage += "The Manager was not Selected\n";
-                }
-                strValueForValdation = txtStartDate.Text;
-                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValdation);
+                strValueForValidation = txtStartDate.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
                 if(blnThereIsAProblem == true)
                 {
                     blnFatalError = true;
@@ -130,10 +101,10 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    gdatStartDate = Convert.ToDateTime(strValueForValdation);
+                    gdatStartDate = Convert.ToDateTime(strValueForValidation);
                 }
-                strValueForValdation = txtEndDate.Text;
-                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValdation);
+                strValueForValidation = txtEndDate.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
                 if (blnThereIsAProblem == true)
                 {
                     blnFatalError = true;
@@ -141,143 +112,17 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    gdatEndDate = Convert.ToDateTime(strValueForValdation);
+                    gdatEndDate = Convert.ToDateTime(strValueForValidation);
                 }
                 if(blnFatalError == true)
                 {
                     TheMessagesClass.ErrorMessage(strErrorMessage);
                     return;
                 }
-                else
-                {
-                    blnFatalError = TheDataValidationClass.verifyDateRange(gdatStartDate, gdatEndDate);
 
-                    if (blnFatalError == true)
-                    {
-                        TheMessagesClass.ErrorMessage("The Start Date is after the End Date\0n");
-                        return;
-                    }
-                }
+                TheFindAlohaEmployeePunchesForManagerDataSet = TheEmployeePunchedHoursClass.FindAlohaPunchesByManager(gintManagerID, gdatStartDate, gdatEndDate);
 
-                TheFindSortedManagersHourlyEmployeesDataSet = TheEmployeeClass.FindSortedManagersHourlyEmployees(gintManagerID);
-
-                intNumberOfRecords = TheFindSortedManagersHourlyEmployeesDataSet.FindSortedManagersHourlyEmployees.Rows.Count - 1;
-
-                if(intNumberOfRecords > -1)
-                {
-                    for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
-                    {
-                        intEmployeeID = TheFindSortedManagersHourlyEmployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].EmployeeID;
-                        strFirstName = TheFindSortedManagersHourlyEmployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].FirstName;
-                        strLastName = TheFindSortedManagersHourlyEmployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].LastName;
-
-                        datStartingDate = gdatStartDate;
-                        datStartingDate = TheDateSearchClass.RemoveTime(datStartingDate);
-                        datLimitingDate = TheDateSearchClass.AddingDays(datStartingDate, 1);
-
-                        while(datLimitingDate <= gdatEndDate)
-                        {
-                            TheFindEmployeeTimeCardEntriesDataSet = TheEmployeeTimeClockEntriesClass.FindEmployeeTimeCardEntries(intEmployeeID, datStartingDate, datLimitingDate);
-
-                            intSecondNumberOfRecords = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries.Rows.Count;
-
-                            intRemander = (intSecondNumberOfRecords) % 2;
-
-                            intRecordsReturned = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries.Rows.Count;
-
-                            datPunchDate = datStartingDate;
-
-                            if (intSecondNumberOfRecords > 0)
-                            {
-                                for(intSecondCounter = 0; intSecondCounter < intSecondNumberOfRecords; intSecondCounter++)
-                                {
-                                    datPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
-
-                                    if (intRemander == 0)
-                                    {                                        
-                                        intSecondCounter++;
-                                        datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
-                                    }
-                                    else if(intRemander > 0)
-                                    {
-                                        if(intRecordsReturned == 1)
-                                        {
-                                            if(datPunchDate.Hour < 7)
-                                            {
-                                                datSecondPunchDate = datPunchDate;
-                                                datPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
-                                            }
-                                            else if(datPunchDate.Hour >= 7)
-                                            {
-                                                datSecondPunchDate = datPunchDate;
-                                                datSecondPunchDate = TheDateSearchClass.RemoveTime(datSecondPunchDate);
-                                                datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
-                                            }
-                                        }
-                                        else if(intRecordsReturned > 1)
-                                        {
-                                            intCounterDifference = (intSecondNumberOfRecords - 1) - intSecondCounter;
-
-                                            datPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
-
-                                            if (intCounterDifference == 0)
-                                            {
-                                                if (datPunchDate.Hour < 7)
-                                                {
-                                                    datSecondPunchDate = datPunchDate;
-                                                    datPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
-                                                }
-                                                else if ((datPunchDate.Hour >= 7) && (datPunchDate.Hour < 20))
-                                                {
-                                                    datSecondPunchDate = datPunchDate;
-                                                    datSecondPunchDate = TheDateSearchClass.RemoveTime(datSecondPunchDate);
-                                                    datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
-                                                }
-                                                else if(datPunchDate.Hour >= 20)
-                                                {
-                                                    datSecondPunchDate = TheDateSearchClass.RemoveTime(datPunchDate);
-                                                    datSecondPunchDate = TheDateSearchClass.AddingDays(datSecondPunchDate, 1);
-                                                }
-
-                                            }
-                                            else if(intCounterDifference > 1)
-                                            {
-                                                intSecondCounter++;
-                                                datSecondPunchDate = TheFindEmployeeTimeCardEntriesDataSet.FindEmployeeTimeCardEntries[intSecondCounter].PunchTime;
-                                            }
-                                        }
-
-                                    }
-
-                                    tspTotalHours = datSecondPunchDate - datPunchDate;
-                                    decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
-
-                                    if(decTotalHours > 6)
-                                    {
-                                        decTotalHours = decTotalHours - 1;
-                                    }
-
-                                    decTotalHours = Math.Round(decTotalHours, 2);
-
-                                    EmployeeTimePunchesDataSet.employeetimepunchesRow NewEmployeeRow = TheEmployeetimePunchesDataSet.employeetimepunches.NewemployeetimepunchesRow();
-
-                                    NewEmployeeRow.EndDate = datSecondPunchDate;
-                                    NewEmployeeRow.FirstName = strFirstName;
-                                    NewEmployeeRow.LastName = strLastName;
-                                    NewEmployeeRow.StartDate = datPunchDate;
-                                    NewEmployeeRow.TotalHours = decTotalHours;
-
-                                    TheEmployeetimePunchesDataSet.employeetimepunches.Rows.Add(NewEmployeeRow);
-                                }
-                            }     
-
-                            datStartingDate = datLimitingDate;
-                            datLimitingDate = TheDateSearchClass.AddingDays(datLimitingDate, 1);
-                        }
-                    }
-                }
-
-                dgrResults.ItemsSource = TheEmployeetimePunchesDataSet.employeetimepunches;
+                dgrResults.ItemsSource = TheFindAlohaEmployeePunchesForManagerDataSet.FindAlohaEmployeesPunchesByManager;
             }
             catch (Exception EX)
             {
@@ -286,7 +131,7 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(EX.ToString());
             }
 
-            PleaseWait.Close();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -303,27 +148,37 @@ namespace NewBlueJayERP
             int intCounter;
             int intNumberOfRecords;
 
-            txtEndDate.Text = "";
-            txtStartDate.Text = "";
-
-            TheEmployeetimePunchesDataSet.employeetimepunches.Rows.Clear();
-
-            dgrResults.ItemsSource = TheEmployeetimePunchesDataSet.employeetimepunches;
-
-            TheFindSortedEmployeeManagersDataSet = TheEmployeeClass.FindSortedEmployeeManagers();
-
-            intNumberOfRecords = TheFindSortedEmployeeManagersDataSet.FindSortedEmployeeManagers.Rows.Count - 1;
-            cboSelectManager.Items.Clear();
-            cboSelectManager.Items.Add("Select Manager");
-            
-            for(intCounter = 0; intCounter <= intNumberOfRecords; intCounter++)
+            try
             {
-                cboSelectManager.Items.Add(TheFindSortedEmployeeManagersDataSet.FindSortedEmployeeManagers[intCounter].FullName);
+                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Employee Hours Punched");
+
+                cboSelectManager.Items.Clear();
+                cboSelectManager.Items.Add("Select Manager");
+
+                TheFindSortedEmployeeManagersDataSet = TheEmployeeClass.FindSortedEmployeeManagers();
+
+                intNumberOfRecords = TheFindSortedEmployeeManagersDataSet.FindSortedEmployeeManagers.Rows.Count;
+
+                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    cboSelectManager.Items.Add(TheFindSortedEmployeeManagersDataSet.FindSortedEmployeeManagers[intCounter].FullName);
+                }
+
+                cboSelectManager.SelectedIndex = 0;
+
+                txtEndDate.Text = "";
+                txtStartDate.Text = "";
+
+                TheFindAlohaEmployeePunchesForManagerDataSet = TheEmployeePunchedHoursClass.FindAlohaPunchesByManager(-1, DateTime.Now, DateTime.Now);
+
+                dgrResults.ItemsSource = TheFindAlohaEmployeePunchesForManagerDataSet.FindAlohaEmployeesPunchesByManager;
             }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Employee Hours Punched // Reset Controls " + Ex.Message);
 
-            cboSelectManager.SelectedIndex = 0;
-
-            TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Employee Hours Punched Report");
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
 
         private void cboSelectManager_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -357,7 +212,7 @@ namespace NewBlueJayERP
 
             try
             {
-                expExportToExcel.IsExpanded = false;
+               /* expExportToExcel.IsExpanded = false;
 
                 worksheet = workbook.ActiveSheet;
 
@@ -399,7 +254,7 @@ namespace NewBlueJayERP
                 saveDialog.ShowDialog();
 
                 workbook.SaveAs(saveDialog.FileName);
-                MessageBox.Show("Export Successful");
+                MessageBox.Show("Export Successful");*/
 
             }
             catch (System.Exception ex)

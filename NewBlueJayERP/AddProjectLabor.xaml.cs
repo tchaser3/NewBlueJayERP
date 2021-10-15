@@ -86,6 +86,7 @@ namespace NewBlueJayERP
         int gintDriveTimeTaskID;
         bool gblnDriveTimeCalculated;
         decimal gdecNonProductiveTime;
+        decimal gdecLunchHour;
 
         public AddProjectLabor()
         {
@@ -155,7 +156,7 @@ namespace NewBlueJayERP
             txtEnterTask.Text = "";
             gblnHoursEntered = false;
             btnResetTask.IsEnabled = false;
-
+            rdoNo.IsChecked = true;
         }
 
         private void btnCheckProject_Click(object sender, RoutedEventArgs e)
@@ -449,7 +450,7 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                gdecHours = gdecHours - gdecDriveTime - gdecNonProductiveTime;
+                gdecHours = gdecHours - gdecDriveTime - gdecNonProductiveTime - gdecLunchHour;
 
                 //adding the record
                 ProjectWorkCompletedDataSet.workcompletedRow NewWorkRow = TheEmployeeWorkCompleteDataSet.workcompleted.NewworkcompletedRow();
@@ -804,7 +805,7 @@ namespace NewBlueJayERP
 
                 TheFindEmployeeHoursOverADateRangeDataSet = TheEmployeeProjectAssignmentClass.FindEmployeeHoursOverDateRange(intEmployeeID, datStartDate, datEndDate);
 
-                decTotalHours = decHoursEntered;
+                decTotalHours = decHoursEntered - gdecLunchHour;
 
                 intNumberOfRecords = TheFindEmployeeHoursOverADateRangeDataSet.FindEmployeeHoursOverDateRange.Rows.Count - 1;
 
@@ -988,6 +989,16 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void rdoYes_Checked(object sender, RoutedEventArgs e)
+        {
+            gdecLunchHour = 1;
+        }
+
+        private void rdoNo_Checked(object sender, RoutedEventArgs e)
+        {
+            gdecLunchHour = 0;
         }
     }
 }

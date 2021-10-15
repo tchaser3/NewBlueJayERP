@@ -92,6 +92,11 @@
                 <StackPanel Height="50" Width="275">
                     <Button x:Name="btnCheckProject" Content="Check Project" TabIndex="3" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="100" Margin="55,2,1,1" Click="btnCheckProject_Click"/>
                 </StackPanel>
+                <StackPanel Orientation="Horizontal" Height="50" Width="275">
+                    <Label x:Name="lblLunchTaken" Content="Lunch Taken" FontSize="14" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110"/>
+                    <RadioButton x:Name="rdoYes" TabIndex="4" Content="Yes" FontSize="15" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="25,1,1,1" Checked="rdoYes_Checked"/>
+                    <RadioButton x:Name="rdoNo" TabIndex="5" Content="No" FontSize="15" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="25,1,1,1" Checked="rdoNo_Checked"/>
+                </StackPanel>
             </StackPanel>
             <StackPanel Height="340" Width="275">
                 <StackPanel Height="40" Width="275">
@@ -99,22 +104,22 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblDriveTime" Content="Drive Time Hours" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtDriveTime" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" />
+                    <TextBox x:Name="txtDriveTime" CharacterCasing="Upper" TabIndex="6" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblNonProductiveTime" Content="Non-Prod Time" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtNonProductive" CharacterCasing="Upper" TabIndex="8" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" />
+                    <TextBox x:Name="txtNonProductive" CharacterCasing="Upper" TabIndex="7" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" />
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblEnterLastName" Content="Enter Last Name" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtEnterLastName" CharacterCasing="Upper" TabIndex="9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" TextChanged="txtEnterLastName_TextChanged"/>
+                    <TextBox x:Name="txtEnterLastName" CharacterCasing="Upper" TabIndex="8" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" TextChanged="txtEnterLastName_TextChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblSelectEmployee" Content="Select Employee" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <ComboBox x:Name="cboSelectEmployee" IsReadOnly="True" TabIndex="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" SelectionChanged="cboSelectEmployee_SelectionChanged"/>
+                    <ComboBox x:Name="cboSelectEmployee" IsReadOnly="True" TabIndex="9" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" SelectionChanged="cboSelectEmployee_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel Height="50" Width="275">
-                    <Button x:Name="btnAddEmployee" Content="Add Emplolyee" TabIndex="11" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnAddEmployee_Click"/>
+                    <Button x:Name="btnAddEmployee" Content="Add Emplolyee" TabIndex="10" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnAddEmployee_Click"/>
                 </StackPanel>
                 
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
@@ -122,7 +127,7 @@
                     <TextBox x:Name="txtTotalHours" CharacterCasing="Upper" IsReadOnly="True" Background="LightGray" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>
                 </StackPanel>
                 <StackPanel Height="50" Width="275">
-                    <Button x:Name="btnResetEmployees" Content="Remove Employee" TabIndex="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnResetEmployees_Click"/>
+                    <Button x:Name="btnResetEmployees" Content="Remove Employee" TabIndex="11" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnResetEmployees_Click"/>
                 </StackPanel>
             </StackPanel>
             <StackPanel Height="340" Width="275">
@@ -131,21 +136,21 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblEnterTask" Content="Enter Task" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtEnterTask" CharacterCasing="Upper" TabIndex="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" TextChanged="txtEnterTask_TextChanged"/>
+                    <TextBox x:Name="txtEnterTask" CharacterCasing="Upper" TabIndex="12" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" TextChanged="txtEnterTask_TextChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblSelectTask" Content="Select Task" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <ComboBox x:Name="cboSelectTask" IsReadOnly="True" TabIndex="14" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" SelectionChanged="cboSelectTask_SelectionChanged"/>
+                    <ComboBox x:Name="cboSelectTask" IsReadOnly="True" TabIndex="13" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1" SelectionChanged="cboSelectTask_SelectionChanged"/>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Height="40" Width="275">
                     <Label x:Name="lblEnterFootage" Content="Footage/Pieces" HorizontalAlignment="Center" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="110" FontSize="14"/>
-                    <TextBox x:Name="txtEnterFootage" CharacterCasing="Upper" TabIndex="15" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>
+                    <TextBox x:Name="txtEnterFootage" CharacterCasing="Upper" TabIndex="14" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="35" Width="150" Margin="5,1,1,1"/>
                 </StackPanel>
                 <StackPanel Height="50" Width="275">
-                    <Button x:Name="btnAddTask" Content="Add Task" TabIndex="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnAddTask_Click"/>
+                    <Button x:Name="btnAddTask" Content="Add Task" TabIndex="15" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnAddTask_Click"/>
                 </StackPanel>
                 <StackPanel Height="50" Width="275">
-                    <Button x:Name="btnResetTask" Content="Remove Task" TabIndex="17" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnResetTask_Click"/>
+                    <Button x:Name="btnResetTask" Content="Remove Task" TabIndex="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="150" Margin="105,2,1,1" Click="btnResetTask_Click"/>
                 </StackPanel>
             </StackPanel>
             
