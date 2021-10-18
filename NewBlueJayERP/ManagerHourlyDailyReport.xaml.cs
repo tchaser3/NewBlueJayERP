@@ -45,11 +45,13 @@ namespace NewBlueJayERP
         EmployeeTimeClockEntriesClass TheEmployeeTimeClockEntriesClass = new EmployeeTimeClockEntriesClass();        EmployeeClass TheEmployeeClass = new EmployeeClass();
         EmployeeProjectAssignmentClass TheEmployeeProjectAssignmentClass = new EmployeeProjectAssignmentClass();
         EmployeeLaborRateClass TheEmployeeLaborRateClass = new EmployeeLaborRateClass();
+        EmployeePunchedHoursClass TheEmployeePunchedHoursClass = new EmployeePunchedHoursClass();
+        EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
 
         FindProductionManagersDataSet TheFindProductionManagersDataSet = new FindProductionManagersDataSet();
         EmployeePunchesProductivityDataSet TheEmployeePunchesProductivityDataSet = new EmployeePunchesProductivityDataSet();
         FindSortedManagersHourlyEmployeesDataSet TheFindSortedManagerHourlyemployeesDataSet = new FindSortedManagersHourlyEmployeesDataSet();
-        FindEmployeeTimeCardEntriesDataSet TheFindEmployeeTimeClockEntriesDataSet = new FindEmployeeTimeCardEntriesDataSet();
+        FindAlohaEmployeeHoursOverDateRangeDataSet TheFindAlohaEmployeeHoursOverDateRangeDataSet = new FindAlohaEmployeeHoursOverDateRangeDataSet();
         FindEmployeeProductionHoursOverPayPeriodDataSet TheFindEmployeeProductionHoursOverPayPeriodDataSet = new FindEmployeeProductionHoursOverPayPeriodDataSet();
         FindEmployeeLaborRateDataSet TheFindEmployeeLaborRateDataSet = new FindEmployeeLaborRateDataSet();
 
@@ -221,52 +223,57 @@ namespace NewBlueJayERP
                                 decProductivityHours = TheFindEmployeeProductionHoursOverPayPeriodDataSet.FindEmployeeProductionHoursOverPayPeriod[0].ProductionHours;
                             }
 
-                            TheFindEmployeeTimeClockEntriesDataSet = TheEmployeeTimeClockEntriesClass.FindEmployeeTimeCardEntries(intEmployeeID, datTransactionDate, datLimitingDate);
+                            TheFindAlohaEmployeeHoursOverDateRangeDataSet = TheEmployeePunchedHoursClass.FindAlohaEmployeeHoursOverDateRange(intEmployeeID, datTransactionDate, datLimitingDate);
 
-                            douPunchedHours = ComputePunchedHours();
+                            intRecordsReturned = TheFindAlohaEmployeeHoursOverDateRangeDataSet.FindAlohaEmployeeHoursOverDateRange.Rows.Count;
 
-                            decPunchedHours = Convert.ToDecimal(Math.Round(douPunchedHours, 2));
-
-                            if(decPunchedHours > 8)
+                            if(intRecordsReturned > 0)
                             {
-                                decStraightHours = 8;
-                                decOverTimeHours = decPunchedHours - 8;
+                                decPunchedHours = TheFindAlohaEmployeeHoursOverDateRangeDataSet.FindAlohaEmployeeHoursOverDateRange[0].TotalHours;
+
+                                if (decPunchedHours > 8)
+                                {
+                                    decStraightHours = 8;
+                                    decOverTimeHours = decPunchedHours - 8;
+                                }
+                                else
+                                {
+                                    decStraightHours = decPunchedHours;
+                                    decOverTimeHours = 0;
+                                }
+
+                                TheFindEmployeeLaborRateDataSet = TheEmployeeLaborRateClass.FindEmployeeLaborRate(intEmployeeID);
+
+                                decLaborRate = TheFindEmployeeLaborRateDataSet.FindEmployeeLaborRate[0].PayRate;
+
+                                decStraightCost = decStraightHours * decLaborRate;
+                                decOverTimeRate = decLaborRate * Convert.ToDecimal(1.5);
+                                decOverTimeCosts = decOverTimeHours * decOverTimeRate;
+
+                                strFirstName = TheFindSortedManagerHourlyemployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].FirstName;
+                                strLastName = TheFindSortedManagerHourlyemployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].LastName;
+
+                                douTotalLaborCost = Math.Round(Convert.ToDouble(decStraightCost + decOverTimeCosts), 2);
+
+                                if (decPunchedHours != 0)
+                                {
+                                    decHourVariance = decProductivityHours - decPunchedHours;
+
+                                    EmployeePunchesProductivityDataSet.employeepunchesproductivityRow NewProductivityRow = TheEmployeePunchesProductivityDataSet.employeepunchesproductivity.NewemployeepunchesproductivityRow();
+
+                                    NewProductivityRow.Date = datTransactionDate;
+                                    NewProductivityRow.FirstName = strFirstName;
+                                    NewProductivityRow.LastName = strLastName;
+                                    NewProductivityRow.TotalLaborCost = Convert.ToDecimal(douTotalLaborCost);
+                                    NewProductivityRow.HoursProductive = decProductivityHours;
+                                    NewProductivityRow.HoursPunched = decPunchedHours;
+                                    NewProductivityRow.HourVariance = decHourVariance;
+
+                                    TheEmployeePunchesProductivityDataSet.employeepunchesproductivity.Rows.Add(NewProductivityRow);
+                                }
                             }
-                            else
-                            {
-                                decStraightHours = decPunchedHours;
-                                decOverTimeHours = 0;
-                            }
 
-                            TheFindEmployeeLaborRateDataSet = TheEmployeeLaborRateClass.FindEmployeeLaborRate(intEmployeeID);
-
-                            decLaborRate = TheFindEmployeeLaborRateDataSet.FindEmployeeLaborRate[0].PayRate;
-
-                            decStraightCost = decStraightHours * decLaborRate;
-                            decOverTimeRate = decLaborRate * Convert.ToDecimal(1.5);
-                            decOverTimeCosts = decOverTimeHours * decOverTimeRate;
-
-                            strFirstName = TheFindSortedManagerHourlyemployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].FirstName;
-                            strLastName = TheFindSortedManagerHourlyemployeesDataSet.FindSortedManagersHourlyEmployees[intCounter].LastName;
-
-                            douTotalLaborCost = Math.Round(Convert.ToDouble(decStraightCost + decOverTimeCosts), 2);
-
-                            if(decPunchedHours != 0)
-                            {
-                                decHourVariance = decProductivityHours - decPunchedHours;
-
-                                EmployeePunchesProductivityDataSet.employeepunchesproductivityRow NewProductivityRow = TheEmployeePunchesProductivityDataSet.employeepunchesproductivity.NewemployeepunchesproductivityRow();
-
-                                NewProductivityRow.Date = datTransactionDate;
-                                NewProductivityRow.FirstName = strFirstName;
-                                NewProductivityRow.LastName = strLastName;
-                                NewProductivityRow.TotalLaborCost = Convert.ToDecimal(douTotalLaborCost);
-                                NewProductivityRow.HoursProductive = decProductivityHours;
-                                NewProductivityRow.HoursPunched = decPunchedHours;
-                                NewProductivityRow.HourVariance = decHourVariance;
-
-                                TheEmployeePunchesProductivityDataSet.employeepunchesproductivity.Rows.Add(NewProductivityRow);
-                            }
+                            
                         }
 
                         datTransactionDate = datLimitingDate.AddSeconds(1);
@@ -285,7 +292,7 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
-        private double ComputePunchedHours()
+        /*private double ComputePunchedHours()
         {
             double douTotalHours = 0;
             int intCounter;
@@ -362,7 +369,7 @@ namespace NewBlueJayERP
             }
 
             return douTotalHours;
-        }
+        }*/
 
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
         {

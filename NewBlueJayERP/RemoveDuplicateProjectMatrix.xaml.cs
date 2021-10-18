@@ -37,7 +37,7 @@ namespace NewBlueJayERP
 
         //setting up the data
         FindDuplicateProjectMatrixDataSet TheFindDuplicateProjectMatrixDataSet = new FindDuplicateProjectMatrixDataSet();
-        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
+        FindProjectMatrixByCustomerAssignedIDShortDataSet TheFindProjectMatrixByCustomerAssignedIDShortDataSet = new FindProjectMatrixByCustomerAssignedIDShortDataSet();
         DuplicateProjectsDataSet TheDuplicateProjectsDataSet = new DuplicateProjectsDataSet();
 
         public RemoveDuplicateProjectMatrix()
@@ -116,21 +116,21 @@ namespace NewBlueJayERP
                     {
                         strCustomerAssignedID = TheFindDuplicateProjectMatrixDataSet.FindDuplicateProjectMatrix[intCounter].CustomerAssignedID;
 
-                        TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strCustomerAssignedID);
+                        TheFindProjectMatrixByCustomerAssignedIDShortDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerAssignedIDShort(strCustomerAssignedID);
 
-                        intSecondNumberOfRecords = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count - 1;
+                        intSecondNumberOfRecords = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort.Rows.Count - 1;
 
                         for(intSecondCounter = 0; intSecondCounter <= intSecondNumberOfRecords; intSecondCounter++)
                         {
                             DuplicateProjectsDataSet.duplicateprojectsRow NewProjectEntry = TheDuplicateProjectsDataSet.duplicateprojects.NewduplicateprojectsRow();
 
-                            NewProjectEntry.AssignedOffice = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[intSecondCounter].AssignedOffice;
-                            NewProjectEntry.AssignedProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[intSecondCounter].AssignedProjectID;
-                            NewProjectEntry.CustomerProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[intSecondCounter].CustomerAssignedID;
-                            NewProjectEntry.ProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[intSecondCounter].ProjectID;
+                            NewProjectEntry.AssignedOffice = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort[intSecondCounter].AssignedOffice;
+                            NewProjectEntry.AssignedProjectID = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort[intSecondCounter].AssignedProjectID;
+                            NewProjectEntry.CustomerProjectID = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort[intSecondCounter].CustomerAssignedID;
+                            NewProjectEntry.ProjectID = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort[intSecondCounter].ProjectID;
                             NewProjectEntry.RemoveProject = false;
-                            NewProjectEntry.TransactionDate = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[intSecondCounter].TransactionDate;
-                            NewProjectEntry.TransactionID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[intSecondCounter].TransactionID;
+                            NewProjectEntry.TransactionDate = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort[intSecondCounter].TransactionDate;
+                            NewProjectEntry.TransactionID = TheFindProjectMatrixByCustomerAssignedIDShortDataSet.FindProjectMatrixByCustomerAssignedIDShort[intSecondCounter].TransactionID;
 
                             TheDuplicateProjectsDataSet.duplicateprojects.Rows.Add(NewProjectEntry);
                         }

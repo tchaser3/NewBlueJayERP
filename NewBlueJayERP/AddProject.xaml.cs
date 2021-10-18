@@ -126,6 +126,7 @@ namespace NewBlueJayERP
             txtCustomerProjectID.Text = "";
             ClearDateEntryControls();
             SetControlsReadOnly(false);
+            expProecess.IsEnabled = true;
 
             //loading up the combo boxes
             cboSelectManager.Items.Clear();
@@ -778,6 +779,7 @@ namespace NewBlueJayERP
             txtProjectName.IsReadOnly = blnValueBoolean;
             txtPRojectNotes.IsReadOnly = blnValueBoolean;
             txtState.IsReadOnly = blnValueBoolean;
+            expProecess.IsEnabled = !blnValueBoolean;
         }
 
         private void expResetWindow_Expanded(object sender, RoutedEventArgs e)
