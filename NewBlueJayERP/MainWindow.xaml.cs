@@ -227,6 +227,7 @@ namespace NewBlueJayERP
         public static ImportCellMessaging ImportCellMessagingWindow = new ImportCellMessaging();
         public static CellMessageSearch CellMessagesSearchWindow = new CellMessageSearch();
         public static CellDataSearch CellDataSearchWindow = new CellDataSearch();
+        public static ServerSercurityReport ServerSecurityReportWindow = new ServerSercurityReport();
 
         public MainWindow()
         {
@@ -250,10 +251,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -395,14 +393,12 @@ namespace NewBlueJayERP
             ImportCellMessagingWindow.Visibility = Visibility.Hidden;
             CellMessagesSearchWindow.Visibility = Visibility.Hidden;
             CellDataSearchWindow.Visibility = Visibility.Hidden;
+            ServerSecurityReportWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -431,10 +427,7 @@ namespace NewBlueJayERP
         private void expProjects_Expanded(object sender, RoutedEventArgs e)
         {
             expEmployees.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -473,9 +466,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -498,19 +489,6 @@ namespace NewBlueJayERP
                        
         }
 
-        private void expVehicles_Expanded(object sender, RoutedEventArgs e)
-        {
-            expEmployees.IsExpanded = false;
-            expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
-            expAssets.IsExpanded = false;
-            expInformationTechology.IsExpanded = false;
-            expTasks.IsExpanded = false;
-            expHelp.IsExpanded = false;
-            expRentals.IsExpanded = false;
-        }
 
         private void expVehicleDataEntry_Expanded(object sender, RoutedEventArgs e)
         {
@@ -522,20 +500,11 @@ namespace NewBlueJayERP
             
         }
 
-        private void expVehicleAdminstration_Expanded(object sender, RoutedEventArgs e)
-        {
-            expVehicleDataEntry.IsExpanded = false;
-            expVehicleReports.IsExpanded = false;
-            expInspectionDataEntry.IsExpanded = false;
-        }
 
         private void expTrailers_Expanded(object sender, RoutedEventArgs e)
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -562,8 +531,6 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
@@ -572,27 +539,6 @@ namespace NewBlueJayERP
             expRentals.IsExpanded = false;
         }
 
-        private void expToolsDataEntry_Expanded(object sender, RoutedEventArgs e)
-        {
-            expToolAdministration.IsExpanded = false;
-            expToolProblems.IsExpanded = false;
-            expToolReports.IsExpanded = false;
-        }
-
-        private void expToolReports_Expanded(object sender, RoutedEventArgs e)
-        {
-            expToolsDataEntry.IsExpanded = false;
-            expToolProblems.IsExpanded = false;
-            expToolAdministration.IsExpanded = false;
-            
-        }
-
-        private void expToolAdministration_Expanded(object sender, RoutedEventArgs e)
-        {
-            expToolsDataEntry.IsExpanded = false;
-            expToolProblems.IsExpanded = false;
-            expToolReports.IsExpanded = false;
-        }
 
         private void expAssetDataEntry_Expanded(object sender, RoutedEventArgs e)
         {
@@ -604,10 +550,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
@@ -624,10 +567,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
@@ -775,27 +715,13 @@ namespace NewBlueJayERP
             expProjectAdministration.IsEnabled = true;
             expProjectDataEntry.IsEnabled = true;
             expProjectReports.IsEnabled = true;
-            expInventory.IsEnabled = true;
-            expInventoryAdministration.IsEnabled = true;
-            expInventoryDataEntry.IsEnabled = true;
-            expInventoryReports.IsEnabled = true;
-            expVehicleAdminstration.IsEnabled = true;
-            expVehicleDataEntry.IsEnabled = true;
-            expVehicleReports.IsEnabled = true;
-            expVehicles.IsEnabled = true;
-            expToolAdministration.IsEnabled = true;
-            expToolReports.IsEnabled = true;
-            expToolsDataEntry.IsEnabled = true;
-            expTools.IsEnabled = true;
             expInformationTechology.IsEnabled = true;
             expITDataEntry.IsEnabled = true;
             expITReports.IsEnabled = true;
             expCompanyFootages.IsEnabled = true;
             expRentals.IsEnabled = true;
-            expEditVehicleProblems.IsEnabled = true;
             expHelpDeskTicketsReport.IsEnabled = true;
             expServerAuditLogReport.IsExpanded = true;
-            expToolProblems.IsEnabled = true;
             expEmployeeReports.IsEnabled = true;
             expEditProject.IsEnabled = true;
             expAddAdminProductivity.IsEnabled = true;
@@ -811,22 +737,15 @@ namespace NewBlueJayERP
                 {
                     expInformationTechology.IsEnabled = false;
                     expAssets.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
-                    expToolsDataEntry.IsEnabled = false;
                     expTrailerAdministration.IsEnabled = false;
                     expTrailerDataEntry.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
-                    expVehicleDataEntry.IsEnabled = false;
-                    expInventory.IsEnabled = false;
                     expEmployees.IsEnabled = false;
                     expProjects.IsEnabled = false;
                     expAssets.IsEnabled = false;
                     expCompanyFootages.IsEnabled = false;
                     expRentals.IsEnabled = false;
-                    expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
-                    expToolProblems.IsEnabled = false;
                     expProjectReports.IsEnabled = false;
                     expEmployeeReports.IsEnabled = false;
                     expEmployeeProjectLaborReport.IsEnabled = false;
@@ -834,42 +753,27 @@ namespace NewBlueJayERP
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
                     expAssets.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
-                    expToolsDataEntry.IsEnabled = false;
                     expTrailerAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
-                    expInventoryAdministration.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
                     expITDataEntry.IsEnabled = false;
                     expAssets.IsEnabled = false;
                     expPhoneAdministration.IsEnabled = false;
                     expProjectAdministration.IsEnabled = false;
                     expEmployeeAdministration.IsEnabled = false;
-                    expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
-                    expToolProblems.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "OFFICE")
                 {
                     expAssets.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
-                    expToolsDataEntry.IsEnabled = false;
                     expTrailerAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
-                    expInventoryAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
                     expITDataEntry.IsEnabled = false;
                     expAssets.IsEnabled = false;
                     expPhoneAdministration.IsEnabled = false;
                     expProjectAdministration.IsEnabled = false;
                     expEmployeeAdministration.IsEnabled = false;
                     expCompanyFootages.IsEnabled = false;
-                    expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
-                    expToolProblems.IsEnabled = false;
                     expProjectManagementReport.IsEnabled = false;
                     expProjectInvoiceReport.IsEnabled = false;
                     expEmployeeProjectLaborReport.IsExpanded = false;
@@ -879,12 +783,7 @@ namespace NewBlueJayERP
                     expAssetAdministration.IsEnabled = false;
                     expEmployees.IsEnabled = false;
                     expProjects.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
                     expTrailerAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
-                    expInventoryAdministration.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
                     expITDataEntry.IsEnabled = false;
                     expPhoneAdministration.IsEnabled = false;
                     expProjectAdministration.IsEnabled = false;
@@ -901,12 +800,8 @@ namespace NewBlueJayERP
                     expAssetAdministration.IsEnabled = false;
                     expEmployeeAdministration.IsEnabled = false;
                     expProjectAdministration.IsEnabled = false;
-                    expInventoryAdministration.IsEnabled = false;
-                    expVehicleAdminstration.IsEnabled = false;
                     expTrailerAdministration.IsEnabled = false;
-                    expToolAdministration.IsEnabled = false;
                     expPhoneAdministration.IsEnabled = false;
-                    expEditVehicleProblems.IsEnabled = false;
                     expHelpDeskTicketsReport.IsEnabled = false;
                     expServerAuditLogReport.IsEnabled = false;
                 }
@@ -932,10 +827,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expHelp.IsExpanded = false;
@@ -946,10 +838,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -1012,13 +901,6 @@ namespace NewBlueJayERP
             AddProjectWindow.Visibility = Visibility.Visible;
         }
 
-        private void expCreatedPurchaseRequest_Expanded(object sender, RoutedEventArgs e)
-        {
-            expInventory.IsExpanded = false;
-            expPurchasing.IsExpanded = false;
-            expCreatedPurchaseRequest.IsExpanded = false;
-            CreateSearchRequestWindow.Visibility = Visibility.Visible;
-        }
 
         private void expEmployeeHoursPunched_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1032,22 +914,6 @@ namespace NewBlueJayERP
             ManagerHourlyDailyReportWindow.Visibility = Visibility.Visible;
         }
 
-        private void expImportGEOFenceReport_Expanded(object sender, RoutedEventArgs e)
-        {
-            expVehicleReports.IsExpanded = false;
-            expVehicleDataEntry.IsExpanded = false;
-            expVehicles.IsExpanded = false;
-            expImportGEOFenceReport.IsExpanded = false;
-            ImportGEOFenceReportWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expVehicleUsageReport_Expanded(object sender, RoutedEventArgs e)
-        {
-            expVehicles.IsExpanded = false;
-            expVehicleReports.IsExpanded = false;
-            expVehicleUsageReport.IsExpanded = false;
-            VehicleUsageReportWindow.Visibility = Visibility.Visible;
-        }
 
         private void expEmployeeProjectLaborReport_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1055,46 +921,6 @@ namespace NewBlueJayERP
             EmployeeProjectLaborReportWindow.Visibility = Visibility.Visible;
         }
 
-        private void expIssueMaterial_Expanded(object sender, RoutedEventArgs e)
-        {
-            gblnIssueMaterial = true;
-            gblnProcessBOM = false;
-            gblnReceiveMaterial = false;
-            expIssueMaterial.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expInventoryDataEntry.IsExpanded = false;
-            SelectWarehouseWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expReceiveMaterial_Expanded(object sender, RoutedEventArgs e)
-        {
-            gblnIssueMaterial = false;
-            gblnProcessBOM = false;
-            gblnReceiveMaterial = true;
-            expReceiveMaterial.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expInventoryDataEntry.IsExpanded = false;
-            SelectWarehouseWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expProcessBOMMaterial_Expanded(object sender, RoutedEventArgs e)
-        {
-            gblnIssueMaterial = false;
-            gblnProcessBOM = true;
-            gblnReceiveMaterial = false;
-            expProcessBOMMaterial.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expInventoryDataEntry.IsExpanded = false;
-            SelectWarehouseWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expVehicledRoster_Expanded(object sender, RoutedEventArgs e)
-        {
-            expVehicles.IsExpanded = false;
-            expVehicledRoster.IsExpanded = false;
-            expVehicleReports.IsExpanded = false;
-            VehicleRosterWindow.Visibility = Visibility.Visible;
-        }
 
         private void expCreateRental_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1105,10 +931,7 @@ namespace NewBlueJayERP
         {
             expEmployees.IsExpanded = false;
             expProjects.IsExpanded = false;
-            expInventory.IsExpanded = false;
-            expVehicles.IsExpanded = false;
             expTrailers.IsExpanded = false;
-            expTools.IsExpanded = false;
             expAssets.IsExpanded = false;
             expITDataEntry.IsExpanded = false;
             expTasks.IsExpanded = false;
@@ -1268,13 +1091,6 @@ namespace NewBlueJayERP
             SubmitAfterHoursWorkWindow.Visibility = Visibility.Visible;
         }
 
-        private void expImportTowMotors_Expanded(object sender, RoutedEventArgs e)
-        {
-            expVehicles.IsExpanded = false;
-            expVehicleAdminstration.IsExpanded = false;
-            expImportTowMotors.IsExpanded = false;
-            ImportTowMotorWindow.Visibility = Visibility.Visible;
-        }
 
         private void expAssetAdministration_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1325,11 +1141,6 @@ namespace NewBlueJayERP
             UpdateHelpDeskTicketsWindow.Visibility = Visibility.Visible;
         }
 
-        private void expTowMoterInspection_Expanded(object sender, RoutedEventArgs e)
-        {
-            expTowMoterInspection.IsExpanded = false;
-            TowMotorInspectionWindow.Visibility = Visibility.Visible;
-        }
 
         private void expHelpDesk_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1362,34 +1173,10 @@ namespace NewBlueJayERP
 
         private void expAddEmployeeToVehicleEmails_Expanded(object sender, RoutedEventArgs e)
         {
-            expImportTowMotors.IsExpanded = false;
-            expVehicles.IsExpanded = false;
-            expVehicleAdminstration.IsExpanded = false;
+            
             expAddEmployeeToVehicleEmailList.IsExpanded = false;
             AddEmployeeToVehicleEmailsWindow.Visibility = Visibility.Visible;
         }
-
-        private void expEditVehicleProblems_Expanded(object sender, RoutedEventArgs e)
-        {
-            expVehicles.IsExpanded = false;
-            expVehicleDataEntry.IsExpanded = false;
-            expImportGEOFenceReport.IsExpanded = false;
-            expEditVehicleProblems.IsExpanded = false;
-            EditVehicleProblemsWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expAddCableReel_Expanded(object sender, RoutedEventArgs e)
-        {
-            expInventory.IsExpanded = false;
-            expInventoryDataEntry.IsExpanded = false;
-            expIssueMaterial.IsExpanded = false;
-            expReceiveMaterial.IsExpanded = false;
-            expProcessBOMMaterial.IsExpanded = false;
-            expReturnMaterial.IsExpanded = false;
-            expViewCurrentSession.IsExpanded = false;
-            AddCableReelWindow.Visibility = Visibility.Visible;
-        }
-
         private void expEditProject_Expanded(object sender, RoutedEventArgs e)
         {
             ResetProjectDataEntryExpanders();
@@ -1412,82 +1199,13 @@ namespace NewBlueJayERP
             HelpDeskTicketReportWindow.Visibility = Visibility.Visible;
         }
 
-        private void expCreateSpectrum_Expanded(object sender, RoutedEventArgs e)
-        {
-            InventoryReportExpanders();
-            CreateSpectrumReportWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expWarehouseInventoryReport_Expanded(object sender, RoutedEventArgs e)
-        {
-            InventoryReportExpanders();
-            WarehouseInventoryReportWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expAddInventoryLocation_Expanded(object sender, RoutedEventArgs e)
-        {
-            expInventory.IsExpanded = false;
-            expInventoryDataEntry.IsExpanded = false;
-            expAddCableReel.IsExpanded = false;
-            expIssueMaterial.IsExpanded = false;
-            expReceiveMaterial.IsExpanded = false;
-            expProcessBOMMaterial.IsExpanded = false;
-            expReturnMaterial.IsExpanded = false;
-            expViewCurrentSession.IsExpanded = false;
-            expAddInventoryLocation.IsExpanded = false;
-            AddInventoryLocationWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expAddNewTool_Expanded(object sender, RoutedEventArgs e)
-        {
-            expTools. IsExpanded = false;
-            expToolsDataEntry.IsExpanded = false;
-            expAddNewTool.IsExpanded = false;
-            expEditTool.IsExpanded = false;
-            expBulkToolSignIn.IsExpanded = false;
-            expBulkToolSignOut.IsExpanded = false;
-            expToolAvailability.IsExpanded = false;
-            AddNewToolWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expEditTool_Expanded(object sender, RoutedEventArgs e)
-        {
-            expTools.IsExpanded = false;
-            expToolsDataEntry.IsExpanded = false;
-            expAddNewTool.IsExpanded = false;
-            expEditTool.IsExpanded = false;
-            expBulkToolSignIn.IsExpanded = false;
-            expBulkToolSignOut.IsExpanded = false;
-            expToolAvailability.IsExpanded = false;
-            EditToolWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expPartList_Expanded(object sender, RoutedEventArgs e)
-        {
-            InventoryReportExpanders();
-            PartsListWindow.Visibility = Visibility.Visible;
-        }
 
         private void expSortedWorkTasksReport_Expanded(object sender, RoutedEventArgs e)
         {
             SetProjectReportsExpanders();
             SortedWorkTaskReportWindow.Visibility = Visibility.Visible;
         }
-
-        private void expPartLookup_Expanded(object sender, RoutedEventArgs e)
-        {
-            InventoryReportExpanders();
-            PartLookupWindow.Visibility = Visibility.Visible;
-        }
-        private void InventoryReportExpanders()
-        {
-            expInventory.IsExpanded = false;
-            expInventoryReports.IsExpanded = false;
-            expCreateSpectrum.IsExpanded = false;
-            expPartList.IsExpanded = false;
-            expPartLookup.IsExpanded = false;
-            expWarehouseInventoryReport.IsExpanded = false;
-        }
+       
 
         private void expServerAuditLogReport_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1510,6 +1228,7 @@ namespace NewBlueJayERP
             expPhoneCallSearch.IsExpanded = false;
             expCellMessageSearch.IsExpanded = false;
             expCellDataSearch.IsExpanded = false;
+            expServerSecurityReport.IsExpanded = false;
         }
 
         private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
@@ -1532,20 +1251,6 @@ namespace NewBlueJayERP
             expProjectManagementReport.IsExpanded = false;
             expProjectInvoiceReport.IsExpanded = false;
             expCreateProductionSheet.IsExpanded = false;
-        }
-
-        private void expInventoryImport_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetInventoryAdministrationExpanders();
-            ImportInventoryWindow.Visibility = Visibility.Visible;
-        }
-        private void ResetInventoryAdministrationExpanders()
-        {
-            expInventory.IsExpanded = false;
-            expInventoryAdministration.IsExpanded = false;
-            expInventoryImport.IsExpanded = false;
-            expImportPrices.IsExpanded = false;
-            expVoidInventoryTransaction.IsExpanded = false;
         }
 
         private void expUpdateTrailerProblem_Expanded(object sender, RoutedEventArgs e)
@@ -1587,32 +1292,8 @@ namespace NewBlueJayERP
             expVoidDesignProductivity.IsExpanded = false;
             expVoidDriveTime.IsExpanded = false;
             expProductivityDataEntryReport.IsExpanded = false;
-        }
+        } 
 
-        private void expCreateToolProblem_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetToolProblemExpander();
-            CreateToolProblemWindow.Visibility = Visibility.Visible;
-        }
-        private void ResetToolProblemExpander()
-        {
-            expTools.IsExpanded = false;
-            expToolProblems.IsExpanded = false;
-            expCreateToolProblem.IsExpanded = false;
-            expUpdateToolProblem.IsExpanded = false;
-        }
-
-        private void expUpdateToolProblem_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetToolProblemExpander();
-            UpdateToolProblemWindow.Visibility = Visibility.Visible;
-        }
-
-        private void expImportPrices_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetInventoryAdministrationExpanders();
-            ImportPricesWindow.Visibility = Visibility.Visible;
-        }
 
         private void expJSIProjectReports_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1628,11 +1309,6 @@ namespace NewBlueJayERP
             expViewJSIInspection.IsExpanded = false;
         }
 
-        private void expVoidInventoryTransaction_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetInventoryAdministrationExpanders();
-            VoidInventoryTransactionWindow.Visibility = Visibility.Visible;
-        }
 
         private void expEmployeeRoster_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1738,7 +1414,6 @@ namespace NewBlueJayERP
         {
             expInformationTechology.IsExpanded = false;
             expITDataEntry.IsExpanded = false;
-            expInspectionDataEntry.IsExpanded = false;
             expCreateHelpDeskProblemType.IsExpanded = false;
             expITCreateHelpDeskTicket.IsExpanded = false;
             expUpdateHelpDeskTickets.IsExpanded = false;
@@ -2056,17 +1731,6 @@ namespace NewBlueJayERP
             AssignWorkTaskBusinessLineWindow.Visibility = Visibility.Visible;
         }
 
-        private void expCreateWASPToolReport_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetToolReportExpanders();
-            CreateWASPToolReportWindow.Visibility = Visibility.Visible;
-        }
-        private void ResetToolReportExpanders()
-        {
-            expTools.IsExpanded = false;
-            expToolReports.IsExpanded = false;
-            expCreateWASPToolReport.IsExpanded = false;
-        }
 
         private void expCompareEmployeeCrews_Expanded(object sender, RoutedEventArgs e)
         {
@@ -2135,18 +1799,6 @@ namespace NewBlueJayERP
             ChangeLocationSiteWindow.Visibility = Visibility.Visible;
         }
 
-        private void expAddToolCategoryID_Expanded(object sender, RoutedEventArgs e)
-        {
-            ResetToolAdministrationExpanders();
-            AddToolCategoryIDWindow.Visibility = Visibility.Visible;
-        }
-        private void ResetToolAdministrationExpanders()
-        {
-            expTools.IsExpanded = false;
-            expToolAdministration.IsExpanded = false;
-            expAddToolCategoryID.IsExpanded = false;
-        }
-
         private void expImportWaspMonitors_Expanded(object sender, RoutedEventArgs e)
         {
             ResetITDataEntryExpanders();
@@ -2205,6 +1857,12 @@ namespace NewBlueJayERP
         {
             ITReportsExpanders();
             CellDataSearchWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expServerSecurityReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            ServerSecurityReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

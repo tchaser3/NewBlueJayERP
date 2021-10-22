@@ -142,6 +142,8 @@ namespace NewBlueJayERP
 
                 TheFindServerEventLogByNoteKeywordDataSet = TheEventLogClass.FindServerEventLogByNoteKeyword(strKeyword, datStartDate, datTodaysDate);
 
+                string strTestVarialbe = TheFindServerEventLogByNoteKeywordDataSet.FindServerLogByNoteKeyword[0].EventNotes;
+
                 dgrResults.ItemsSource = TheFindServerEventLogByNoteKeywordDataSet.FindServerLogByNoteKeyword;
 
                 PleaseWait.Close();

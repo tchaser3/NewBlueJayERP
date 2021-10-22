@@ -179,47 +179,7 @@
                     </StackPanel>
                 </Expander>
             </StackPanel>
-            <StackPanel>
-                <Expander x:Name="expInventory" Header="Inventory" Background="LightBlue" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="14,1,1,1" Expanded="expInventory_Expanded">
-                    <StackPanel Margin="16,1,1,1" Background="LightBlue">
-                        <Expander x:Name="expInventoryDataEntry" Header="Inventory Data Entry" ExpandDirection="Right" Margin="18,1,1,1" Background="LightBlue" Expanded="expInventoryDataEntry_Expanded">
-                            <StackPanel Margin="10,1,1,1">
-                                <Expander x:Name="expAddInventoryLocation" Header="Add Inventory Location" Expanded="expAddInventoryLocation_Expanded" />
-                                <Expander x:Name="expIssueMaterial" Header="Issue Material" Expanded="expIssueMaterial_Expanded" />
-                                <Expander x:Name="expReceiveMaterial" Header="Receive Material" Expanded="expReceiveMaterial_Expanded" />
-                                <Expander x:Name="expProcessBOMMaterial" Header="Report Material Usage" Expanded="expProcessBOMMaterial_Expanded" />
-                                <Expander x:Name="expReturnMaterial" Header="Return Material" />
-                                <Expander x:Name="expViewCurrentSession" Header="View Current Session" />
-                                <Expander x:Name="expAddCableReel" Header="Add Cable Reel" Expanded="expAddCableReel_Expanded" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander x:Name="expInventoryReports" Header="Inventory Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expInventoryReports_Expanded">
-                            <StackPanel Margin="10,1,1,1" >
-                                <Expander x:Name="expCreateSpectrum" Header="Create Spectrum Report" Margin="20,1,1,1" Expanded="expCreateSpectrum_Expanded"/>
-                                <Expander x:Name="expPartList" Header="Parts List" Margin="20,1,1,1" Expanded="expPartList_Expanded" />
-                                <Expander x:Name="expPartLookup" Header="Part Lookup" Margin="20,1,1,1" Expanded="expPartLookup_Expanded" />
-                                <Expander x:Name="expWarehouseInventoryReport" Header="Warehouse Inventory Report" FontSize="16" Margin="20,1,1,1" Expanded="expWarehouseInventoryReport_Expanded" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander x:Name="expInventoryAdministration" Header="Inventory Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expInventoryAdministration_Expanded">
-                            <StackPanel>
-                                <Expander x:Name="expInventoryImport" Header="Inventory Import" Margin="10,1,1,1" Expanded="expInventoryImport_Expanded"/>
-                                <Expander x:Name="expImportPrices" Header="Import Prices" Margin="10,1,1,1" Expanded="expImportPrices_Expanded" />
-                                <Expander x:Name="expVoidInventoryTransaction" Header="Void Inventory Transaction" Margin="10,1,1,1" Expanded="expVoidInventoryTransaction_Expanded" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander x:Name="expPurchasing" Header="Purchasing Module" ExpandDirection="Right" Background="LightBlue" Margin="20,1,1,1">
-                            <StackPanel>
-                                <Expander x:Name="expCreatedPurchaseRequest" Header="Create Purchase Request" Margin="5,1,1,1" Expanded="expCreatedPurchaseRequest_Expanded"/>
-                                <Expander x:Name="expUpdatePurchaseRequest" Header="Update Purchase Request" Margin="5,1,1,1"/>
-                                <Expander x:Name="expApprovePurchaseRequest" Header="Approve Purchase Request" Margin="5,1,1,1"/>
-                                <Expander x:Name="expDenyPurchaseRequest" Header="Deny Purchase Request" Margin="5,1,1,1" />
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </Expander>
-                
-            </StackPanel>
+            
             <StackPanel>
                 <Expander x:Name="expRentals" Header="Rentals" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="17,1,1,1" Expanded="expRentals_Expanded" >
                     <StackPanel Margin="23,1,1,1" Background="LightBlue">
@@ -247,37 +207,7 @@
                     </StackPanel>
                 </Expander>
             </StackPanel>
-            <StackPanel>
-                <Expander x:Name="expVehicles" Header="Vehicles" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="17,1,1,1" Expanded="expVehicles_Expanded">
-                    <StackPanel Margin="23,1,1,1" Background="LightBlue">
-                        <Expander x:Name="expVehicleDataEntry" Header="Vehicle Data Entry" ExpandDirection="Right" Margin="19,1,1,1" Background="LightBlue">
-                            <StackPanel >
-                               <Expander x:Name="expImportGEOFenceReport" Header="Import GEO Fence Report" Margin="10,1,1,1" Expanded="expImportGEOFenceReport_Expanded"/>
-                                <Expander x:Name="expEditVehicleProblems" Header="Edit Vehicle Problems" Margin="10,1,1,1" Expanded="expEditVehicleProblems_Expanded" />
-                            </StackPanel>                            
-                        </Expander>
-                        <Expander x:Name="expInspectionDataEntry" Header="Inspection Data Entry"  ExpandDirection="Right" Margin="5,1,1,1">
-                            <StackPanel Background="LightBlue">
-                                <Expander x:Name="expDailyVehicleInspection" Header="Daily Vehicle Inspection"  Margin="10,1,1,1"/>
-                                <Expander x:Name="expWeeklyVehicleInspection" Header="Weekly Vehicle Inspection" Margin="10,1,1,1" />
-                                <Expander x:Name="expTowMoterInspection" Header="TOW Motor Inspection" Margin="10,1,1,1" Expanded="expTowMoterInspection_Expanded" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander x:Name="expVehicleReports" Header="Vehicle Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" Expanded="expVehicleReports_Expanded">
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="10,1,1,1">
-                                <Expander x:Name="expVehicledRoster" Header="Vehicle Roster" Margin="10,1,1,1" Expanded="expVehicledRoster_Expanded"/>
-                                <Expander x:Name="expVehicleUsageReport" Header="Vehicle Usage Report" Margin="10,1,1,1" Expanded="expVehicleUsageReport_Expanded"/>
-                            </StackPanel>                             
-                        </Expander>
-                        <Expander x:Name="expVehicleAdminstration" Header="Vehicle Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expVehicleAdminstration_Expanded">
-                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,1,1,1">
-                                <Expander x:Name="expImportTowMotors" Header="Import Tow Motors" Margin="10,1,1,1" Expanded="expImportTowMotors_Expanded"/>
-                                <Expander x:Name="expAddEmployeeToVehicleEmails" Header="Add Employee To Vehicle Emails" Margin="10,1,1,1" Expanded="expAddEmployeeToVehicleEmails_Expanded" />
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </Expander>
-            </StackPanel>
+            
             <StackPanel>
                 <Expander x:Name="expTrailers" Header="Trailers" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expTrailers_Expanded">
                     <StackPanel Margin="29,1,1,1" Background="LightBlue">
@@ -294,41 +224,7 @@
                         </Expander>
                     </StackPanel>
                 </Expander>
-            </StackPanel>
-            <StackPanel>
-                <Expander x:Name="expTools" Header="Tools" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="25,1,1,1" Expanded="expTools_Expanded">
-                    <StackPanel Margin="36,1,1,1" Background="LightBlue">
-                        <Expander x:Name="expToolsDataEntry" Header="Tool Data Entry" ExpandDirection="Right" Margin="15,1,1,1" Background="LightBlue" Expanded="expToolsDataEntry_Expanded">
-                            <StackPanel>
-                                <Expander x:Name="expAddNewTool" Header="Add New Tool" Margin="25,1,1,1" Expanded="expAddNewTool_Expanded"/>
-                                <Expander x:Name="expEditTool" Header="Edit Tool" Margin="25,1,1,1" Expanded="expEditTool_Expanded" />
-                                <Expander x:Name="expSignInTool" Header="Sign In Tool" Margin="25,1,1,1"/>
-                                <Expander x:Name="expSignOutTool" Header="Sign Out Tool" Margin="25,1,1,1" />
-                                <Expander x:Name="expToolHistory" Header="Tool History" Margin="25,1,1,1" />
-                                <Expander x:Name="expBulkToolSignOut" Header="Bulk Tool Sign Out" Margin="25,1,1,1" />
-                                <Expander x:Name="expBulkToolSignIn" Header="Bulk Tool Sign In" Margin="25,1,1,1" />
-                                <Expander x:Name="expToolAvailability" Header="Tool Availability" Margin="25,1,1,1" />
-                            </StackPanel>
-                        </Expander>
-                        <Expander x:Name="expToolProblems" Header="Tool Problems" ExpandDirection="Right" Margin="20,1,1,1">
-                            <StackPanel>
-                                <Expander x:Name="expCreateToolProblem" Header="Create Tool Problem" Margin="30,1,1,1" Expanded="expCreateToolProblem_Expanded"/>
-                                <Expander x:Name="expUpdateToolProblem" Header="Update Tool Problem" Margin="30,1,1,1" Expanded="expUpdateToolProblem_Expanded" />
-                            </StackPanel>                            
-                        </Expander>
-                        <Expander x:Name="expToolReports" Header="Tool Reports" ExpandDirection="Right" Margin="23,1,1,1" Background="LightBlue" Expanded="expToolReports_Expanded">
-                            <StackPanel>
-                                <Expander x:Name="expCreateWASPToolReport" Header="Create WASP Tool Report" Margin="40,1,1,1" Expanded="expCreateWASPToolReport_Expanded"/>
-                            </StackPanel>
-                        </Expander>
-                        <Expander x:Name="expToolAdministration" Header="Tool Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expToolAdministration_Expanded">
-                            <StackPanel>
-                                <Expander x:Name="expAddToolCategoryID" Header="Add Tool Category ID" Margin="5,1,1,1" Expanded="expAddToolCategoryID_Expanded"/>
-                            </StackPanel>
-                        </Expander>
-                    </StackPanel>
-                </Expander>
-            </StackPanel>
+            </StackPanel>            
             <StackPanel>
                 <Expander x:Name="expAssets" Header="Assets" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expAssets_Expanded">
                     <StackPanel Margin="33,1,1,1" Background="LightBlue">
@@ -386,6 +282,7 @@
                                 <Expander x:Name="expOpenCellPhoneList" Header="Open Cell Phone List" Margin="50,1,1,1" Expanded="expOpenCellPhoneList_Expanded" />
                                 <Expander x:Name="expPhoneList" Header="Phone List" Margin="50,1,1,1" Expanded="expPhoneList_Expanded" />
                                 <Expander x:Name="expServerAuditLogReport" Header="Server Audit Log Report" Margin="50,1,1,1" Expanded="expServerAuditLogReport_Expanded" />
+                                <Expander x:Name="expServerSecurityReport" Header="Server Security Report" Margin="50,1,1,1" Expanded="expServerSecurityReport_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expPhoneAdministration" Header="Phone Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expPhoneAdministration_Expanded">

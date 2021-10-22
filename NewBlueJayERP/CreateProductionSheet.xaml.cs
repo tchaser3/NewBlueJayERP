@@ -313,13 +313,7 @@ namespace NewBlueJayERP
                     ReportDate.FontFamily = new FontFamily("Century Gothic");
                     ReportDate.LineHeight = 1;
                     fdAcceptLetter.Blocks.Add(ReportDate);
-                    Paragraph LunchTaken = new Paragraph(new Run("Lunch Taken_____"));
-                    LunchTaken.FontSize = 10;
-                    LunchTaken.TextAlignment = TextAlignment.Right;
-                    LunchTaken.FontFamily = new FontFamily("Century Gothic");
-                    LunchTaken.LineHeight = 1;
-                    fdAcceptLetter.Blocks.Add(LunchTaken);
-
+                    
                     Table ProjectTable = new Table();
                     TableColumn Testing = new TableColumn();
                     ProjectTable.CellSpacing = 5;                                        

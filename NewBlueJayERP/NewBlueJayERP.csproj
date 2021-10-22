@@ -786,6 +786,11 @@
     <Compile Include="EnterInventory.xaml.cs">
       <DependentUpon>EnterInventory.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EventlLogSecurityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EventlLogSecurityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="ExistingEmployees.xaml.cs">
       <DependentUpon>ExistingEmployees.xaml</DependentUpon>
     </Compile>
@@ -1201,6 +1206,9 @@
     <Compile Include="SendEmailClass.cs" />
     <Compile Include="ServerAuditLog.xaml.cs">
       <DependentUpon>ServerAuditLog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ServerSercurityReport.xaml.cs">
+      <DependentUpon>ServerSercurityReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="ShopViolatorDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1893,6 +1901,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ServerSercurityReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="SortedWorkTaskReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2290,6 +2302,17 @@
     </None>
     <None Include="EmployeeToolAssetDataSet.xss">
       <DependentUpon>EmployeeToolAssetDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EventlLogSecurityDataSet.xsc">
+      <DependentUpon>EventlLogSecurityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EventlLogSecurityDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EventlLogSecurityDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EventlLogSecurityDataSet.xss">
+      <DependentUpon>EventlLogSecurityDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportCellMessagesDataSet.xsc">
       <DependentUpon>ImportCellMessagesDataSet.xsd</DependentUpon>
