@@ -228,6 +228,7 @@ namespace NewBlueJayERP
         public static CellMessageSearch CellMessagesSearchWindow = new CellMessageSearch();
         public static CellDataSearch CellDataSearchWindow = new CellDataSearch();
         public static ServerSercurityReport ServerSecurityReportWindow = new ServerSercurityReport();
+        public static EmailServerReport EmailServerReportWindow = new EmailServerReport();
 
         public MainWindow()
         {
@@ -394,6 +395,7 @@ namespace NewBlueJayERP
             CellMessagesSearchWindow.Visibility = Visibility.Hidden;
             CellDataSearchWindow.Visibility = Visibility.Hidden;
             ServerSecurityReportWindow.Visibility = Visibility.Hidden;
+            EmailServerReportWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1229,6 +1231,7 @@ namespace NewBlueJayERP
             expCellMessageSearch.IsExpanded = false;
             expCellDataSearch.IsExpanded = false;
             expServerSecurityReport.IsExpanded = false;
+            expEmailServerReport.IsExpanded = false;
         }
 
         private void expProjectShopAnalysis_Expanded(object sender, RoutedEventArgs e)
@@ -1863,6 +1866,12 @@ namespace NewBlueJayERP
         {
             ITReportsExpanders();
             ServerSecurityReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEmailServerReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ITReportsExpanders();
+            EmailServerReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

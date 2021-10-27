@@ -39,12 +39,15 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
         FindServerEventLogSecurityAccessDataSet TheFindServerEventLogSecurityAccessDataSet = new FindServerEventLogSecurityAccessDataSet();
         FindServerEventLogSecurityAccessByKeywordDataSet TheFindServerEventLogSecurityAccessByKeywordDataSet = new FindServerEventLogSecurityAccessByKeywordDataSet();
         EventlLogSecurityDataSet TheEventLogSecurityDataSet = new EventlLogSecurityDataSet();
+
+        int gintNumberOfRecords;
 
         public ServerSercurityReport()
         {
@@ -104,6 +107,8 @@ namespace NewBlueJayERP
             string strLogonName;
             string strItemAccessed;
             string strEventNotes;
+            int intSecondCounter;
+            bool blnItemFound;
 
             try
             {
@@ -115,6 +120,7 @@ namespace NewBlueJayERP
                 TheFindServerEventLogSecurityAccessDataSet = TheEventLogClass.FindServerEventLogSecurityAccess();
 
                 intNumberOfRecords = TheFindServerEventLogSecurityAccessDataSet.FindServerEventLogSecurityAccess.Rows.Count;
+                gintNumberOfRecords = 0;
 
                 if(intNumberOfRecords > 0)
                 {
@@ -128,16 +134,42 @@ namespace NewBlueJayERP
                         char[] delims = new[] { '\n', '\t', '\r' };
                         string []strNewItems = strEventNotes.Split(delims, StringSplitOptions.RemoveEmptyEntries);
 
+                        blnItemFound = false;
+
                         strLogonName = strNewItems[5];
                         strItemAccessed = strNewItems[16];
 
-                        EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
+                        datTransactionDate = TheDateSearchClass.RemoveTime(datTransactionDate);
 
-                        NewEventRow.TransactionDate = datTransactionDate;
-                        NewEventRow.LogonName = strLogonName;
-                        NewEventRow.ItemAccessed = strItemAccessed;
+                        if (gintNumberOfRecords > 0)
+                        {
+                            for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
+                            {
+                                if (datTransactionDate == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].TransactionDate)
+                                {
+                                    if (strLogonName == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].LogonName)
+                                    {
+                                        if (strItemAccessed == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].ItemAccessed)
+                                        {
+                                            blnItemFound = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
-                        TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
+                        if(blnItemFound == false)
+                        {
+                            EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
+
+                            NewEventRow.TransactionDate = datTransactionDate;
+                            NewEventRow.LogonName = strLogonName;
+                            NewEventRow.ItemAccessed = strItemAccessed;
+
+                            TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
+                            gintNumberOfRecords++;
+                        }
+                        
                     }
                 }
 
@@ -168,6 +200,8 @@ namespace NewBlueJayERP
             DateTime datStartDate = DateTime.Now;
             bool blnFatalError = false;
             string strErrorMessage = "";
+            int intSecondCounter;
+            bool blnItemFound;
 
             try
             {
@@ -201,6 +235,7 @@ namespace NewBlueJayERP
                 TheFindServerEventLogSecurityAccessByKeywordDataSet = TheEventLogClass.FindServerEventLogSecurityByKeyword(strKeyword, datStartDate, DateTime.Now);
 
                 intNumberOfRecords = TheFindServerEventLogSecurityAccessByKeywordDataSet.FindServerEventLogSercurityAccessByKeyword.Rows.Count;
+                gintNumberOfRecords = 0;
 
                 if (intNumberOfRecords > 0)
                 {
@@ -210,7 +245,7 @@ namespace NewBlueJayERP
                         strLogonName = "Just Beginging";
                         strItemAccessed = "Date Goes Here";
                         strEventNotes = TheFindServerEventLogSecurityAccessByKeywordDataSet.FindServerEventLogSercurityAccessByKeyword[intCounter].EventNotes;
-
+                        blnItemFound = false;
                         
                         char[] delims = new[] { '\n', '\t', '\r' };
                         string[] strNewItems = strEventNotes.Split(delims, StringSplitOptions.RemoveEmptyEntries);
@@ -218,14 +253,37 @@ namespace NewBlueJayERP
                         strLogonName = strNewItems[5];
                         strItemAccessed = strNewItems[16];
 
-                        EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
+                        datTransactionDate = TheDateSearchClass.RemoveTime(datTransactionDate);
 
-                        NewEventRow.TransactionDate = datTransactionDate;
-                        NewEventRow.LogonName = strLogonName;
-                        NewEventRow.ItemAccessed = strItemAccessed;
+                        if (gintNumberOfRecords > 0)
+                        {
+                            for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
+                            {
+                                if (datTransactionDate == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].TransactionDate)
+                                {
+                                    if (strLogonName == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].LogonName)
+                                    {
+                                        if (strItemAccessed == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].ItemAccessed)
+                                        {
+                                            blnItemFound = true;
+                                        }
+                                    }
+                                }
+                            }
+                        }
 
-                        TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
-                                                
+                        if(blnItemFound == false)
+                        {
+                            EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
+
+                            NewEventRow.TransactionDate = datTransactionDate;
+                            NewEventRow.LogonName = strLogonName;
+                            NewEventRow.ItemAccessed = strItemAccessed;
+
+                            TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
+                            gintNumberOfRecords++;
+                        }
+                 
                     }
                 }
 
@@ -312,6 +370,68 @@ namespace NewBlueJayERP
                 excel.Quit();
                 workbook = null;
                 excel = null;
+            }
+        }
+
+        private void expEmailReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            //setting local variables
+            int intCounter;
+            int intNumberOfRecords;
+            string strEmailAddress = "tholmes@bluejaycommunications.com";
+            string strHeader;
+            string strMessage;
+            DateTime datPayDate = DateTime.Now;
+            bool blnFatalError = false;
+
+            try
+            {
+                expEmailReport.IsExpanded = false;
+                PleaseWait PleaseWait = new PleaseWait();
+                PleaseWait.Show();
+
+                intNumberOfRecords = TheEventLogSecurityDataSet.eventlogsecurity.Rows.Count;
+
+                strHeader = "Server File Access Report Prepared on " + Convert.ToString(datPayDate);
+
+                strMessage = "<h1>Server File Access Report Prepared on " + Convert.ToString(datPayDate) + "</h1>";
+                strMessage += "<p>               </p>";
+                strMessage += "<p>               </p>";
+                strMessage += "<table>";
+                strMessage += "<tr>";
+                strMessage += "<td><b>Transaction Date</b></td>";
+                strMessage += "<td><b>Logon Name</b></td>";
+                strMessage += "<td><b>Item Accessed</b></td>";
+                strMessage += "</tr>";
+                strMessage += "<p>               </p>";
+
+                if (intNumberOfRecords > 0)
+                {
+                    for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        strMessage += "<tr>";
+                        strMessage += "<td>" + Convert.ToString(TheEventLogSecurityDataSet.eventlogsecurity[intCounter].TransactionDate) + "</td>";
+                        strMessage += "<td>" + TheEventLogSecurityDataSet.eventlogsecurity[intCounter].LogonName + "</td>";
+                        strMessage += "<td>" + TheEventLogSecurityDataSet.eventlogsecurity[intCounter].ItemAccessed + "</td>";
+                        strMessage += "</tr>";
+                        strMessage += "<p>               </p>";
+                    }
+                }
+
+                strMessage += "</table>";
+
+                blnFatalError = !(TheSendEmailClass.SendEmail(strEmailAddress, strHeader, strMessage));
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                PleaseWait.Close();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Server Security Report // Email Report Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
     }

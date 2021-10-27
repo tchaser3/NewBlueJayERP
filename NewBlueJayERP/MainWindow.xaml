@@ -276,6 +276,7 @@
                                 <Expander x:Name="expCellMessageSearch" Header="Cell Message Search" FontSize="16" Margin="50,1,1,1" Expanded="expCellMessageSearch_Expanded" />
                                 <Expander x:Name="expCellDataSearch" Header="Cell Data Search" FontSize="16" Margin="50,1,1,1" Expanded="expCellDataSearch_Expanded" />
                                 <Expander x:Name="expPhoneCallSearch" Header="Phone Call Search" FontSize="16" Margin="50,1,1,1" Expanded="expPhoneCallSearch_Expanded" />
+                                <Expander x:Name="expEmailServerReport" Header="Email Server Report" FontSize="16" Margin="50,1,1,1" Expanded="expEmailServerReport_Expanded" />
                                 <Expander x:Name="expMyOpenTickets" Header="My Open Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyOpenTickets_Expanded"/>
                                 <Expander x:Name="expMyTickets" Header="My Tickets" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="50,1,1,1" Expanded="expMyTickets_Expanded" />
                                 <Expander x:Name="expHelpDeskTicketsReport" Header="Help Desk Tickets Report" Margin="50,1,1,1" Expanded="expHelpDeskTicketsReport_Expanded"/>

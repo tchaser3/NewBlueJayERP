@@ -704,6 +704,9 @@
     <Compile Include="EditWOVBillingCodes.xaml.cs">
       <DependentUpon>EditWOVBillingCodes.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EmailServerReport.xaml.cs">
+      <DependentUpon>EmailServerReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeDoubleHours.xaml.cs">
       <DependentUpon>EmployeeDoubleHours.xaml</DependentUpon>
     </Compile>
@@ -1602,6 +1605,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditWOVBillingCodes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EmailServerReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

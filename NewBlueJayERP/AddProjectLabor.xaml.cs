@@ -87,6 +87,7 @@ namespace NewBlueJayERP
         bool gblnDriveTimeCalculated;
         decimal gdecNonProductiveTime;
         decimal gdecLunchHour;
+        decimal gdecTotalProjectHours;
 
         public AddProjectLabor()
         {
@@ -452,6 +453,8 @@ namespace NewBlueJayERP
 
                 gdecHours = gdecHours - gdecDriveTime - gdecNonProductiveTime - gdecLunchHour;
 
+                gdecTotalProjectHours = gdecHours;
+
                 //adding the record
                 ProjectWorkCompletedDataSet.workcompletedRow NewWorkRow = TheEmployeeWorkCompleteDataSet.workcompleted.NewworkcompletedRow();
 
@@ -657,7 +660,7 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    gdecHours = Convert.ToDecimal(strValueForValidation);
+                    gdecHours = gdecTotalProjectHours;
                 }
                 strValueForValidation = txtEnterFootage.Text;
                 blnThereIsAProblem = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
