@@ -284,6 +284,7 @@
                                 <Expander x:Name="expPhoneList" Header="Phone List" Margin="50,1,1,1" Expanded="expPhoneList_Expanded" />
                                 <Expander x:Name="expServerAuditLogReport" Header="Server Audit Log Report" Margin="50,1,1,1" Expanded="expServerAuditLogReport_Expanded" />
                                 <Expander x:Name="expServerSecurityReport" Header="Server Security Report" Margin="50,1,1,1" Expanded="expServerSecurityReport_Expanded" />
+                                <Expander x:Name="expEventLogReport" Header="Event Log Report" Margin="50,1,1,1" Expanded="expEventLogReport_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expPhoneAdministration" Header="Phone Administration" ExpandDirection="Right" Background="LightBlue" Expanded="expPhoneAdministration_Expanded">

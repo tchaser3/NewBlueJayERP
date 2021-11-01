@@ -42,12 +42,14 @@ namespace NewBlueJayERP
         SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
-        ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
-        FindServerEventLogSecurityAccessDataSet TheFindServerEventLogSecurityAccessDataSet = new FindServerEventLogSecurityAccessDataSet();
-        FindServerEventLogSecurityAccessByKeywordDataSet TheFindServerEventLogSecurityAccessByKeywordDataSet = new FindServerEventLogSecurityAccessByKeywordDataSet();
+        FindServerEventLogForReportsByDateRangeDataSet TheFindServerEventLogForReportsbyDateRangeDataSet = new FindServerEventLogForReportsByDateRangeDataSet();
+        FindServerEventLogForReportsByUserDataSet TheFindServerEventLogForReportsByUserDataSet = new FindServerEventLogForReportsByUserDataSet();
+        FindServerEventLogForReportsByItemDataSet TheFindServerEventLogForReportsByItemDataSet = new FindServerEventLogForReportsByItemDataSet();
         EventlLogSecurityDataSet TheEventLogSecurityDataSet = new EventlLogSecurityDataSet();
 
-        int gintNumberOfRecords;
+        int gintSelectedIndex;
+        DateTime gdatStartDate;
+        DateTime gdatEndDate;
 
         public ServerSercurityReport()
         {
@@ -106,9 +108,8 @@ namespace NewBlueJayERP
             DateTime datTransactionDate;
             string strLogonName;
             string strItemAccessed;
-            string strEventNotes;
-            int intSecondCounter;
-            bool blnItemFound;
+            DateTime datStartDate = DateTime.Now;
+            DateTime datEndDate = DateTime.Now;
 
             try
             {
@@ -117,65 +118,44 @@ namespace NewBlueJayERP
 
                 TheEventLogSecurityDataSet.eventlogsecurity.Rows.Clear();
 
-                TheFindServerEventLogSecurityAccessDataSet = TheEventLogClass.FindServerEventLogSecurityAccess();
+                txtEndDate.Text = "";
+                txtStartDate.Text = "";
+                txtEnterKeyWord.Text = "";
+                cboReportType.Items.Clear();
+                cboReportType.Items.Add("Select Report Type");
+                cboReportType.Items.Add("Date Search Report");
+                cboReportType.Items.Add("User Report");
+                cboReportType.Items.Add("Item Search");
+                cboReportType.SelectedIndex = 0;
 
-                intNumberOfRecords = TheFindServerEventLogSecurityAccessDataSet.FindServerEventLogSecurityAccess.Rows.Count;
-                gintNumberOfRecords = 0;
+                datStartDate = DateTime.Now;
+                datStartDate = TheDateSearchClass.RemoveTime(datStartDate);
+                datEndDate = TheDateSearchClass.AddingDays(datStartDate, 1);
+                datStartDate = TheDateSearchClass.SubtractingDays(datStartDate, 1);
+
+                TheFindServerEventLogForReportsbyDateRangeDataSet = TheEventLogClass.FindServerEventLogForReportsByDateRange(datStartDate, datEndDate);
+
+                intNumberOfRecords = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange.Rows.Count;
 
                 if(intNumberOfRecords > 0)
                 {
                     for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                     {
-                        datTransactionDate = TheFindServerEventLogSecurityAccessDataSet.FindServerEventLogSecurityAccess[intCounter].TransactionDate;
-                        strLogonName = "Just Beginging";
-                        strItemAccessed = "Date Goes Here";
-                        strEventNotes = TheFindServerEventLogSecurityAccessDataSet.FindServerEventLogSecurityAccess[intCounter].EventNotes;
+                        datTransactionDate = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange[intCounter].TransactionDate;
+                        strLogonName = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange[intCounter].LogonName;
+                        strItemAccessed = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange[intCounter].ItemAccessed;
 
-                        char[] delims = new[] { '\n', '\t', '\r' };
-                        string []strNewItems = strEventNotes.Split(delims, StringSplitOptions.RemoveEmptyEntries);
+                        EventlLogSecurityDataSet.eventlogsecurityRow NewEventEntry = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
 
-                        blnItemFound = false;
+                        NewEventEntry.TransactionDate = datTransactionDate;
+                        NewEventEntry.LogonName = strLogonName;
+                        NewEventEntry.ItemAccessed = strItemAccessed;
 
-                        strLogonName = strNewItems[5];
-                        strItemAccessed = strNewItems[16];
-
-                        datTransactionDate = TheDateSearchClass.RemoveTime(datTransactionDate);
-
-                        if (gintNumberOfRecords > 0)
-                        {
-                            for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
-                            {
-                                if (datTransactionDate == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].TransactionDate)
-                                {
-                                    if (strLogonName == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].LogonName)
-                                    {
-                                        if (strItemAccessed == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].ItemAccessed)
-                                        {
-                                            blnItemFound = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
-
-                        if(blnItemFound == false)
-                        {
-                            EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
-
-                            NewEventRow.TransactionDate = datTransactionDate;
-                            NewEventRow.LogonName = strLogonName;
-                            NewEventRow.ItemAccessed = strItemAccessed;
-
-                            TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
-                            gintNumberOfRecords++;
-                        }
-                        
+                        TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventEntry);
                     }
                 }
 
                 dgrEventLog.ItemsSource = TheEventLogSecurityDataSet.eventlogsecurity;
-
-                TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Server Security Report");
 
                 PleaseWait.Close();
             }
@@ -189,7 +169,7 @@ namespace NewBlueJayERP
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            string strKeyword;
+            string strKeyword = "";
             string strValueForValidation;
             int intCounter;
             int intNumberOfRecords;
@@ -197,31 +177,51 @@ namespace NewBlueJayERP
             string strLogonName;
             string strItemAccessed;
             string strEventNotes;
-            DateTime datStartDate = DateTime.Now;
             bool blnFatalError = false;
             string strErrorMessage = "";
             int intSecondCounter;
-            bool blnItemFound;
+            bool blnThereIsAProblem;
 
             try
             {
                 TheEventLogSecurityDataSet.eventlogsecurity.Rows.Clear();
 
-                strValueForValidation = txtEnterDate.Text;
-                blnFatalError = TheDataValidationClass.VerifyDateData(strValueForValidation);
-                if(blnFatalError == true)
+                //data validation
+                if(cboReportType.SelectedIndex < 1)
                 {
-                    strErrorMessage += "The Date is not a Date\n";
+                    blnFatalError = true;
+                    strErrorMessage += "The Report Type Was Not Chosen\n";
+                }
+                if(gintSelectedIndex > 1)
+                {
+                    strKeyword = txtEnterKeyWord.Text;
+                    if(strKeyword.Length < 3)
+                    {
+                        blnFatalError = true;
+                        strErrorMessage += "The Word Entered is not Long Enough\n";
+                    }
+                }
+                strValueForValidation = txtStartDate.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if(blnThereIsAProblem == true)
+                {
+                    blnFatalError = true;
+                    strErrorMessage += "The Start Date is not a Date\n";
                 }
                 else
                 {
-                    datStartDate = Convert.ToDateTime(strValueForValidation);
+                    gdatStartDate = Convert.ToDateTime(strValueForValidation);
                 }
-                strKeyword = txtEnterKeyword.Text;
-                if(strKeyword.Length < 4)
+                strValueForValidation = txtEndDate.Text;
+                blnThereIsAProblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if (blnThereIsAProblem == true)
                 {
                     blnFatalError = true;
-                    strErrorMessage += "The Keyword is to Short\n";
+                    strErrorMessage += "The End Date is not a Date\n";
+                }
+                else
+                {
+                    gdatEndDate = Convert.ToDateTime(strValueForValidation);
                 }
                 if(blnFatalError == true)
                 {
@@ -229,67 +229,82 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                PleaseWait PleaseWait = new PleaseWait();
-                PleaseWait.Show();
-
-                TheFindServerEventLogSecurityAccessByKeywordDataSet = TheEventLogClass.FindServerEventLogSecurityByKeyword(strKeyword, datStartDate, DateTime.Now);
-
-                intNumberOfRecords = TheFindServerEventLogSecurityAccessByKeywordDataSet.FindServerEventLogSercurityAccessByKeyword.Rows.Count;
-                gintNumberOfRecords = 0;
-
-                if (intNumberOfRecords > 0)
+                if (gintSelectedIndex == 1)
                 {
-                    for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    TheFindServerEventLogForReportsbyDateRangeDataSet = TheEventLogClass.FindServerEventLogForReportsByDateRange(gdatStartDate, gdatEndDate);
+
+                    intNumberOfRecords = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange.Rows.Count;
+
+                    if (intNumberOfRecords > 0)
                     {
-                        datTransactionDate = TheFindServerEventLogSecurityAccessByKeywordDataSet.FindServerEventLogSercurityAccessByKeyword[intCounter].TransactionDate;
-                        strLogonName = "Just Beginging";
-                        strItemAccessed = "Date Goes Here";
-                        strEventNotes = TheFindServerEventLogSecurityAccessByKeywordDataSet.FindServerEventLogSercurityAccessByKeyword[intCounter].EventNotes;
-                        blnItemFound = false;
-                        
-                        char[] delims = new[] { '\n', '\t', '\r' };
-                        string[] strNewItems = strEventNotes.Split(delims, StringSplitOptions.RemoveEmptyEntries);
-
-                        strLogonName = strNewItems[5];
-                        strItemAccessed = strNewItems[16];
-
-                        datTransactionDate = TheDateSearchClass.RemoveTime(datTransactionDate);
-
-                        if (gintNumberOfRecords > 0)
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                         {
-                            for (intSecondCounter = 0; intSecondCounter < gintNumberOfRecords; intSecondCounter++)
-                            {
-                                if (datTransactionDate == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].TransactionDate)
-                                {
-                                    if (strLogonName == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].LogonName)
-                                    {
-                                        if (strItemAccessed == TheEventLogSecurityDataSet.eventlogsecurity[intSecondCounter].ItemAccessed)
-                                        {
-                                            blnItemFound = true;
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                            datTransactionDate = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange[intCounter].TransactionDate;
+                            strItemAccessed = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange[intCounter].ItemAccessed;
+                            strLogonName = TheFindServerEventLogForReportsbyDateRangeDataSet.FindServerEventLogForReportsByDateRange[intCounter].LogonName;
 
-                        if(blnItemFound == false)
-                        {
                             EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
 
-                            NewEventRow.TransactionDate = datTransactionDate;
-                            NewEventRow.LogonName = strLogonName;
                             NewEventRow.ItemAccessed = strItemAccessed;
+                            NewEventRow.LogonName = strLogonName;
+                            NewEventRow.TransactionDate = datTransactionDate;
 
                             TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
-                            gintNumberOfRecords++;
                         }
-                 
                     }
                 }
+                else if (gintSelectedIndex == 2)
+                {
+                    TheFindServerEventLogForReportsByUserDataSet = TheEventLogClass.FindServerEventLogForReportsByUser(strKeyword, gdatStartDate, gdatEndDate);
+
+                    intNumberOfRecords = TheFindServerEventLogForReportsByUserDataSet.FindServerEventLogForReportsByUser.Rows.Count;
+
+                    if (intNumberOfRecords > 0)
+                    {
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            datTransactionDate = TheFindServerEventLogForReportsByUserDataSet.FindServerEventLogForReportsByUser[intCounter].TransactionDate;
+                            strItemAccessed = TheFindServerEventLogForReportsByUserDataSet.FindServerEventLogForReportsByUser[intCounter].ItemAccessed;
+                            strLogonName = TheFindServerEventLogForReportsByUserDataSet.FindServerEventLogForReportsByUser[intCounter].LogonName;
+
+                            EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
+
+                            NewEventRow.ItemAccessed = strItemAccessed;
+                            NewEventRow.LogonName = strLogonName;
+                            NewEventRow.TransactionDate = datTransactionDate;
+
+                            TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
+                        }
+                    }
+                }
+                else if (gintSelectedIndex == 3)
+                {
+                    TheFindServerEventLogForReportsByItemDataSet = TheEventLogClass.FindServerEventLogForReportsByItem(strKeyword, gdatStartDate, gdatEndDate);
+
+                    intNumberOfRecords = TheFindServerEventLogForReportsByItemDataSet.FindServerEventLogForReportsByItem.Rows.Count;
+
+                    if (intNumberOfRecords > 0)
+                    {
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            datTransactionDate = TheFindServerEventLogForReportsByItemDataSet.FindServerEventLogForReportsByItem[intCounter].TransactionDate;
+                            strItemAccessed = TheFindServerEventLogForReportsByItemDataSet.FindServerEventLogForReportsByItem[intCounter].ItemAccessed;
+                            strLogonName = TheFindServerEventLogForReportsByItemDataSet.FindServerEventLogForReportsByItem[intCounter].LogonName;
+
+                            EventlLogSecurityDataSet.eventlogsecurityRow NewEventRow = TheEventLogSecurityDataSet.eventlogsecurity.NeweventlogsecurityRow();
+
+                            NewEventRow.ItemAccessed = strItemAccessed;
+                            NewEventRow.LogonName = strLogonName;
+                            NewEventRow.TransactionDate = datTransactionDate;
+
+                            TheEventLogSecurityDataSet.eventlogsecurity.Rows.Add(NewEventRow);
+                        }
+                    }
+                }
+                
 
                 dgrEventLog.ItemsSource = TheEventLogSecurityDataSet.eventlogsecurity;
 
-                PleaseWait.Close();
             }
             catch (Exception Ex)
             {
@@ -432,6 +447,38 @@ namespace NewBlueJayERP
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Server Security Report // Email Report Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void cboReportType_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            gintSelectedIndex = cboReportType.SelectedIndex;
+
+            if(gintSelectedIndex == 1)
+            {
+                lblEnterKeyWord.Visibility = Visibility.Hidden;
+                txtEnterKeyWord.Visibility = Visibility.Hidden;
+                btnSearch.IsEnabled = true;
+            }
+            else if(gintSelectedIndex == 2)
+            {
+                lblEnterKeyWord.Visibility = Visibility.Visible;
+                lblEnterKeyWord.Content = "Enter User";
+                txtEnterKeyWord.Visibility = Visibility.Visible;
+                btnSearch.IsEnabled = true;
+            }
+            else if(gintSelectedIndex == 3)
+            {
+                lblEnterKeyWord.Visibility = Visibility.Visible;
+                lblEnterKeyWord.Content = "Enter Item";
+                txtEnterKeyWord.Visibility = Visibility.Visible;
+                btnSearch.IsEnabled = true;
+            }
+            else
+            {
+                lblEnterKeyWord.Visibility = Visibility.Hidden;
+                txtEnterKeyWord.Visibility = Visibility.Hidden;
+                btnSearch.IsEnabled = false;
             }
         }
     }

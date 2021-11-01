@@ -794,6 +794,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EventlLogSecurityDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EventLogReport.xaml.cs">
+      <DependentUpon>EventLogReport.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ExistingEmployees.xaml.cs">
       <DependentUpon>ExistingEmployees.xaml</DependentUpon>
     </Compile>
@@ -1653,6 +1656,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EnterInventory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EventLogReport.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
