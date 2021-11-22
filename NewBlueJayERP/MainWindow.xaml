@@ -235,7 +235,10 @@
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expAssentReports" Header="Asset Reports" ExpandDirection="Right" Margin="25,1,1,1" Background="LightBlue" Expanded="expAssentReports_Expanded">
-
+                            <StackPanel>
+                                <Expander x:Name="expAssetsForReports" Header="Assets For Reports" Margin="50,1,1,1" Expanded="expAssetsForReports_Expanded"/>
+                                <Expander x:Name="expInventoryReport" Header="Inventory Report" Margin="50,1,1,1" Expanded="expInventoryReport_Expanded" />
+                            </StackPanel>
                         </Expander>
                         <Expander x:Name="expAssetAdministration" Header="Asset Administration" ExpandDirection="Right" Expanded="expAssetAdministration_Expanded" >
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10,1,1,1">
@@ -266,6 +269,8 @@
                                 <Expander x:Name="expImportPhoneCalls" Header="Import Phone Calls" Margin="35,1,1,1" Expanded="expImportPhoneCalls_Expanded" />
                                 <Expander x:Name="expImportCellData" Header="Import Cell Data" Margin="35,1,1,1" Expanded="expImportCellData_Expanded" />
                                 <Expander x:Name="expImportCellMessages" Header="Import Cell Messages" Margin="35,1,1,1" Expanded="expImportCellMessages_Expanded" />
+                                <Expander x:Name="expAddSearchTerms" Header="Add Search Terms" Margin="35,1,1,1" Expanded="expAddSearchTerms_Expanded" />
+                                <Expander x:Name="expEditSearchTerms" Header="Edit Search Terms" Margin="35,1,1,1" Expanded="expEditSearchTerms_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expITReports" Header="IT Reports" ExpandDirection="Right" FlowDirection="LeftToRight" Margin="39,1,1,1" Background="LightBlue" Expanded="expITReports_Expanded">

@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="SearchTermsEditingDataSet" targetNamespace="http://tempuri.org/SearchTermsEditingDataSet.xsd" xmlns:mstns="http://tempuri.org/SearchTermsEditingDataSet.xsd" xmlns="http://tempuri.org/SearchTermsEditingDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="SearchTermsEditingDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="SearchTermsEditingDataSet" msprop:Generator_DataSetName="SearchTermsEditingDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="searchtermediting" msprop:Generator_RowEvHandlerName="searchtermeditingRowChangeEventHandler" msprop:Generator_RowDeletedName="searchtermeditingRowDeleted" msprop:Generator_RowDeletingName="searchtermeditingRowDeleting" msprop:Generator_RowEvArgName="searchtermeditingRowChangeEvent" msprop:Generator_TablePropName="searchtermediting" msprop:Generator_RowChangedName="searchtermeditingRowChanged" msprop:Generator_RowChangingName="searchtermeditingRowChanging" msprop:Generator_TableClassName="searchtermeditingDataTable" msprop:Generator_RowClassName="searchtermeditingRow" msprop:Generator_TableVarName="tablesearchtermediting" msprop:Generator_UserTableName="searchtermediting">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="SearchTerm" msprop:Generator_ColumnPropNameInRow="SearchTerm" msprop:Generator_ColumnPropNameInTable="SearchTermColumn" msprop:Generator_ColumnVarNameInTable="columnSearchTerm" msprop:Generator_UserColumnName="SearchTerm" type="xs:string" />
+              <xs:element name="TermActive" msprop:Generator_ColumnPropNameInRow="TermActive" msprop:Generator_ColumnPropNameInTable="TermActiveColumn" msprop:Generator_ColumnVarNameInTable="columnTermActive" msprop:Generator_UserColumnName="TermActive" type="xs:boolean" />
+              <xs:element name="IsChanged" msprop:Generator_ColumnPropNameInRow="IsChanged" msprop:Generator_ColumnPropNameInTable="IsChangedColumn" msprop:Generator_ColumnVarNameInTable="columnIsChanged" msprop:Generator_UserColumnName="IsChanged" type="xs:boolean" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:searchtermediting" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

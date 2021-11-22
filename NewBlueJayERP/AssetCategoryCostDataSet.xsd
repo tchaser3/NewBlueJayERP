@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AssetCategoryCostDataSet" targetNamespace="http://tempuri.org/AssetCategoryCostDataSet.xsd" xmlns:mstns="http://tempuri.org/AssetCategoryCostDataSet.xsd" xmlns="http://tempuri.org/AssetCategoryCostDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AssetCategoryCostDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="AssetCategoryCostDataSet" msprop:Generator_DataSetName="AssetCategoryCostDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="assetcategorycost" msprop:Generator_RowEvHandlerName="assetcategorycostRowChangeEventHandler" msprop:Generator_RowDeletedName="assetcategorycostRowDeleted" msprop:Generator_RowDeletingName="assetcategorycostRowDeleting" msprop:Generator_RowEvArgName="assetcategorycostRowChangeEvent" msprop:Generator_TablePropName="assetcategorycost" msprop:Generator_RowChangedName="assetcategorycostRowChanged" msprop:Generator_RowChangingName="assetcategorycostRowChanging" msprop:Generator_TableClassName="assetcategorycostDataTable" msprop:Generator_RowClassName="assetcategorycostRow" msprop:Generator_TableVarName="tableassetcategorycost" msprop:Generator_UserTableName="assetcategorycost">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="AssetCategory" msprop:Generator_ColumnPropNameInRow="AssetCategory" msprop:Generator_ColumnPropNameInTable="AssetCategoryColumn" msprop:Generator_ColumnVarNameInTable="columnAssetCategory" msprop:Generator_UserColumnName="AssetCategory" type="xs:string" />
+              <xs:element name="CategoryCosts" msprop:Generator_ColumnPropNameInRow="CategoryCosts" msprop:Generator_ColumnPropNameInTable="CategoryCostsColumn" msprop:Generator_ColumnVarNameInTable="columnCategoryCosts" msprop:Generator_UserColumnName="CategoryCosts" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:assetcategorycost" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

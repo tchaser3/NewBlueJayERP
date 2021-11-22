@@ -24,6 +24,7 @@ using NewEventLogDLL;
 using DataValidationDLL;
 using CellPhoneCallsDLL;
 using EmployeeDateEntryDLL;
+using PhonesDLL;
 
 namespace NewBlueJayERP
 {
@@ -39,11 +40,15 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         CellPhoneCallsClass TheCellPhoneCallsClass = new CellPhoneCallsClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        PhonesClass ThePhoneClass = new PhonesClass();
 
         //setting up data sets
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
         FindCellPhoneCallsByCallerDataSet TheFindCellPhoneCallsByCallerDataSet = new FindCellPhoneCallsByCallerDataSet();
         FindCellPhoneCallsForEmployeeDataSet TheFindCellPhoneCallsForEmployeeDataSet = new FindCellPhoneCallsForEmployeeDataSet();
+        CellCallRosterDataSet TheCellCallRosterDataSet = new CellCallRosterDataSet();
+        FindEmployeeByPhoneNumberDataSet TheFindEmployeeByPhoneNumberDataSet = new FindEmployeeByPhoneNumberDataSet();
+        FindCellPhoneByLastFourDataSet TheFindCellPhoneByLastForDataSet = new FindCellPhoneByLastFourDataSet();
 
         //setting up variables
         bool gblnEmployeeSearch;
@@ -51,6 +56,7 @@ namespace NewBlueJayERP
         string gstrLastFour;
         DateTime gdatStartDate;
         DateTime gdatEndDate;
+        string gstrFullName;
 
         public CellPhoneCallSearch()
         {
@@ -119,9 +125,9 @@ namespace NewBlueJayERP
             cboSelectEmployee.Visibility = Visibility.Hidden;
             lblSelectEmployee.Visibility = Visibility.Hidden;
 
-            TheFindCellPhoneCallsByCallerDataSet = TheCellPhoneCallsClass.FindCellPhoneCallsByCaller(DateTime.Now, DateTime.Now, "0000");
+            TheCellCallRosterDataSet.cellcallroster.Rows.Clear();
 
-            dgrCellCalls.ItemsSource = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller;
+            dgrCellCalls.ItemsSource = TheCellCallRosterDataSet.cellcallroster;
 
             TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Cell Phone Call Search");
         }
@@ -238,6 +244,7 @@ namespace NewBlueJayERP
                 if(intSelectedIndex > -1)
                 {
                     gintEmployeeID = TheComboEmployeeDataSet.employees[intSelectedIndex].EmployeeID;
+                    gstrFullName = TheComboEmployeeDataSet.employees[intSelectedIndex].FullName;
                 }
             }
             catch (Exception Ex)
@@ -254,9 +261,23 @@ namespace NewBlueJayERP
             bool blnThereIsAProblem = false;
             bool blnFatalError = false;
             string strErrorMessage = "";
+            int intCounter;
+            int intNumberOfRecords;
+            int intRecordsReturned;
+            string strLastFour;
+            DateTime datTransactionDate;
+            string strPhoneNumber;
+            string strFullName;
+            string strTargetNumber;
+            string strDestination;
+            string strTargetName;
+            int intCallMinutes;
+            string strEmployeeNumber;
 
             try
             {
+                TheCellCallRosterDataSet.cellcallroster.Rows.Clear();
+
                 if(cboReportType.SelectedIndex < 1)
                 {
                     blnFatalError = true;
@@ -312,14 +333,154 @@ namespace NewBlueJayERP
                 {
                     TheFindCellPhoneCallsForEmployeeDataSet = TheCellPhoneCallsClass.FindCellPhoneCallsForEmployee(gintEmployeeID, gdatStartDate, gdatEndDate);
 
-                    dgrCellCalls.ItemsSource = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee;
+                    intNumberOfRecords = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee.Rows.Count;
+
+                    if(intNumberOfRecords > 0)
+                    {
+                        for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            datTransactionDate = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee[intCounter].TransactionDate;
+                            strPhoneNumber = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee[intCounter].PhoneNumber;
+                            strTargetNumber = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee[intCounter].TransactionNumber;
+                            strDestination = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee[intCounter].Destination;
+                            strTargetName = "UNKNOWN";
+                            intCallMinutes = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee[intCounter].CallMinutes;
+                            strLastFour = strTargetNumber.Substring(6, 4);
+
+                            TheFindCellPhoneByLastForDataSet = ThePhoneClass.FindCellPhoneByLastFour(strLastFour);
+
+                            intRecordsReturned = TheFindCellPhoneByLastForDataSet.FindCellPhoneByLastFour.Rows.Count;
+
+                            if(strLastFour == "2828")
+                            {
+                                strTargetName = "BLUE JAY COMMUNICATIONS";
+                            }
+                            else if(intRecordsReturned > 0)
+                            {
+                                strTargetName = TheFindCellPhoneByLastForDataSet.FindCellPhoneByLastFour[0].FirstName + " ";
+                                strTargetName += TheFindCellPhoneByLastForDataSet.FindCellPhoneByLastFour[0].LastName;
+                            }
+                            else if(intRecordsReturned < 1)
+                            {
+                                TheFindEmployeeByPhoneNumberDataSet = TheEmployeeClass.FindEmployeeByPhoneNumber(strLastFour);
+
+                                intRecordsReturned = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber.Rows.Count;
+
+                                if(intRecordsReturned > 0)
+                                {
+                                    strEmployeeNumber = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].PhoneNumber;
+
+                                    strEmployeeNumber = strEmployeeNumber.Substring(0, 3);
+
+                                    if(strTargetNumber.Contains(strEmployeeNumber) == true)
+                                    {
+                                        strEmployeeNumber = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].PhoneNumber;
+
+                                        strEmployeeNumber = strEmployeeNumber.Substring(4, 3);
+
+                                        if(strTargetNumber.Contains(strEmployeeNumber) == true)
+                                        {
+                                            strTargetName = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].FirstName + " ";
+                                            strTargetName += TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].LastName;
+                                        }
+                                    }
+                                }
+                            }
+
+                            CellCallRosterDataSet.cellcallrosterRow NewCallRoster = TheCellCallRosterDataSet.cellcallroster.NewcellcallrosterRow();
+
+                            NewCallRoster.TransactionDate = datTransactionDate;
+                            NewCallRoster.PhoneNumber = strPhoneNumber;
+                            NewCallRoster.FullName = gstrFullName;
+                            NewCallRoster.TargetNumber = strTargetNumber;
+                            NewCallRoster.Destination = strDestination;
+                            NewCallRoster.TargetName = strTargetName;
+                            NewCallRoster.CallMinutes = intCallMinutes;
+
+                            TheCellCallRosterDataSet.cellcallroster.Rows.Add(NewCallRoster);
+
+                        }
+                    }
                 }
                 else if(gblnEmployeeSearch == false)
                 {
                     TheFindCellPhoneCallsByCallerDataSet = TheCellPhoneCallsClass.FindCellPhoneCallsByCaller(gdatStartDate, gdatEndDate, gstrLastFour);
 
-                    dgrCellCalls.ItemsSource = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller;
+                    intNumberOfRecords = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller.Rows.Count;
+
+                    if (intNumberOfRecords > 0)
+                    {
+                        for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                        {
+                            datTransactionDate = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].TransactionDate;
+                            strPhoneNumber = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].PhoneNumber;
+                            strFullName = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].FirstName + " ";
+                            strFullName += TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].LastName;
+                            strTargetNumber = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].TransactionNumber;
+                            strDestination = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].Destination;
+                            strTargetName = "UNKNOWN";
+                            intCallMinutes = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller[intCounter].CallMinutes;
+                            strLastFour = strTargetNumber.Substring(6, 4);
+
+                            TheFindCellPhoneByLastForDataSet = ThePhoneClass.FindCellPhoneByLastFour(strLastFour);
+
+                            intRecordsReturned = TheFindCellPhoneByLastForDataSet.FindCellPhoneByLastFour.Rows.Count;
+
+                            if (strLastFour == "2828")
+                            {
+                                strTargetName = "BLUE JAY COMMUNICATIONS";
+                            }
+                            else if (intRecordsReturned > 0)
+                            {
+                                strTargetName = TheFindCellPhoneByLastForDataSet.FindCellPhoneByLastFour[0].FirstName + " ";
+                                strTargetName += TheFindCellPhoneByLastForDataSet.FindCellPhoneByLastFour[0].LastName;
+                            }
+                            else if (intRecordsReturned < 1)
+                            {
+                                TheFindEmployeeByPhoneNumberDataSet = TheEmployeeClass.FindEmployeeByPhoneNumber(strLastFour);
+
+                                intRecordsReturned = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber.Rows.Count;
+
+                                if (intRecordsReturned > 0)
+                                {
+                                    strEmployeeNumber = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].PhoneNumber;
+
+                                    strEmployeeNumber = strEmployeeNumber.Substring(0, 3);
+
+                                    if (strTargetNumber.Contains(strEmployeeNumber) == true)
+                                    {
+                                        strEmployeeNumber = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].PhoneNumber;
+
+                                        strEmployeeNumber = strEmployeeNumber.Substring(4, 3);
+
+                                        if (strTargetNumber.Contains(strEmployeeNumber) == true)
+                                        {
+                                            strTargetName = TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].FirstName + " ";
+                                            strTargetName += TheFindEmployeeByPhoneNumberDataSet.FindEmployeeByPhoneNumber[0].LastName;
+                                        }
+                                    }
+                                }
+                            }
+
+                            CellCallRosterDataSet.cellcallrosterRow NewCallRoster = TheCellCallRosterDataSet.cellcallroster.NewcellcallrosterRow();
+
+                            NewCallRoster.TransactionDate = datTransactionDate;
+                            NewCallRoster.PhoneNumber = strPhoneNumber;
+                            NewCallRoster.FullName = strFullName;
+                            NewCallRoster.TargetNumber = strTargetNumber;
+                            NewCallRoster.Destination = strDestination;
+                            NewCallRoster.TargetName = strTargetName;
+                            NewCallRoster.CallMinutes = intCallMinutes;
+
+                            TheCellCallRosterDataSet.cellcallroster.Rows.Add(NewCallRoster);
+
+                        }
+                    }
                 }
+
+                
+
+                dgrCellCalls.ItemsSource = TheCellCallRosterDataSet.cellcallroster;
 
             }
             catch (Exception Ex)
@@ -334,14 +495,7 @@ namespace NewBlueJayERP
         {
             expExportToExcel.IsExpanded = false;
 
-            if(gblnEmployeeSearch == true)
-            {
-                ExportEmployees();
-            }
-            else if(gblnEmployeeSearch == false)
-            {
-                ExportCallers();
-            }
+            ExportEmployees();
         }
         private void ExportEmployees()
         {
@@ -364,12 +518,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee.Rows.Count;
-                intColumnNumberOfRecords = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee.Columns.Count;
+                intRowNumberOfRecords = TheCellCallRosterDataSet.cellcallroster.Rows.Count;
+                intColumnNumberOfRecords = TheCellCallRosterDataSet.cellcallroster.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheCellCallRosterDataSet.cellcallroster.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -382,7 +536,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindCellPhoneCallsForEmployeeDataSet.FindCellPhoneCallsForEmployee.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheCellCallRosterDataSet.cellcallroster.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
@@ -414,76 +568,6 @@ namespace NewBlueJayERP
                 excel = null;
             }
         }
-        private void ExportCallers()
-        {
-            int intRowCounter;
-            int intRowNumberOfRecords;
-            int intColumnCounter;
-            int intColumnNumberOfRecords;
-
-            // Creating a Excel object. 
-            Microsoft.Office.Interop.Excel._Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel._Workbook workbook = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel._Worksheet worksheet = null;
-
-            try
-            {
-
-                worksheet = workbook.ActiveSheet;
-
-                worksheet.Name = "OpenOrders";
-
-                int cellRowIndex = 1;
-                int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller.Rows.Count;
-                intColumnNumberOfRecords = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller.Columns.Count;
-
-                for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
-                {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller.Columns[intColumnCounter].ColumnName;
-
-                    cellColumnIndex++;
-                }
-
-                cellRowIndex++;
-                cellColumnIndex = 1;
-
-                //Loop through each row and read value from each column. 
-                for (intRowCounter = 0; intRowCounter < intRowNumberOfRecords; intRowCounter++)
-                {
-                    for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
-                    {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindCellPhoneCallsByCallerDataSet.FindCellPhoneCallsByCaller.Rows[intRowCounter][intColumnCounter].ToString();
-
-                        cellColumnIndex++;
-                    }
-                    cellColumnIndex = 1;
-                    cellRowIndex++;
-                }
-
-                //Getting the location and file name of the excel to save from user. 
-                SaveFileDialog saveDialog = new SaveFileDialog();
-                saveDialog.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                saveDialog.FilterIndex = 1;
-
-                saveDialog.ShowDialog();
-
-                workbook.SaveAs(saveDialog.FileName);
-                MessageBox.Show("Export Successful");
-
-            }
-            catch (System.Exception ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Cell Phone Call Search // Export Callers " + ex.Message);
-
-                MessageBox.Show(ex.ToString());
-            }
-            finally
-            {
-                excel.Quit();
-                workbook = null;
-                excel = null;
-            }
-        }
+        
     }
 }

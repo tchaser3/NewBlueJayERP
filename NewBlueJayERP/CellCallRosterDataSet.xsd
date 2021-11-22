@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="CellCallRosterDataSet" targetNamespace="http://tempuri.org/CellCallRosterDataSet.xsd" xmlns:mstns="http://tempuri.org/CellCallRosterDataSet.xsd" xmlns="http://tempuri.org/CellCallRosterDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="CellCallRosterDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="CellCallRosterDataSet" msprop:Generator_DataSetName="CellCallRosterDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="cellcallroster" msprop:Generator_RowEvHandlerName="cellcallrosterRowChangeEventHandler" msprop:Generator_RowDeletedName="cellcallrosterRowDeleted" msprop:Generator_RowDeletingName="cellcallrosterRowDeleting" msprop:Generator_RowEvArgName="cellcallrosterRowChangeEvent" msprop:Generator_TablePropName="cellcallroster" msprop:Generator_RowChangedName="cellcallrosterRowChanged" msprop:Generator_RowChangingName="cellcallrosterRowChanging" msprop:Generator_TableClassName="cellcallrosterDataTable" msprop:Generator_RowClassName="cellcallrosterRow" msprop:Generator_TableVarName="tablecellcallroster" msprop:Generator_UserTableName="cellcallroster">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionDate" msprop:Generator_ColumnPropNameInRow="TransactionDate" msprop:Generator_ColumnPropNameInTable="TransactionDateColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionDate" msprop:Generator_UserColumnName="TransactionDate" type="xs:dateTime" />
+              <xs:element name="PhoneNumber" msprop:Generator_ColumnPropNameInRow="PhoneNumber" msprop:Generator_ColumnPropNameInTable="PhoneNumberColumn" msprop:Generator_ColumnVarNameInTable="columnPhoneNumber" msprop:Generator_UserColumnName="PhoneNumber" type="xs:string" />
+              <xs:element name="FullName" msprop:Generator_ColumnPropNameInRow="FullName" msprop:Generator_ColumnPropNameInTable="FullNameColumn" msprop:Generator_ColumnVarNameInTable="columnFullName" msprop:Generator_UserColumnName="FullName" type="xs:string" />
+              <xs:element name="TargetNumber" msprop:Generator_ColumnPropNameInRow="TargetNumber" msprop:Generator_ColumnPropNameInTable="TargetNumberColumn" msprop:Generator_ColumnVarNameInTable="columnTargetNumber" msprop:Generator_UserColumnName="TargetNumber" type="xs:string" />
+              <xs:element name="Destination" msprop:Generator_ColumnPropNameInRow="Destination" msprop:Generator_ColumnPropNameInTable="DestinationColumn" msprop:Generator_ColumnVarNameInTable="columnDestination" msprop:Generator_UserColumnName="Destination" type="xs:string" />
+              <xs:element name="TargetName" msprop:Generator_ColumnPropNameInRow="TargetName" msprop:Generator_ColumnPropNameInTable="TargetNameColumn" msprop:Generator_ColumnVarNameInTable="columnTargetName" msprop:Generator_UserColumnName="TargetName" type="xs:string" />
+              <xs:element name="CallMinutes" msprop:Generator_ColumnPropNameInRow="CallMinutes" msprop:Generator_ColumnPropNameInTable="CallMinutesColumn" msprop:Generator_ColumnVarNameInTable="columnCallMinutes" msprop:Generator_UserColumnName="CallMinutes" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

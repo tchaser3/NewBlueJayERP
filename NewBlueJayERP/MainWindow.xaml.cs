@@ -230,6 +230,10 @@ namespace NewBlueJayERP
         public static ServerSercurityReport ServerSecurityReportWindow = new ServerSercurityReport();
         public static EmailServerReport EmailServerReportWindow = new EmailServerReport();
         public static EventLogReport EventLogReportWindow = new EventLogReport();
+        public static AddSearchTerms AddSearchTermsWindow = new AddSearchTerms();
+        public static EditSearchTerm EditSearchTermWindow = new EditSearchTerm();
+        public static PrepareAssetReport PrepareAssetReportWindow = new PrepareAssetReport();
+        public static InventoryValuationReport InventoryValuationReportWindow = new InventoryValuationReport();
 
         public MainWindow()
         {
@@ -398,6 +402,10 @@ namespace NewBlueJayERP
             ServerSecurityReportWindow.Visibility = Visibility.Hidden;
             EmailServerReportWindow.Visibility = Visibility.Hidden;
             EventLogReportWindow.Visibility = Visibility.Hidden;
+            AddSearchTermsWindow.Visibility = Visibility.Hidden;
+            EditSearchTermWindow.Visibility = Visibility.Hidden;
+            PrepareAssetReportWindow.Visibility = Visibility.Hidden;
+            InventoryValuationReportWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1429,6 +1437,8 @@ namespace NewBlueJayERP
             expImportPhoneCalls.IsExpanded = false;
             expImportCellData.IsExpanded = false;
             expImportCellMessages.IsExpanded = false;
+            expAddSearchTerms.IsExpanded = false;
+            expEditSearchTerms.IsExpanded = false;
         }
 
         private void expDepartmentProjectOpenList_Expanded(object sender, RoutedEventArgs e)
@@ -1881,6 +1891,37 @@ namespace NewBlueJayERP
         {
             ITReportsExpanders();
             EventLogReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddSearchTerms_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            AddSearchTermsWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditSearchTerms_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetITDataEntryExpanders();
+            EditSearchTermWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAssetsForReports_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetReports();
+            PrepareAssetReportWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetAssetReports()
+        {
+            expAssets.IsExpanded = false;
+            expAssentReports.IsExpanded = false;
+            expAssetsForReports.IsExpanded = false;
+            expInventoryReport.IsExpanded = false;
+        }
+
+        private void expInventoryReport_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetAssetReports();
+            InventoryValuationReportWindow.Visibility = Visibility.Visible;
         }
     }
 }

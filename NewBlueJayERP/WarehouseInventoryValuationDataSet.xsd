@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="WarehouseInventoryValuationDataSet" targetNamespace="http://tempuri.org/WarehouseInventoryValuationDataSet.xsd" xmlns:mstns="http://tempuri.org/WarehouseInventoryValuationDataSet.xsd" xmlns="http://tempuri.org/WarehouseInventoryValuationDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="WarehouseInventoryValuationDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_UserDSName="WarehouseInventoryValuationDataSet" msprop:Generator_DataSetName="WarehouseInventoryValuationDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="warehouseinventoryvaluation" msprop:Generator_RowEvHandlerName="warehouseinventoryvaluationRowChangeEventHandler" msprop:Generator_RowDeletedName="warehouseinventoryvaluationRowDeleted" msprop:Generator_RowDeletingName="warehouseinventoryvaluationRowDeleting" msprop:Generator_RowEvArgName="warehouseinventoryvaluationRowChangeEvent" msprop:Generator_TablePropName="warehouseinventoryvaluation" msprop:Generator_RowChangedName="warehouseinventoryvaluationRowChanged" msprop:Generator_RowChangingName="warehouseinventoryvaluationRowChanging" msprop:Generator_TableClassName="warehouseinventoryvaluationDataTable" msprop:Generator_RowClassName="warehouseinventoryvaluationRow" msprop:Generator_TableVarName="tablewarehouseinventoryvaluation" msprop:Generator_UserTableName="warehouseinventoryvaluation">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="TransactionID" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnPropNameInRow="TransactionID" msprop:Generator_ColumnPropNameInTable="TransactionIDColumn" msprop:Generator_ColumnVarNameInTable="columnTransactionID" msprop:Generator_UserColumnName="TransactionID" type="xs:int" />
+              <xs:element name="Warehouse" msprop:Generator_ColumnPropNameInRow="Warehouse" msprop:Generator_ColumnPropNameInTable="WarehouseColumn" msprop:Generator_ColumnVarNameInTable="columnWarehouse" msprop:Generator_UserColumnName="Warehouse" type="xs:string" />
+              <xs:element name="TotalValuation" msprop:Generator_ColumnPropNameInRow="TotalValuation" msprop:Generator_ColumnPropNameInTable="TotalValuationColumn" msprop:Generator_ColumnVarNameInTable="columnTotalValuation" msprop:Generator_UserColumnName="TotalValuation" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:warehouseinventoryvaluation" />
+      <xs:field xpath="mstns:TransactionID" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>

@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="AssetsForReportDataSet" targetNamespace="http://tempuri.org/AssetsForReportDataSet.xsd" xmlns:mstns="http://tempuri.org/AssetsForReportDataSet.xsd" xmlns="http://tempuri.org/AssetsForReportDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections />
+        <Tables />
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="AssetsForReportDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:Generator_UserDSName="AssetsForReportDataSet" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="AssetsForReportDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="assetsforreport" msprop:Generator_RowClassName="assetsforreportRow" msprop:Generator_RowEvHandlerName="assetsforreportRowChangeEventHandler" msprop:Generator_RowDeletedName="assetsforreportRowDeleted" msprop:Generator_RowDeletingName="assetsforreportRowDeleting" msprop:Generator_RowEvArgName="assetsforreportRowChangeEvent" msprop:Generator_TablePropName="assetsforreport" msprop:Generator_RowChangedName="assetsforreportRowChanged" msprop:Generator_UserTableName="assetsforreport" msprop:Generator_RowChangingName="assetsforreportRowChanging" msprop:Generator_TableClassName="assetsforreportDataTable" msprop:Generator_TableVarName="tableassetsforreport">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AssetTag" msprop:Generator_UserColumnName="AssetTag" msprop:Generator_ColumnPropNameInTable="AssetTagColumn" msprop:Generator_ColumnPropNameInRow="AssetTag" msprop:Generator_ColumnVarNameInTable="columnAssetTag" type="xs:int" />
+              <xs:element name="AssetDecription" msprop:Generator_UserColumnName="AssetDecription" msprop:Generator_ColumnPropNameInTable="AssetDecriptionColumn" msprop:Generator_ColumnPropNameInRow="AssetDecription" msprop:Generator_ColumnVarNameInTable="columnAssetDecription" type="xs:string" />
+              <xs:element name="SerialNumber" msprop:Generator_UserColumnName="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" type="xs:string" />
+              <xs:element name="AssetCategory" msprop:Generator_UserColumnName="AssetCategory" msprop:Generator_ColumnPropNameInTable="AssetCategoryColumn" msprop:Generator_ColumnPropNameInRow="AssetCategory" msprop:Generator_ColumnVarNameInTable="columnAssetCategory" type="xs:string" />
+              <xs:element name="Location" msprop:Generator_ColumnPropNameInRow="Location" msprop:Generator_ColumnPropNameInTable="LocationColumn" msprop:Generator_ColumnVarNameInTable="columnLocation" msprop:Generator_UserColumnName="Location" type="xs:string" />
+              <xs:element name="Quantity" msprop:Generator_UserColumnName="Quantity" msprop:Generator_ColumnPropNameInTable="QuantityColumn" msprop:Generator_ColumnPropNameInRow="Quantity" msprop:Generator_ColumnVarNameInTable="columnQuantity" type="xs:int" />
+              <xs:element name="AssetCost" msprop:Generator_UserColumnName="AssetCost" msprop:Generator_ColumnPropNameInTable="AssetCostColumn" msprop:Generator_ColumnPropNameInRow="AssetCost" msprop:Generator_ColumnVarNameInTable="columnAssetCost" type="xs:decimal" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:assetsforreport" />
+      <xs:field xpath="mstns:AssetTag" />
+    </xs:unique>
+  </xs:element>
+</xs:schema>
