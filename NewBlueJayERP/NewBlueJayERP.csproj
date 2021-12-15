@@ -513,6 +513,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AholaEmployeePunches.xaml.cs">
+      <DependentUpon>AholaEmployeePunches.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AssetCategoryCostDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -691,6 +694,9 @@
     </Compile>
     <Compile Include="EditEmployee.xaml.cs">
       <DependentUpon>EditEmployee.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="EditEmployeeHours.xaml.cs">
+      <DependentUpon>EditEmployeeHours.xaml</DependentUpon>
     </Compile>
     <Compile Include="EditFuelCard.xaml.cs">
       <DependentUpon>EditFuelCard.xaml</DependentUpon>
@@ -1491,6 +1497,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AholaEmployeePunches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AssignCellPhone.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1616,6 +1626,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditEmployee.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditEmployeeHours.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

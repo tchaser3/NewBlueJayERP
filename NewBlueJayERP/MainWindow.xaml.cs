@@ -92,6 +92,7 @@ namespace NewBlueJayERP
         public static bool gblnPasswordWorked;
         public static int gintAssetID;
         public static string gstrAssetLocation;
+        public static DateTime gdatPayDate;
 
         //setting up global variables for windows
         public static CompanyProjectFootages CompanyProjectFootagesWindows = new CompanyProjectFootages();
@@ -234,6 +235,7 @@ namespace NewBlueJayERP
         public static EditSearchTerm EditSearchTermWindow = new EditSearchTerm();
         public static PrepareAssetReport PrepareAssetReportWindow = new PrepareAssetReport();
         public static InventoryValuationReport InventoryValuationReportWindow = new InventoryValuationReport();
+        public static EditEmployeeHours EditEmployeeHoursWindow = new EditEmployeeHours();
 
         public MainWindow()
         {
@@ -406,6 +408,7 @@ namespace NewBlueJayERP
             EditSearchTermWindow.Visibility = Visibility.Hidden;
             PrepareAssetReportWindow.Visibility = Visibility.Hidden;
             InventoryValuationReportWindow.Visibility = Visibility.Hidden;
+            EditEmployeeHoursWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -1306,6 +1309,7 @@ namespace NewBlueJayERP
             expVoidDesignProductivity.IsExpanded = false;
             expVoidDriveTime.IsExpanded = false;
             expProductivityDataEntryReport.IsExpanded = false;
+            expEditEmployeeHours.IsExpanded = false;
         } 
 
 
@@ -1922,6 +1926,12 @@ namespace NewBlueJayERP
         {
             ResetAssetReports();
             InventoryValuationReportWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expEditEmployeeHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeAdministration();
+            EditEmployeeHoursWindow.Visibility = Visibility.Visible;
         }
     }
 }
