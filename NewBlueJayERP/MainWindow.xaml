@@ -225,7 +225,16 @@
                         </Expander>
                     </StackPanel>
                 </Expander>
-            </StackPanel>            
+            </StackPanel>
+            <StackPanel>
+                <Expander x:Name="expVehicles" Header="Vehicles"  HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="15,1,1,1" Expanded="expVehicles_Expanded">
+                    <StackPanel>
+                        <Expander x:Name="expChangeVehicleLocation" Header="Change Vehicle Location" ExpandDirection="Right" Background="LightBlue" Margin="24,1,1,1" Expanded="expChangeVehicleLocation_Expanded" >
+                            
+                        </Expander>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
             <StackPanel>
                 <Expander x:Name="expAssets" Header="Assets" HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="20,1,1,1" Expanded="expAssets_Expanded">
                     <StackPanel Margin="33,1,1,1" Background="LightBlue">

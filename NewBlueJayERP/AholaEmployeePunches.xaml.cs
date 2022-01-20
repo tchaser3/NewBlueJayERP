@@ -31,6 +31,10 @@ namespace NewBlueJayERP
 
         FindAholaEmployeePunchHoursDataSet TheFindAholaEmployeePunchHoursDataSet = new FindAholaEmployeePunchHoursDataSet();
 
+        //setting up global variables
+        DateTime gdatStartDate;
+        DateTime gdatEndDate;
+
         public AholaEmployeePunches()
         {
             InitializeComponent();
@@ -66,15 +70,12 @@ namespace NewBlueJayERP
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            DateTime datStartDate = DateTime.Now;
-            DateTime datEndDate = DateTime.Now;
-
             try
             {
-                datStartDate = TheDateSearchClass.SubtractingDays(MainWindow.gdatPayDate, 6);
-                datEndDate = TheDateSearchClass.AddingDays(MainWindow.gdatPayDate, 1);
+                gdatStartDate = TheDateSearchClass.SubtractingDays(MainWindow.gdatPayDate, 6);
+                gdatEndDate = TheDateSearchClass.AddingDays(MainWindow.gdatPayDate, 1);
 
-                TheFindAholaEmployeePunchHoursDataSet = TheEmployeePUnchedHoursClass.FindAholaEmployeePunchHours(MainWindow.gintEmployeeID, datStartDate, datEndDate);
+                TheFindAholaEmployeePunchHoursDataSet = TheEmployeePUnchedHoursClass.FindAholaEmployeePunchHours(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
 
                 dgrEmployeeHours.ItemsSource = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours;
             }
@@ -84,6 +85,90 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void dgrEmployeeHours_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid;
+            DataGridRow selectedRow;
+            DataGridCell TransactionID;
+            string strTransactionID;
+
+            try
+            {
+                if (dgrEmployeeHours.SelectedIndex > -1)
+                {
+
+                    //setting local variable
+                    dataGrid = dgrEmployeeHours;
+                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+                    TransactionID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
+                    strTransactionID = ((TextBlock)TransactionID.Content).Text;
+
+                    //find the record
+                    MainWindow.gintTransactionID = Convert.ToInt32(strTransactionID);
+
+                    ChangeAlohaTimes ChangeAlohaTimes = new ChangeAlohaTimes();
+                    ChangeAlohaTimes.ShowDialog();
+
+                    TheFindAholaEmployeePunchHoursDataSet = TheEmployeePUnchedHoursClass.FindAholaEmployeePunchHours(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
+
+                    dgrEmployeeHours.ItemsSource = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours;
+
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Ahola Employee Punches // Employee Hours Grid Selection " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expAdjustTotalHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intCounter;
+            int intNumberOfRecords;
+            decimal decTotalHours = 0;
+            bool blnFatalError = false;
+
+            try
+            {
+                expAdjustTotalHours.IsExpanded = false;
+
+                intNumberOfRecords = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours.Rows.Count;
+
+                if(intNumberOfRecords > 0)
+                {
+                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        decTotalHours += TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours[intCounter].DailyHours;
+                    }
+
+                    blnFatalError = TheEmployeePUnchedHoursClass.UpdateEmployeePunchedHours(MainWindow.gintEmployeeID, MainWindow.gdatPayDate, decTotalHours);
+
+                    if (blnFatalError == true)
+                        throw new Exception();
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Ahola Employee Punches // Adjust Total Hours Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+
+        }
+
+        private void expAddPunch_Expanded(object sender, RoutedEventArgs e)
+        {
+            AddAholaPunch AddAholaPunch = new AddAholaPunch();
+            AddAholaPunch.ShowDialog();
+
+            TheFindAholaEmployeePunchHoursDataSet = TheEmployeePUnchedHoursClass.FindAholaEmployeePunchHours(MainWindow.gintEmployeeID, gdatStartDate, gdatEndDate);
+
+            dgrEmployeeHours.ItemsSource = TheFindAholaEmployeePunchHoursDataSet.FindAholaEmployeePunchHours;
         }
     }
 }

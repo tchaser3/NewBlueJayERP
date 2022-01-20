@@ -54,6 +54,7 @@ namespace NewBlueJayERP
         string gstrDepartment;
         string gstrSalaryType;
         int gintManagerID;
+        int gintEmployeeID;
 
         public EditEmployee()
         {
@@ -216,6 +217,8 @@ namespace NewBlueJayERP
 
                 if (blnFatalError == true)
                     throw new Exception();
+
+                expIsManager.IsEnabled = false;
             }
             catch (Exception Ex)
             {
@@ -350,7 +353,6 @@ namespace NewBlueJayERP
         private void cboSelectEmployee_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             int intSelectedIndex = 0;
-            int intEmployeeID;
             int intCouter;
             int intNumberOfRecords;
 
@@ -360,13 +362,13 @@ namespace NewBlueJayERP
 
                 if(intSelectedIndex > -1)
                 {
-                    intEmployeeID = TheFindAllEmployeesByLastNameDataSet.FindAllEmployeeByLastName[intSelectedIndex].EmployeeID;
+                    gintEmployeeID = TheFindAllEmployeesByLastNameDataSet.FindAllEmployeeByLastName[intSelectedIndex].EmployeeID;
 
-                    TheFindEmployeeByEmployeeID = TheEmployeeClass.FindEmployeeByEmployeeID(intEmployeeID);
+                    TheFindEmployeeByEmployeeID = TheEmployeeClass.FindEmployeeByEmployeeID(gintEmployeeID);
 
                     EnableControls(true);
 
-                    txtEmployeeID.Text = Convert.ToString(intEmployeeID);
+                    txtEmployeeID.Text = Convert.ToString(gintEmployeeID);
                     txtFirstName.Text = TheFindEmployeeByEmployeeID.FindEmployeeByEmployeeID[0].FirstName;
                     txtLastName.Text = TheFindEmployeeByEmployeeID.FindEmployeeByEmployeeID[0].LastName;
                     txtPhoneNumber.Text = TheFindEmployeeByEmployeeID.FindEmployeeByEmployeeID[0].PhoneNumber;
@@ -515,6 +517,8 @@ namespace NewBlueJayERP
                         cboManager.SelectedIndex = 0;
                     }
                 }
+
+                expIsManager.IsEnabled = true;
             }
             catch (Exception Ex)
             {
@@ -536,7 +540,6 @@ namespace NewBlueJayERP
             string strErrorMessage = "";
             bool blnThereIsAProblem = false;
             bool blnFatalError = false;
-            int intEmployeeID = 0;
             string strFirstName;
             string strLastName;
             string strPhoneNumber;
@@ -557,7 +560,7 @@ namespace NewBlueJayERP
                 }
                 else
                 {
-                    intEmployeeID = Convert.ToInt32(strValueForValidation);
+                    gintEmployeeID = Convert.ToInt32(strValueForValidation);
                 }
                 strFirstName = txtFirstName.Text;
                 if(strFirstName.Length < 3)
@@ -666,22 +669,22 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                blnFatalError = TheEmployeeClass.UpdateEmployee(intEmployeeID, strFirstName, strLastName, strPhoneNumber, gblnActive, gstrGroup, gstrHomeOffice, gstrEmployeeType, strEmailAddress, gstrSalaryType, gstrDepartment, gintManagerID);
+                blnFatalError = TheEmployeeClass.UpdateEmployee(gintEmployeeID, strFirstName, strLastName, strPhoneNumber, gblnActive, gstrGroup, gstrHomeOffice, gstrEmployeeType, strEmailAddress, gstrSalaryType, gstrDepartment, gintManagerID);
 
                 if (blnFatalError == true)
                     throw new Exception();
 
-                blnFatalError = TheEmployeeClass.UpdateEmployeeEndDate(intEmployeeID, datEndDate);
+                blnFatalError = TheEmployeeClass.UpdateEmployeeEndDate(gintEmployeeID, datEndDate);
 
                 if (blnFatalError == true)
                     throw new Exception();
 
-                blnFatalError = TheEmployeeClass.UpdateEmployeeStartDate(intEmployeeID, datStartDate);
+                blnFatalError = TheEmployeeClass.UpdateEmployeeStartDate(gintEmployeeID, datStartDate);
 
                 if (blnFatalError == true)
                     throw new Exception();
 
-                blnFatalError = TheEmployeeClass.UpdateEmployeePayInformation(intEmployeeID, gstrDepartment, gstrSalaryType, gintManagerID, intPayID);
+                blnFatalError = TheEmployeeClass.UpdateEmployeePayInformation(gintEmployeeID, gstrDepartment, gstrSalaryType, gintManagerID, intPayID);
 
                 if (blnFatalError == true)
                     throw new Exception();
@@ -693,6 +696,33 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Employee // Update Employee Button " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expIsManager_Expanded(object sender, RoutedEventArgs e)
+        {
+            expIsManager.IsExpanded = false;
+
+            try
+            {
+                const string message = "Is This Employee A Manager?";
+                const string caption = "Please Select";
+                MessageBoxResult result = MessageBox.Show(message, caption, MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+                if (result == MessageBoxResult.Yes)
+                {
+                    TheEmployeeClass.UpdateManagerPosition(gintEmployeeID, true);
+                }
+                else if(result == MessageBoxResult.No)
+                {
+                    TheEmployeeClass.UpdateManagerPosition(gintEmployeeID, false);
+                }
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Employee // Is Manager Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

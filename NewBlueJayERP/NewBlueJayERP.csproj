@@ -440,6 +440,9 @@
     <Compile Include="AddAdminProductivity.xaml.cs">
       <DependentUpon>AddAdminProductivity.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddAholaPunch.xaml.cs">
+      <DependentUpon>AddAholaPunch.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddCableReel.xaml.cs">
       <DependentUpon>AddCableReel.xaml</DependentUpon>
     </Compile>
@@ -513,6 +516,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AgedOverdueProjectsDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="AholaClockPunches.xaml.cs">
+      <DependentUpon>AholaClockPunches.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AholaEmployeePunches.xaml.cs">
       <DependentUpon>AholaEmployeePunches.xaml</DependentUpon>
     </Compile>
@@ -563,8 +569,14 @@
     <Compile Include="CellPhoneList.xaml.cs">
       <DependentUpon>CellPhoneList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ChangeAlohaTimes.xaml.cs">
+      <DependentUpon>ChangeAlohaTimes.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ChangeLocationSite.xaml.cs">
       <DependentUpon>ChangeLocationSite.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ChangeVehicleLocation.xaml.cs">
+      <DependentUpon>ChangeVehicleLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="ChangeWaspAssetLocation.xaml.cs">
       <DependentUpon>ChangeWaspAssetLocation.xaml</DependentUpon>
@@ -1413,6 +1425,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AddAholaPunch.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AddCableReel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1497,6 +1513,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="AholaClockPunches.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="AholaEmployeePunches.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1533,7 +1553,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ChangeAlohaTimes.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="ChangeLocationSite.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ChangeVehicleLocation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

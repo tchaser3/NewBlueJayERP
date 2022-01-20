@@ -21,6 +21,7 @@ using EmployeePunchedHoursDLL;
 using DataValidationDLL;
 using EmployeeDateEntryDLL;
 using NewEventLogDLL;
+using DateSearchDLL;
 
 namespace NewBlueJayERP
 {
@@ -35,9 +36,10 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
         EventLogClass TheEventLogClass = new EventLogClass();
+        DateSearchClass TheDateSearchClass = new DateSearchClass();
 
         //setting up the data
-        FindEmployeePunchedHoursForEditingDataSet TheFindEmployeePunchedHoursForEditingDataSet = new FindEmployeePunchedHoursForEditingDataSet();
+        FindAlohaEmployeePunchesPossiblyBadDataSet TheFindAholaEmployeePunchesPossiblyBadDataSet = new FindAlohaEmployeePunchesPossiblyBadDataSet();
 
         public EditEmployeeHours()
         {
@@ -92,9 +94,9 @@ namespace NewBlueJayERP
         {
             txtEnterPayPeriod.Text = "";
 
-            TheFindEmployeePunchedHoursForEditingDataSet = TheEmployeePunchedHourClass.FindEmployeePunchedHoursForEditing(DateTime.Now);
+            TheFindAholaEmployeePunchesPossiblyBadDataSet = TheEmployeePunchedHourClass.FindAlohaEmployeePunchesPossiblyBad(DateTime.Now, DateTime.Now);
 
-            dgrHours.ItemsSource = TheFindEmployeePunchedHoursForEditingDataSet.FindEmployeePunchedHoursForEditing;
+            dgrHours.ItemsSource = TheFindAholaEmployeePunchesPossiblyBadDataSet.FindAlohaEmployeePunchesPossiblyBad;
 
             TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Edit Employee Hours");
         }
@@ -103,6 +105,8 @@ namespace NewBlueJayERP
         {
             string strValueForValidation;
             bool blnFatalError = false;
+            DateTime datStartDate;
+            DateTime datEndDate;
 
             try
             {
@@ -116,9 +120,12 @@ namespace NewBlueJayERP
 
                 MainWindow.gdatPayDate = Convert.ToDateTime(strValueForValidation);
 
-                TheFindEmployeePunchedHoursForEditingDataSet = TheEmployeePunchedHourClass.FindEmployeePunchedHoursForEditing(MainWindow.gdatPayDate);
+                datStartDate = TheDateSearchClass.SubtractingDays(MainWindow.gdatPayDate, 6);
+                datEndDate = TheDateSearchClass.AddingDays(MainWindow.gdatPayDate, 1);
 
-                dgrHours.ItemsSource = TheFindEmployeePunchedHoursForEditingDataSet.FindEmployeePunchedHoursForEditing;
+                TheFindAholaEmployeePunchesPossiblyBadDataSet = TheEmployeePunchedHourClass.FindAlohaEmployeePunchesPossiblyBad(datStartDate, datEndDate);
+
+                dgrHours.ItemsSource = TheFindAholaEmployeePunchesPossiblyBadDataSet.FindAlohaEmployeePunchesPossiblyBad;
             }
             catch (Exception Ex)
             {
@@ -152,6 +159,8 @@ namespace NewBlueJayERP
                     AholaEmployeePunches AholaEmployeePunches = new AholaEmployeePunches();
                     AholaEmployeePunches.Show();
 
+                    AholaClockPunches AholaClockPunches = new AholaClockPunches();
+                    AholaClockPunches.Show();
 
                 }
 

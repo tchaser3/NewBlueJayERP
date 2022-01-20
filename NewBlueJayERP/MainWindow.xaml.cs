@@ -236,6 +236,7 @@ namespace NewBlueJayERP
         public static PrepareAssetReport PrepareAssetReportWindow = new PrepareAssetReport();
         public static InventoryValuationReport InventoryValuationReportWindow = new InventoryValuationReport();
         public static EditEmployeeHours EditEmployeeHoursWindow = new EditEmployeeHours();
+        public static ChangeVehicleLocation ChangeVehicleLocationWindow = new ChangeVehicleLocation();
 
         public MainWindow()
         {
@@ -409,6 +410,7 @@ namespace NewBlueJayERP
             PrepareAssetReportWindow.Visibility = Visibility.Hidden;
             InventoryValuationReportWindow.Visibility = Visibility.Hidden;
             EditEmployeeHoursWindow.Visibility = Visibility.Hidden;
+            ChangeVehicleLocationWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -743,6 +745,7 @@ namespace NewBlueJayERP
             expProjectManagementReport.IsEnabled = true;
             expProjectInvoiceReport.IsEnabled = true;
             expEmployeeProjectLaborReport.IsExpanded = true;
+            expVehicles.IsEnabled = true;
         }
         private void SetEmployeeSecurity()
         {
@@ -764,6 +767,7 @@ namespace NewBlueJayERP
                     expProjectReports.IsEnabled = false;
                     expEmployeeReports.IsEnabled = false;
                     expEmployeeProjectLaborReport.IsEnabled = false;
+                    expVehicles.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "MANAGERS")
                 {
@@ -1932,6 +1936,25 @@ namespace NewBlueJayERP
         {
             ResetEmployeeAdministration();
             EditEmployeeHoursWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expChangeVehicleLocation_Expanded(object sender, RoutedEventArgs e)
+        {
+            expVehicles.IsExpanded = false;
+            expChangeVehicleLocation.IsExpanded = false;
+            ChangeVehicleLocationWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVehicles_Expanded(object sender, RoutedEventArgs e)
+        {
+            expEmployees.IsExpanded = false;
+            expProjects.IsExpanded = false;
+            expRentals.IsExpanded = false;
+            expTrailers.IsExpanded = false;
+            expAssets.IsExpanded = false;
+            expInformationTechology.IsExpanded = false;
+            expTasks.IsExpanded = false;
+            expHelp.IsExpanded = false;
         }
     }
 }
