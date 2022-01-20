@@ -114,6 +114,8 @@ namespace NewBlueJayERP
                 }
 
                 cboSelectWarehouse.SelectedIndex = 0;
+                btnProcess.IsEnabled = false;
+                cboSelectWarehouse.IsEnabled = false;
             }
             catch (Exception Ex)
             {
@@ -171,6 +173,8 @@ namespace NewBlueJayERP
                 txtNotes.Text = TheFindActiveVehicleMainByVehicleNumberDataSet.FindActiveVehicleMainByVehicleNumber[0].Notes;
                 txtVinNumber.Text = TheFindActiveVehicleMainByVehicleNumberDataSet.FindActiveVehicleMainByVehicleNumber[0].VINNumber;
                 txtYear.Text = Convert.ToString(TheFindActiveVehicleMainByVehicleNumberDataSet.FindActiveVehicleMainByVehicleNumber[0].VehicleYear);
+                MainWindow.gintVehicleID = TheFindActiveVehicleMainByVehicleNumberDataSet.FindActiveVehicleMainByVehicleNumber[0].VehicleID;
+                cboSelectWarehouse.IsEnabled = true;
             }
             catch (Exception Ex)
             {
@@ -189,12 +193,40 @@ namespace NewBlueJayERP
             if(intSelectedIndex > -1)
             {
                 MainWindow.gintWarehouseID = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].EmployeeID;
+
+                MainWindow.gstrAssetLocation = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].FirstName;
+
+                btnProcess.IsEnabled = true;
             }
         }
 
         private void btnProcess_Click(object sender, RoutedEventArgs e)
         {
+            bool blnFatalError = false;
 
+            try
+            {
+                if (cboSelectWarehouse.SelectedIndex < 1)
+                {
+                    TheMessagesClass.ErrorMessage("The Warehouse was not Selected");
+                    return;
+                }
+
+                blnFatalError = TheVehicleMainClass.UpdateVehicleMainLocation(MainWindow.gintVehicleID, MainWindow.gstrAssetLocation);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
+                TheMessagesClass.InformationMessage("The Vehicle Location has been Changed");
+
+                ResetControls();
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Change Vehicle Location // Process Button " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }
