@@ -229,9 +229,10 @@
             <StackPanel>
                 <Expander x:Name="expVehicles" Header="Vehicles"  HorizontalAlignment="Left" FontSize="16" ExpandDirection="Right" Margin="15,1,1,1" Expanded="expVehicles_Expanded">
                     <StackPanel>
-                        <Expander x:Name="expChangeVehicleLocation" Header="Change Vehicle Location" ExpandDirection="Right" Background="LightBlue" Margin="24,1,1,1" Expanded="expChangeVehicleLocation_Expanded" >
+                        <Expander x:Name="expChangeVehicleLocation" Header="Change Vehicle Location" Background="LightBlue" Margin="23,1,1,1" Expanded="expChangeVehicleLocation_Expanded" >
                             
                         </Expander>
+                        <Expander x:Name="expVehiclesInYard" Header="Vehicles In Yard" Background="LightBlue" Margin="23,1,1,1" Expanded="expVehiclesInYard_Expanded"/>
                     </StackPanel>
                 </Expander>
             </StackPanel>

@@ -1346,6 +1346,9 @@
     <Compile Include="VehicleRoster.xaml.cs">
       <DependentUpon>VehicleRoster.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VehiclesInYard.xaml.cs">
+      <DependentUpon>VehiclesInYard.xaml</DependentUpon>
+    </Compile>
     <Compile Include="VehicleUsageDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -2074,6 +2077,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VehicleRoster.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VehiclesInYard.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

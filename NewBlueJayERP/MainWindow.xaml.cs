@@ -237,6 +237,7 @@ namespace NewBlueJayERP
         public static InventoryValuationReport InventoryValuationReportWindow = new InventoryValuationReport();
         public static EditEmployeeHours EditEmployeeHoursWindow = new EditEmployeeHours();
         public static ChangeVehicleLocation ChangeVehicleLocationWindow = new ChangeVehicleLocation();
+        public static VehiclesInYard VehiclesInYardWindow = new VehiclesInYard();
 
         public MainWindow()
         {
@@ -411,6 +412,7 @@ namespace NewBlueJayERP
             InventoryValuationReportWindow.Visibility = Visibility.Hidden;
             EditEmployeeHoursWindow.Visibility = Visibility.Hidden;
             ChangeVehicleLocationWindow.Visibility = Visibility.Hidden;
+            VehiclesInYardWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -746,6 +748,7 @@ namespace NewBlueJayERP
             expProjectInvoiceReport.IsEnabled = true;
             expEmployeeProjectLaborReport.IsExpanded = true;
             expVehicles.IsEnabled = true;
+           
         }
         private void SetEmployeeSecurity()
         {
@@ -1940,8 +1943,7 @@ namespace NewBlueJayERP
 
         private void expChangeVehicleLocation_Expanded(object sender, RoutedEventArgs e)
         {
-            expVehicles.IsExpanded = false;
-            expChangeVehicleLocation.IsExpanded = false;
+            ResetVehicleExpander();
             ChangeVehicleLocationWindow.Visibility = Visibility.Visible;
         }
 
@@ -1955,6 +1957,18 @@ namespace NewBlueJayERP
             expInformationTechology.IsExpanded = false;
             expTasks.IsExpanded = false;
             expHelp.IsExpanded = false;
+        }
+
+        private void expVehiclesInYard_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetVehicleExpander();
+            VehiclesInYardWindow.Visibility = Visibility.Visible;
+        }
+        private void ResetVehicleExpander()
+        {
+            expVehicles.IsExpanded = false;
+            expChangeVehicleLocation.IsExpanded = false;
+            expVehiclesInYard.IsExpanded = false;
         }
     }
 }
