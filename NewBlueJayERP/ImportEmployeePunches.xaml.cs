@@ -24,7 +24,6 @@ using DataValidationDLL;
 using DateSearchDLL;
 using Excel = Microsoft.Office.Interop.Excel;
 using EmployeeDateEntryDLL;
-using EmployeeTimeClockEntriesDLL;
 
 
 namespace NewBlueJayERP
@@ -37,21 +36,25 @@ namespace NewBlueJayERP
         //setting up the classes
         //setting up the classes
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
-        EmployeeClass TheEmployeeClass = new EmployeeClass();
-        EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
-        EmployeePunchedHoursClass TheEmployeePunchedHoursClass = new EmployeePunchedHoursClass();
-        EmployeeTimeClockEntriesClass TheEmployeeTimeCardEntriesClass = new EmployeeTimeClockEntriesClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        EmployeePunchedHoursClass TheEmployeePunchedHoursClass = new EmployeePunchedHoursClass();
+        EventLogClass TheEventLogClass = new EventLogClass();
+        EmployeeClass TheEmployeeClass = new EmployeeClass();
 
         //setting up the data
+        ImportAholaPunchesDataSet TheImportAholaPunchesDataSet = new ImportAholaPunchesDataSet();
         FindEmployeeByPayIDDataSet TheFindEmployeeByPayIDDataSet = new FindEmployeeByPayIDDataSet();
-        ImportTimePunchesDataSet TheImportTimePunchesDataSet = new ImportTimePunchesDataSet();
-        TimePunchesDataSet TheTimePunchesDataSet = new TimePunchesDataSet();
-        FindAholaEmployeePunchForVerificationDataSet TheFindAholoEmployeePunchForVerificationDataSet = new FindAholaEmployeePunchForVerificationDataSet();
-        FindAholaEmployeeTotalHoursDataSet TheFindAholaEmployeeTotalHoursDataSet = new FindAholaEmployeeTotalHoursDataSet();
+        FindAholaClockPunchesForVerificationDataSet TheFindAholaClockPunchesForVerificationDataSet = new FindAholaClockPunchesForVerificationDataSet();
+        CalculatedHoursDataSet TheCalculatedHoursDataSet = new CalculatedHoursDataSet();
+        EmployeeHoursDataSet TheEmployeeHoursDataSet = new EmployeeHoursDataSet();
+        FindAholaEmployeePunchForVerificationDataSet TheFindAholaEmployeePunchForVerificationDataSet = new FindAholaEmployeePunchForVerificationDataSet();
         FindEmployeePunchedHoursForValidationDataSet TheFindEmployeePunchedHoursForValidationDataSet = new FindEmployeePunchedHoursForValidationDataSet();
+
+        //setting up global variables
+        int gintPunchRecords;
+
 
         int gintCounter;
 
@@ -106,15 +109,20 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
-            TheImportTimePunchesDataSet.importtimepunches.Rows.Clear();
-            TheTimePunchesDataSet.timepunches.Rows.Clear();
+            TheImportAholaPunchesDataSet.importaholapunches.Rows.Clear();
 
-            dgrResults.ItemsSource = TheImportTimePunchesDataSet.importtimepunches;
+            dgrResults.ItemsSource = TheImportAholaPunchesDataSet.importaholapunches;
+
+            expCalculateHours.IsEnabled = false;
+            expProcessHours.IsEnabled = false;
+            expInsertRecords.IsEnabled = false;
+            TheCalculatedHoursDataSet.calculatedhours.Rows.Clear();
+            TheEmployeeHoursDataSet.employeehours.Rows.Clear();
 
             TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Import Employee Punches");
         }
 
-        private void expImportPunches_Expanded(object sender, RoutedEventArgs e)
+        private void expImportExcel_Expanded(object sender, RoutedEventArgs e)
         {
             Excel.Application xlDropOrder;
             Excel.Workbook xlDropBook;
@@ -124,22 +132,29 @@ namespace NewBlueJayERP
             int intColumnRange = 0;
             int intCounter;
             int intNumberOfRecords;
-            string strPayID;
-            int intPayID;
-            int intEmployeeID;
-            string strFirstName;
-            string strLastName;
-            string strTransactionDate;
-            DateTime datTransactionDate;
-            double douTransactionDate;
-            string strSource;
-            string strType;
+            string strValueForValidation;
+            int intEmployeeID = 0;
+            int intPayID = 0;
+            DateTime datCreatedDateTime = DateTime.Now;
+            DateTime datPunchedDateTime = DateTime.Now;
+            DateTime datActualDateTime = DateTime.Now;
+            string strPayGroup = "";
+            string strPunchMode = "";
+            string strPunchType = "";
+            string strPunchSouce = "";
+            string strPunchIPAddress = "";
+            DateTime datLastUpdate = DateTime.Now;
+            bool blnFailedValidation = false;
+            int intRecordsReturned;
+            double douProcessDate;
+            string strFirstName = "";
+            string strLastName = "";
+            string strPunchUser;
 
             try
             {
-                expImportPunches.IsExpanded = false;
-                TheImportTimePunchesDataSet.importtimepunches.Rows.Clear();
-                TheTimePunchesDataSet.timepunches.Rows.Clear();
+                expImportExcel.IsExpanded = false;
+                TheImportAholaPunchesDataSet.importaholapunches.Rows.Clear();
 
                 Microsoft.Win32.OpenFileDialog dlg = new Microsoft.Win32.OpenFileDialog();
                 dlg.FileName = "Document"; // Default file name
@@ -167,44 +182,126 @@ namespace NewBlueJayERP
                 intNumberOfRecords = range.Rows.Count;
                 intColumnRange = range.Columns.Count;
 
-                for (intCounter = 2; intCounter <= intNumberOfRecords; intCounter++)
+                for (intCounter = 2; intCounter < intNumberOfRecords; intCounter++)
                 {
-                    strPayID = Convert.ToString((range.Cells[intCounter, 1] as Excel.Range).Value2).ToUpper();
-                    intPayID = Convert.ToInt32(strPayID);
+                    strValueForValidation = Convert.ToString((range.Cells[intCounter, 1] as Excel.Range).Value2).ToUpper();
 
-                    TheFindEmployeeByPayIDDataSet = TheEmployeeClass.FindEmployeeByPayID(intPayID);
+                    blnFailedValidation = TheDataValidationClass.VerifyIntegerData(strValueForValidation);
 
-                    intEmployeeID = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID[0].EmployeeID;
-                    strFirstName = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID[0].FirstName;
-                    strLastName = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID[0].LastName;
-
-                    strTransactionDate = Convert.ToString((range.Cells[intCounter, 9] as Excel.Range).Value2).ToUpper();
-                    strSource = Convert.ToString((range.Cells[intCounter, 17] as Excel.Range).Value2).ToUpper();
-                    strType = Convert.ToString((range.Cells[intCounter, 16] as Excel.Range).Value2).ToUpper();
-
-                    douTransactionDate = Convert.ToDouble(strTransactionDate);
-
-                    datTransactionDate = DateTime.FromOADate(douTransactionDate);
-
-
-
-                    if (strType != "AUTO MEAL")
+                    if (blnFailedValidation == true)
                     {
-                        TimePunchesDataSet.timepunchesRow NewPunchRow = TheTimePunchesDataSet.timepunches.NewtimepunchesRow();
-
-                        NewPunchRow.EmployeeID = intEmployeeID;
-                        NewPunchRow.FirstName = strFirstName;
-                        NewPunchRow.LastName = strLastName;
-                        NewPunchRow.PayID = intPayID;
-                        NewPunchRow.TransactionDate = datTransactionDate;
-                        NewPunchRow.Source = strSource;
-
-                        TheTimePunchesDataSet.timepunches.Rows.Add(NewPunchRow);
+                        throw new Exception();
                     }
+                    else
+                    {
+                        intPayID = Convert.ToInt32(strValueForValidation);
+
+                        TheFindEmployeeByPayIDDataSet = TheEmployeeClass.FindEmployeeByPayID(intPayID);
+
+                        intRecordsReturned = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID.Rows.Count;
+
+                        if (intRecordsReturned < 1)
+                        {
+                            throw new Exception();
+                        }
+                        else
+                        {
+                            intEmployeeID = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID[0].EmployeeID;
+                            strFirstName = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID[0].FirstName;
+                            strLastName = TheFindEmployeeByPayIDDataSet.FindEmployeeByPayID[0].LastName;
+                        }
+                    }
+
+                    strValueForValidation = Convert.ToString((range.Cells[intCounter, 8] as Excel.Range).Value2).ToUpper();
+
+                    blnFailedValidation = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
+
+                    if (blnFailedValidation == true)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        douProcessDate = Convert.ToDouble(strValueForValidation);
+
+                        datActualDateTime = DateTime.FromOADate(douProcessDate);
+                    }
+
+                    strValueForValidation = Convert.ToString((range.Cells[intCounter, 9] as Excel.Range).Value2).ToUpper();
+
+                    blnFailedValidation = TheDataValidationClass.VerifyDoubleData(strValueForValidation);
+
+                    if (blnFailedValidation == true)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        douProcessDate = Convert.ToDouble(strValueForValidation);
+
+                        datPunchedDateTime = DateTime.FromOADate(douProcessDate);
+                    }
+
+                    strValueForValidation = Convert.ToString((range.Cells[intCounter, 10] as Excel.Range).Value2).ToUpper();
+
+                    blnFailedValidation = TheDataValidationClass.VerifyDateData(strValueForValidation);
+
+                    if (blnFailedValidation == true)
+                    {
+                        datCreatedDateTime = DateTime.Now;
+                    }
+                    else
+                    {
+                        datCreatedDateTime = Convert.ToDateTime(strValueForValidation);
+                    }
+
+                    strPayGroup = Convert.ToString((range.Cells[intCounter, 14] as Excel.Range).Value2).ToUpper();
+                    strPunchMode = Convert.ToString((range.Cells[intCounter, 15] as Excel.Range).Value2).ToUpper();
+                    strPunchType = Convert.ToString((range.Cells[intCounter, 16] as Excel.Range).Value2).ToUpper();
+                    strPunchSouce = Convert.ToString((range.Cells[intCounter, 17] as Excel.Range).Value2).ToUpper();
+                    strPunchIPAddress = Convert.ToString((range.Cells[intCounter, 20] as Excel.Range).Value2).ToUpper();
+                    strPunchUser = Convert.ToString((range.Cells[intCounter, 27] as Excel.Range).Value2).ToUpper();
+
+                    strPunchUser = "";
+
+                    //strValueForValidation = Convert.ToString((range.Cells[intCounter, 28] as Excel.Range).Value2).ToUpper();
+
+                    strValueForValidation = Convert.ToString(DateTime.Now);
+
+                    blnFailedValidation = TheDataValidationClass.VerifyDateData(strValueForValidation);
+
+                    if (blnFailedValidation == true)
+                    {
+                        throw new Exception();
+                    }
+                    else
+                    {
+                        datLastUpdate = Convert.ToDateTime(strValueForValidation);
+                    }
+
+
+                    ImportAholaPunchesDataSet.importaholapunchesRow NewPunchRow = TheImportAholaPunchesDataSet.importaholapunches.NewimportaholapunchesRow();
+
+                    NewPunchRow.ActualDateTime = datActualDateTime;
+                    NewPunchRow.CreatedDateTime = datCreatedDateTime;
+                    NewPunchRow.EmployeeID = intEmployeeID;
+                    NewPunchRow.FirstName = strFirstName;
+                    NewPunchRow.LastName = strLastName;
+                    NewPunchRow.LastUpdate = datLastUpdate;
+                    NewPunchRow.PayGroup = strPayGroup;
+                    NewPunchRow.PayID = intPayID;
+                    NewPunchRow.PunchDateTime = datPunchedDateTime;
+                    NewPunchRow.PunchIPAddress = strPunchIPAddress;
+                    NewPunchRow.PunchMode = strPunchMode;
+                    NewPunchRow.PunchSource = strPunchSouce;
+                    NewPunchRow.PunchType = strPunchType;
+                    NewPunchRow.PunchUser = strPunchUser;
+
+                    TheImportAholaPunchesDataSet.importaholapunches.Rows.Add(NewPunchRow);
 
                 }
 
-                dgrResults.ItemsSource = TheTimePunchesDataSet.timepunches;
+                dgrResults.ItemsSource = TheImportAholaPunchesDataSet.importaholapunches;
                 PleaseWait.Close();
 
             }
@@ -216,207 +313,57 @@ namespace NewBlueJayERP
             }
         }
 
-        private void expProcessReport_Expanded(object sender, RoutedEventArgs e)
+        private void expProcessData_Expanded(object sender, RoutedEventArgs e)
         {
-            int intCounter;
             int intNumberOfRecords;
+            int intCounter;
             int intPayID;
             int intEmployeeID;
-            string strFirstName;
-            string strLastName;
-            DateTime datStartTime;
-            DateTime datEndTime;
-            decimal decTotalHours = 0;
-            int intSecondCounter;
-            TimeSpan tspTotalHours;
-
-            try
-            {
-                intNumberOfRecords = TheTimePunchesDataSet.timepunches.Rows.Count;
-                gintCounter = 0;
-                TheImportTimePunchesDataSet.importtimepunches.Rows.Clear();
-
-                if (intNumberOfRecords < 1)
-                {
-                    TheMessagesClass.ErrorMessage("There Are No Records To Process");
-                    return;
-                }
-
-                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                {
-                    intPayID = TheTimePunchesDataSet.timepunches[intCounter].PayID;
-                    intEmployeeID = TheTimePunchesDataSet.timepunches[intCounter].EmployeeID;
-                    strFirstName = TheTimePunchesDataSet.timepunches[intCounter].FirstName;
-                    strLastName = TheTimePunchesDataSet.timepunches[intCounter].LastName;
-                    datStartTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
-                    datEndTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
-                    decTotalHours = 0;
-
-                    intCounter++;
-
-                    if (intEmployeeID == TheTimePunchesDataSet.timepunches[intCounter].EmployeeID)
-                    {
-                        datEndTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
-
-                        if (datStartTime.Day == datEndTime.Day)
-                        {
-                            tspTotalHours = datEndTime - datStartTime;
-
-                            decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
-
-                            decTotalHours = Math.Round(decTotalHours, 3);
-                        }
-                        else if (datStartTime.Day < datEndTime.Day)
-                        {
-                            intCounter--;
-
-                            datEndTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
-
-                            datStartTime = TheTimePunchesDataSet.timepunches[intCounter - 1].TransactionDate;
-
-                            tspTotalHours = datEndTime - datStartTime;
-
-                            decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
-
-                            decTotalHours = Math.Round(decTotalHours, 3);
-                        }
-                    }
-                    else
-                    {
-                        intCounter--;
-
-                        datEndTime = TheTimePunchesDataSet.timepunches[intCounter].TransactionDate;
-
-                        datStartTime = TheTimePunchesDataSet.timepunches[intCounter - 1].TransactionDate;
-
-                        tspTotalHours = datEndTime - datStartTime;
-
-                        decTotalHours = Convert.ToDecimal(tspTotalHours.TotalHours);
-
-                        decTotalHours = Math.Round(decTotalHours, 3);
-                    }
-
-
-                    for (intSecondCounter = 0; intSecondCounter < gintCounter; intSecondCounter++)
-                    {
-                        if (TheImportTimePunchesDataSet.importtimepunches[intSecondCounter].EmployeeID == intEmployeeID)
-                        {
-
-
-                        }
-                    }
-
-                    ImportTimePunchesDataSet.importtimepunchesRow NewPunchRow = TheImportTimePunchesDataSet.importtimepunches.NewimporttimepunchesRow();
-
-                    NewPunchRow.EmployeeID = intEmployeeID;
-                    NewPunchRow.EndTime = datEndTime;
-                    NewPunchRow.FirstName = strFirstName;
-                    NewPunchRow.LastName = strLastName;
-                    NewPunchRow.PayID = intPayID;
-                    NewPunchRow.StartTime = datStartTime;
-                    NewPunchRow.TotalHours = decTotalHours;
-
-                    TheImportTimePunchesDataSet.importtimepunches.Rows.Add(NewPunchRow);
-                    gintCounter++;
-
-
-                    dgrResults.ItemsSource = TheImportTimePunchesDataSet.importtimepunches;
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Process Report " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void expUploadData_Expanded(object sender, RoutedEventArgs e)
-        {
-            //setting up local variables
-            string strValueForValidation;
+            DateTime datActualDateTime;
+            DateTime datPunchDateTime;
+            DateTime datCreatedDateTime;
+            string strPayGroup;
+            string strPunchMode;
+            string strPunchType;
+            string strPunchUser;
+            string strPunchIPAddress;
+            DateTime datLastUpdate;
             bool blnFatalError = false;
-            DateTime datPayPeriod;
-            int intEmployeeID;
-            DateTime datStartDate;
-            DateTime datEndDate;
-            DateTime datStartWeek;
-            DateTime datEndWeek;
-            decimal decTotalHours;
-            int intCounter;
-            int intNumberOfRecords;
-            int intEmployeeCounter;
-            int intRecordCounter;
-            int intPayID;
+            int intRecordsReturned;
+            string strPunchSource;
 
             try
             {
+                expProcessData.IsExpanded = false;
+                intNumberOfRecords = TheImportAholaPunchesDataSet.importaholapunches.Rows.Count;
+
                 PleaseWait PleaseWait = new PleaseWait();
                 PleaseWait.Show();
-
-                strValueForValidation = txtPayDate.Text;
-                blnFatalError = TheDataValidationClass.VerifyDateData(strValueForValidation);
-                if (blnFatalError == true)
-                {
-                    TheMessagesClass.ErrorMessage("The Date Entered is not a Date");
-                    return;
-                }
-                else
-                {
-                    datPayPeriod = Convert.ToDateTime(strValueForValidation);
-                }
-
-                datEndWeek = TheDateSearchClass.AddingDays(datPayPeriod, 1);
-                datStartWeek = TheDateSearchClass.SubtractingDays(datPayPeriod, 6);
-
-                intNumberOfRecords = TheImportTimePunchesDataSet.importtimepunches.Rows.Count;
-
-                if (intNumberOfRecords < 1)
-                {
-                    TheMessagesClass.ErrorMessage("No Records Found");
-                    return;
-                }
-
-                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                {
-                    intEmployeeID = TheImportTimePunchesDataSet.importtimepunches[intCounter].EmployeeID;
-                    datStartDate = TheImportTimePunchesDataSet.importtimepunches[intCounter].StartTime;
-                    datEndDate = TheImportTimePunchesDataSet.importtimepunches[intCounter].EndTime;
-                    decTotalHours = TheImportTimePunchesDataSet.importtimepunches[intCounter].TotalHours;
-
-                    TheFindAholoEmployeePunchForVerificationDataSet = TheEmployeePunchedHoursClass.FindAholaEmployeePunchForVerification(intEmployeeID, datStartDate, datEndDate, decTotalHours);
-
-                    intRecordCounter = TheFindAholoEmployeePunchForVerificationDataSet.FindAholaEmployeePunchForVerification.Rows.Count;
-
-                    if (intRecordCounter < 1)
-                    {
-                        blnFatalError = TheEmployeePunchedHoursClass.InsertIntoAholaEmployeePunch(intEmployeeID, datStartDate, datEndDate, decTotalHours);
-
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
-                }
-
-                TheFindAholaEmployeeTotalHoursDataSet = TheEmployeePunchedHoursClass.FindAholaEmployeeTotalHours(datStartWeek, datEndWeek);
-
-                intNumberOfRecords = TheFindAholaEmployeeTotalHoursDataSet.FindAholaEmployeeTotalHours.Rows.Count;
 
                 if (intNumberOfRecords > 0)
                 {
                     for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                     {
-                        intEmployeeID = TheFindAholaEmployeeTotalHoursDataSet.FindAholaEmployeeTotalHours[intCounter].EmployeeID;
-                        intPayID = TheFindAholaEmployeeTotalHoursDataSet.FindAholaEmployeeTotalHours[intCounter].PayID;
-                        decTotalHours = TheFindAholaEmployeeTotalHoursDataSet.FindAholaEmployeeTotalHours[intCounter].TotalHours;
+                        intPayID = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PayID;
+                        intEmployeeID = TheImportAholaPunchesDataSet.importaholapunches[intCounter].EmployeeID;
+                        datActualDateTime = TheImportAholaPunchesDataSet.importaholapunches[intCounter].ActualDateTime;
+                        datPunchDateTime = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchDateTime;
+                        datCreatedDateTime = TheImportAholaPunchesDataSet.importaholapunches[intCounter].CreatedDateTime;
+                        strPayGroup = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PayGroup;
+                        strPunchMode = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchMode;
+                        strPunchType = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchType;
+                        strPunchSource = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchSource;
+                        strPunchUser = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchUser;
+                        strPunchIPAddress = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchIPAddress;
+                        datLastUpdate = TheImportAholaPunchesDataSet.importaholapunches[intCounter].LastUpdate;
 
-                        TheFindEmployeePunchedHoursForValidationDataSet = TheEmployeePunchedHoursClass.FindEmployeePunchedHoursForValidation(datPayPeriod, intEmployeeID, intPayID);
+                        TheFindAholaClockPunchesForVerificationDataSet = TheEmployeePunchedHoursClass.FindAholaClockPunchesForVerification(intPayID, datActualDateTime, datPunchDateTime, datCreatedDateTime, strPunchIPAddress);
 
-                        intRecordCounter = TheFindEmployeePunchedHoursForValidationDataSet.FindEmployeePunchedHoursForValidation.Rows.Count;
+                        intRecordsReturned = TheFindAholaClockPunchesForVerificationDataSet.FindAholaClockPunchesForVerification.Rows.Count;
 
-                        if (intRecordCounter < 1)
+                        if (intRecordsReturned < 1)
                         {
-
-                            blnFatalError = TheEmployeePunchedHoursClass.InsertEmployeePunchedHours(datPayPeriod, intEmployeeID, intPayID, decTotalHours);
+                            blnFatalError = TheEmployeePunchedHoursClass.InsertAholaClockPunches(intEmployeeID, intPayID, datActualDateTime, datPunchDateTime, datCreatedDateTime, strPayGroup, strPunchMode, strPunchType, strPunchSource, strPunchUser, strPunchIPAddress, datLastUpdate);
 
                             if (blnFatalError == true)
                                 throw new Exception();
@@ -425,17 +372,357 @@ namespace NewBlueJayERP
                 }
 
                 PleaseWait.Close();
+                TheMessagesClass.InformationMessage("All Records Have Been Inserted");
 
-                TheMessagesClass.InformationMessage("The Information has been Loaded");
+                expCalculateHours.IsEnabled = true;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Process Data Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expCalculateHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            //setting up the variables
+            int intCounter;
+            int intNumberOfRecords;
+            int intEmployeeID = 0;
+            string strFirstName = "";
+            string strLastName = "";
+            DateTime datStartDate;
+            DateTime datEndDate = DateTime.Now;
+            string strPunchType;
+            string strPunchSource;
+            decimal decDailyHours = 0;
+            TimeSpan tspTotalHours;
+            int intSecondCounter;
+            bool blnRecordFound;
+            int intPayID;
+
+            try
+            {
+                expCalculateHours.IsExpanded = false;
+                TheCalculatedHoursDataSet.calculatedhours.Rows.Clear();
+                PleaseWait PleaseWait = new PleaseWait();
+                PleaseWait.Show();
+                gintPunchRecords = 0;
+
+                intNumberOfRecords = TheImportAholaPunchesDataSet.importaholapunches.Rows.Count;
+
+                if (intNumberOfRecords > 0)
+                {
+                    for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                    {
+                        blnRecordFound = false;
+                        intEmployeeID = TheImportAholaPunchesDataSet.importaholapunches[intCounter].EmployeeID;
+                        strFirstName = TheImportAholaPunchesDataSet.importaholapunches[intCounter].FirstName;
+                        strLastName = TheImportAholaPunchesDataSet.importaholapunches[intCounter].LastName;
+                        datStartDate = TheImportAholaPunchesDataSet.importaholapunches[intCounter].ActualDateTime;
+                        intPayID = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PayID;
+
+
+                        if (TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchMode == "OUT")
+                        {
+                            datEndDate = TheImportAholaPunchesDataSet.importaholapunches[intCounter].ActualDateTime;
+                        }
+
+                        else
+                        {
+                            if (intCounter + 1 < intNumberOfRecords)
+                            {
+                                if (intEmployeeID == TheImportAholaPunchesDataSet.importaholapunches[intCounter + 1].EmployeeID)
+                                {
+                                    datEndDate = TheImportAholaPunchesDataSet.importaholapunches[intCounter + 1].ActualDateTime;
+
+                                    intCounter++;
+                                }
+                                else if (intEmployeeID == TheImportAholaPunchesDataSet.importaholapunches[intCounter - 1].EmployeeID)
+                                {
+                                    //datStartDate = TheImportAholaPunchesDataSet.importaholapunches[intCounter - 1].ActualDateTime;
+                                }
+
+                            }
+                            else
+                            {
+                                datEndDate = datStartDate;
+                            }
+                        }
+
+                        if (TheImportAholaPunchesDataSet.importaholapunches[intCounter - 1].PunchMode == "IN")
+                        {
+                            datEndDate = TheImportAholaPunchesDataSet.importaholapunches[intCounter].ActualDateTime;
+                            datStartDate = TheImportAholaPunchesDataSet.importaholapunches[intCounter - 1].ActualDateTime;
+                        }
+
+
+                        tspTotalHours = datEndDate - datStartDate;
+
+                        decDailyHours = Convert.ToDecimal(tspTotalHours.TotalHours);
+
+                        if (decDailyHours < 0)
+                        {
+                            tspTotalHours = datStartDate - datEndDate;
+
+                            decDailyHours = Convert.ToDecimal(tspTotalHours.TotalHours);
+                        }
+
+                        decDailyHours = Math.Round(decDailyHours, 3);
+
+                        strPunchSource = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchSource;
+                        strPunchType = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchType;
+
+
+                        if (gintPunchRecords > 0)
+                        {
+                            for (intSecondCounter = 0; intSecondCounter < gintPunchRecords; intSecondCounter++)
+                            {
+                                if (intEmployeeID == TheCalculatedHoursDataSet.calculatedhours[intSecondCounter].EmployeeID)
+                                {
+                                    if (datStartDate.Hour == 0)
+                                    {
+
+                                    }
+                                    else if (datStartDate == TheCalculatedHoursDataSet.calculatedhours[intSecondCounter].StartTime)
+                                    {
+                                        blnRecordFound = true;
+                                    }
+                                    else if (datStartDate == TheCalculatedHoursDataSet.calculatedhours[intSecondCounter].EndTime)
+                                    {
+                                        if (TheImportAholaPunchesDataSet.importaholapunches[intCounter - 1].PunchMode != "IN")
+                                        {
+                                            blnRecordFound = true;
+                                        }
+
+                                    }
+                                }
+                            }
+                        }
+
+
+                        if (blnRecordFound == false)
+                        {
+
+                            CalculatedHoursDataSet.calculatedhoursRow NewPunchRow = TheCalculatedHoursDataSet.calculatedhours.NewcalculatedhoursRow();
+
+                            NewPunchRow.DailyHours = decDailyHours;
+                            NewPunchRow.EmployeeID = intEmployeeID;
+                            NewPunchRow.EndTime = datEndDate;
+                            NewPunchRow.FirstName = strFirstName;
+                            NewPunchRow.LastName = strLastName;
+                            NewPunchRow.StartTime = datStartDate;
+                            NewPunchRow.PayID = intPayID;
+
+                            TheCalculatedHoursDataSet.calculatedhours.Rows.Add(NewPunchRow);
+                            gintPunchRecords++;
+                        }
+                    }
+                }
+
+                dgrResults.ItemsSource = TheCalculatedHoursDataSet.calculatedhours;
+                expProcessHours.IsEnabled = true;
+
+                PleaseWait.Close();
+
+                TheMessagesClass.InformationMessage("Hours Have Been Calculated");
+
+
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Calculate Hours Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expProcessHours_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intCounter;
+            int intNumberOfRecords;
+            int intEmployeeID;
+            DateTime datStartDate;
+            DateTime datEndDate;
+            decimal decDailyHours;
+            DateTime datPayDate = DateTime.Now;
+            string strValueForValidation;
+            bool blnFatalError = false;
+            int intPayID;
+            int intSecondCounter;
+            bool blnItemFound;
+            string strLastName;
+            string strFirstName;
+
+            try
+            {
+                expProcessHours.IsExpanded = false;
+                PleaseWait PleaseWait = new PleaseWait();
+                PleaseWait.Show();
+
+                TheEmployeeHoursDataSet.employeehours.Rows.Clear();
+
+                strValueForValidation = txtPayDate.Text;
+                blnFatalError = TheDataValidationClass.VerifyDateData(strValueForValidation);
+                if (blnFatalError == true)
+                {
+                    TheMessagesClass.ErrorMessage("The Date is not a Date");
+                    return;
+                }
+                else
+                {
+                    datPayDate = Convert.ToDateTime(strValueForValidation);
+
+                    blnFatalError = TheDataValidationClass.verifyDateRange(datPayDate, DateTime.Now);
+
+                    if (blnFatalError == true)
+                    {
+                        TheMessagesClass.ErrorMessage("The Date Entered is greater than Today");
+                        return;
+                    }
+                }
+
+                intNumberOfRecords = TheCalculatedHoursDataSet.calculatedhours.Rows.Count;
+                gintPunchRecords = 0;
+
+                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    blnItemFound = false;
+                    intEmployeeID = TheCalculatedHoursDataSet.calculatedhours[intCounter].EmployeeID;
+                    intPayID = TheCalculatedHoursDataSet.calculatedhours[intCounter].PayID;
+                    datStartDate = TheCalculatedHoursDataSet.calculatedhours[intCounter].StartTime;
+                    datEndDate = TheCalculatedHoursDataSet.calculatedhours[intCounter].EndTime;
+                    decDailyHours = TheCalculatedHoursDataSet.calculatedhours[intCounter].DailyHours;
+                    strFirstName = TheCalculatedHoursDataSet.calculatedhours[intCounter].FirstName;
+                    strLastName = TheCalculatedHoursDataSet.calculatedhours[intCounter].LastName;
+
+                    if (gintPunchRecords > 0)
+                    {
+                        for (intSecondCounter = 0; intSecondCounter < gintPunchRecords; intSecondCounter++)
+                        {
+                            if (intEmployeeID == TheEmployeeHoursDataSet.employeehours[intSecondCounter].EmployeeID)
+                            {
+                                TheEmployeeHoursDataSet.employeehours[intSecondCounter].PunchedHours += decDailyHours;
+                                blnItemFound = true;
+                            }
+                        }
+                    }
+
+                    if (blnItemFound == false)
+                    {
+                        EmployeeHoursDataSet.employeehoursRow NewEmployeeRow = TheEmployeeHoursDataSet.employeehours.NewemployeehoursRow();
+
+                        NewEmployeeRow.EmployeeID = intEmployeeID;
+                        NewEmployeeRow.PayID = intPayID;
+                        NewEmployeeRow.PunchedHours = decDailyHours;
+                        NewEmployeeRow.TransactionDate = datPayDate;
+                        NewEmployeeRow.FirstName = strFirstName;
+                        NewEmployeeRow.LastName = strLastName;
+
+                        TheEmployeeHoursDataSet.employeehours.Rows.Add(NewEmployeeRow);
+                        gintPunchRecords++;
+                    }
+                }
+
+                PleaseWait.Close();
+
+                expInsertRecords.IsEnabled = true;
+
+                dgrResults.ItemsSource = TheEmployeeHoursDataSet.employeehours;
+            }
+            catch (Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Process Hours Expander " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+        }
+
+        private void expInsertRecords_Expanded(object sender, RoutedEventArgs e)
+        {
+            int intCounter;
+            int intNumberOfRecords;
+            int intEmployeeID;
+            int intPayID; ;
+            DateTime datStartDate;
+            DateTime datEndDate;
+            DateTime datPayDate;
+            decimal decDailyHours; ;
+            decimal decTotalHours;
+            bool blnFatalError = false;
+            int intRecordsReturned;
+
+            try
+            {
+                expInsertRecords.IsExpanded = false;
+
+                PleaseWait PleaseWait = new PleaseWait();
+                PleaseWait.Show();
+
+                intNumberOfRecords = TheCalculatedHoursDataSet.calculatedhours.Rows.Count;
+
+                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    intEmployeeID = TheCalculatedHoursDataSet.calculatedhours[intCounter].EmployeeID;
+                    datStartDate = TheCalculatedHoursDataSet.calculatedhours[intCounter].StartTime;
+                    datEndDate = TheCalculatedHoursDataSet.calculatedhours[intCounter].EndTime;
+                    decDailyHours = TheCalculatedHoursDataSet.calculatedhours[intCounter].DailyHours;
+
+                    TheFindAholaEmployeePunchForVerificationDataSet = TheEmployeePunchedHoursClass.FindAholaEmployeePunchForVerification(intEmployeeID, datStartDate, datEndDate, decDailyHours);
+
+                    intRecordsReturned = TheFindAholaEmployeePunchForVerificationDataSet.FindAholaEmployeePunchForVerification.Rows.Count;
+
+                    if (intRecordsReturned < 1)
+                    {
+                        blnFatalError = TheEmployeePunchedHoursClass.InsertIntoAholaEmployeePunch(intEmployeeID, datStartDate, datEndDate, decDailyHours);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+                    }
+                }
+
+                intNumberOfRecords = TheEmployeeHoursDataSet.employeehours.Rows.Count;
+
+                for (intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                {
+                    intEmployeeID = TheEmployeeHoursDataSet.employeehours[intCounter].EmployeeID;
+                    intPayID = TheEmployeeHoursDataSet.employeehours[intCounter].PayID;
+                    datPayDate = TheEmployeeHoursDataSet.employeehours[intCounter].TransactionDate;
+                    decTotalHours = TheEmployeeHoursDataSet.employeehours[intCounter].PunchedHours;
+
+                    TheFindEmployeePunchedHoursForValidationDataSet = TheEmployeePunchedHoursClass.FindEmployeePunchedHoursForValidation(datPayDate, intEmployeeID, intEmployeeID);
+
+                    intRecordsReturned = TheFindEmployeePunchedHoursForValidationDataSet.FindEmployeePunchedHoursForValidation.Rows.Count;
+
+                    if (intRecordsReturned < 1)
+                    {
+                        blnFatalError = TheEmployeePunchedHoursClass.InsertEmployeePunchedHours(datPayDate, intEmployeeID, intPayID, decTotalHours);
+
+                        if (blnFatalError == true)
+                            throw new Exception();
+                    }
+                }
+
+                PleaseWait.Close();
+
+                TheMessagesClass.InformationMessage("All Records Have Been Inserted");
 
                 ResetControls();
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Upload Date Expander " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Insert Records " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
+        }
+
+        private void expResetWindow_Expanded(object sender, RoutedEventArgs e)
+        {
+            expResetWindow.IsExpanded = false;
+
+            ResetControls();
         }
     }
 }

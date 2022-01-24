@@ -21,9 +21,12 @@
             <Label x:Name="lblTitle" Content="Import Employee Time Card Punches" FontSize="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="540" Background="LightBlue">
-            <Expander x:Name="expImportPunches" Header="Import Punches" FontSize="16" Margin="10,1,1,1" Expanded="expImportPunches_Expanded" />
-            <Expander x:Name="expProcessReport" Header="Process Report" FontSize="16" Margin="10,1,1,1" Expanded="expProcessReport_Expanded" />
-            <Expander x:Name="expUploadData" Header="Upload Date" FontSize="16" Margin="10,1,1,1" Expanded="expUploadData_Expanded" />
+            <Expander x:Name="expImportExcel" Header="Import Excel" FontSize="16" Margin="10,1,1,1" Expanded="expImportExcel_Expanded" />
+            <Expander x:Name="expProcessData" Header="Process Data" FontSize="16" Margin="10,1,1,1" Expanded="expProcessData_Expanded"/>
+            <Expander x:Name="expCalculateHours" Header="Calculate Hours" FontSize="16" Margin="10,1,1,1" Expanded="expCalculateHours_Expanded"/>
+            <Expander x:Name="expProcessHours" Header="Process Hours" FontSize="16" Margin="10,1,1,1" Expanded="expProcessHours_Expanded"/>
+            <Expander x:Name="expInsertRecords" Header="Insert Records" FontSize="16" Margin="10,1,1,1" Expanded="expInsertRecords_Expanded" />
+            <Expander x:Name="expResetWindow" Header="Reset Window" FontSize="16" Margin="10,1,1,1" Expanded="expResetWindow_Expanded" />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />

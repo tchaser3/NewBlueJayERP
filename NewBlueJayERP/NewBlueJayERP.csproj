@@ -547,6 +547,11 @@
     <Compile Include="AssignWorkTaskBusinessLine.xaml.cs">
       <DependentUpon>AssignWorkTaskBusinessLine.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CalculatedHoursDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CalculatedHoursDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="CellCallRosterDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -757,6 +762,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>EmployeeDriveTimeDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeHoursDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>EmployeeHoursDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeHoursPunched.xaml.cs">
       <DependentUpon>EmployeeHoursPunched.xaml</DependentUpon>
     </Compile>
@@ -850,6 +860,11 @@
     </Compile>
     <Compile Include="HelpDeskTicketReport.xaml.cs">
       <DependentUpon>HelpDeskTicketReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ImportAholaPunchesDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ImportAholaPunchesDataSet.xsd</DependentUpon>
     </Compile>
     <Compile Include="ImportAssets.xaml.cs">
       <DependentUpon>ImportAssets.xaml</DependentUpon>
@@ -2221,6 +2236,17 @@
     <None Include="AssetsForReportDataSet.xss">
       <DependentUpon>AssetsForReportDataSet.xsd</DependentUpon>
     </None>
+    <None Include="CalculatedHoursDataSet.xsc">
+      <DependentUpon>CalculatedHoursDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="CalculatedHoursDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>CalculatedHoursDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="CalculatedHoursDataSet.xss">
+      <DependentUpon>CalculatedHoursDataSet.xsd</DependentUpon>
+    </None>
     <None Include="CellCallRosterDataSet.xsc">
       <DependentUpon>CellCallRosterDataSet.xsd</DependentUpon>
     </None>
@@ -2386,6 +2412,17 @@
     <None Include="EmployeeDriveTimeDataSet.xss">
       <DependentUpon>EmployeeDriveTimeDataSet.xsd</DependentUpon>
     </None>
+    <None Include="EmployeeHoursDataSet.xsc">
+      <DependentUpon>EmployeeHoursDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="EmployeeHoursDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>EmployeeHoursDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="EmployeeHoursDataSet.xss">
+      <DependentUpon>EmployeeHoursDataSet.xsd</DependentUpon>
+    </None>
     <None Include="EmployeeOvertimeDataSet.xsc">
       <DependentUpon>EmployeeOvertimeDataSet.xsd</DependentUpon>
     </None>
@@ -2473,6 +2510,17 @@
     </None>
     <None Include="EventlLogSecurityDataSet.xss">
       <DependentUpon>EventlLogSecurityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportAholaPunchesDataSet.xsc">
+      <DependentUpon>ImportAholaPunchesDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="ImportAholaPunchesDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ImportAholaPunchesDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="ImportAholaPunchesDataSet.xss">
+      <DependentUpon>ImportAholaPunchesDataSet.xsd</DependentUpon>
     </None>
     <None Include="ImportCellMessagesDataSet.xsc">
       <DependentUpon>ImportCellMessagesDataSet.xsd</DependentUpon>
