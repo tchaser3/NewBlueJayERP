@@ -9,11 +9,46 @@
         mc:Ignorable="d"
         Title="ProjectManagementReport" Height="800" Width="1000" Loaded="Window_Loaded" IsVisibleChanged="Window_IsVisibleChanged">
     <Window.Resources>
-        <Style TargetType="{x:Type DataGridRow}">
-            <Style.Setters>
-                <Setter Property="Background" Value="{Binding Path=Code}"></Setter>
-            </Style.Setters>
-        </Style>
+       
+            <Style TargetType="{x:Type Button}">
+                <Setter Property="Background" Value="#358AB1" />
+                <Setter Property="Foreground" Value="#FFC9E0DC" />
+                <Setter Property="FontSize" Value="15" />
+                <Setter Property="FontFamily" Value="./#Segoe UI" />
+                <Setter Property="SnapsToDevicePixels" Value="True" />
+
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type Button}">
+                            <Border CornerRadius="4" Background="{TemplateBinding Background}">
+                                <Grid>
+                                    <Path x:Name="PathIcon" Width="0" Height="0" Stretch="Fill" Fill="#4C87B3" HorizontalAlignment="Left" Margin="17,0,0,0" Data="F1 M 30.0833,22.1667L 50.6665,37.6043L 50.6665,38.7918L 30.0833,53.8333L 30.0833,22.1667 Z "/>
+                                    <ContentPresenter x:Name="MyContentPresenter" Content="{TemplateBinding Content}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,0,0,0" />
+                                </Grid>
+                            </Border>
+
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter Property="Background" Value="#FF635B5B" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsFocused" Value="true">
+                                    <Setter Property="Background" Value="#FF635B5B" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter TargetName="PathIcon" Property="Fill" Value="Black" />
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter Property="Background" Value="#FF981E2A" />
+                                    <Setter Property="Foreground" Value="White" />
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+        
     </Window.Resources>
     <Grid>
         <Grid.Background>
@@ -28,7 +63,7 @@
             <Label x:Name="lblTitle" Content="Project Management Report" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
         </StackPanel>
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="640" Background="LightBlue">
-            <Expander x:Name="expExportToExcel" Header="Export to Excel" FontSize="16" Margin="10,1,1,1" Expanded="expExportToExcel_Expanded" />
+            <Expander x:Name="expExportToExcel" Header="Export to Excel" FontSize="16" Margin="10,1,1,1" Expanded="expExportToExcel_Expanded"  />
             <Expander x:Name="expHelpDesk" Header="Help Desk" FontSize="16" Margin="10,1,1,1" Expanded="expHelpDesk_Expanded" />
             <Expander x:Name="expHelp" Header="Help" FontSize="16" Margin="10,1,1,1" Expanded="expHelp_Expanded" />
             <Expander x:Name="expSendEmail" Header="Send Email" FontSize="16" Margin="10,1,1,1" Expanded="expSendEmail_Expanded" />
@@ -37,13 +72,12 @@
         </StackPanel>
         <StackPanel Height="630" Width="830" Margin="156,155,8,9">
             <StackPanel Orientation="Horizontal" Height="50" Width="830">
-                <Label x:Name="lblSelectOffice" Content="Select Office" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Margin="75,1,1,1"/>
-                <ComboBox x:Name="cboSelectOffice" IsReadOnly="True" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectOffice_SelectionChanged"/>
-                <Label x:Name="lblSelectBusinessLine" Content="Select Business Line" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" FontSize="16" Height="45" Margin="10,1,1,1"/>
-                <ComboBox x:Name="cboSelectBusinessLine" IsReadOnly="True" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectBusinessLine_SelectionChanged"/>
+                <Label x:Name="lblEnterProjectID" Content="Enter Project ID" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Margin="175,1,1,1"/>
+                <TextBox x:Name="txtEnterProjectID" CharacterCasing="Upper" TabIndex="0" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="175" Margin="10,1,1,1"/>
+                <Button x:Name="btnFindProduction" Content="Find Production" TabIndex="1" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" VerticalAlignment="Center" Height="45" Width="175" Margin="10,1,1,1" Click="btnFindProduction_Click"/>
             </StackPanel>
             <StackPanel Height="580" Width="830">
-                <DataGrid x:Name="dgrProjects" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="560" Width="810" Margin="1,10,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrProjects_SelectionChanged">
+                <DataGrid x:Name="dgrProduction" IsReadOnly="True" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="560" Width="810" Margin="1,10,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" >
                   
                 </DataGrid>
             </StackPanel>

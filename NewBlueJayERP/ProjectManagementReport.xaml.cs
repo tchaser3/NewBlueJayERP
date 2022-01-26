@@ -18,10 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using NewEventLogDLL;
-using NewEmployeeDLL;
-using ProductionProjectDLL;
-using ProductionProjectUpdatesDLL;
-using DepartmentDLL;
+using EmployeeProjectAssignmentDLL;
 using ProjectMatrixDLL;
 using Microsoft.Win32;
 
@@ -35,20 +32,14 @@ namespace NewBlueJayERP
     {
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         EventLogClass TheEventLogClass = new EventLogClass();
-        EmployeeClass TheEmployeeClass = new EmployeeClass();
-        ProductionProjectClass TheProductionProjectClass = new ProductionProjectClass();
-        ProductionProjectUpdatesClass TheProductionProjectUpdatesClass = new ProductionProjectUpdatesClass();
-        DepartmentClass TheDepartmentClass = new DepartmentClass();
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
+        EmployeeProjectAssignmentClass TheEmployeeProjectAssignmentClass = new EmployeeProjectAssignmentClass();
 
         //setting up the data
-        FindOpenOfficeBusinessLineProjectListDataSet TheFindOpenOfficeBusinessLineProjectListDataSet = new FindOpenOfficeBusinessLineProjectListDataSet();
-        FindSortedCustomerLinesDataSet TheFindSortedCustomerLinesDataSet = new FindSortedCustomerLinesDataSet();
-        FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
-        ProjectManagementDataSet TheProjectManagementDataSet = new ProjectManagementDataSet();
-        FindProductionProjectUpdateByProjectIDDataSet TheFindProductionProjectUdpateByProjectIDDataSet = new FindProductionProjectUpdateByProjectIDDataSet();
-        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
-
+        FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
+        FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectmatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
+        FindProjectProductionByAssignedProjectIDDataSet TheFindProjectProductionByAssignedProjectIDDataSet = new FindProjectProductionByAssignedProjectIDDataSet();
+        
         public ProjectManagementReport()
         {
             InitializeComponent();
@@ -100,203 +91,48 @@ namespace NewBlueJayERP
         }
         private void ResetControls()
         {
-            int intCounter;
-            int intNumberOfRecords;
+            TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID("EAT ME");
 
-            try
-            {
-                TheFindWarehousesDataSet = TheEmployeeClass.FindWarehouses();
-                cboSelectOffice.Items.Clear();
-                cboSelectOffice.Items.Add("Select Office");
+            dgrProduction.ItemsSource = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID;
 
-                intNumberOfRecords = TheFindWarehousesDataSet.FindWarehouses.Rows.Count;
-
-                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                {
-                    cboSelectOffice.Items.Add(TheFindWarehousesDataSet.FindWarehouses[intCounter].FirstName);
-                }
-
-                cboSelectOffice.SelectedIndex = 0;
-
-                cboSelectBusinessLine.Items.Clear();
-                cboSelectBusinessLine.Items.Add("Select Business Line");
-                TheFindSortedCustomerLinesDataSet = TheDepartmentClass.FindSortedCustomerLines();
-
-                intNumberOfRecords = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines.Rows.Count;
-
-                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                {
-                    cboSelectBusinessLine.Items.Add(TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intCounter].Department);
-                }
-
-                cboSelectBusinessLine.SelectedIndex = 0;
-
-                TheProjectManagementDataSet.projectmanagement.Rows.Clear();
-
-                dgrProjects.ItemsSource = TheProjectManagementDataSet.projectmanagement;
-
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Reset Controls " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
         }
 
-        private void cboSelectOffice_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void btnFindProduction_Click(object sender, RoutedEventArgs e)
         {
-            int intSelectedIndex;
-
-            try
-            {
-                intSelectedIndex = cboSelectOffice.SelectedIndex - 1;
-
-                if(intSelectedIndex > -1)
-                {
-                    MainWindow.gintWarehouseID = TheFindWarehousesDataSet.FindWarehouses[intSelectedIndex].EmployeeID;
-
-                    if(MainWindow.gintDepartmentID > -1)
-                    {
-                        LoadDataGrid();
-                    }
-                }
-                else
-                {
-                    MainWindow.gintWarehouseID = -1;
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Select Office Combobox " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-        private void LoadDataGrid()
-        {
-            //this will load up the grid
-            int intCounter;
-            int intNumberOfRecords;
+            string strProjectID;
+            int intLength;
             int intRecordsReturned;
-            int intProjectID;
-            string strLastUpdate = "";
-            DateTime datTransactionDate;
-            DateTime datECDDate = DateTime.Now;
-            DataGrid dataGrid;
-            DataGridRow selectedRow;
-            DataGridCell ECDDate;
-            string strECDDate;
 
             try
             {
-                TheFindOpenOfficeBusinessLineProjectListDataSet = TheProjectMatrixClass.FindOpenOfficeBusinessLineProjectList(MainWindow.gintWarehouseID, MainWindow.gintDepartmentID);
+                strProjectID = txtEnterProjectID.Text;
 
-                TheProjectManagementDataSet.projectmanagement.Rows.Clear();
+                TheFindProjectMatrixByAssignedProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByAssignedProjectID(strProjectID);
 
-                intNumberOfRecords = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList.Rows.Count;
+                intRecordsReturned = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID.Rows.Count;
 
-                for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
+                if(intRecordsReturned < 1)
                 {
-                    intProjectID = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList[intCounter].ProjectID;
+                    TheFindProjectmatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strProjectID);
 
-                    TheFindProductionProjectUdpateByProjectIDDataSet = TheProductionProjectUpdatesClass.FindProductionProjectUpdateByProjectID(intProjectID);
-
-                    intRecordsReturned = TheFindProductionProjectUdpateByProjectIDDataSet.FindProductionProjectUpdatesByProjectID.Rows.Count;
+                    intRecordsReturned = TheFindProjectmatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID.Rows.Count;
 
                     if(intRecordsReturned < 1)
                     {
-                        strLastUpdate = "NO UPDATES ENTERED";
-                    }
-                    else if(intRecordsReturned > 0)
-                    {
-                        datTransactionDate = TheFindProductionProjectUdpateByProjectIDDataSet.FindProductionProjectUpdatesByProjectID[0].TransactionDate;
-                        strLastUpdate = Convert.ToString(datTransactionDate) + " - " + TheFindProductionProjectUdpateByProjectIDDataSet.FindProductionProjectUpdatesByProjectID[0].ProjectUpdate;
+                        TheMessagesClass.ErrorMessage("Project Not Found");
+                        return;
                     }
 
-                    ProjectManagementDataSet.projectmanagementRow NewProjectRow = TheProjectManagementDataSet.projectmanagement.NewprojectmanagementRow();
-
-                    NewProjectRow.BlueJayID = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList[intCounter].AssignedProjectID;
-                    NewProjectRow.CustomerProjectID = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList[intCounter].CustomerAssignedID;
-                    NewProjectRow.ECDDate = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList[intCounter].ECDDate;
-                    NewProjectRow.LastUpdate = strLastUpdate;
-                    NewProjectRow.ProjectName = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList[intCounter].ProjectName;
-                    NewProjectRow.Status = TheFindOpenOfficeBusinessLineProjectListDataSet.FindOpenOfficeBusinessLineProjectList[intCounter].WorkOrderStatus;
-
-                    TheProjectManagementDataSet.projectmanagement.Rows.Add(NewProjectRow);
+                    strProjectID = TheFindProjectmatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].AssignedProjectID;
                 }
 
+                TheFindProjectProductionByAssignedProjectIDDataSet = TheEmployeeProjectAssignmentClass.FindProjectProductionByAssignedProjectID(strProjectID);
+
+                dgrProduction.ItemsSource = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID;
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Load Data Grid " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void cboSelectBusinessLine_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            int intSelectedIndex;
-
-            try
-            {
-                intSelectedIndex = cboSelectBusinessLine.SelectedIndex - 1;
-
-                if (intSelectedIndex > -1)
-                {
-                    MainWindow.gintDepartmentID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intSelectedIndex].DepartmentID;
-
-                    if (MainWindow.gintWarehouseID > -1)
-                    {
-                        LoadDataGrid();
-                    }
-                }
-                else
-                {
-                    MainWindow.gintWarehouseID = -1;
-                }
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Select Office Combobox " + Ex.Message);
-
-                TheMessagesClass.ErrorMessage(Ex.ToString());
-            }
-        }
-
-        private void dgrProjects_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            DataGrid dataGrid;
-            DataGridRow selectedRow;
-            DataGridCell ProjectID;
-            string strProjectID;
-
-            try
-            {
-                if (dgrProjects.SelectedIndex > -1)
-                {
-                    //setting local variable
-                    dataGrid = dgrProjects;
-                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
-                    ProjectID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
-                    strProjectID = ((TextBlock)ProjectID.Content).Text;
-
-                    TheFindProjectMatrixByCustomerProjectIDDataSet = TheProjectMatrixClass.FindProjectMatrixByCustomerProjectID(strProjectID);
-
-                    //find the record
-                    MainWindow.gintProjectID = TheFindProjectMatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
-
-                    UpdateSelectedProject UpdateSelectedProject = new UpdateSelectedProject();
-                    UpdateSelectedProject.ShowDialog();
-
-                    LoadDataGrid();
-                }
-
-            }
-            catch (Exception Ex)
-            {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Projects Grid Selection " + Ex.Message);
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Project Management Report // Find Production Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -324,12 +160,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheProjectManagementDataSet.projectmanagement.Rows.Count;
-                intColumnNumberOfRecords = TheProjectManagementDataSet.projectmanagement.Columns.Count;
+                intRowNumberOfRecords = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Rows.Count;
+                intColumnNumberOfRecords = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheProjectManagementDataSet.projectmanagement.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -342,7 +178,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheProjectManagementDataSet.projectmanagement.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }

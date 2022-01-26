@@ -150,7 +150,7 @@
                                 <Expander x:Name="expCreateProductionSheet" Header="Create Production Sheet" Margin="10,1,1,1" FontSize="16" Expanded="expCreateProductionSheet_Expanded" />
                                 <Expander x:Name="expOverdueProjectReport" Header="Overdue Project Report" Margin="10,1,1,1" FontSize="16" Expanded="expOverdueProjectReport_Expanded" />
                                 <Expander x:Name="expProjectShopAnalysis" Header="Project Shop Analysis" Margin="10,1,1,1" FontSize="16" Expanded="expProjectShopAnalysis_Expanded" />
-                                <Expander x:Name="expProjectManagementReport" Header="Project Management Report" Margin="10,1,1,1" FontSize="16" Expanded="expProjectManagementReport_Expanded" />
+                                <Expander x:Name="expProjectManagementReport" Header="Project Production Report" Margin="10,1,1,1" FontSize="16" Expanded="expProjectManagementReport_Expanded" />
                                 <Expander x:Name="expProjectInvoiceReport" Header="Project Invoice Report" Margin="10,1,1,1" FontSize="16" Expanded="expProjectInvoiceReport_Expanded" />
                                 <Expander x:Name="expProjectProductivityReport" Header="Project Productivity Report" Margin=" 10,1,1,1" Expanded="expProjectProductivityReport_Expanded"/>
                                 <Expander x:Name="expDepartmentProjectOpenList" Header="Department Project Open List" Margin="10,1,1,1" Expanded="expDepartmentProjectOpenList_Expanded"/>
