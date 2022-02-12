@@ -37,7 +37,6 @@ namespace NewBlueJayERP
         FindProjectByAssignedProjectIDDataSet TheFindProjectByAssignedProjectIDDataSet = new FindProjectByAssignedProjectIDDataSet();
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
         FindDesignProductivityForVoidingDataSet TheFindDesignProductivityForVoidingDataSet = new FindDesignProductivityForVoidingDataSet();
-        DesignProductivityDataSet TheDesignProductivityDataSet = new DesignProductivityDataSet();
 
         DateTime gdatTransactionDate;
 
@@ -94,13 +93,12 @@ namespace NewBlueJayERP
         {
             txtDate.Text = "";
             txtEnterLastName.Text = "";
-            txtProjectID.Text = "";
             cboSelectEmployee.Items.Clear();
             cboSelectEmployee.Items.Add("Select Employee");
             cboSelectEmployee.SelectedIndex = 0;
             TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID, "New Blue Jay ERP // Void Design Productivity");
-            TheDesignProductivityDataSet.designproductivity.Rows.Clear();
-            dgrResults.ItemsSource = TheDesignProductivityDataSet.designproductivity;
+            TheFindDesignProductivityForVoidingDataSet = TheDesignProductivityClass.FindDesignProducitivityForVoiding(-1, DateTime.Now);
+            dgrResults.ItemsSource = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding;
         }
 
         private void txtEnterLastName_TextChanged(object sender, TextChangedEventArgs e)
@@ -148,40 +146,16 @@ namespace NewBlueJayERP
             bool blnThereIsAproblem = false;
             bool blnFatalError = false;
             string strErrorMessage = "";
-            string strAssignedProjectID;
             string strValueForValidation;
-            int intRecordsReturned;
-            int intCounter;
-            int intNumberOfRecords;
 
             try
             {
                 expFindItems.IsExpanded = false;
 
-                TheDesignProductivityDataSet.designproductivity.Rows.Clear();
-
                 if(cboSelectEmployee.SelectedIndex < 1)
                 {
                     blnFatalError = true;
                     strErrorMessage += "The Employee Was Not Selected\n";
-                }
-                strAssignedProjectID = txtProjectID.Text;
-                if(strAssignedProjectID.Length < 3)
-                {
-                    blnFatalError = true;
-                    strErrorMessage += "The Project ID was not Long Enough\n";
-                }
-                else
-                {
-                    TheFindProjectByAssignedProjectIDDataSet = TheProjectClass.FindProjectByAssignedProjectID(strAssignedProjectID);
-
-                    intRecordsReturned = TheFindProjectByAssignedProjectIDDataSet.FindProjectByAssignedProjectID.Rows.Count;
-
-                    if(intRecordsReturned < 1)
-                    {
-                        blnFatalError = true;
-                        strErrorMessage += "The Project Was Not Found\n";
-                    }
                 }
                 strValueForValidation = txtDate.Text;
                 blnThereIsAproblem = TheDataValidationClass.VerifyDateData(strValueForValidation);
@@ -200,29 +174,10 @@ namespace NewBlueJayERP
                     return;
                 }
 
-                TheFindDesignProductivityForVoidingDataSet = TheDesignProductivityClass.FindDesignProducitivityForVoiding(MainWindow.gintEmployeeID, strAssignedProjectID, gdatTransactionDate);
+                TheFindDesignProductivityForVoidingDataSet = TheDesignProductivityClass.FindDesignProducitivityForVoiding(MainWindow.gintEmployeeID, gdatTransactionDate);
 
-                intNumberOfRecords = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding.Rows.Count;
-
-                if(intNumberOfRecords > 0)
-                {
-                    for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
-                    {
-                        DesignProductivityDataSet.designproductivityRow NewProductivityRow = TheDesignProductivityDataSet.designproductivity.NewdesignproductivityRow();
-
-                        NewProductivityRow.FirstName = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].FirstName;
-                        NewProductivityRow.HomeOffice = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].HomeOffice;
-                        NewProductivityRow.LastName = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].LastName;
-                        NewProductivityRow.ProjectID = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].ProjectID;
-                        NewProductivityRow.TransactionDate = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].TransactionDate;
-                        NewProductivityRow.TransactionID = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].TransactionID;
-                        NewProductivityRow.VoidTransaction = false;
-
-                        TheDesignProductivityDataSet.designproductivity.Rows.Add(NewProductivityRow);
-                    }
-                }
-
-                dgrResults.ItemsSource = TheDesignProductivityDataSet.designproductivity;
+                
+                dgrResults.ItemsSource = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding;
             }
             catch (Exception Ex)
             {
@@ -253,7 +208,7 @@ namespace NewBlueJayERP
 
             try
             {
-                intNumberOfRecords = TheDesignProductivityDataSet.designproductivity.Rows.Count;
+                intNumberOfRecords = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding.Rows.Count;
 
                 if(intNumberOfRecords < 1)
                 {
@@ -263,15 +218,13 @@ namespace NewBlueJayERP
 
                 for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                 {
-                    if(TheDesignProductivityDataSet.designproductivity[intCounter].VoidTransaction == true)
-                    {
-                        intTransactionID = TheDesignProductivityDataSet.designproductivity[intCounter].TransactionID;
+                    
+                    intTransactionID = TheFindDesignProductivityForVoidingDataSet.FindDesignProductivityForVoiding[intCounter].TransactionID;
 
-                        blnFatalError = TheDesignProductivityClass.VoidDesignProductivity(intTransactionID);
+                    blnFatalError = TheDesignProductivityClass.VoidDesignProductivity(intTransactionID);
 
-                        if (blnFatalError == true)
-                            throw new Exception();
-                    }
+                    if (blnFatalError == true)
+                        throw new Exception();
                 }
 
                 TheMessagesClass.InformationMessage("All Selected Transactions Have Been Voided");

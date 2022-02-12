@@ -38,7 +38,7 @@ namespace NewBlueJayERP
         //setting up the data
         FindProjectMatrixByAssignedProjectIDDataSet TheFindProjectMatrixByAssignedProjectIDDataSet = new FindProjectMatrixByAssignedProjectIDDataSet();
         FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectmatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
-        FindProjectProductionByAssignedProjectIDDataSet TheFindProjectProductionByAssignedProjectIDDataSet = new FindProjectProductionByAssignedProjectIDDataSet();
+        FindProjectProductionCostsByProjectIDDataSet TheFindProductionCostsByProjectIDDataSet = new FindProjectProductionCostsByProjectIDDataSet();
         
         public ProjectManagementReport()
         {
@@ -100,6 +100,7 @@ namespace NewBlueJayERP
         private void btnFindProduction_Click(object sender, RoutedEventArgs e)
         {
             string strProjectID;
+            int intProjectID = 0;
             int intLength;
             int intRecordsReturned;
 
@@ -123,12 +124,16 @@ namespace NewBlueJayERP
                         return;
                     }
 
-                    strProjectID = TheFindProjectmatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].AssignedProjectID;
+                    intProjectID = TheFindProjectmatrixByCustomerProjectIDDataSet.FindProjectMatrixByCustomerProjectID[0].ProjectID;
+                }
+                else if(intRecordsReturned > 0)
+                {
+                    intProjectID = TheFindProjectMatrixByAssignedProjectIDDataSet.FindProjectMatrixByAssignedProjectID[0].ProjectID;
                 }
 
-                TheFindProjectProductionByAssignedProjectIDDataSet = TheEmployeeProjectAssignmentClass.FindProjectProductionByAssignedProjectID(strProjectID);
+                TheFindProductionCostsByProjectIDDataSet = TheEmployeeProjectAssignmentClass.FindProjectProductionCostsByProjectID(intProjectID);
 
-                dgrProduction.ItemsSource = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID;
+                dgrProduction.ItemsSource = TheFindProductionCostsByProjectIDDataSet.FindProjectProductionCostsByProjectID;
             }
             catch (Exception Ex)
             {
@@ -160,12 +165,12 @@ namespace NewBlueJayERP
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
-                intRowNumberOfRecords = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Rows.Count;
-                intColumnNumberOfRecords = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Columns.Count;
+                intRowNumberOfRecords = TheFindProductionCostsByProjectIDDataSet.FindProjectProductionCostsByProjectID.Rows.Count;
+                intColumnNumberOfRecords = TheFindProductionCostsByProjectIDDataSet.FindProjectProductionCostsByProjectID.Columns.Count;
 
                 for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                 {
-                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Columns[intColumnCounter].ColumnName;
+                    worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindProductionCostsByProjectIDDataSet.FindProjectProductionCostsByProjectID.Columns[intColumnCounter].ColumnName;
 
                     cellColumnIndex++;
                 }
@@ -178,7 +183,7 @@ namespace NewBlueJayERP
                 {
                     for (intColumnCounter = 0; intColumnCounter < intColumnNumberOfRecords; intColumnCounter++)
                     {
-                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindProjectProductionByAssignedProjectIDDataSet.FindProjectProductionByAssignedProjectID.Rows[intRowCounter][intColumnCounter].ToString();
+                        worksheet.Cells[cellRowIndex, cellColumnIndex] = TheFindProductionCostsByProjectIDDataSet.FindProjectProductionCostsByProjectID.Rows[intRowCounter][intColumnCounter].ToString();
 
                         cellColumnIndex++;
                     }
