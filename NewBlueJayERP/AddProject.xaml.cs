@@ -53,6 +53,7 @@ namespace NewBlueJayERP
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
         ProjectNumberAssignment TheProjectNumberAssignmentClass = new ProjectNumberAssignment();
         ATTProjectNumberAssignmentClass TheATTProjectNumberAssignmentClass = new ATTProjectNumberAssignmentClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         
@@ -499,6 +500,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project // Process Expander " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project // Process Expander " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -549,6 +552,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project // Add Project Documentation Method " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project // Add Project Documentation Method " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -766,6 +771,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project // Customer Project ID Text Box " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project // Customer Project ID Text Box " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -943,6 +950,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project // Assigned Project ID Text Box " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project // Assigned Project ID Text Box " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

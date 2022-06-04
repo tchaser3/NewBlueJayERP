@@ -31,6 +31,7 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeLaborRateClass TheEmployeeLaborRateClass = new EmployeeLaborRateClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
@@ -134,6 +135,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Employee Labor Rate // txtLastName Text Changed " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog(Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -172,6 +175,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Employee Labor Rate // Combo Selection Changed Event " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -236,6 +241,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Employee Labor Rate // Process Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

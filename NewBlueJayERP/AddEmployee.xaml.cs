@@ -22,7 +22,6 @@ using NewEventLogDLL;
 using DataValidationDLL;
 using DepartmentDLL;
 using EmployeeDateEntryDLL;
-
 namespace NewBlueJayERP
 {
     /// <summary>
@@ -36,6 +35,7 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         DepartmentClass TheDepartmentClass = new DepartmentClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         FindSortedDepartmentDataSet TheFindSortedDepartmentDataSet = new FindSortedDepartmentDataSet();
@@ -473,6 +473,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Employee // Process Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

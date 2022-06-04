@@ -129,5 +129,34 @@ namespace NewBlueJayERP
                 blnEmailSent = SendEmail(strEmailAddress, strHeader, strVehicleReport);
             }
         }
+        public void SendEventLog(string strLogEntry)
+        {
+            string strComputerName;
+            string strUser;
+            string strMessage;
+            bool blnFatalError = false;
+            string strHeader = "Event Log Entry";
+            string strEmailAddress = "bjc-it@bluejaycommunications.com";
+
+            try
+            {
+                strComputerName = System.Environment.MachineName;
+                strUser = System.Environment.UserName;
+
+                strMessage ="<h1>" + strUser + " " + strComputerName + " " + strLogEntry + "</h1>";
+
+                blnFatalError = !(SendEmail(strEmailAddress, strHeader, strMessage));
+
+                if (blnFatalError == true)
+                    throw new Exception();
+            }
+            catch(Exception Ex)
+            {
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Send Email Class // Send Event Log " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
+
+        }
     }
 }

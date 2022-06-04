@@ -29,6 +29,7 @@ namespace NewBlueJayERP
         //setting up the classes
         WPFMessagesClass TheMessagesClass = new WPFMessagesClass();
         EventLogClass TheEventLogClass = new EventLogClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setup data
         FindActiveServerLogSearchTermsDataSet TheFindActiveServerLogSearchTermsDataSet = new FindActiveServerLogSearchTermsDataSet();
@@ -130,6 +131,8 @@ namespace NewBlueJayERP
             catch (Exception ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Search Terms // Process Button " + ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Search Terms // Process Button " + ex.ToString());
 
                 TheMessagesClass.ErrorMessage(ex.ToString());
             }

@@ -55,6 +55,7 @@ namespace NewBlueJayERP
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
         ProjectClass TheProjectClass = new ProjectClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         FindProjectMatrixByCustomerProjectIDDataSet TheFindProjectMatrixByCustomerProjectIDDataSet = new FindProjectMatrixByCustomerProjectIDDataSet();
@@ -279,6 +280,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Check Project " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Check Project " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -377,6 +380,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Enter Last Name Text Box " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Enter Last Name Text Box " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -419,6 +424,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // cboSelectEmployee Event" + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // cboSelectEmployee Event" + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -485,6 +492,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Add Employee Button " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Add Employee Button " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -524,6 +533,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Remove Employee Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Remove Employee Button " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -566,6 +577,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Grid Selection " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Grid Selection " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -752,6 +765,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Add Task Button " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Add Task Button " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -787,6 +802,8 @@ namespace NewBlueJayERP
                 TheMessagesClass.ErrorMessage(Ex.ToString());
 
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Calculate Propability " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Calculate Propability " + Ex.ToString());
             }
 
             return douPropability;
@@ -828,6 +845,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Check Employee Total Hours " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Check Employee Total Hours " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
 
@@ -872,6 +891,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Menu Item Remove Transaction " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Menu Item Remove Transaction " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -989,6 +1010,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Project Labor // Process Expander " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Project Labor // Process Expander " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

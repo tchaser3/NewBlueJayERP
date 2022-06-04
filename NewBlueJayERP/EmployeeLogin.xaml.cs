@@ -20,7 +20,7 @@ using System.Windows.Shapes;
 using NewEmployeeDLL;
 using NewEventLogDLL;
 using DataValidationDLL;
-using EmployeeDateEntryDLL;
+using EmployeeDateEntryDLL; 
 
 namespace NewBlueJayERP
 {
@@ -34,6 +34,7 @@ namespace NewBlueJayERP
         EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         int gintNoOfMisses;
 
@@ -80,8 +81,6 @@ namespace NewBlueJayERP
 
             intRecordsReturned = MainWindow.TheVerifyLogonDataSet.VerifyLogon.Rows.Count;
 
-
-
             if (intRecordsReturned == 0)
             {
                 LogonFailed();
@@ -98,11 +97,20 @@ namespace NewBlueJayERP
 
         private void LogonFailed()
         {
+            string strLogEntry;
+           
+
             gintNoOfMisses++;
 
             if (gintNoOfMisses == 3)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "There Have Been Three Attemps to Sign Into Blue Jay ERP System");
+                strLogEntry = "There Have Been Three Attemps to Sign Into Blue Jay ERP System";       
+                
+                //TheSendEmailClass.SendEventLog(strLogEntry);
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, strLogEntry);
+
+                TheSendEmailClass.SendEventLog(strLogEntry);
 
                 TheMessagesClass.ErrorMessage("You Have Tried To Sign In Three Times\nThe Program Will Now Close");
 
@@ -118,6 +126,11 @@ namespace NewBlueJayERP
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             TheMessagesClass.CloseTheProgram();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            
         }
     }
 }

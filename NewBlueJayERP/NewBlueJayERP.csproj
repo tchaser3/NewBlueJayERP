@@ -470,9 +470,6 @@
     <Compile Include="AddNewTool.xaml.cs">
       <DependentUpon>AddNewTool.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddNewWaspAsset.xaml.cs">
-      <DependentUpon>AddNewWaspAsset.xaml</DependentUpon>
-    </Compile>
     <Compile Include="AddPhoneExt.xaml.cs">
       <DependentUpon>AddPhoneExt.xaml</DependentUpon>
     </Compile>
@@ -1480,10 +1477,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddNewTool.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="AddNewWaspAsset.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

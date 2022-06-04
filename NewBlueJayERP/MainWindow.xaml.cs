@@ -716,6 +716,7 @@ namespace NewBlueJayERP
             ResetWindows();
 
             EmployeeLogin EmployeeLogin = new EmployeeLogin();
+            EmployeeLogin.Topmost = true;
             EmployeeLogin.ShowDialog();
 
             SetEmployeeSecurity();
@@ -836,6 +837,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Main Window // Set Employee Security " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Main Window // Set Employee Security " + Ex.ToString());
             }
             
         }

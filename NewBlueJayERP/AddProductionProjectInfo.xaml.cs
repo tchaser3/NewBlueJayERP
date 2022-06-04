@@ -34,6 +34,7 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         JobTypeClass TheJobTypeClass = new JobTypeClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         FindProductionProjectInfoDataSet TheFindProductionProjectInfoDataSet = new FindProductionProjectInfoDataSet();
@@ -173,6 +174,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Production Project Info // Process Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Production Project Info // Process Button " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

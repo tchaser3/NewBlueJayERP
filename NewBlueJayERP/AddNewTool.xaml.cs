@@ -41,6 +41,7 @@ namespace NewBlueJayERP
         ToolCategoryClass TheToolCategoryClass = new ToolCategoryClass();
         ToolIDClass TheToolIDClass = new ToolIDClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         ComboEmployeeDataSet TheComboEmployeeDataSet = new ComboEmployeeDataSet();
@@ -152,6 +153,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add New Tools // Reset Controls " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog(Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -219,6 +222,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add New Tool // Tool Category Selection Changed " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -339,6 +344,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add New Tool // Create Tool Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

@@ -32,6 +32,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         FindEmployeeGroupByGroupNameDataSet TheFindEmployeeGroupByGroupNameDataSet = new FindEmployeeGroupByGroupNameDataSet();
 
@@ -135,6 +136,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Employee Groups // Process Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

@@ -37,6 +37,7 @@ namespace NewBlueJayERP
         MaterialSheetClass TheMaterialSheetClass = new MaterialSheetClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
         PartNumberClass ThePartNumberClass = new PartNumberClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();    
 
         //loading up the data
         FindPartsWarehousesDataSet TheFindPartsWarehouseDataSet = new FindPartsWarehousesDataSet();
@@ -134,6 +135,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Inventory Location // Reset Controls " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog(Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
         }
@@ -192,6 +195,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Inventory Location // Find Part Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -252,6 +257,8 @@ namespace NewBlueJayERP
             catch (Exception Ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Inventory Location // Add Location Button " + Ex.Message);
+
+                TheSendEmailClass.SendEventLog(Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }

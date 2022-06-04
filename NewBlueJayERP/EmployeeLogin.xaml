@@ -7,7 +7,7 @@
         WindowStyle="None"
         xmlns:local="clr-namespace:NewBlueJayERP"
         mc:Ignorable="d"
-        Title="EmployeeLogin" Height="250" Width="500">
+        Title="EmployeeLogin" Height="250" Width="500" Loaded="Window_Loaded">
     <Grid>
         <Button x:Name="btnClose" TabIndex="3" Content="Close" HorizontalAlignment="Left" Margin="331,149,0,0" VerticalAlignment="Top" Width="125" Height="55" FontSize="18" Click="btnClose_Click"/>
         <Button x:Name="btnSignIn" TabIndex="2" Content="Sign In" HorizontalAlignment="Left" Margin="331,79,0,0" VerticalAlignment="Top" Width="125" Height="55" FontSize="18" Click="btnSignIn_Click"/>

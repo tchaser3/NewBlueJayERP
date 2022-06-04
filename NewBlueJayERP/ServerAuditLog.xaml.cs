@@ -37,6 +37,7 @@ namespace NewBlueJayERP
         EventLogClass TheEventLogClass = new EventLogClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //settting up the data
         FindServerEventLogByNoteKeywordDataSet TheFindServerEventLogByNoteKeywordDataSet = new FindServerEventLogByNoteKeywordDataSet();
@@ -152,6 +153,8 @@ namespace NewBlueJayERP
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Server Audit Log // Search Button " + Ex.Message);
 
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Server Audit Log // Search Button " + Ex.ToString());
+
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
 
@@ -171,7 +174,7 @@ namespace NewBlueJayERP
             txtKeyword.Text = "";
             txtStartDate.Text = "";
 
-           TheFindServerEventLogByNoteKeywordDataSet = TheEventLogClass.FindServerEventLogByNoteKeyword("NOTHING", DateTime.Now, DateTime.Now);           
+            dgrResults.ItemsSource = TheFindServerEventLogByNoteKeywordDataSet.FindServerLogByNoteKeyword;
         }
 
         private void expExportToExcel_Expanded(object sender, RoutedEventArgs e)
@@ -236,6 +239,8 @@ namespace NewBlueJayERP
             catch (System.Exception ex)
             {
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Server Audit Log // Export To Excel " + ex.Message);
+
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Server Audit Log // Export To Excel " + ex.ToString());
 
                 MessageBox.Show(ex.ToString());
             }
