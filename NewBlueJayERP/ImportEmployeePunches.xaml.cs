@@ -42,6 +42,7 @@ namespace NewBlueJayERP
         EmployeePunchedHoursClass TheEmployeePunchedHoursClass = new EmployeePunchedHoursClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeClass TheEmployeeClass = new EmployeeClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         ImportAholaPunchesDataSet TheImportAholaPunchesDataSet = new ImportAholaPunchesDataSet();
@@ -307,6 +308,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Import Employee Punches // Import Excel  " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Import Excel  " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -378,6 +381,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Import Employee Punches // Process Data Expander " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Process Data Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -532,6 +537,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Import Employee Punches // Calculate Hours Expander " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Calculate Hours Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -633,6 +640,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Import Employee Punches // Process Hours Expander " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Process Hours Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -712,6 +721,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Import Employee Punches // Insert Records " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Import Employee Punches // Insert Records " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

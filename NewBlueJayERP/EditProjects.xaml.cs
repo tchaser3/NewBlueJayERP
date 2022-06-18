@@ -49,6 +49,7 @@ namespace NewBlueJayERP
         EmployeeDateEntryClass TheEmployeeDataEntryClass = new EmployeeDateEntryClass();
         ProjectMatrixClass TheProjectMatrixClass = new ProjectMatrixClass();
         ProductionProjectUpdatesClass TheProductionProjectsUpdatesClass = new ProductionProjectUpdatesClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         FindDesignProjectsByAssignedProjectIDDataSet TheFindDesignProjectsbyAssignedProjectIDDataSet = new FindDesignProjectsByAssignedProjectIDDataSet();
@@ -327,6 +328,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Edit Project // Customer Project ID Text Box " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Project // Customer Project ID Text Box " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -474,6 +477,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Edit Project // Fill Controls " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Projects // Fill Controls " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -532,7 +537,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Project // Customer Project ID Text Box " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Edit Project // Assigned Project ID Text Box " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Project // Assigned Project ID Text Box " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -698,6 +705,11 @@ namespace NewBlueJayERP
                 if (blnFatalError == true)
                     throw new Exception();
 
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectStatusDate(gintTransactionID, DateTime.Now);
+
+                if (blnFatalError == true)
+                    throw new Exception();
+
                 TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
 
                 intRecordsReturned = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID.Rows.Count;
@@ -725,6 +737,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Edit Project // Process Expander " + Ex.ToString());
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Edit Projects // Proces Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
