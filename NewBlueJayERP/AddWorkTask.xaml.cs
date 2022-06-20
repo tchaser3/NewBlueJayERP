@@ -37,6 +37,7 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         DepartmentClass TheDepartmentClass = new DepartmentClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up for the data
         FindSortedCustomerLinesDataSet TheFindSortedCustomerLinesDataSet = new FindSortedCustomerLinesDataSet();
@@ -139,6 +140,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Work Task // Reset Controls " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Work Task // Reset Controls " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -279,6 +282,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Work Task // Process Button " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Work Task // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

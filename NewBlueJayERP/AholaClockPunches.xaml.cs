@@ -27,6 +27,7 @@ namespace NewBlueJayERP
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeePunchedHoursClass TheEmployeePunchedHoursClass = new EmployeePunchedHoursClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up data
         FindAholaClockPUnchesForEmployeeDataSet TheFindAholaClockPunchesForEmployeeDataSet = new FindAholaClockPUnchesForEmployeeDataSet();
@@ -80,6 +81,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Ahola Clock Punches // Window Loaded " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Ahola Clock Punches // Window Loaded " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

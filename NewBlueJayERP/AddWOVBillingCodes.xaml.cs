@@ -32,6 +32,7 @@ namespace NewBlueJayERP
         WOVInvoicingClass TheWOVInvoicingClass = new WOVInvoicingClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailCodes = new SendEmailClass();
 
         //setting up the data
         FindWOVBillingCodeByDescriptionDataSet TheFindWOVBillingCodeByDescriptionDataSet = new FindWOVBillingCodeByDescriptionDataSet();
@@ -153,6 +154,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailCodes.SendEventLog("New Blue Jay ERP // Add WOV Billing Codes // Process Button " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add WOV Billing Codes // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

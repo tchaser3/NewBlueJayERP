@@ -37,6 +37,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         FindWOVTaskByOfficeIDandDescriptionDataSet TheFindWOVTaskByOfficeIDandDescriptionDataSet = new FindWOVTaskByOfficeIDandDescriptionDataSet();
         FindWarehousesDataSet TheFindWarehousesDataSet = new FindWarehousesDataSet();
@@ -116,6 +117,8 @@ namespace NewBlueJayERP
             }
             catch (Exception ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add WOV Tasks // Reset Controls " + ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add WOV Tasks // Reset Controls " + ex.Message);
 
                 TheMessagesClass.ErrorMessage(ex.ToString());
@@ -137,6 +140,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add WOV Tasks // cbo Select Office " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add WOV Tasks // cbo Select Office " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -206,6 +211,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add WOV Tasks // Process Button " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add WOV Tasks // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

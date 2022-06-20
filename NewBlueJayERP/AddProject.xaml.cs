@@ -494,6 +494,12 @@ namespace NewBlueJayERP
 
                 TheMessagesClass.InformationMessage("Project Has Been Entered");
 
+                TheFindProductionProjectByProjectIDDataSet = TheProductionProjectClass.FindProductionProjectByProjectID(gintProjectID);
+
+                MainWindow.gintTransactionID = TheFindProductionProjectByProjectIDDataSet.FindProductionProjectByProjectID[0].TransactionID;
+
+                blnFatalError = TheProductionProjectClass.UpdateProductionProjectStatusDate(MainWindow.gintTransactionID, DateTime.Now);
+
                 ResetControls();
             }
             catch (Exception Ex)

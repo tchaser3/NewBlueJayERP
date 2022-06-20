@@ -42,6 +42,7 @@ namespace NewBlueJayERP
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
         ToolIDClass TheToolIDClass = new ToolIDClass();
         DataValidationClass TheDataValidationClass = new DataValidationClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         FindWaspAssetLocationByLocationDataSet TheFindWaspAssetLocationByLoctionDataSet = new FindWaspAssetLocationByLocationDataSet();
         WaspAssetIDDataSet TheWaspAssetIDDataSet = new WaspAssetIDDataSet();
@@ -139,6 +140,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Wasp Asset // Window Loaded Method " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Wasp Asset // Window Loaded Method " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -227,6 +230,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Wasp Asset // Tool Category Selection Changed " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Wasp Asset // Tool Category Selection Changed " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -314,6 +319,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Wasp Asset // Process Button " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Wasp Asset // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

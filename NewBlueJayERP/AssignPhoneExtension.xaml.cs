@@ -37,6 +37,7 @@ namespace NewBlueJayERP
         EmployeeClass TheEmployeeClass = new EmployeeClass();
         PhonesClass ThePhoneClass = new PhonesClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data
         FindPhoneByExtensionDataSet TheFindPhoneByExtensionDataSet = new FindPhoneByExtensionDataSet();
@@ -147,6 +148,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Assign Phone Extension // Extension Text box " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Assign Phone Extension // Extension Text box " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -188,6 +191,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Assign Phone Extension // Last Name Text Box Change Event " + Ex.Message);
+                
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Assign Phone Extension // Last Name Text Box Change Event " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -240,7 +245,9 @@ namespace NewBlueJayERP
                 ResetControls();
             }
             catch (Exception Ex)
-            {
+            {   
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Assign Phone Extension // Process Button " + Ex.Message);
+                
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Assign Phone Extension // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

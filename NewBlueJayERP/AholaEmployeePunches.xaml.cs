@@ -28,6 +28,7 @@ namespace NewBlueJayERP
         DataValidationClass TheDataValidationClass = new DataValidationClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         DateSearchClass TheDateSearchClass = new DateSearchClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         FindAholaEmployeePunchHoursDataSet TheFindAholaEmployeePunchHoursDataSet = new FindAholaEmployeePunchHoursDataSet();
 
@@ -81,6 +82,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Ahola Employee Punches // Window Loaded " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Ahola Employee Punches // Window Loaded " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -120,6 +123,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Ahola Employee Punches // Employee Hours Grid Selection " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Ahola Employee Punches // Employee Hours Grid Selection " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
@@ -154,6 +159,8 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Ahola Employee Punches // Adjust Total Hours Expander " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Ahola Employee Punches // Adjust Total Hours Expander " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());

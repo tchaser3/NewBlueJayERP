@@ -28,6 +28,7 @@ namespace NewBlueJayERP
         ToolIDClass TheToolIDClass = new ToolIDClass();
         EventLogClass TheEventLogClass = new EventLogClass();
         EmployeeDateEntryClass TheEmployeeDateEntryClass = new EmployeeDateEntryClass();
+        SendEmailClass TheSendEmailClass = new SendEmailClass();
 
         //setting up the data;
         FindSortedToolCategoryDataSet TheFindSortedToolCategoryDataSet = new FindSortedToolCategoryDataSet();
@@ -135,6 +136,8 @@ namespace NewBlueJayERP
             }
             catch(Exception Ex)
             {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Add Tool Category ID // Process Button " + Ex.Message);
+
                 TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Add Tool Category ID // Process Button " + Ex.Message);
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
