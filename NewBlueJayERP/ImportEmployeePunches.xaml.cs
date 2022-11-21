@@ -360,7 +360,7 @@ namespace NewBlueJayERP
                         strPunchIPAddress = TheImportAholaPunchesDataSet.importaholapunches[intCounter].PunchIPAddress;
                         datLastUpdate = TheImportAholaPunchesDataSet.importaholapunches[intCounter].LastUpdate;
 
-                        TheFindAholaClockPunchesForVerificationDataSet = TheEmployeePunchedHoursClass.FindAholaClockPunchesForVerification(intPayID, datActualDateTime, datPunchDateTime, datCreatedDateTime, strPunchIPAddress);
+                        TheFindAholaClockPunchesForVerificationDataSet = TheEmployeePunchedHoursClass.FindAholaClockPunchesForVerification(intPayID, datActualDateTime, datPunchDateTime, strPunchIPAddress);
 
                         intRecordsReturned = TheFindAholaClockPunchesForVerificationDataSet.FindAholaClockPunchesForVerification.Rows.Count;
 
