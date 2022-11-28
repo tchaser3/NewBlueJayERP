@@ -40,6 +40,7 @@ namespace NewBlueJayERP
         string gstrUser;
         bool gblnAddingNewRecord;
         int gintPositionID;
+        string gstrPositionTitle;
 
         public AddIncentivePayTitles()
         {
@@ -269,6 +270,8 @@ namespace NewBlueJayERP
                     if (blnFatalError == true)
                         throw new Exception();
 
+                    TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.gintEmployeeID, "New Blue Jay ERP // Add Incentive Pay Titles // HAS ADDED POSITION " + strPositionTitle);
+
                     TheMessagesClass.InformationMessage("The Title Has Been Saved");
 
                     ResetControls();
@@ -303,6 +306,8 @@ namespace NewBlueJayERP
                     if (blnFatalError == true)
                         throw new Exception();
 
+                    TheEmployeeDateEntryClass.InsertIntoEmployeeDateEntry(MainWindow.gintEmployeeID, "New Blue Jay ERP // Add Incentive Pay Titles // HAS EDITED POSITION " + gstrPositionTitle);
+
                     TheMessagesClass.InformationMessage("The Title Has Been Saved");
 
                     ResetControls();
@@ -331,6 +336,7 @@ namespace NewBlueJayERP
                 {
                     txtEnterRate.Text = Convert.ToString(TheFindIncentivePayPositionByKeyword.FindIncentivePayPositionByKeyword[intSelectedIndex].PositionRate);
                     gintPositionID = TheFindIncentivePayPositionByKeyword.FindIncentivePayPositionByKeyword[intSelectedIndex].PositionID;
+                    gstrPositionTitle = TheFindIncentivePayPositionByKeyword.FindIncentivePayPositionByKeyword[intSelectedIndex].PositionTitle;
                 }
             }
             catch (Exception Ex)
