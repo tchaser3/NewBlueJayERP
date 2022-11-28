@@ -238,6 +238,7 @@ namespace NewBlueJayERP
         public static EditEmployeeHours EditEmployeeHoursWindow = new EditEmployeeHours();
         public static ChangeVehicleLocation ChangeVehicleLocationWindow = new ChangeVehicleLocation();
         public static VehiclesInYard VehiclesInYardWindow = new VehiclesInYard();
+        public static AddIncentivePayTitles AddIncentivePayTitlesWindow = new AddIncentivePayTitles();
 
         public MainWindow()
         {
@@ -349,6 +350,7 @@ namespace NewBlueJayERP
             InvoicedProjectReportsWindow.Visibility = Visibility.Hidden;
             UpdateEmployeeVehicleActiveWindow.Visibility = Visibility.Hidden;
             AddAdminProductivityWindow.Visibility = Visibility.Hidden;
+            AddIncentivePayTitlesWindow.Visibility = Visibility.Hidden;
             ImportNonProductionTaskWindow.Visibility = Visibility.Hidden;
             NonProductionEmployeeProductivityReportWindow.Visibility = Visibility.Hidden;
             EmployeeOvertimeReportWindow.Visibility = Visibility.Hidden;
@@ -745,6 +747,7 @@ namespace NewBlueJayERP
             expEmployeeReports.IsEnabled = true;
             expEditProject.IsEnabled = true;
             expAddAdminProductivity.IsEnabled = true;
+            expAddIncentivePayTitle.IsEnabled = true;
             expProjectManagementReport.IsEnabled = true;
             expProjectInvoiceReport.IsEnabled = true;
             expEmployeeProjectLaborReport.IsExpanded = true;
@@ -817,6 +820,7 @@ namespace NewBlueJayERP
                     expProjectReports.IsEnabled = false;
                     expEmployeeReports.IsEnabled = false;
                     expAddAdminProductivity.IsEnabled = false;
+                    expAddIncentivePayTitle.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "SUPER USER")
                 {
@@ -1557,6 +1561,7 @@ namespace NewBlueJayERP
             expEmployees.IsExpanded = false;
             expEmployeeDataEntry.IsExpanded = false;
             expAddAdminProductivity.IsExpanded = false;
+            expAddIncentivePayTitle.IsExpanded = false;
         }
 
         private void expImportNonProductionTask_Expanded(object sender, RoutedEventArgs e)
@@ -1972,6 +1977,12 @@ namespace NewBlueJayERP
             expVehicles.IsExpanded = false;
             expChangeVehicleLocation.IsExpanded = false;
             expVehiclesInYard.IsExpanded = false;
+        }
+
+        private void expAddIncentivePayTitle_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeDataEntryExpanders();
+            AddIncentivePayTitlesWindow.Visibility = Visibility.Visible;
         }
     }
 }

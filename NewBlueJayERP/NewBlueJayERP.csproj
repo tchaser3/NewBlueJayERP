@@ -153,6 +153,9 @@
     <Reference Include="HelpDeskDLL">
       <HintPath>..\..\Blue Jay Class Library\HelpDeskDLL.dll</HintPath>
     </Reference>
+    <Reference Include="IncentivePayDLL">
+      <HintPath>..\..\Blue Jay Class Library\IncentivePayDLL.dll</HintPath>
+    </Reference>
     <Reference Include="InspectionsDLL">
       <HintPath>..\..\Blue Jay Class Library\InspectionsDLL.dll</HintPath>
     </Reference>
@@ -463,6 +466,9 @@
     </Compile>
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AddIncentivePayTitles.xaml.cs">
+      <DependentUpon>AddIncentivePayTitles.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddInventoryLocation.xaml.cs">
       <DependentUpon>AddInventoryLocation.xaml</DependentUpon>
@@ -1469,6 +1475,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddEmployeeToVehicleEmails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddIncentivePayTitles.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
