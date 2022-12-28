@@ -73,6 +73,7 @@
                         <Expander x:Name="expEmployeeDataEntry" Header="Employee Data Entry" ExpandDirection="Right" Margin="18,1,1,1" Background="LightBlue" Expanded="expEmployeeDataEntry_Expanded">
                             <StackPanel>
                                 <Expander x:Name="expAddAdminProductivity" Header="Add Non-Production Productivity" Margin="30,1,1,1" Expanded="expAddAdminProductivity_Expanded"/>
+                                <Expander x:Name="expAddIncentivePayStauts" Header="Add Incentive Pay Status" Margin="30,1,1,1" Expanded="expAddIncentivePayStauts_Expanded" />
                                 <Expander x:Name="expAddIncentivePayTitle" Header="Add Incentive Pay Title" Margin="30,1,1,1" Expanded="expAddIncentivePayTitle_Expanded"/>
                             </StackPanel>
                         </Expander>

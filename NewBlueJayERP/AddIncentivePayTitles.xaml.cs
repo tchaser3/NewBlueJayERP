@@ -33,7 +33,7 @@ namespace NewBlueJayERP
 
         //setting up data
         FindIncentivePayTitleByPositionDataSet TheFindIncentivePayTitlesByPositionDataSet = new FindIncentivePayTitleByPositionDataSet();
-        FindSortedIncentivePayTitlesDataSet TheFindSortedIncentivePayTitlesDataSet = new FindSortedIncentivePayTitlesDataSet();
+        FindSortedIncentivePayTitles2DataSet TheFindSortedIncentivePayTitles2DataSet = new FindSortedIncentivePayTitles2DataSet();
         FindIncentivePayPositionByKeywordDataSet TheFindIncentivePayPositionByKeyword = new FindIncentivePayPositionByKeywordDataSet();
 
         //setting up global varibles
@@ -74,15 +74,15 @@ namespace NewBlueJayERP
                 cboSelectTitle.Items.Clear();
                 cboSelectTitle.Items.Add("Select Incentive Pay Title");
 
-                TheFindSortedIncentivePayTitlesDataSet = TheIncentivePayClass.FindSortedIncentivePayTitles();
+                TheFindSortedIncentivePayTitles2DataSet = TheIncentivePayClass.FindSortedIncentivePayTitles2();
 
-                intNumberOfRecords = TheFindSortedIncentivePayTitlesDataSet.FindSortedIncentivePayTitles.Rows.Count;
+                intNumberOfRecords = TheFindSortedIncentivePayTitles2DataSet.FindSortedIncentivePayTitles2.Rows.Count;
 
                 if(intNumberOfRecords > 0)
                 {
                     for(intCounter = 0; intCounter < intNumberOfRecords; intCounter++)
                     {
-                        cboSelectTitle.Items.Add(TheFindSortedIncentivePayTitlesDataSet.FindSortedIncentivePayTitles[intCounter].PositionTitle);
+                        cboSelectTitle.Items.Add(TheFindSortedIncentivePayTitles2DataSet.FindSortedIncentivePayTitles2[intCounter].PositionTitle);
                     }
                 }
 

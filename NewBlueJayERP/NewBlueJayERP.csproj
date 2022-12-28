@@ -467,6 +467,9 @@
     <Compile Include="AddEmployeeToVehicleEmails.xaml.cs">
       <DependentUpon>AddEmployeeToVehicleEmails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="AddIncentivePayStatus.xaml.cs">
+      <DependentUpon>AddIncentivePayStatus.xaml</DependentUpon>
+    </Compile>
     <Compile Include="AddIncentivePayTitles.xaml.cs">
       <DependentUpon>AddIncentivePayTitles.xaml</DependentUpon>
     </Compile>
@@ -1475,6 +1478,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="AddEmployeeToVehicleEmails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="AddIncentivePayStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

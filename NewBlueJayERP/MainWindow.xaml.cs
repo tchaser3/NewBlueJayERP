@@ -239,6 +239,7 @@ namespace NewBlueJayERP
         public static ChangeVehicleLocation ChangeVehicleLocationWindow = new ChangeVehicleLocation();
         public static VehiclesInYard VehiclesInYardWindow = new VehiclesInYard();
         public static AddIncentivePayTitles AddIncentivePayTitlesWindow = new AddIncentivePayTitles();
+        public static AddIncentivePayStatus AddIncentivePayStatusWindow = new AddIncentivePayStatus();
 
         public MainWindow()
         {
@@ -351,6 +352,7 @@ namespace NewBlueJayERP
             UpdateEmployeeVehicleActiveWindow.Visibility = Visibility.Hidden;
             AddAdminProductivityWindow.Visibility = Visibility.Hidden;
             AddIncentivePayTitlesWindow.Visibility = Visibility.Hidden;
+            AddIncentivePayStatusWindow.Visibility = Visibility.Hidden;
             ImportNonProductionTaskWindow.Visibility = Visibility.Hidden;
             NonProductionEmployeeProductivityReportWindow.Visibility = Visibility.Hidden;
             EmployeeOvertimeReportWindow.Visibility = Visibility.Hidden;
@@ -1562,6 +1564,7 @@ namespace NewBlueJayERP
             expEmployeeDataEntry.IsExpanded = false;
             expAddAdminProductivity.IsExpanded = false;
             expAddIncentivePayTitle.IsExpanded = false;
+            expAddIncentivePayStauts.IsExpanded = false;
         }
 
         private void expImportNonProductionTask_Expanded(object sender, RoutedEventArgs e)
@@ -1983,6 +1986,12 @@ namespace NewBlueJayERP
         {
             ResetEmployeeDataEntryExpanders();
             AddIncentivePayTitlesWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expAddIncentivePayStauts_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeDataEntryExpanders();
+            AddIncentivePayStatusWindow.Visibility = Visibility.Visible;
         }
     }
 }
