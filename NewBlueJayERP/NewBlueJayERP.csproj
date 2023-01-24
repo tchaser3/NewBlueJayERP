@@ -1378,6 +1378,9 @@
     <Compile Include="VehicleUsageReport.xaml.cs">
       <DependentUpon>VehicleUsageReport.xaml</DependentUpon>
     </Compile>
+    <Compile Include="VerifyIncentivePay.xaml.cs">
+      <DependentUpon>VerifyIncentivePay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="ViewEmployeeProduction.xaml.cs">
       <DependentUpon>ViewEmployeeProduction.xaml</DependentUpon>
     </Compile>
@@ -2110,6 +2113,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="VehicleUsageReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="VerifyIncentivePay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

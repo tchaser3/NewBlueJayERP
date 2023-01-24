@@ -75,6 +75,7 @@
                                 <Expander x:Name="expAddAdminProductivity" Header="Add Non-Production Productivity" Margin="30,1,1,1" Expanded="expAddAdminProductivity_Expanded"/>
                                 <Expander x:Name="expAddIncentivePayStauts" Header="Add Incentive Pay Status" Margin="30,1,1,1" Expanded="expAddIncentivePayStauts_Expanded" />
                                 <Expander x:Name="expAddIncentivePayTitle" Header="Add Incentive Pay Title" Margin="30,1,1,1" Expanded="expAddIncentivePayTitle_Expanded"/>
+                                <Expander x:Name="expVerifyIncentivePay" Header="Verify Incentive Pay" Margin="30,1,1,1" Expanded="expVerifyIncentivePay_Expanded" />
                             </StackPanel>
                         </Expander>
                         <Expander x:Name="expEmployeeReports" Header="Employee Reports" ExpandDirection="Right" Margin="27,1,1,1" Background="LightBlue" Expanded="expEmployeeReports_Expanded">

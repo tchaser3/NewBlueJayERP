@@ -240,6 +240,7 @@ namespace NewBlueJayERP
         public static VehiclesInYard VehiclesInYardWindow = new VehiclesInYard();
         public static AddIncentivePayTitles AddIncentivePayTitlesWindow = new AddIncentivePayTitles();
         public static AddIncentivePayStatus AddIncentivePayStatusWindow = new AddIncentivePayStatus();
+        public static VerifyIncentivePay VerifyIncentivePayWindow = new VerifyIncentivePay();
 
         public MainWindow()
         {
@@ -417,6 +418,7 @@ namespace NewBlueJayERP
             EditEmployeeHoursWindow.Visibility = Visibility.Hidden;
             ChangeVehicleLocationWindow.Visibility = Visibility.Hidden;
             VehiclesInYardWindow.Visibility = Visibility.Hidden;
+            VerifyIncentivePayWindow.Visibility = Visibility.Hidden;
         }
         private void expEmployees_Expanded(object sender, RoutedEventArgs e)
         {
@@ -750,6 +752,7 @@ namespace NewBlueJayERP
             expEditProject.IsEnabled = true;
             expAddAdminProductivity.IsEnabled = true;
             expAddIncentivePayTitle.IsEnabled = true;
+            expVerifyIncentivePay.IsEnabled = true;
             expProjectManagementReport.IsEnabled = true;
             expProjectInvoiceReport.IsEnabled = true;
             expEmployeeProjectLaborReport.IsExpanded = true;
@@ -823,6 +826,7 @@ namespace NewBlueJayERP
                     expEmployeeReports.IsEnabled = false;
                     expAddAdminProductivity.IsEnabled = false;
                     expAddIncentivePayTitle.IsEnabled = false;
+                    expVerifyIncentivePay.IsEnabled = false;
                 }
                 else if (gstrEmployeeGroup == "SUPER USER")
                 {
@@ -1564,6 +1568,7 @@ namespace NewBlueJayERP
             expEmployeeDataEntry.IsExpanded = false;
             expAddAdminProductivity.IsExpanded = false;
             expAddIncentivePayTitle.IsExpanded = false;
+            expVerifyIncentivePay.IsExpanded = false;
             expAddIncentivePayStauts.IsExpanded = false;
         }
 
@@ -1992,6 +1997,12 @@ namespace NewBlueJayERP
         {
             ResetEmployeeDataEntryExpanders();
             AddIncentivePayStatusWindow.Visibility = Visibility.Visible;
+        }
+
+        private void expVerifyIncentivePay_Expanded(object sender, RoutedEventArgs e)
+        {
+            ResetEmployeeDataEntryExpanders();
+            VerifyIncentivePayWindow.Visibility = Visibility.Visible;
         }
     }
 }
