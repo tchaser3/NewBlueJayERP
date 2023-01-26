@@ -73,7 +73,7 @@
                 <ComboBox x:Name="cboSelectStatus" IsReadOnly="True" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="45" Width="200" Margin="10,1,1,1" SelectionChanged="cboSelectStatus_SelectionChanged"/>
             </StackPanel>
             <StackPanel Height="575" Width="1025">
-                <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Width="1015" Height="560" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue"/>
+                <DataGrid x:Name="dgrResults" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" Width="1015" Height="560" Margin="1,5,1,1" AlternationCount="1" RowBackground="AliceBlue" AlternatingRowBackground="LightBlue" SelectionChanged="dgrResults_SelectionChanged"/>
             </StackPanel>
         </StackPanel>
     </Grid>

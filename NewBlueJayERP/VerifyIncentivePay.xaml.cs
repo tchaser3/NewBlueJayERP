@@ -33,6 +33,8 @@ namespace NewBlueJayERP
         FindIncentivePayByStatusDataSet TheFindIncentivePayByStatusDataSet = new FindIncentivePayByStatusDataSet();
         FindSortedIncentivePayStatusDataSet TheFindSortedIncentivePayStatusDataSet = new FindSortedIncentivePayStatusDataSet();
 
+        //global variables
+        string gstrTransactionStatus;
 
         public VerifyIncentivePay()
         {
@@ -117,7 +119,6 @@ namespace NewBlueJayERP
         {
             //setting local variables
             int intSelectedIndex;
-            string strTransactionStatus;
 
             try
             {
@@ -125,9 +126,9 @@ namespace NewBlueJayERP
 
                 if(intSelectedIndex > -1)
                 {
-                    strTransactionStatus = TheFindSortedIncentivePayStatusDataSet.FindSortedIncentivePayStatus[intSelectedIndex].TransactionStatus;
+                    gstrTransactionStatus = TheFindSortedIncentivePayStatusDataSet.FindSortedIncentivePayStatus[intSelectedIndex].TransactionStatus;
 
-                    TheFindIncentivePayByStatusDataSet = TheIncentivePayClass.FindIncentivePayByStatus(strTransactionStatus);
+                    TheFindIncentivePayByStatusDataSet = TheIncentivePayClass.FindIncentivePayByStatus(gstrTransactionStatus);
 
                     dgrResults.ItemsSource = TheFindIncentivePayByStatusDataSet.FindIncentivePayByStatus;
                 }
@@ -145,6 +146,47 @@ namespace NewBlueJayERP
         private void Window_IsVisibleChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             ResetControls();
+        }
+
+        private void dgrResults_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            DataGrid dataGrid;
+            DataGridRow selectedRow;
+            DataGridCell TransactionID;
+            string strTransactionID;
+
+            try
+            {
+                if (dgrResults.SelectedIndex > -1)
+                {
+
+                    //setting local variable
+                    dataGrid = dgrResults;
+                    selectedRow = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+                    TransactionID = (DataGridCell)dataGrid.Columns[0].GetCellContent(selectedRow).Parent;
+                    strTransactionID = ((TextBlock)TransactionID.Content).Text;
+
+                    //find the record
+                    MainWindow.gintTransactionID = Convert.ToInt32(strTransactionID);
+
+                    EditIncentivePayTransaction EditIncentivePayTransaction = new EditIncentivePayTransaction();
+                    EditIncentivePayTransaction.ShowDialog();
+
+                    TheFindIncentivePayByStatusDataSet = TheIncentivePayClass.FindIncentivePayByStatus(gstrTransactionStatus);
+
+                    dgrResults.ItemsSource = TheFindIncentivePayByStatusDataSet.FindIncentivePayByStatus;
+
+                }
+
+            }
+            catch (Exception Ex)
+            {
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Verify Incentive Pay // Results Grid Selection " + Ex.Message);
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Verify Incentive Pay // Results Grid Selection " + Ex.Message);
+
+                TheMessagesClass.ErrorMessage(Ex.ToString());
+            }
         }
     }
 }

@@ -724,6 +724,9 @@
     <Compile Include="EditFuelCard.xaml.cs">
       <DependentUpon>EditFuelCard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="EditIncentivePayTransaction.xaml.cs">
+      <DependentUpon>EditIncentivePayTransaction.xaml</DependentUpon>
+    </Compile>
     <Compile Include="EditPhoneExt.xaml.cs">
       <DependentUpon>EditPhoneExt.xaml</DependentUpon>
     </Compile>
@@ -1693,6 +1696,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="EditFuelCard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="EditIncentivePayTransaction.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
