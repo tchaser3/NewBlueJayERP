@@ -63,56 +63,82 @@
         <StackPanel HorizontalAlignment="Left" VerticalAlignment="Bottom" Width="150" Height="625" Background="LightBlue">
             <Expander x:Name="expCloseWindow" Header="Close Window" FontSize="16" Margin="4,1,1,1" Expanded="expCloseWindow_Expanded"  />
         </StackPanel>
-        <StackPanel Orientation="Horizontal" Height="620" Width="830" Margin="150,175,1,1">
-            <StackPanel Width="415" Height="620">
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblAssignedProjectID" Content="Assigned Project ID" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtAssignedProjectID" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+        <StackPanel Height="620" Width="830" Margin="150,175,1,1">
+            <StackPanel Height="50" Width="830">
+                <Label x:Name="lblCurrentInformation" Content="Current Information" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="320" Width="830" >
+                <StackPanel Width="415" Height="320">
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblAssignedProjectID" Content="Assigned Project ID" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtAssignedProjectID" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblCustomerProjectID" Content="Customer Project ID" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtCustomerProjectID" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="100" Width="415">
+                        <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtProjectName" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="90" Width="200" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblEmployee" Content="Employee" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtEmployee" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblManager" Content="Manager" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtManager" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblCustomerProjectID" Content="Customer Project ID" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtCustomerProjectID" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="100" Width="415">
-                    <Label x:Name="lblProjectName" Content="Project Name" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtProjectName" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="90" Width="200" Margin="10,1,1,1" TextWrapping="Wrap"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblEmployee" Content="Employee" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtEmployee" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblManager" Content="Manager" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="Manager" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                <StackPanel Width="415" Height="320">
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblProductionDate" Content="Production Date" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtProductionDate" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblPositionTitel" Content="Position Title" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtPositionTitle" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblCurrentStatus" Content="Current Status" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtCurrentStatus" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblTotalUnits" Content="Total Units" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtTotalUnits" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblRatePerUnit" Content="Rate Per Unit" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtRatePerUnit" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblTotalIncentivePay" Content="Total Incentive Pay" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
+                        <TextBox x:Name="txtTotalIncentivePay" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+
                 </StackPanel>
             </StackPanel>
-            <StackPanel Width="415" Height="620">
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblProductionDate" Content="Production Date" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtProductionDate" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+            <StackPanel Height="50" Width="830">
+                <Label x:Name="lblVerifyInformation" Content="Verify Information" FontSize="20" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="50"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Height="200" Width="830">
+                <StackPanel Height="200" Width="415">
+                    <StackPanel Orientation="Horizontal" Height="50" Width="415">
+                        <Label x:Name="lblSelectStatus" Content="Select Status" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125"/>
+                        <ComboBox x:Name="cboSelectStatus" IsReadOnly="True" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                    </StackPanel>
+                    <StackPanel Height="100" Width="415">
+                        <Button x:Name="btnProcess" Content="Process" FontSize="25" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="85" Width="200" Margin="1,10,1,1" Click="btnProcess_Click"/>
+                    </StackPanel>                    
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblPositionTitel" Content="Position Title" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtPositionTitle" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
+                <StackPanel Height="200" Width="415">
+                    <StackPanel Orientation="Horizontal" Height="150" Width="415" >
+                        <Label x:Name="lblEnterNotes" Content="Enter Notes" FontSize="16" HorizontalAlignment="Right" HorizontalContentAlignment="Right" VerticalAlignment="Center" VerticalContentAlignment="Center" Width="125"/>
+                        <TextBox x:Name="txtEnterNotes" FontSize="16" CharacterCasing="Upper" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="140" Width="225" Margin="10,1,1,1" TextWrapping="Wrap"/>
+                    </StackPanel>
                 </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblCurrentStatus" Content="Current Status" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtCurrentStatus" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblTotalUnits" Content="Total Units" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtTotalUnits" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblRatePerUnit" Content="Rate Per Unit" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtRatePerUnit" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-                </StackPanel>
-                <StackPanel Orientation="Horizontal" Height="50" Width="415">
-                    <Label x:Name="lblTotalIncentivePay" Content="Total Incentive Pay" HorizontalAlignment="Right" VerticalAlignment="Center" HorizontalContentAlignment="Right" VerticalContentAlignment="Center" FontSize="16" Width="175" Height="40"/>
-                    <TextBox x:Name="txtTotalIncentivePay" IsReadOnly="True" Background="LightGray" FontSize="16" HorizontalAlignment="Center" HorizontalContentAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="40" Width="200" Margin="10,1,1,1"/>
-                </StackPanel>
-                
             </StackPanel>
         </StackPanel>
+        
     </Grid>
 </Window>
