@@ -154,9 +154,11 @@ namespace NewBlueJayERP
                 cboTicketStatus.Items.Clear();
                 cboTicketStatus.Items.Add("Select Status");
                 cboTicketStatus.Items.Add("OPEN");
+                cboTicketStatus.Items.Add("PROGRAM RESEARCH");
                 cboTicketStatus.Items.Add("IN PROCESS");
                 cboTicketStatus.Items.Add("WAITING ON USER");
                 cboTicketStatus.Items.Add("WAITING ON PARTS");
+                cboTicketStatus.Items.Add("WAITING ON ERP RELEASE");
                 cboTicketStatus.Items.Add("CLOSED");
                 cboTicketStatus.SelectedIndex = 0;
 

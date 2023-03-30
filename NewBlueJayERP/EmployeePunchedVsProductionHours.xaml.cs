@@ -156,6 +156,13 @@ namespace NewBlueJayERP
                 }
 
                 datPayPeriod = Convert.ToDateTime(strValueForValidation);
+
+                if(datPayPeriod.DayOfWeek != DayOfWeek.Sunday)
+                {
+                    TheMessagesClass.ErrorMessage("The Date Entered is not a Sunday");
+                    return;
+                }
+
                 datStartDate = TheDateSearchClass.SubtractingDays(datPayPeriod, 6);
 
                 TheFindActiveNoExemptEmployeesDataSet = TheEmployeeClass.FindActiveNonExemptEmployeesByPayDate(datPayPeriod);
@@ -388,6 +395,13 @@ namespace NewBlueJayERP
                     }
 
                     datPayPeriod = Convert.ToDateTime(strValueForValidation);
+
+                    if (datPayPeriod.DayOfWeek != DayOfWeek.Sunday)
+                    {
+                        TheMessagesClass.ErrorMessage("The Date Entered is not a Sunday");
+                        return;
+                    }
+
                     datStartDate = TheDateSearchClass.SubtractingDays(datPayPeriod, 6);
 
                     intManagerID = TheFindProductionManagersDataSet.FindProductionManagers[intSelectedIndex].EmployeeID;
