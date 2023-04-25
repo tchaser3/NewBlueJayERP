@@ -648,6 +648,8 @@ namespace NewBlueJayERP
                 datLastDate = TheProjectLastDateDataSet.projectlastdate[0].LastDate;
                 intTransactionID = TheProjectLastDateDataSet.projectlastdate[0].TransactionID;
 
+                //expSubmitAfterHoursWork.IsEnabled = false;
+
                 datLastDate = TheDateSearchClass.RemoveTime(datLastDate);
 
                 datTodaysDate = TheDateSearchClass.RemoveTime(datTodaysDate);
@@ -1123,7 +1125,9 @@ namespace NewBlueJayERP
         private void expSubmitAfterHoursWork_Expanded(object sender, RoutedEventArgs e)
         {
             ResetProjectDataEntryExpanders();
-            SubmitAfterHoursWorkWindow.Visibility = Visibility.Visible;
+            //SubmitAfterHoursWorkWindow.Visibility = Visibility.Visible;
+
+            TheMessagesClass.InformationMessage("Please Use the Create After Hours Report in the Project Management Sheet");
         }
 
 

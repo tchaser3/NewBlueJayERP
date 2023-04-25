@@ -170,7 +170,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Reset Controls " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Reset Controls " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Reset Controls " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -212,7 +214,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Select Office Combo Box " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Select Office Combo Box " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Select Office Combo Box " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -256,7 +260,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Last Name Text Box Change " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Last Name Text Box Change " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Last Name Text Box Change " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -292,7 +298,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Select Employe Combo Box " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Select Employee Combo Box " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Select Employe Combo Box " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -422,7 +430,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Submit Form Expander " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Submit Form Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Submit Form Expander " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -517,7 +527,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Create Message " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Create Message " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Create Message " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
@@ -689,7 +701,9 @@ namespace NewBlueJayERP
             }
             catch (Exception Ex)
             {
-                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Submit Form Expander " + Ex.Message);
+                TheSendEmailClass.SendEventLog("New Blue Jay ERP // Submit After Hours Work // Submit Form Expander " + Ex.ToString());
+
+                TheEventLogClass.InsertEventLogEntry(DateTime.Now, "New Blue Jay ERP // Submit After Hours Work // Submit Form Expander " + Ex.ToString());
 
                 TheMessagesClass.ErrorMessage(Ex.ToString());
             }
