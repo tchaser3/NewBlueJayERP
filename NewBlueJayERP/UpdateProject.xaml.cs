@@ -311,7 +311,7 @@ namespace NewBlueJayERP
                     {
                         chkQCPerformed.IsChecked = false;
                     }
-                    if(TheFindProductionProjectInfoDataSet.FindProductionProjectInfo[0].SplicingComple == true)
+                    if(TheFindProductionProjectInfoDataSet.FindProductionProjectInfo[0].SplicingComplete == true)
                     {
                         chkSplicingComplete.IsChecked = true;
                     }
