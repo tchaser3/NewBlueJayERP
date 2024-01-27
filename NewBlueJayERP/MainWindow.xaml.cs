@@ -763,6 +763,9 @@ namespace NewBlueJayERP
         }
         private void SetEmployeeSecurity()
         {
+            expAddNewProject.IsEnabled = false;
+            expEditProject.IsEnabled= false;
+            
             try
             {
                 if (gstrEmployeeGroup == "USERS")

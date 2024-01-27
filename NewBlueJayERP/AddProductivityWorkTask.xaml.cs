@@ -264,10 +264,12 @@ namespace NewBlueJayERP
             int intBOLCounter;
             int intBOLNumberOfRecords;
             int intDepartmentID;
-            int intBusinessLineID;
+            int intEmployeeID;
 
             try
             {
+                intEmployeeID = MainWindow.TheVerifyLogonDataSet.VerifyLogon[0].EmployeeID;
+
                 if(cboSelectTask.SelectedIndex < 1)
                 {
                     blnFatalError = true;
@@ -294,7 +296,7 @@ namespace NewBlueJayERP
 
                 if((gblnAllDepartments == false) && (gblnAllBusinessLines == false))
                 {
-                    blnFatalError = TheWorkTaskClass.InsertProductivityWorkTask(gintWorkTaskID, gintBusinessLineID, gintDepartmentID);
+                    blnFatalError = TheWorkTaskClass.InsertWorkTaskDepartment(gintWorkTaskID, gintBusinessLineID, gintDepartmentID, intEmployeeID, DateTime.Now);
 
                     if (blnFatalError == true)
                         throw new Exception();
@@ -303,9 +305,9 @@ namespace NewBlueJayERP
                 {
                     for(intBOLCounter = 0; intBOLCounter < intBOLNumberOfRecords; intBOLCounter++)
                     {
-                        intBusinessLineID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intBOLCounter].DepartmentID;
+                        gintBusinessLineID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intBOLCounter].DepartmentID;
 
-                        blnFatalError = TheWorkTaskClass.InsertProductivityWorkTask(gintWorkTaskID, intBusinessLineID, gintDepartmentID);
+                        blnFatalError = TheWorkTaskClass.InsertWorkTaskDepartment(gintWorkTaskID, gintBusinessLineID, gintDepartmentID, intEmployeeID, DateTime.Now);
 
                         if (blnFatalError == true)
                             throw new Exception();
@@ -317,7 +319,7 @@ namespace NewBlueJayERP
                     {
                         intDepartmentID = TheFindSortedProductionTypesDataSet.FindSortedProductionTypes[intDepartmentCounter].DepartmentID;
 
-                        blnFatalError = TheWorkTaskClass.InsertProductivityWorkTask(gintWorkTaskID, gintBusinessLineID, intDepartmentID);
+                        blnFatalError = TheWorkTaskClass.InsertWorkTaskDepartment(gintWorkTaskID, gintBusinessLineID, gintDepartmentID, intEmployeeID, DateTime.Now);
 
                         if (blnFatalError == true)
                             throw new Exception();
@@ -327,13 +329,13 @@ namespace NewBlueJayERP
                 {
                     for (intBOLCounter = 0; intBOLCounter < intBOLNumberOfRecords; intBOLCounter++)
                     {
-                        intBusinessLineID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intBOLCounter].DepartmentID;
+                        gintBusinessLineID = TheFindSortedCustomerLinesDataSet.FindSortedCustomerLines[intBOLCounter].DepartmentID;
 
                         for(intDepartmentCounter = 0; intDepartmentCounter < intDepartmentNumberOfRecords; intDepartmentCounter++)
                         {
                             intDepartmentID = TheFindSortedProductionTypesDataSet.FindSortedProductionTypes[intDepartmentCounter].DepartmentID;
 
-                            blnFatalError = TheWorkTaskClass.InsertProductivityWorkTask(gintWorkTaskID, intBusinessLineID, intDepartmentID);
+                            blnFatalError = TheWorkTaskClass.InsertWorkTaskDepartment(gintWorkTaskID, gintBusinessLineID, gintDepartmentID, intEmployeeID, DateTime.Now);
 
                             if (blnFatalError == true)
                                 throw new Exception();
